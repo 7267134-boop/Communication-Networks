@@ -1,0 +1,35 @@
+           <div class="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]"></div>
+                    L(Course) ⊆ Σ*
+                </div>
+            </div>
+        </div>
+    </nav> -->
+
+    <!-- Main Graph Area -->
+    <main class="relative flex-1 w-full overflow-hidden z-10 flex items-center justify-center p-2 md:p-6">
+
+        <!-- Graph Container -->
+        <div id="graph-container"
+            class="relative w-11/12 max-w-6xl mx-auto h-[calc(100vh-8rem)] min-h-[550px] overflow-hidden">
+
+            <!-- Soft Instructions -->
+            <div
+                class="absolute top-6 left-1/2 -translate-x-1/2 z-20 rounded-full border border-slate-200 bg-white/80 px-5 py-2 text-xs font-medium text-slate-600 backdrop-blur-md pointer-events-none flex items-center gap-2 shadow-sm">
+                <i data-lucide="mouse-pointer-2" class="w-3.5 h-3.5 text-indigo-500"></i>
+                רחפו מעל הצמתים כדי לגלות את היחידה, ולחצו לכניסה
+            </div>
+
+            <!-- Language Description (Hidden by default) -->
+            <div id="game-info"
+                class="fixed top-2 md:top-4 left-1/2 -translate-x-1/2 z-[200] hidden flex-col items-center gap-2 w-[90%] md:w-auto">
+                <div
+                    class="rounded-2xl border border-indigo-200 bg-white/95 backdrop-blur-md px-6 py-4 shadow-xl text-center">
+                    <h3 class="text-lg md:text-xl font-bold text-indigo-700 mb-1" dir="rtl">שפת האוטומט</h3>
+                    <p id="game-lang-desc" class="text-slate-600 font-medium text-sm md:text-base mb-3" dir="rtl"></p>
+                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 rounded-lg border border-indigo-100 text-sm font-mono font-bold text-slate-700"
+                        dir="ltr">
+                        <i data-lucide="check-circle" class="w-4 h-4 text-emerald-500"></i>
+                        <span id="game-lang-path"></span>
+                    </div>
+                </div>
+   
