@@ -1296,10 +1296,10 @@
                             </div>
                             <div class="p-5 rounded-2xl bg-white text-slate-900 border border-sky-300 shadow-sm space-y-2">
                                 <div class="flex items-center justify-between">
-                                    <h4 class="text-base font-black text-white">🗝️ מפתח פרטי (Private Key – $D_B$)</h4>
+                                    <h4 class="text-base font-black text-sky-950">🗝️ מפתח פרטי (Private Key – $D_B$)</h4>
                                     <span class="px-2.5 py-0.5 rounded-full bg-white text-sky-950 font-mono text-xs font-bold">סודי אצל בעליו בלבד</span>
                                 </div>
-                                <p class="text-sm text-slate-200 leading-relaxed">
+                                <p class="text-sm text-slate-700 leading-relaxed">
                                     נשמר בסוד מוחלט אצל בוב ומעולם לא נשלח ברשת. רק בוב יכול להשתמש בו כדי לפענח את ההודעה:
                                     $$P = D_{\text{PrivateKey}_B}(C) = D_B(E_B(P))$$
                                 </p>
@@ -1409,8 +1409,8 @@
                                 </p>
                             </div>
                             <div class="p-5 rounded-2xl bg-white text-slate-900 border border-sky-300 shadow-sm space-y-2">
-                                <h4 class="text-base font-black text-white">⬅️ הכיוון הקשה: פירוק לגורמים (Factoring)</h4>
-                                <p class="text-sm text-slate-200 leading-relaxed">
+                                <h4 class="text-base font-black text-sky-950">⬅️ הכיוון הקשה: פירוק לגורמים (Factoring)</h4>
+                                <p class="text-sm text-slate-700 leading-relaxed">
                                     אם לתוקף ידוע רק $n$ (המפתח הציבורי), <b>קשה מאוד חישובית למצוא את הגורמים הראשוניים $p, q$</b>! ומאחר שחישוב המפתח הפרטי דורש ידיעה של $p$ ו-$q$ (כדי לחשב את $\phi(n) = (p-1)(q-1)$), מי שמכיר רק את המפתח הציבורי אינו יכול לגזור ממנו את המפתח הפרטי.
                                 </p>
                             </div>
@@ -1571,8 +1571,8 @@
                                 </p>
                             </div>
                             <div class="p-5 rounded-2xl bg-white text-slate-900 border border-sky-300 shadow-sm space-y-2">
-                                <h4 class="text-base font-black text-white">🕵️‍♀️ החולשה: העדר אימות ומתקפת אדם-באמצע (MITM)</h4>
-                                <p class="text-xs md:text-sm text-slate-200 leading-relaxed">
+                                <h4 class="text-base font-black text-sky-950">🕵️‍♀️ החולשה: העדר אימות ומתקפת אדם-באמצע (MITM)</h4>
+                                <p class="text-xs md:text-sm text-slate-700 leading-relaxed">
                                     בניגוד ל-RSA, פרוטוקול Diffie-Hellman הבסיסי <b>אינו מאמת את זהות המשתתפים</b>! לכן יריבה פעילה (<b>מלורי</b>) היושבת באמצע הערוץ יכולה ליירט את $g^a \bmod p$ מאליס ואת $g^b \bmod p$ מבוב, לשלוח במקומם את $g^c \bmod p$ ו-$g^d \bmod p$ שלה, וכך לקיים מפתח סודי אחד מול אליס ($g^{ac} \bmod p$) ומפתח שני מול בוב ($g^{bd} \bmod p$) ולקרוא/לשנות כל הודעה ביניהם! הפתרון: שילוב <b>תעודות דיגיטליות וחתימות</b> לאימות הפרמטרים.
                                 </p>
                             </div>
@@ -1656,14 +1656,14 @@
                             </div>
 
                             <div class="p-5 rounded-2xl bg-white text-slate-900 border border-sky-300 shadow-sm space-y-2">
-                                <h4 class="text-base font-black text-white">🧅 חתימה ישירה עם סודיות: שתי שכבות $E_B(D_A(P))$</h4>
-                                <p class="text-xs md:text-sm text-slate-200 leading-relaxed">
+                                <h4 class="text-base font-black text-sky-950">🧅 חתימה ישירה עם סודיות: שתי שכבות $E_B(D_A(P))$</h4>
+                                <p class="text-xs md:text-sm text-slate-700 leading-relaxed">
                                     נניח שאיה רוצה לשלוח לבועז מסמך $P$ שיהיה <b>גם חתום וגם סודי</b> ( ):
                                     <br>1. <b>שכבה פנימית (חתימה):</b> איה מפעילה את ה-<b>Private Key שלה</b>: $S = D_A(P)$.
                                     <br>2. <b>שכבה חיצונית (סודיות):</b> איה מצפינה את התוצאה עם ה-<b>Public Key של בועז</b>: $C = E_B(D_A(P))$ ושולחת לבועז.
                                     <br>3. <b>פענוח ואימות אצל בועז (בסדר הפוך!):</b> בועז מפעיל תחילה את ה-<b>Private Key שלו</b>: $D_B(C) = D_B(E_B(D_A(P))) = D_A(P)$, ואז מפעיל את ה-<b>Public Key של איה</b>: $E_A(D_A(P)) = P$!
                                 </p>
-                                <div class="p-2.5 bg-[#0a192f] text-sky-100 rounded-xl border border-sky-500 text-xs text-slate-200">
+                                <div class="p-2.5 bg-[#0a192f] text-sky-100 rounded-xl border border-sky-500 text-xs text-slate-700">
                                     <b>❗ דגש למבחן:</b> איה <b>אינה</b> משתמשת במפתח הציבורי של עצמה! היא משתמשת ב-$D_A$ (פרטי שלה) וב-$E_B$ (ציבורי של בועז). בועז משתמש ב-$D_B$ (פרטי שלו) וב-$E_A$ (ציבורי של איה).
                                 </div>
                             </div>
@@ -1874,8 +1874,8 @@
                                 </p>
                             </div>
                             <div class="p-5 rounded-2xl bg-white text-slate-900 border border-sky-300 shadow-sm space-y-2">
-                                <h4 class="font-black text-white text-base">🚫 ביטול אישורים (CRL) מול רשת אמון (PGP)</h4>
-                                <p class="text-slate-200 leading-relaxed">
+                                <h4 class="font-black text-sky-950 text-base">🚫 ביטול אישורים (CRL) מול רשת אמון (PGP)</h4>
+                                <p class="text-slate-700 leading-relaxed">
                                     • <b>רשימת אישורים מבוטלים (CRL):</b> אם מפתח פרטי נגנב לפני תום תוקף התעודה, ה-CA מפרסמת רשימה חתומה דיגיטלית של תעודות שבוטלו (<code>CRL</code>). תאריך התפוגה באישור חיוני כדי שניתן יהיה להסיר אישורים פגי-תוקף מה-CRL והרשימה לא תתארך לאינסוף!<br>
                                     • <b>רשת אמון (Web of Trust ב-PGP):</b> מודל חלופי מבוזר ללא CA מרכזי, שבו משתמשים חותמים זה על מפתחותיו של זה בדרגות אמון משתנות.
                                 </p>
@@ -2077,8 +2077,8 @@
                                 </p>
                             </div>
                             <div class="p-5 rounded-2xl bg-white text-slate-900 border border-sky-300 shadow-sm space-y-2">
-                                <h4 class="text-base font-black text-white">❗ שאלת מבחן קלאסית (): מיתוג מנות מול מיתוג מעגלים</h4>
-                                <p class="text-xs md:text-sm text-slate-200 leading-relaxed">
+                                <h4 class="text-base font-black text-sky-950">❗ שאלת מבחן קלאסית (): מיתוג מנות מול מיתוג מעגלים</h4>
+                                <p class="text-xs md:text-sm text-slate-700 leading-relaxed">
                                     <b>מדוע מתקפת הצפה על רוחב הפס מתאימה לרשת מיתוג מנות (Packet Switching) ואינה קיימת במיתוג מעגלים (Circuit Switching)?</b><br>
                                     • ב<b>מיתוג מנות:</b> לא מוקצים מראש משאבים קבועים לכל חיבור; המשתמשים מתחרים על אותם קווים ובאפרים משותפים, ולכן תוקף יכול להציף ולכלות אותם.<br>
                                     • ב<b>מיתוג מעגלים:</b> לכל חיבור מוקצים משאבים ייעודיים וקבועים מתחילת החיבור ועד לסיומו, ולכן תוקף אינו יכול "לגזול" רוחב פס של חיבור שהוקצה למשתמש אחר באמצעות שליחת תעבורה מרובה!
@@ -2147,8 +2147,8 @@
                                 </p>
                             </div>
                             <div class="p-5 rounded-2xl bg-white text-slate-900 border border-sky-300 shadow-sm space-y-2">
-                                <h4 class="text-base font-black text-white">💥 מה עושה התוקף ב-TCP SYN Flood?</h4>
-                                <p class="text-xs md:text-sm text-slate-200 leading-relaxed">
+                                <h4 class="text-base font-black text-sky-950">💥 מה עושה התוקף ב-TCP SYN Flood?</h4>
+                                <p class="text-xs md:text-sm text-slate-700 leading-relaxed">
                                     1. התוקף שולח לשרת <b>מספר עצום של מנות SYN</b>, אך <b>אינו משלים את לחיצת היד</b>.<br>
                                     2. <b>מדוע Spoofing עוזר לתוקף?</b> התוקף מזייף את כתובת המקור (<code>Source IP</code>) בכל מנת SYN. השרת שולח <code>SYN+ACK</code> לכתובות אקראיות שלא יזמו את החיבור, ולכן <b>האישור הסופי לעולם לא מגיע (`ACK never arrives`)</b>!<br>
                                     3. <b>התוצאה:</b> השרת נשאר עם אלפי <b>חיבורים חצי-פתוחים (Half-Open Connections)</b> שתופסים את כל הזיכרון המוקצה לחיבורים, ולקוחות אמיתיים כבר אינם מצליחים לפתוח חיבור!
@@ -2422,8 +2422,8 @@
                                 </p>
                             </div>
                             <div class="p-5 rounded-2xl bg-white text-slate-900 border border-sky-300 shadow-sm space-y-2">
-                                <h4 class="text-base font-black text-white">⚠️ החיסרון המרכזי של uRPF ( )</h4>
-                                <p class="text-xs md:text-sm text-slate-200 leading-relaxed">
+                                <h4 class="text-base font-black text-sky-950">⚠️ החיסרון המרכזי של uRPF ( )</h4>
+                                <p class="text-xs md:text-sm text-slate-700 leading-relaxed">
                                     השיטה מניחה <b>סימטריה במסלולים</b>, אבל באינטרנט: <b><code>Forward path may differ from reverse path</code></b> – הדרך מ-$A$ ל-$B$ אינה חייבת להיות אותה הדרך מ-$B$ ל-$A$! לכן כאשר הניתוב אסימטרי, פקטה לגיטימית לחלוטין עלולה להיכנס דרך ממשק שונה מממשק היציאה אל המקור, להיראות חשודה ולהיזרק בטעות.
                                 </p>
                             </div>
@@ -2471,8 +2471,8 @@
                             </div>
 
                             <div class="p-5 rounded-2xl bg-white text-slate-900 border border-sky-300 shadow-sm space-y-2.5">
-                                <h4 class="text-base font-black text-white">⚠️ הבעיה המרכזית: $\text{Anomaly} \neq \text{Attack}$</h4>
-                                <p class="text-xs md:text-sm text-slate-200 leading-relaxed">
+                                <h4 class="text-base font-black text-sky-950">⚠️ הבעיה המרכזית: $\text{Anomaly} \neq \text{Attack}$</h4>
+                                <p class="text-xs md:text-sm text-slate-700 leading-relaxed">
                                     חריגה בתעבורה אינה אומרת תמיד שמדובר בהתקפה (<b>חיובי שגוי – False Positive</b>)! שתי הדוגמאות :<br>
                                     1. <b>אתר חדשות בעת אירוע חדשותי גדול:</b> המון משתמשים אמיתיים נכנסים בבת אחת לקרוא על האירוע.<br>
                                     2. <b>אתר קניות ביום מבצעים (Flash Crowd / קהל הבזק):</b> קפיצה עצומה בתעבורה מצד לקוחות לגיטימיים שרוצים לקנות!<br>
@@ -2618,39 +2618,39 @@
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs leading-relaxed">
                                 <div class="p-3.5 rounded-2xl bg-sky-50/80 border border-sky-300 text-slate-800 shadow-2xs">
-                                    <span class="font-black text-slate-200 block mb-1">1. ארבע מטרות האבטחה שונות זו מזו:</span>
-                                    <span class="font-mono text-[11px] text-white" dir="ltr">Confidentiality ≠ Authentication ≠ Integrity ≠ Availability</span>
+                                    <span class="font-black text-sky-950 block mb-1">1. ארבע מטרות האבטחה שונות זו מזו:</span>
+                                    <span class="font-mono text-[11px] text-sky-900 font-bold" dir="ltr">Confidentiality ≠ Authentication ≠ Integrity ≠ Availability</span>
                                 </div>
                                 <div class="p-3.5 rounded-2xl bg-sky-50/80 border border-sky-300 text-slate-800 shadow-2xs">
-                                    <span class="font-black text-slate-200 block mb-1">2. הצפנה סימטרית:</span>
+                                    <span class="font-black text-sky-950 block mb-1">2. הצפנה סימטרית:</span>
                                     משתמשת באותו מפתח סודי בשני הכיוונים ($k_1 = k_2$), מהירה אך סובלת מבעיית הפצת המפתח.
                                 </div>
                                 <div class="p-3.5 rounded-2xl bg-sky-50/80 border border-sky-300 text-slate-800 shadow-2xs">
-                                    <span class="font-black text-slate-200 block mb-1">3. הצפנה אסימטרית:</span>
+                                    <span class="font-black text-sky-950 block mb-1">3. הצפנה אסימטרית:</span>
                                     משתמשת במפתח ציבורי ובמפתח פרטי שונים ($k_{\text{public}} \neq k_{\text{private}}$).
                                 </div>
                                 <div class="p-3.5 rounded-2xl bg-sky-50/80 border border-sky-300 text-slate-800 shadow-2xs">
-                                    <span class="font-black text-slate-200 block mb-1">4. אלגוריתם RSA:</span>
+                                    <span class="font-black text-sky-950 block mb-1">4. אלגוריתם RSA:</span>
                                     הצפנה אסימטרית המבוססת על $n=pq$. יקרה חישובית, ולכן משמשת בעיקר ל<b>העברת מפתחות</b> ול<b>חתימות דיגיטליות</b>.
                                 </div>
                                 <div class="p-3.5 rounded-2xl bg-sky-50/80 border border-sky-300 text-slate-800 shadow-2xs">
-                                    <span class="font-black text-slate-200 block mb-1">5. מטרת החתימה הדיגיטלית:</span>
+                                    <span class="font-black text-sky-950 block mb-1">5. מטרת החתימה הדיגיטלית:</span>
                                     חתימה דיגיטלית <b>לא</b> נועדה לסודיות! מטרותיה המרכזיות: <b>Integrity + Non-Repudiation</b>.
                                 </div>
                                 <div class="p-3.5 rounded-2xl bg-sky-50/80 border border-sky-300 text-slate-800 shadow-2xs">
-                                    <span class="font-black text-slate-200 block mb-1">6. חתימה עם פונקציית Hash:</span>
+                                    <span class="font-black text-sky-950 block mb-1">6. חתימה עם פונקציית Hash:</span>
                                     בחתימה עם Hash לא חותמים על כל המסמך $P$, אלא רק על טביעת האצבע הקצרה: $DS(P) = D_A(h(P))$.
                                 </div>
                                 <div class="p-3.5 rounded-2xl bg-sky-50/80 border border-sky-300 text-slate-800 shadow-2xs">
-                                    <span class="font-black text-slate-200 block mb-1">7. מתקפת TCP SYN Flood:</span>
+                                    <span class="font-black text-sky-950 block mb-1">7. מתקפת TCP SYN Flood:</span>
                                     מנצלת את העובדה שהשרת מקצה משאבים וזיכרון מיד לאחר קבלת ה-<code>SYN</code>, עוד לפני שה-Handshake הושלם.
                                 </div>
                                 <div class="p-3.5 rounded-2xl bg-sky-50/80 border border-sky-300 text-slate-800 shadow-2xs">
-                                    <span class="font-black text-slate-200 block mb-1">8. מנגנון SYN Cookie:</span>
+                                    <span class="font-black text-sky-950 block mb-1">8. מנגנון SYN Cookie:</span>
                                     גורם לכך שהשרת <b>לא ישמור מצב</b> עבור הבקשה עד שמגיע <code>ACK</code> תקף ($\text{Cookie}+1$).
                                 </div>
                                 <div class="p-3.5 rounded-2xl bg-sky-50/80 border border-sky-300 text-slate-800 shadow-2xs">
-                                    <span class="font-black text-slate-200 block mb-1">9. מתקפות DoS ו-DDoS:</span>
+                                    <span class="font-black text-sky-950 block mb-1">9. מתקפות DoS ו-DDoS:</span>
                                     אינן התקפות ש"גונבות" מידע – הן פוגעות בעיקר ב-<b>Availability (זמינות השירות)</b>.
                                 </div>
                             </div>
