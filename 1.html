@@ -361,19 +361,194 @@
             border-color: rgba(186, 230, 253, 0.85) !important;
             box-shadow: 0 8px 28px -4px rgba(2, 132, 199, 0.08) !important;
         }
+    
+        /* ===================================================================== */
+        /* STUDY MODE SWITCHER & FAST STUDY MODE (OS-INSPIRED CLEAN BLUE STYLE)  */
+        /* ===================================================================== */
+        .deep-mode-content { display: block; }
+        .fast-mode-content { display: none; }
+
+        body.fast-study-mode .deep-mode-content { display: none !important; }
+        body.fast-study-mode .fast-mode-content { display: block !important; }
+
+        /* Calmer, cleaner visual environment in Fast Study Mode */
+        body.fast-study-mode {
+            background-color: #f4f7fb !important;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px) !important;
+            background-size: 28px 28px !important;
+            color: #1e293b;
+        }
+        body.fast-study-mode .silver-waves-bg,
+        body.fast-study-mode .silver-blue-waves-bg,
+        body.fast-study-mode .nav-btn.active-nav::after {
+            animation: none !important;
+            background: none !important;
+            display: none !important;
+        }
+        body.fast-study-mode .sidebar-animated-mesh {
+            animation: none !important;
+            background: #f8fbff !important;
+        }
+        body.fast-study-mode .sim-circle-btn {
+            animation: none !important;
+            box-shadow: 0 2px 8px rgba(2, 132, 199, 0.25) !important;
+        }
+        body.fast-study-mode .nav-btn.active-nav {
+            background: #0284c7 !important;
+            box-shadow: 0 2px 8px rgba(2, 132, 199, 0.2) !important;
+            border-right: 4px solid #0c4a6e !important;
+        }
+
+        /* OS-Inspired Fast Study Mode Cards & Callouts (Blue Palette) */
+        .fast-section-card {
+            background-color: #ffffff;
+            border: 1px solid #dbeafe;
+            border-radius: 1.25rem;
+            box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+        .fast-section-header {
+            background-color: #f0f7ff;
+            padding: 0.9rem 1.35rem;
+            border-bottom: 1px solid #dbeafe;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .fast-concept-box {
+            background: #f0f7ff;
+            border-right: 4px solid #0284c7;
+            padding: 1.1rem 1.25rem;
+            border-radius: 0.65rem;
+            border-top: 1px solid #dbeafe;
+            border-left: 1px solid #dbeafe;
+            border-bottom: 1px solid #dbeafe;
+        }
+        .fast-tip-box {
+            background: #eff6ff;
+            border-right: 4px solid #1d4ed8;
+            padding: 1.1rem 1.25rem;
+            border-radius: 0.65rem;
+            border-top: 1px solid #bfdbfe;
+            border-left: 1px solid #bfdbfe;
+            border-bottom: 1px solid #bfdbfe;
+        }
+        .fast-formula-box {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-right: 4px solid #0369a1;
+            padding: 1rem 1.25rem;
+            border-radius: 0.65rem;
+        }
+        .fast-sim-card {
+            background: #f8fbff;
+            border: 1.5px solid #bae6fd;
+            border-radius: 1rem;
+            padding: 1.25rem;
+        }
+
+        /* Floating Study Mode Toggle Button (Replaces Sun/Moon/Book Theme Button) */
+        
+        
+        body.fast-study-mode 
+        body.fast-study-mode 
+
+        /* MathJax & Table Mobile Overflow Protection */
+        mjx-container {
+            max-width: 100% !important;
+            overflow-x: auto !important;
+            overflow-y: hidden !important;
+        }
+        table {
+            border-collapse: collapse;
+        }
+
+        /* ===================================================================== */
+        /* MOBILE & TABLET RESPONSIVENESS (< 1024px)                             */
+        /* ===================================================================== */
+        #sidebar-backdrop {
+            display: none;
+        }
+        @media (max-width: 1023px) {
+            aside#course-sidebar {
+                position: fixed !important;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                width: min(86vw, 21rem) !important;
+                min-width: 0 !important;
+                z-index: 50 !important;
+                transform: translateX(0);
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease !important;
+            }
+            body.sidebar-collapsed aside#course-sidebar {
+                transform: translateX(105%) !important;
+                width: min(86vw, 21rem) !important;
+                opacity: 0 !important;
+                pointer-events: none !important;
+            }
+            body:not(.sidebar-collapsed) #sidebar-backdrop {
+                display: block;
+                position: fixed;
+                inset: 0;
+                background: rgba(7, 21, 39, 0.55);
+                backdrop-filter: blur(2px);
+                z-index: 44;
+            }
+            body:not(.sidebar-collapsed) #sidebar-toggle-btn {
+                right: min(86vw, 21rem) !important;
+            }
+            body.sidebar-collapsed #sidebar-toggle-btn {
+                right: 0 !important;
+                top: 4.2rem !important;
+                height: 3.2rem !important;
+                width: 2rem !important;
+            }
+            
+        }
+        @media (max-width: 640px) {
+            .content-wrapper {
+                padding: 1.1rem !important;
+                border-radius: 1.25rem !important;
+            }
+            .welcome-box, .concept-box, .correction-box {
+                padding: 1rem !important;
+            }
+            h2 {
+                font-size: 1.45rem !important;
+                line-height: 1.3 !important;
+            }
+            h3 {
+                font-size: 1.1rem !important;
+                line-height: 1.35 !important;
+            }
+            .sim-circle-btn {
+                width: 3rem;
+                height: 3rem;
+            }
+            #single-sim-modal > div,
+            #questions-modal > div,
+            #glossary-modal > div {
+                width: 96vw !important;
+                height: 91vh !important;
+                border-radius: 1.25rem !important;
+            }
+        }
+
     </style>
     <meta name="ai-document-summary" content="יחידה 1 בקורס רשתות תקשורת מחשבים (20582) באוניברסיטה הפתוחה: מבוא ומושגים יסודיים. כולל ארכיטקטורת רשת האינטרנט, מיתוג מנות (Packet Switching) לעומת מיתוג מעגלים (Circuit Switching), מודל חמש השכבות ומודל OSI, עקרון הכימוס (Encapsulation) והוצאת הכימוס, יחידות מידע (PDU), חישוב ארבעת מרכיבי ההשהיה (שידור L/R, התפשטות d/s, עיבוד ותור), ניתוח עוצמת תנועה, חישובי RTT ומכפלת רוחב-פס-השהיה (BDP)." />
+    <!-- Study Mode Manager Integrated Inline -->
     <script src="theme-manager.js"></script>
 </head>
 
 <body class="text-slate-900 h-screen flex overflow-hidden">
-    <!-- Theme Toggle Button (Day / Night / Reading Mode) -->
-    <button id="theme-toggle-btn" onclick="toggleTheme()" title="החלף ערכת נושא (רגיל -> כהה -> קריאה)"
-        class="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 w-13 h-13 p-3 rounded-2xl flex items-center justify-center text-2xl shadow-lg transition-all duration-300 hover:scale-110 border border-slate-300/60 bg-white/40 backdrop-blur-md text-slate-800"
-        style="box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);">
-        ☀️
-    </button>
 
+
+    <!-- Mobile Backdrop for Sidebar Drawer -->
+    <div id="sidebar-backdrop" onclick="toggleSidebar()" aria-hidden="true"></div>
 
     <!-- Sidebar Toggle Flap Button -->
     <button id="sidebar-toggle-btn" onclick="toggleSidebar()" title="הסתר/הצג תפריט ניווט">
@@ -383,7 +558,7 @@
     </button>
 
     <!-- Sidebar Navigation Drawer -->
-    <aside class="sidebar-animated-mesh w-[21rem] text-slate-800 flex flex-col h-full shadow-2xl z-20 flex-shrink-0 border-l border-slate-300 relative overflow-hidden">
+    <aside id="course-sidebar" class="sidebar-animated-mesh w-[21rem] text-slate-800 flex flex-col h-full shadow-2xl z-20 flex-shrink-0 border-l border-slate-300 relative overflow-hidden">
         <div class="absolute inset-0 silver-waves-bg opacity-35 pointer-events-none"></div>
 
         <!-- Sidebar Header -->
@@ -398,6 +573,17 @@
             <p class="text-xs text-sky-900/80 mt-1.5 font-medium leading-relaxed">
                 האינטרנט כרשת של רשתות, טופולוגיות, מודל 5 השכבות של TCP/IP ו-OSI, כימוס ותקורה, זמני שידור והתפשטות, אותות, מודם ואפנון, מיתוג מעגלים ומנות, ריבוב FDM/TDM וממשק שקעים.
             </p>
+            <!-- Segmented Study Mode Selector in Sidebar -->
+            <div class="mt-3 p-1 rounded-xl bg-sky-100/90 border border-sky-300/80 grid grid-cols-2 gap-1 text-[11px]">
+                <button type="button" id="sidebar-mode-deep-btn" onclick="setStudyMode('deep')" class="py-1.5 px-2 rounded-lg font-black bg-gradient-to-r from-blue-700 to-sky-600 text-white shadow-xs transition-all flex items-center justify-center gap-1 cursor-pointer">
+                    <span>🎓</span>
+                    <span>לימוד מעמיק</span>
+                </button>
+                <button type="button" id="sidebar-mode-fast-btn" onclick="setStudyMode('fast')" class="py-1.5 px-2 rounded-lg font-bold text-sky-950 hover:bg-white/70 transition-all flex items-center justify-center gap-1 cursor-pointer">
+                    <span>⚡</span>
+                    <span>לימוד מהיר</span>
+                </button>
+            </div>
         </div>
 
         <!-- Sidebar Navigation List -->
@@ -475,7 +661,7 @@
                     <span class="font-mono text-xs text-sky-500 group-hover:translate-x-0.5 transition-transform">→</span>
                     <span>לפרק הקודם</span>
                 </a>
-                <a href="2.html" class="relative overflow-hidden py-2 px-2 rounded-lg bg-gradient-to-r from-blue-700 via-sky-600 to-blue-600 hover:from-blue-800 hover:to-sky-700 text-white font-bold text-[11px] border border-sky-300 flex items-center justify-center gap-1 group transition-all shadow-xs text-center cursor-pointer" title="מעבר לפרק 2: שכבת היישום">
+                <a href="2.html" class="relative overflow-hidden py-2 px-2 rounded-lg bg-gradient-to-r from-blue-700 via-sky-600 to-blue-600 hover:from-blue-800 hover:to-sky-700 text-white font-bold text-[11px] border border-sky-300 flex items-center justify-center gap-1 group transition-all shadow-xs text-center cursor-pointer" title="מעבר לפרק 2: השכבה הפיזית ושכבת הערוץ">
                     <div class="absolute inset-0 silver-blue-waves-bg pointer-events-none opacity-25"></div>
                     <span class="relative z-10">לפרק הבא</span>
                     <span class="relative z-10 font-mono text-xs text-sky-200 group-hover:-translate-x-0.5 transition-transform">←</span>
@@ -490,13 +676,14 @@
 
     <!-- Main Content Area -->
     <main id="main-content" class="flex-1 overflow-y-auto scroll-smooth bg-transparent relative">
-        <div class="max-w-5xl mx-auto p-6 md:p-10 pb-28">
+        <div class="max-w-5xl mx-auto p-3.5 sm:p-6 md:p-10 pb-28">
 
             <!-- ========================================================================= -->
             <!-- TAB 1: סוגי רשתות, טכנולוגיות שידור וטופולוגיות                             -->
             <!-- ========================================================================= -->
             <section id="tab-networks" class="tab-content active">
-                <div class="content-wrapper bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-sky-200/90 mb-8">
+                <div class="deep-mode-content">
+<div class="content-wrapper bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-sky-200/90 mb-8">
                     <header class="mb-8 border-b border-slate-200 pb-6">
                         <div class="flex items-center justify-between flex-wrap gap-3 mb-3">
                             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-300 text-sky-900 text-xs font-black">
@@ -898,6 +1085,41 @@
                                 </tbody>
                             </table>
                         </div>
+                        <!-- Simultaneous Transmission at t0: Ethernet Hub vs Ethernet Switch (with Buffers) -->
+                        <div class="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-4 text-xs">
+                            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-300 space-y-2">
+                                <div class="flex items-center justify-between border-b border-slate-200 pb-1.5">
+                                    <strong class="text-sky-950 text-sm">⚡ ניתוח שידור סימולטני בנקודת זמן $t_0$: Ethernet Hub מול Switch</strong>
+                                    <span class="px-2 py-0.5 rounded bg-sky-100 text-sky-900 font-bold text-[10px]">מתחמי התנגשות</span>
+                                </div>
+                                <p class="text-slate-700 leading-relaxed">
+                                    נניח שבנקודת הזמן $t_0$ תחנה $A$ משדרת מסגרת המיועדת לתחנה $C$, ובאותה נקודת זמן בדיוק תחנה $B$ משדרת מסגרת המיועדת לתחנה $D$:
+                                </p>
+                                <ul class="space-y-1.5 text-slate-800 list-disc list-inside">
+                                    <li><strong>ברשת עם Ethernet Hub:</strong> <strong>בהכרח תתרחש התנגשות (Collision)</strong> בין שתי המסגרות! ה-Hub פועל בשכבה הפיזית ומשכפל את האותות מכל פורט לכל שאר הפורטים, כך שכל התחנות חולקות <strong>מתחם התנגשות (Collision Domain) יחיד</strong>. <br><span class="text-rose-800 font-semibold">⚠️ דגש חשוב:</span> גם ברשת עם Hub, ניתן לשלוח מסגרת המיועדת לתחנה ספציפית (הכותרת מכילה את כתובת ה-MAC של $C$ או $D$); ה-Hub אומנם מציף את האות פיזית לכולם, אך הכרטיסים האחרים מסננים אותו לפי כתובת היעד.</li>
+                                    <li><strong>ברשת עם Ethernet Switch:</strong> <strong>שתי המסגרות ישודרו בהצלחה במקביל!</strong> המתג פועל בשכבה 2, מפריד כל פורט למתחם התנגשות נפרד, ומעביר את המסגרת מ-$A$ ישירות לפורט של $C$ ואת המסגרת מ-$B$ ישירות לפורט של $D$.</li>
+                                </ul>
+                            </div>
+
+                            <div class="p-4 rounded-2xl bg-[#0a192f] text-sky-100 border border-sky-400/30 flex flex-col justify-between space-y-2">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1.5">
+                                        <span class="px-2 py-0.5 rounded bg-sky-400 text-sky-950 font-black text-[10px]">💡 העמקה הנדסית</span>
+                                        <strong class="text-white text-sm">מה קורה ב-Switch אם $A$ ו-$B$ משדרות ב-$t_0$ לאותה תחנת יעד $C$?</strong>
+                                    </div>
+                                    <p class="text-slate-200 leading-relaxed">
+                                        אפילו כאשר שתי תחנות משדרות באותו רגע $t_0$ אל <strong>אותה תחנת יעד $C$</strong> דרך מתג (<span class="font-mono">Ethernet Switch</span>), <strong>לא מתרחשת התנגשות!</strong>
+                                    </p>
+                                    <p class="text-slate-300 mt-1.5 leading-relaxed">
+                                        הסיבה לכך היא שלמתג יש <strong>חוצצי זיכרון פנימיים (Buffers / Queues)</strong>: הוא קולט במקביל את שתי המסגרות בשני פורטי הכניסה הנפרדים של $A$ ו-$B$, שומר אותן בתור היציאה של פורט $C$, ומשדר אותן אל $C$ בזו אחר זו ללא התנגשות.
+                                    </p>
+                                </div>
+                                <div class="p-2 rounded-lg bg-white/10 text-sky-200 font-mono text-[11px] text-center">
+                                    Hub = מתחם התנגשות 1 ללא חוצצים • Switch = מתחם התנגשות נפרד לכל פורט + חוצצים (Buffers)
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- Bottom Practice CTA Banner for Tab 1 -->
@@ -923,7 +1145,195 @@
                 </div>
 
                 
-                    <!-- Sub-Chapter Navigation Footer -->
+                    </div>
+
+                <!-- ========================================================= -->
+                <!-- FAST STUDY MODE: TAB 1 (OS-INSPIRED CLEAN BLUE LAYOUT)    -->
+                <!-- ========================================================= -->
+                <div class="fast-mode-content">
+                    <div class="bg-white p-5 sm:p-8 rounded-2xl border border-sky-200 shadow-xs mb-6">
+                        <header class="mb-6 border-b border-slate-200 pb-4">
+                            <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
+                                <span class="px-3 py-1 rounded-full bg-sky-100 text-sky-900 font-bold text-xs border border-sky-200">
+                                    ⚡ לימוד מהיר • פרק 1
+                                </span>
+                                <div class="flex flex-wrap gap-2">
+                                    <button type="button" onclick="openSingleSim('sim-wrapper-topologies', '🕸️ סימולטור טופולוגיות רשת, נוסחת קישורים ושידורי Unicast / Broadcast / Multicast')"
+                                        class="px-3 py-1.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-900 text-xs font-bold border border-sky-200 transition-all cursor-pointer">
+                                        🔬 מעבדת טופולוגיות
+                                    </button>
+                                    <button type="button" onclick="showQuestions('tab-networks', '1. סוגי רשתות, טכנולוגיות שידור וטופולוגיות', event)"
+                                        class="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-2xs transition-all cursor-pointer">
+                                        ❓ שאלות תרגול (פרק 1)
+                                    </button>
+                                </div>
+                            </div>
+                            <h2 class="text-2xl sm:text-3xl font-black text-slate-800 tracking-tight">
+                                סוגי רשתות, מאפייני שידור, טופולוגיות ורכיבי מיתוג
+                            </h2>
+                            <p class="text-sm text-slate-600 mt-1">
+                                הגדרות היסוד של רשתות תקשורת, אבחנה בין תווך השידור למאפיין הלוגי של ההודעה, טופולוגיה פיזית מול לוגית וההבדל בין Hub, Switch ו-Router.
+                            </p>
+                        </header>
+
+                        <!-- 1.1 Network Types & Logical Transmission Characteristics -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+                            <div class="fast-concept-box space-y-2.5 text-xs sm:text-sm">
+                                <h3 class="text-base font-black text-sky-950 border-b border-sky-200/80 pb-1.5">1.1 סוגי רשתות תקשורת (לפי תווך השידור)</h3>
+                                <ul class="space-y-2 text-slate-700">
+                                    <li><strong class="text-sky-950">• רשתות הפצה (Broadcast Networks):</strong> רשתות שבהן קיים <strong>ערוץ שידור משותף</strong>, וכל שידור אליו נשמע בכל תחנות הרשת. אם שתי תחנות משדרות יחד מתרחשת <strong>התנגשות (Collision)</strong>.</li>
+                                    <li><strong class="text-sky-950">• רשתות נקודה-לנקודה (P2P Networks):</strong> רשתות שבהן קווי תקשורת מחברים ישירות בין זוגות תחנות ברשת ומשמשים כערוצי שידור ייעודיים. לכל רשת כזו יש <strong>טופולוגיה</strong> (מעגל / כוכב / מלאה / חלקית).</li>
+                                    <li><strong class="text-sky-950">• רשתות אלחוטיות (Wireless Networks):</strong> רשתות המשתמשות בגלי רדיו (קרינה אלקטרומגנטית) כתווך המעביר מידע בין תחנה לתחנה דרך האוויר.</li>
+                                </ul>
+                            </div>
+
+                            <div class="fast-tip-box space-y-2.5 text-xs sm:text-sm">
+                                <h3 class="text-base font-black text-blue-950 border-b border-blue-200/80 pb-1.5">1.2 מאפיינים לוגיים של שידור (קהל היעד)</h3>
+                                <ul class="space-y-2 text-slate-700">
+                                    <li><strong class="text-blue-950">• Unicast ($1 \to 1$):</strong> שידור המיועד לתחנת יעד אחת בלבד.</li>
+                                    <li><strong class="text-blue-950">• Broadcast ($1 \to \text{All}$):</strong> שידור המיועד לכלל תחנות הרשת.</li>
+                                    <li><strong class="text-blue-950">• Multicast ($1 \to K$):</strong> שידור המיועד לקבוצה מוגדרת של תחנות.</li>
+                                </ul>
+                                <div class="p-2.5 rounded-lg bg-white border border-blue-200 text-xs text-slate-700">
+                                    <strong>💡 הבחנה קריטית:</strong> על גבי <em>רשת הפצה פיזית</em> ניתן לשלוח הודעת <strong>Unicast</strong> — כל התחנות קולטות את האות הפיזי, אך רק התחנה שכתובת ה-MAC שלה מופיעה כיעד מעבדת את המסגרת.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 1.3 Topologies & Visual SVG Summary -->
+                        <div class="fast-section-card">
+                            <div class="fast-section-header">
+                                <h3 class="text-base font-black text-sky-950">1.3 טופולוגיות רשת: פיזית מול לוגית ונוסחת הקישורים</h3>
+                                <span class="text-xs font-mono font-bold text-sky-800 bg-white px-2.5 py-0.5 rounded border border-sky-200">Full Mesh: N(N-1)/2</span>
+                            </div>
+                            <div class="p-4 sm:p-5 space-y-4 text-xs sm:text-sm">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+                                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                                        <strong class="text-sky-950 block mb-1">1. אפיק (Bus)</strong>
+                                        כבל מרכזי משותף אחד. זול להקמה, אך שידור בו-זמני יוצר התנגשות ונתק בכבל משבית את הרשת.
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                                        <strong class="text-sky-950 block mb-1">2. כוכב (Star)</strong>
+                                        $N$ תחנות מחוברות לצומת מרכזי (Hub או Switch) ב-$N$ קישורים. נוח לניהול; הצומת המרכזי הוא נקודת כשל יחידה.
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                                        <strong class="text-sky-950 block mb-1">3. מעגל / טבעת (Ring)</strong>
+                                        כל תחנה מחוברת לשתי שכנותיה ($N$ קישורים). המידע עובר דרך תחנות ביניים.
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                                        <strong class="text-sky-950 block mb-1">4. מלאה (Full Mesh)</strong>
+                                        חיבור ישיר בין כל זוג תחנות: $\frac{N(N-1)}{2}$ קישורים. שרידות מרבית אך יקרה ($O(N^2)$). בליבת האינטרנט משתמשים ב-<strong>Partial Mesh</strong>.
+                                    </div>
+                                </div>
+
+                                <!-- Clean Visual Topology Diagram -->
+                                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 overflow-x-auto">
+                                    <svg viewBox="0 0 680 115" class="w-full min-w-[500px] h-auto">
+                                        <!-- Bus -->
+                                        <text x="80" y="18" text-anchor="middle" font-size="11" font-weight="bold" fill="#0c4a6e">Bus (אפיק משותף)</text>
+                                        <line x1="25" y1="65" x2="135" y2="65" stroke="#0284c7" stroke-width="3.5"/>
+                                        <line x1="45" y1="40" x2="45" y2="65" stroke="#38bdf8" stroke-width="2"/><circle cx="45" cy="36" r="7" fill="#0369a1"/>
+                                        <line x1="80" y1="90" x2="80" y2="65" stroke="#38bdf8" stroke-width="2"/><circle cx="80" cy="94" r="7" fill="#0369a1"/>
+                                        <line x1="115" y1="40" x2="115" y2="65" stroke="#38bdf8" stroke-width="2"/><circle cx="115" cy="36" r="7" fill="#0369a1"/>
+
+                                        <!-- Star -->
+                                        <text x="255" y="18" text-anchor="middle" font-size="11" font-weight="bold" fill="#0c4a6e">Star (כוכב: N קישורים)</text>
+                                        <line x1="215" y1="38" x2="255" y2="65" stroke="#0284c7" stroke-width="2"/>
+                                        <line x1="295" y1="38" x2="255" y2="65" stroke="#0284c7" stroke-width="2"/>
+                                        <line x1="215" y1="92" x2="255" y2="65" stroke="#0284c7" stroke-width="2"/>
+                                        <line x1="295" y1="92" x2="255" y2="65" stroke="#0284c7" stroke-width="2"/>
+                                        <rect x="235" y="53" width="40" height="24" rx="5" fill="#0284c7"/><text x="255" y="68" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#fff">SW/HUB</text>
+                                        <circle cx="215" cy="38" r="7" fill="#0369a1"/><circle cx="295" cy="38" r="7" fill="#0369a1"/>
+                                        <circle cx="215" cy="92" r="7" fill="#0369a1"/><circle cx="295" cy="92" r="7" fill="#0369a1"/>
+
+                                        <!-- Ring -->
+                                        <text x="430" y="18" text-anchor="middle" font-size="11" font-weight="bold" fill="#0c4a6e">Ring (מעגל: N קישורים)</text>
+                                        <circle cx="430" cy="65" r="30" fill="none" stroke="#0284c7" stroke-width="2.5"/>
+                                        <circle cx="430" cy="35" r="7" fill="#0369a1"/><circle cx="460" cy="65" r="7" fill="#0369a1"/>
+                                        <circle cx="430" cy="95" r="7" fill="#0369a1"/><circle cx="400" cy="65" r="7" fill="#0369a1"/>
+
+                                        <!-- Full Mesh -->
+                                        <text x="595" y="18" text-anchor="middle" font-size="11" font-weight="bold" fill="#0c4a6e">Full Mesh: N(N-1)/2</text>
+                                        <line x1="565" y1="38" x2="625" y2="38" stroke="#0284c7" stroke-width="2"/>
+                                        <line x1="565" y1="92" x2="625" y2="92" stroke="#0284c7" stroke-width="2"/>
+                                        <line x1="565" y1="38" x2="565" y2="92" stroke="#0284c7" stroke-width="2"/>
+                                        <line x1="625" y1="38" x2="625" y2="92" stroke="#0284c7" stroke-width="2"/>
+                                        <line x1="565" y1="38" x2="625" y2="92" stroke="#0284c7" stroke-width="2"/>
+                                        <line x1="625" y1="38" x2="565" y2="92" stroke="#0284c7" stroke-width="2"/>
+                                        <circle cx="565" cy="38" r="7" fill="#0369a1"/><circle cx="625" cy="38" r="7" fill="#0369a1"/>
+                                        <circle cx="565" cy="92" r="7" fill="#0369a1"/><circle cx="625" cy="92" r="7" fill="#0369a1"/>
+                                    </svg>
+                                </div>
+
+                                <div class="p-3 rounded-xl bg-sky-50 border-r-4 border-sky-600 text-xs text-sky-950">
+                                    <strong>⚡ דגש מרכזי — טופולוגיה פיזית מול לוגית ב-Hub:</strong> רשת המחוברת ל-<strong>Hub (רכזת)</strong> היא <strong>פיזית כוכב (Star)</strong> כי כל תחנה מחוברת בכבל נפרד לרכזת, אך <strong>לוגית אפיק משותף (Bus)</strong> כי ה-Hub משכפל כל אות לכל היציאות וכולם חולקים מתחם התנגשות אחד.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 1.4 Comparison Table: Hub vs Switch vs Router -->
+                        <div class="fast-section-card">
+                            <div class="fast-section-header">
+                                <h3 class="text-base font-black text-sky-950">1.4 השוואת רכיבי הרשת: Hub מול Switch מול Router</h3>
+                                <span class="text-xs font-bold text-slate-600">שכבות 1–3 ושידור סימולטני ($t_0$)</span>
+                            </div>
+                            <div class="p-4 sm:p-5 space-y-3">
+                                <div class="overflow-x-auto rounded-xl border border-slate-200">
+                                    <table class="w-full min-w-[520px] text-right text-xs bg-white">
+                                        <thead class="bg-slate-100 text-sky-950 font-bold border-b border-slate-200">
+                                            <tr>
+                                                <th class="p-3">מאפיין</th>
+                                                <th class="p-3">רכזת (Hub)</th>
+                                                <th class="p-3">מתג (Switch)</th>
+                                                <th class="p-3">נתב (Router)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-slate-200 text-slate-700">
+                                            <tr>
+                                                <td class="p-2.5 font-bold bg-slate-50">שכבה ויחידת מידע</td>
+                                                <td class="p-2.5">שכבה 1 (פיזית) • <strong>Bits</strong></td>
+                                                <td class="p-2.5">שכבה 2 (קישור, LAN) • <strong>Frames</strong></td>
+                                                <td class="p-2.5">שכבה 3 (רשת, בין רשתות) • <strong>Packets</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-2.5 font-bold bg-slate-50">כתובת והעברה</td>
+                                                <td class="p-2.5">ללא כתובות — משכפל לכל היציאות</td>
+                                                <td class="p-2.5">כתובת <strong>MAC</strong> — מעביר ליציאת היעד בלבד</td>
+                                                <td class="p-2.5">כתובת <strong>IP</strong> — מנתב לפי טבלת העברה ומחליף Frame</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-2.5 font-bold bg-slate-50">שידור סימולטני ב-$t_0$ ($A\to C, B\to D$)</td>
+                                                <td class="p-2.5 text-rose-700 font-semibold"><strong>מתרחשת התנגשות (Collision)!</strong> (על אף שהמסגרת כן נושאת כתובת MAC יעד ספציפית).</td>
+                                                <td class="p-2.5 text-emerald-800 font-semibold"><strong>שתי המסגרות משודרות בהצלחה!</strong> (וגם אם שתיהן מיועדות ל-$C$, המתג אוגר בחוצץ Buffer ללא התנגשות).</td>
+                                                <td class="p-2.5">מעביר מנות במקביל בין רשתות ומחזיק תורי חוצצים (Buffers).</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- OS-Style Clean Inline Interactive Simulator for Fast Mode Tab 1 -->
+                                <div class="fast-sim-card">
+                                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                        <div>
+                                            <h4 class="text-sm font-black text-sky-950">סימולטור מהיר 1.1: בדיקת שידור סימולטני בזמן $t_0$</h4>
+                                            <p class="text-xs text-slate-600">בחרו תרחיש כדי לראות מה מתרחש כששתי תחנות משדרות באותה שנייה:</p>
+                                        </div>
+                                        <div class="flex flex-wrap gap-1.5 text-xs">
+                                            <button type="button" onclick="setFastSim1('hub')" id="fast-s1-btn-hub" class="px-3 py-1.5 rounded-lg font-bold bg-blue-600 text-white cursor-pointer">1. Ethernet Hub (A→C, B→D)</button>
+                                            <button type="button" onclick="setFastSim1('sw-diff')" id="fast-s1-btn-sw-diff" class="px-3 py-1.5 rounded-lg font-bold bg-white text-sky-900 border border-sky-200 hover:bg-sky-50 cursor-pointer">2. Switch (A→C, B→D)</button>
+                                            <button type="button" onclick="setFastSim1('sw-same')" id="fast-s1-btn-sw-same" class="px-3 py-1.5 rounded-lg font-bold bg-white text-sky-900 border border-sky-200 hover:bg-sky-50 cursor-pointer">3. Switch לאותו יעד (A→C, B→C)</button>
+                                        </div>
+                                    </div>
+                                    <div id="fast-s1-output" class="p-3.5 rounded-xl bg-white border border-sky-200 text-xs text-slate-800 leading-relaxed">
+                                        <strong class="text-rose-700">תרחיש 1 — Ethernet Hub ($A\to C$ ובמקביל $B\to D$):</strong> תתרחש <strong>התנגשות (Collision)</strong>! ה-Hub משכפל את שני האותות לכל הפורטים ברמת השכבה הפיזית והם משבשים זה את זה. (שימו לב: ניתן למען תחנה ספציפית ברשת עם Hub באמצעות כתובת ה-MAC במסגרת, אך רק תחנה אחת יכולה לשדר בכל רגע).
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+<!-- Sub-Chapter Navigation Footer -->
                     <div class="flex items-center justify-between gap-4 mt-4 mb-6 px-1">
                         <button disabled class="opacity-30 cursor-not-allowed px-6 py-2.5 rounded-xl bg-white text-slate-400 font-bold text-xs md:text-sm border border-slate-200 shadow-xs flex items-center gap-2">
                             <span class="font-mono text-sky-500 ">→</span>
@@ -941,7 +1351,8 @@
             <!-- TAB 2: ארכיטקטורת שכבות, מודל TCP/IP, מודל OSI, כימוס ותקורה             -->
             <!-- ========================================================================= -->
             <section id="tab-layers" class="tab-content">
-                <div class="content-wrapper bg-gradient-to-b from-white via-white to-blue-50/20 p-6 md:p-10 rounded-3xl shadow-sm border border-blue-200/90 mb-8">
+                <div class="deep-mode-content">
+<div class="content-wrapper bg-gradient-to-b from-white via-white to-blue-50/20 p-6 md:p-10 rounded-3xl shadow-sm border border-blue-200/90 mb-8">
                     <header class="mb-8 border-b border-slate-200 pb-6">
                         <div class="flex items-center justify-between flex-wrap gap-3 mb-3">
                             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-300 text-sky-900 text-xs font-black">
@@ -1047,6 +1458,33 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Layer Independence & Reliable Network Layer + Transport Flow Control -->
+                        <div class="mt-4 p-4 rounded-xl bg-white border border-slate-300 text-xs space-y-2">
+                            <div class="flex items-center justify-between border-b border-slate-200 pb-1.5">
+                                <strong class="text-sky-950 text-sm">🔗 עצמאות השכבות ואינטראקציה בין אמינות שכבת הרשת לבקרת זרימה בתובלה:</strong>
+                                <span class="px-2 py-0.5 rounded bg-sky-100 text-sky-900 font-bold text-[10px]">יחסי גומלין בין שכבות</span>
+                            </div>
+                            <p class="text-slate-700 leading-relaxed">
+                                כל עוד <strong>הממשק (Interface)</strong> בין שתי שכבות סמוכות נשמר, ניתן להחליף את מימוש הפרוטוקול בשכבה התחתונה (למשל משכבת רשת בלתי-אמינה לשכבת רשת אמינה) ושכבת התובלה שמעליה תמשיך לפעול תקין ללא שינוי (אם כי כדאי להתאימה כדי לחסוך כפילות מנגנונים).
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+                                <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                                    <strong class="text-sky-950 block mb-1">📌 מתי השולח בשכבת התובלה אינו צריך לשמור עותקים לשידור חוזר?</strong>
+                                    נניח ש<strong>שכבת הרשת אמינה</strong> (אין אובדן בדרך) ובקרת הזרימה בשכבת התובלה מבוססת על כך שהמקבל מודיע מראש כמה חוצצים פנויים יש לו:
+                                    <br>• <strong>אם השולח מגביל את שליחתו למספר החוצצים הפנויים שהוכרזו:</strong> <strong>אין צורך לשמור עותקים</strong> של יחידות המידע (<span class="font-mono">TPDUs</span>) בשכבת התובלה של השולח! המידע אינו אובד ברשת ואינו נזרק במקבל (כי תמיד מחכה לו חוצץ פנוי).
+                                    <br>• <strong>אם מבטלים את ההגבלה בצד השולח:</strong> כעת <strong>חובה לשמור עותקים!</strong> השולח עלול לשלוח יותר מיכולת הקליטה של חוצצי המקבל, המנות העודפות ייזרקו במקבל, ויידרש שידור חוזר מהעותקים השמורים.
+                                </div>
+                                <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                                    <strong class="text-sky-950 block mb-1">🔄 הבדלים עקרוניים בין בקרת הזרימה בשכבת הערוץ (Selective Repeat) לשכבת התובלה (TCP):</strong>
+                                    <ul class="list-disc list-inside space-y-1 text-slate-700">
+                                        <li><strong>יחידת המספור:</strong> בשכבת הערוץ ממספרים <strong>מסגרות (Frames)</strong>, בעוד שב-TCP ממספרים <strong>בתים (Bytes)</strong> בזרם המידע.</li>
+                                        <li><strong>גודל החלון:</strong> בפרוטוקול ערוץ גודל החלון קבוע מראש, ואילו ב-TCP גודל חלון הקבלה (<span class="font-mono">rwnd</span>) הוא <strong>דינמי ומשתנה</strong> לפי המקום הפנוי בחוצץ המקבל.</li>
+                                        <li><strong>אישורים:</strong> ב-TCP הבסיסי האישורים הם מצטברים (ללא מסגרות NAK מפורשות, אלא 3 אישורים כפולים).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- Section 2.2: TCP/IP 5 Layers vs OSI 7 Layers & Hourglass Model -->
@@ -1281,6 +1719,7 @@
                                     <li><strong>חישוב בסיביות בלבד:</strong> כאשר גדלי הכותרות נתונים בבתים (<span class="font-mono">Bytes</span>) וחלקם בסיביות (<span class="font-mono">Bits</span>), <em>חובה להמיר הכול לסיביות</em> ($\mathbf{1\text{ Byte} = 8\text{ bits}}$) לפני החילוק.</li>
                                     <li><strong>המכנה הוא סך כל הסיביות:</strong> במכנה נמצא סך כל הסיביות שנשלחות בפועל על הקו ($\mathbf{\text{Control} + \text{Source}}$) – <em>ולא סיביות המקור בלבד!</em></li>
                                     <li><strong>סכימת כל השכבות:</strong> התקורה היא סכום כל כותרות הבקרה מכל השכבות יחד ($\text{L4} + \text{L3} + \text{L2}$) כולל זנב שכבת הערוץ ($\text{Trailer/CRC}$).</li>
+                                     <li><strong>תקורה מוחלטת לעומת תקורה יחסית באחוזים (תלות באורך המידע $m$):</strong> כאשר מתווסף מספר קבוע של $r$ סיביות בקרה/יתירות (למשל כותרת קבועה או $r$ סיביות CRC ממעלה $r$) למילת מידע בת $m$ סיביות, התקורה בסיביות קבועה ($r$), אך <strong>התקורה באחוזים היא $\frac{r}{m+r} \times 100\%$ — ולכן ככל ש-$m$ גדול יותר, התקורה באחוזים קטנה יותר!</strong> (והיא אינה תלויה בערכי הסיביות עצמם או בתוצאת השארית, שכן תמיד מצורפות $r$ סיביות כולל אפסים מובילים).</li>
                                 </ul>
                             </div>
                         </div>
@@ -1309,7 +1748,169 @@
                 </div>
 
                 
-                    <!-- Sub-Chapter Navigation Footer -->
+                    </div>
+
+                <!-- ========================================================= -->
+                <!-- FAST STUDY MODE: TAB 2 (OS-INSPIRED CLEAN BLUE LAYOUT)    -->
+                <!-- ========================================================= -->
+                <div class="fast-mode-content">
+                    <div class="bg-white p-5 sm:p-8 rounded-2xl border border-sky-200 shadow-xs mb-6">
+                        <header class="mb-6 border-b border-slate-200 pb-4">
+                            <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
+                                <span class="px-3 py-1 rounded-full bg-sky-100 text-sky-900 font-bold text-xs border border-sky-200">
+                                    ⚡ לימוד מהיר • פרק 2
+                                </span>
+                                <div class="flex flex-wrap gap-2">
+                                    <button type="button" onclick="openSingleSim('sim-wrapper-overhead', '🧮 מעבדת חישוב תקורה (Overhead) בסיביות ומלכודת הבתים מול הסיביות')"
+                                        class="px-3 py-1.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-900 text-xs font-bold border border-sky-200 transition-all cursor-pointer">
+                                        🧮 מחשבון תקורה
+                                    </button>
+                                    <button type="button" onclick="showQuestions('tab-layers', '2. ארכיטקטורת שכבות, מודל TCP/IP, כימוס ותקורה', event)"
+                                        class="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-2xs transition-all cursor-pointer">
+                                        ❓ שאלות תרגול (פרק 2)
+                                    </button>
+                                </div>
+                            </div>
+                            <h2 class="text-2xl sm:text-3xl font-black text-slate-800 tracking-tight">
+                                ארכיטקטורת שכבות, מודל TCP/IP, כימוס (Encapsulation) ותקורה
+                            </h2>
+                            <p class="text-sm text-slate-600 mt-1">
+                                תקשורת אנכית מול אופקית, 5 שכבות TCP/IP ויחידות המידע (PDU), החלפת מסגרות בנתבים וחישוב תקורה (Overhead) בסיביות.
+                            </p>
+                        </header>
+
+                        <!-- 2.1 Vertical vs Horizontal & Service/Protocol/Interface -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+                            <div class="fast-concept-box space-y-2 text-xs sm:text-sm">
+                                <h3 class="text-base font-black text-sky-950 border-b border-sky-200/80 pb-1.5">2.1 תקשורת אנכית מול אופקית</h3>
+                                <ul class="space-y-2 text-slate-700">
+                                    <li><strong class="text-sky-950">• תקשורת אנכית (Vertical Communication):</strong> התקשורת הממשית בין שתי <strong>שכבות סמוכות באותו המחשב</strong> באמצעות <strong>ממשק (Interface)</strong>.</li>
+                                    <li><strong class="text-sky-950">• תקשורת אופקית (Horizontal Communication):</strong> התקשורת הלוגית בין <strong>שתי שכבות מקבילות (Peer Layers) בשני מחשבים שונים</strong> באמצעות כללי ה<strong>פרוטוקול (Protocol)</strong> של אותה שכבה.</li>
+                                    <li><strong class="text-sky-950">• שירות (Service):</strong> התפקוד ששכבה מספקת לשכבה שמעליה (כל עוד הממשק נשמר, החלפת מימוש פנימי של שכבה אינה מחייבת שינוי בשכבה שמעליה).</li>
+                                </ul>
+                            </div>
+
+                            <div class="fast-tip-box space-y-2 text-xs sm:text-sm">
+                                <h3 class="text-base font-black text-blue-950 border-b border-blue-200/80 pb-1.5">2.2 יחסי גומלין בין שכבת הרשת לשכבת התובלה</h3>
+                                <ul class="space-y-2 text-slate-700">
+                                    <li><strong class="text-blue-950">• שמירת עותקים מעל שכבת רשת אמינה:</strong> אם שכבת הרשת אמינה והשולח בתובלה מגביל שליחה למספר החוצצים הפנויים שהכריז המקבל — <strong>אין צורך לשמור עותקים</strong> לשידור חוזר. אם מבטלים את ההגבלה בשולח — חובה לשמור עותקים כי חריגה מחוצצי המקבל תגרום לזריקת מנות.</li>
+                                    <li><strong class="text-blue-950">• הבדלים בין Selective Repeat (שכבה 2) ל-TCP (שכבה 4):</strong> ב-SR ממספרים <strong>מסגרות</strong> וגודל החלון קבוע ($2^{k-1}$) עם מסגרות NAK; ב-TCP ממספרים <strong>בתים</strong>, חלון הקבלה (<span class="font-mono">rwnd</span>) דינמי והאישורים מצטברים.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 2.2 5 Layers Table + Visual Stack -->
+                        <div class="fast-section-card">
+                            <div class="fast-section-header">
+                                <h3 class="text-base font-black text-sky-950">2.3 מודל 5 השכבות של TCP/IP (ומודל 7 השכבות של OSI)</h3>
+                                <span class="text-xs font-bold text-sky-800 bg-white px-2.5 py-0.5 rounded border border-sky-200">ב-OSI מפצלים את היישום ל-3 שכבות (7,6,5)</span>
+                            </div>
+                            <div class="p-4 sm:p-5 space-y-4">
+                                <div class="overflow-x-auto rounded-xl border border-slate-200">
+                                    <table class="w-full min-w-[520px] text-right text-xs bg-white">
+                                        <thead class="bg-slate-100 text-sky-950 font-bold border-b border-slate-200">
+                                            <tr>
+                                                <th class="p-2.5">#</th>
+                                                <th class="p-2.5">שכבה במודל TCP/IP</th>
+                                                <th class="p-2.5">יחידת מידע (PDU)</th>
+                                                <th class="p-2.5">תפקיד, כתובות והיכן פועלת</th>
+                                                <th class="p-2.5">דוגמאות</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-slate-200 text-slate-700">
+                                            <tr>
+                                                <td class="p-2.5 font-mono font-bold bg-slate-50">5</td>
+                                                <td class="p-2.5 font-bold text-sky-950">יישום (Application)</td>
+                                                <td class="p-2.5 font-bold text-blue-800">הודעות (Messages)</td>
+                                                <td class="p-2.5">יישומי הקצה (ב-OSI מחולקת ל: Application, Presentation, Session)</td>
+                                                <td class="p-2.5 font-mono">HTTP, DNS, SMTP</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-2.5 font-mono font-bold bg-slate-50">4</td>
+                                                <td class="p-2.5 font-bold text-sky-950">תעבורה / תובלה (Transport)</td>
+                                                <td class="p-2.5 font-bold text-blue-800">סגמנטים (Segments)</td>
+                                                <td class="p-2.5">מתהליך לתהליך לפי <strong>Port</strong> • פועלת ב-<strong>Hosts בלבד</strong></td>
+                                                <td class="p-2.5 font-mono">TCP, UDP</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-2.5 font-mono font-bold bg-slate-50">3</td>
+                                                <td class="p-2.5 font-bold text-sky-950">רשת (Network)</td>
+                                                <td class="p-2.5 font-bold text-blue-800">פקטות / מנות (Packets)</td>
+                                                <td class="p-2.5">ממארח למארח בין רשתות לפי <strong>IP</strong> • פועלת ב-Hosts וב-<strong>Routers</strong></td>
+                                                <td class="p-2.5 font-mono">IP, BGP, OSPF</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-2.5 font-mono font-bold bg-slate-50">2</td>
+                                                <td class="p-2.5 font-bold text-sky-950">ערוץ / קישור (Data Link)</td>
+                                                <td class="p-2.5 font-bold text-blue-800">מסגרות (Frames)</td>
+                                                <td class="p-2.5">בין שכנים באותו קישור לפי <strong>MAC</strong>, מסגור וגילוי שגיאות • גם ב-<strong>Switch</strong></td>
+                                                <td class="p-2.5 font-mono">Ethernet, Wi-Fi, HDLC</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-2.5 font-mono font-bold bg-slate-50">1</td>
+                                                <td class="p-2.5 font-bold text-sky-950">פיזית (Physical)</td>
+                                                <td class="p-2.5 font-bold text-blue-800">ביטים (Bits)</td>
+                                                <td class="p-2.5">שידור אותות פיזיים על התווך (קידוד ואפנון) • גם ב-<strong>Hub</strong></td>
+                                                <td class="p-2.5 font-mono">NRZ, NRZI, 4B/5B, QAM</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2.4 Encapsulation & Overhead Formula -->
+                        <div class="fast-section-card">
+                            <div class="fast-section-header">
+                                <h3 class="text-base font-black text-sky-950">2.4 כימוס (Encapsulation) ונוסחת התקורה (Overhead)</h3>
+                                <span class="text-xs font-mono font-bold text-rose-700 bg-rose-50 px-2.5 py-0.5 rounded border border-rose-200">(!) התקורה מחושבת בסיביות ולא בבתים</span>
+                            </div>
+                            <div class="p-4 sm:p-5 space-y-4 text-xs sm:text-sm">
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 items-center">
+                                    <div class="fast-formula-box space-y-2">
+                                        <div class="font-bold text-sky-950">נוסחת התקורה (אחוז סיביות הבקרה מתוך סך הסיביות בהודעה הסופית):</div>
+                                        <div class="text-base font-black text-center text-sky-950 py-1">
+                                            $$\text{Overhead} = \frac{\text{Control}}{\text{Control} + \text{Source}} \times 100\%$$
+                                        </div>
+                                        <ul class="list-disc list-inside text-xs text-slate-700 space-y-1">
+                                            <li><strong>חובה להמיר הכל לסיביות:</strong> $1\text{ Byte} = 8\text{ bits}$.</li>
+                                            <li><strong>במעבר דרך Router:</strong> ה-<strong>Packet נשמר</strong> מקצה לקצה, אך ה-<strong>Frame מוחלף</strong> בכל קישור.</li>
+                                            <li><strong>תלות באורך המידע $m$:</strong> כשמוסיפים $r$ סיביות בקרה קבועות (כגון CRC ממעלה $r$), התקורה באחוזים היא $\frac{r}{m+r}\times 100\%$ ולכן <strong>קטנה ככל ש-$m$ גדל</strong>!</li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- Fast Inline Overhead Calculator -->
+                                    <div class="fast-sim-card space-y-2.5 text-xs">
+                                        <div class="font-black text-sky-950 text-sm">🧮 מחשבון תקורה מהיר (המרה אוטומטית לסיביות):</div>
+                                        <div class="grid grid-cols-2 gap-2">
+                                            <div>
+                                                <label class="block font-bold text-slate-700 mb-0.5">הודעת מקור (Bytes):</label>
+                                                <input type="number" id="fast-ovh-src-bytes" value="100" min="1" oninput="calcFastOverhead()" class="w-full p-1.5 rounded border border-slate-300 bg-white font-mono font-bold text-center">
+                                            </div>
+                                            <div>
+                                                <label class="block font-bold text-slate-700 mb-0.5">כותרות בבתים (Bytes):</label>
+                                                <input type="number" id="fast-ovh-hdr-bytes" value="40" min="0" oninput="calcFastOverhead()" class="w-full p-1.5 rounded border border-slate-300 bg-white font-mono font-bold text-center">
+                                            </div>
+                                            <div>
+                                                <label class="block font-bold text-slate-700 mb-0.5">בקרה נוספת בסיביות (Bits):</label>
+                                                <input type="number" id="fast-ovh-hdr-bits" value="160" min="0" oninput="calcFastOverhead()" class="w-full p-1.5 rounded border border-slate-300 bg-white font-mono font-bold text-center">
+                                            </div>
+                                            <div id="fast-ovh-output" class="p-2 rounded bg-sky-900 text-white font-mono flex flex-col justify-center items-center text-center">
+                                                <span class="text-[10px] text-sky-200">תקורה (Overhead):</span>
+                                                <strong class="text-sm text-emerald-300">37.50%</strong>
+                                            </div>
+                                        </div>
+                                        <div id="fast-ovh-formula-line" class="text-[11px] font-mono text-slate-600 text-center">
+                                            Control = 480 bits | Source = 800 bits | 480 / (480 + 800) = 37.50%
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+<!-- Sub-Chapter Navigation Footer -->
                     <div class="flex items-center justify-between gap-4 mt-4 mb-6 px-1">
                         <button onclick="showTab('tab-networks')" class="px-6 py-2.5 rounded-xl bg-white hover:bg-sky-50 text-sky-950 font-bold text-xs md:text-sm border border-sky-200/90 shadow-xs hover:shadow-md transition-all flex items-center gap-2 group cursor-pointer">
                             <span class="font-mono text-sky-500 group-hover:translate-x-1 transition-transform">→</span>
@@ -1327,7 +1928,8 @@
             <!-- TAB 3: יחידות מדידה, זמני שידור, התפשטות וביצועי רשת                        -->
             <!-- ========================================================================= -->
             <section id="tab-performance" class="tab-content">
-                <div class="content-wrapper bg-gradient-to-b from-white via-white to-cyan-50/25 p-6 md:p-10 rounded-3xl shadow-sm border border-cyan-200/90 mb-8">
+                <div class="deep-mode-content">
+<div class="content-wrapper bg-gradient-to-b from-white via-white to-cyan-50/25 p-6 md:p-10 rounded-3xl shadow-sm border border-cyan-200/90 mb-8">
                     <header class="mb-8 border-b border-slate-200 pb-6">
                         <div class="flex items-center justify-between flex-wrap gap-3 mb-3">
                             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-300 text-sky-900 text-xs font-black">
@@ -1481,6 +2083,37 @@
                                 בשאלה שמערבבת גודל קובץ עם קצב שידור — <strong>שימו לב היטב מאיזה סוג כל מספר והאם השאלה מגדירה קובץ לפי $2^{10}$ או לפי $10^3$!</strong> (לעיתים מציינים במפורש $1\text{ MB} = 8 \times 10^6\text{ bits}$ לנוחות החישוב — במחשבון שלנו תמצאו מתג שמאפשר לחשב בשתי המוסכמות!).
                             </p>
                         </div>
+                        <!-- Image / Pixel Depth Calculation from Transmission Rate & Time -->
+                        <div class="mt-4 p-4 rounded-2xl bg-white border border-slate-300 shadow-2xs text-xs">
+                            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-2 mb-2.5">
+                                <h4 class="font-black text-sm text-sky-950">🖼️ חישוב קידוד תמונה (סיביות ובתים לפיקסל) מתוך קצב שידור וזמן העברה:</h4>
+                                <span class="px-2.5 py-0.5 rounded-full bg-sky-100 text-sky-900 font-bold text-[11px]">יישום ישיר של $L = R \times T_{\text{trans}}$</span>
+                            </div>
+                            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+                                <div class="lg:col-span-7 space-y-1.5 text-slate-700 leading-relaxed">
+                                    <p>
+                                        כאשר משדרים תמונה לא-דחוסה ברזולוציה של $W \times H$ פיקסלים (ללא תקורת כותרות או מסגור) על ערוץ בקצב $R$ במשך זמן שידור $T_{\text{trans}}$:
+                                    </p>
+                                    <ul class="list-disc list-inside space-y-1 text-slate-800 font-medium">
+                                        <li><strong>סך הסיביות ששודרו:</strong> $L = R \times T_{\text{trans}}$ (כאשר $1\text{ Mbps} = 10^6\text{ bits/sec}$).</li>
+                                        <li><strong>מספר הפיקסלים בתמונה:</strong> $N_{\text{pixels}} = W \times H$.</li>
+                                        <li><strong>מספר הסיביות לפיקסל:</strong> $\text{Bits per Pixel} = \frac{L}{W \times H} = \frac{R \times T_{\text{trans}}}{W \times H}$.</li>
+                                        <li><strong>מספר הבתים (Bytes) לפיקסל:</strong> $\text{Bytes per Pixel} = \frac{\text{Bits per Pixel}}{8}$ (שימו לב ליחידות המבוקשות!).</li>
+                                    </ul>
+                                </div>
+                                <div class="lg:col-span-5 p-3.5 rounded-xl bg-slate-100 border border-slate-300 space-y-1">
+                                    <strong class="text-sky-950 block">✏️ דוגמה פתורה מלאה:</strong>
+                                    תמונה בגודל $1920 \times 1080$ פיקסלים משודרת בערוץ שקצב השידור שלו $60\text{ Mbps}$ במשך $553\text{ ms}$ ($0.553\text{ s}$). כמה <strong>בתים</strong> מקודדים כל פיקסל?
+                                    <div class="pt-1 text-slate-800 font-mono text-[11px] space-y-0.5">
+                                        <div>1. $N_{\text{pixels}} = 1920 \times 1080 = 2,073,600\text{ pixels}$</div>
+                                        <div>2. $L = 60 \times 10^6 \times 0.553 \approx 33,180,000\text{ bits}$</div>
+                                        <div>3. $\text{Bits/pixel} = \frac{33,180,000}{2,073,600} = 16\text{ bits}$</div>
+                                        <div class="text-sky-950 font-black">4. $\text{Bytes/pixel} = \frac{16}{8} = \mathbf{2\text{ Bytes}}$</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- Section 3.2: Four Nodal Delays, Store-and-Forward, Delay x Bandwidth Product & Jitter -->
@@ -1605,7 +2238,124 @@
                 </div>
 
                 
-                    <!-- Sub-Chapter Navigation Footer -->
+                    </div>
+
+                <!-- ========================================================= -->
+                <!-- FAST STUDY MODE: TAB 3 (OS-INSPIRED CLEAN BLUE LAYOUT)    -->
+                <!-- ========================================================= -->
+                <div class="fast-mode-content">
+                    <div class="bg-white p-5 sm:p-8 rounded-2xl border border-sky-200 shadow-xs mb-6">
+                        <header class="mb-6 border-b border-slate-200 pb-4">
+                            <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
+                                <span class="px-3 py-1 rounded-full bg-sky-100 text-sky-900 font-bold text-xs border border-sky-200">
+                                    ⚡ לימוד מהיר • פרק 3
+                                </span>
+                                <div class="flex flex-wrap gap-2">
+                                    <button type="button" onclick="openSingleSim('sim-wrapper-delay-pipe', '🚰 מעבדת הצינור החי: זמני שידור, התפשטות, RTT ומכפלת Delay × Bandwidth')"
+                                        class="px-3 py-1.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-900 text-xs font-bold border border-sky-200 transition-all cursor-pointer">
+                                        🚰 מעבדת הצינור
+                                    </button>
+                                    <button type="button" onclick="showQuestions('tab-performance', '3. יחידות מדידה, זמני שידור, התפשטות וביצועי רשת', event)"
+                                        class="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-2xs transition-all cursor-pointer">
+                                        ❓ שאלות תרגול (פרק 3)
+                                    </button>
+                                </div>
+                            </div>
+                            <h2 class="text-2xl sm:text-3xl font-black text-slate-800 tracking-tight">
+                                יחידות מדידה, זמני שידור והתפשטות, אחסן-והעבר וביצועים
+                            </h2>
+                            <p class="text-sm text-slate-600 mt-1">
+                                נוסחאות זמן שידור ($L/R$) וזמן התפשטות ($d/v$), חזקות 10 מול חזקות 2, חישוב קידוד תמונה בפיקסלים ונוסחת Store-and-Forward.
+                            </p>
+                        </header>
+
+                        <!-- 3.1 Transmission vs Propagation -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+                            <div class="fast-concept-box space-y-2 text-xs sm:text-sm">
+                                <h3 class="text-base font-black text-sky-950 border-b border-sky-200/80 pb-1.5">3.1 קצב שידור וזמן שידור ($T_{\text{trans}}$)</h3>
+                                <p class="text-slate-700">
+                                    <strong>קצב השידור ($R$ בסל"ש – bps):</strong> כמות הסיביות שניתן להכניס לתווך השידור בשנייה ("קוטר הצינור"). <strong>אינו תלוי במרחק!</strong>
+                                </p>
+                                <div class="p-2.5 rounded-lg bg-white border border-sky-200 text-center font-bold text-sky-950">
+                                    $$T_{\text{trans}} = \frac{L}{R}$$
+                                    <span class="block text-[11px] font-normal text-slate-600">($L$ גודל ההודעה בסיביות, $R$ קצב השידור ב-bps)</span>
+                                </div>
+                            </div>
+
+                            <div class="fast-tip-box space-y-2 text-xs sm:text-sm">
+                                <h3 class="text-base font-black text-blue-950 border-b border-blue-200/80 pb-1.5">3.2 השהיית התפשטות ($T_{\text{prop}}$) ו-RTT</h3>
+                                <p class="text-slate-700">
+                                    <strong>השהיית התפשטות:</strong> הזמן שלוקח לסיבית בודדת לעבור מתחנה לתחנה ("אורך הצינור"). תלויה במרחק $d$ ובמהירות האות $v$, ו<strong>אינה תלויה בגודל הקובץ!</strong>
+                                </p>
+                                <div class="p-2.5 rounded-lg bg-white border border-blue-200 text-center font-bold text-blue-950">
+                                    $$T_{\text{prop}} = \frac{d}{v}, \quad \text{RTT} = 2 \times T_{\text{prop}}$$
+                                    <span class="block text-[11px] font-normal text-slate-600">($v$: סיב אופטי $2\times 10^8\text{ m/s}$ • נחושת $2.3\times 10^8\text{ m/s}$ • אוויר/חלל $3\times 10^8\text{ m/s}$)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3.2 Orders of Magnitude, 10^3 vs 2^10, and Image Pixel Calculation -->
+                        <div class="fast-section-card">
+                            <div class="fast-section-header">
+                                <h3 class="text-base font-black text-sky-950">3.3 סדרי גודל, חזקות 10 מול 2 וחישוב קידוד תמונה בפיקסלים</h3>
+                                <span class="text-xs font-mono font-bold text-rose-700 bg-rose-50 px-2.5 py-0.5 rounded border border-rose-200">(!) תקשורת = $10^3, 10^6, 10^9$ | זיכרון = $2^{10}=1,024$</span>
+                            </div>
+                            <div class="p-4 sm:p-5 space-y-4 text-xs sm:text-sm">
+                                <div class="overflow-x-auto rounded-xl border border-slate-200">
+                                    <table class="w-full min-w-[480px] text-center text-xs bg-white">
+                                        <thead class="bg-slate-100 text-sky-950 font-bold border-b border-slate-200">
+                                            <tr>
+                                                <th class="p-2">ננו (ns)</th>
+                                                <th class="p-2">מיקרו ($\mu$s)</th>
+                                                <th class="p-2">מילי (ms)</th>
+                                                <th class="p-2 bg-sky-50">בסיס (sec/bit)</th>
+                                                <th class="p-2">קילו (K)</th>
+                                                <th class="p-2">מגה (M)</th>
+                                                <th class="p-2">ג'יגה (G)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="font-mono font-bold text-slate-800">
+                                            <tr>
+                                                <td class="p-2">$10^{-9}$</td>
+                                                <td class="p-2">$10^{-6}$</td>
+                                                <td class="p-2">$10^{-3}$</td>
+                                                <td class="p-2 bg-sky-50">$1$</td>
+                                                <td class="p-2">$10^3$</td>
+                                                <td class="p-2">$10^6$</td>
+                                                <td class="p-2">$10^9$</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                                    <div class="fast-formula-box space-y-1.5 text-xs">
+                                        <strong class="text-sky-950 text-sm block">🖼️ נוסחת חישוב בתים לפיקסל מתוך קצב וזמן שידור:</strong>
+                                        <p class="text-slate-700">עבור תמונה בגודל $W \times H$ פיקסלים המשודרת בקצב $R$ במשך זמן $T_{\text{trans}}$ (ללא תקורה):</p>
+                                        <div class="font-mono font-bold text-sky-950 text-center py-1">
+                                            $$\text{Bits/Pixel} = \frac{R \cdot T_{\text{trans}}}{W \times H}, \quad \text{Bytes/Pixel} = \frac{\text{Bits/Pixel}}{8}$$
+                                        </div>
+                                        <div class="text-slate-600">
+                                            <strong>דוגמה:</strong> תמונת $1920 \times 1080$ ($2,073,600$ פיקסלים) ב-$R = 60\text{ Mbps}$ וזמן $T = 0.553\text{ s}$ $\implies L \approx 33.18\text{ Mbits} \implies 16\text{ bits/pixel} = \mathbf{2\text{ Bytes/pixel}}$.
+                                        </div>
+                                    </div>
+
+                                    <div class="fast-formula-box space-y-1.5 text-xs">
+                                        <strong class="text-sky-950 text-sm block">📦 אחסן-והעבר (Store-and-Forward) ומכפלת עיכוב×רוחב פס:</strong>
+                                        <ul class="space-y-1 text-slate-700 list-disc list-inside">
+                                            <li><strong>$P$ מנות על פני $N$ קישורים זהים:</strong> $T_{\text{total}} = (N + P - 1)\cdot \frac{L}{R} + \sum_{i=1}^{N} T_{\text{prop},i}$.</li>
+                                            <li><strong>נפח הצינור (ביטים בתעופה):</strong> $\text{Delay} \times \text{Bandwidth}$.</li>
+                                            <li><strong>תפוקה אפקטיבית (כולל RTT):</strong> $\text{Throughput}_{\text{eff}} = \frac{\text{Size}}{\text{RTT} + \text{Size}/R}$.</li>
+                                            <li><strong>4 השהיות בנתב:</strong> עיבוד ($d_{\text{proc}}$), תור ($d_{\text{queue}}$ – משתנה לפי העומס ויוצר Jitter), שידור ($d_{\text{trans}}$), התפשטות ($d_{\text{prop}}$).</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+<!-- Sub-Chapter Navigation Footer -->
                     <div class="flex items-center justify-between gap-4 mt-4 mb-6 px-1">
                         <button onclick="showTab('tab-layers')" class="px-6 py-2.5 rounded-xl bg-white hover:bg-cyan-50 text-cyan-950 font-bold text-xs md:text-sm border border-cyan-200/90 shadow-xs hover:shadow-md transition-all flex items-center gap-2 group cursor-pointer">
                             <span class="font-mono text-sky-500 group-hover:translate-x-1 transition-transform">→</span>
@@ -1623,7 +2373,8 @@
             <!-- TAB 4: אותות אנלוגיים/דיגיטליים, מודם, אפנון, טלפוניה ורשתות גישה         -->
             <!-- ========================================================================= -->
             <section id="tab-signals" class="tab-content">
-                <div class="content-wrapper bg-gradient-to-b from-white via-white to-indigo-50/20 p-6 md:p-10 rounded-3xl shadow-sm border border-indigo-200/90 mb-8">
+                <div class="deep-mode-content">
+<div class="content-wrapper bg-gradient-to-b from-white via-white to-indigo-50/20 p-6 md:p-10 rounded-3xl shadow-sm border border-indigo-200/90 mb-8">
                     <header class="mb-8 border-b border-slate-200 pb-6">
                         <div class="flex items-center justify-between flex-wrap gap-3 mb-3">
                             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-300 text-sky-900 text-xs font-black">
@@ -1755,6 +2506,81 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- PSTN Complete Chain, Codec (PCM/Delta) vs Modem, and ADSL Splitters & DSLAM -->
+                        <div class="mt-4 bg-white p-4 rounded-2xl border border-slate-300 text-xs space-y-3">
+                            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-2">
+                                <h4 class="font-black text-sm text-sky-950">🏛️ מבנה ה-PSTN המלא (End Office / Toll Office), רכיב ה-Codec מול המודם, ורשת ADSL (Splitters & DSLAM):</h4>
+                                <span class="px-2.5 py-0.5 rounded-full bg-sky-100 text-sky-900 font-bold text-[11px]">ארכיטקטורת טלפוניה וגישה</span>
+                            </div>
+
+                            <!-- Clean SVG Diagram of PSTN Chain -->
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 overflow-x-auto">
+                                <svg viewBox="0 0 760 95" class="w-full min-w-[560px] h-auto">
+                                    <!-- Nodes -->
+                                    <rect x="10" y="20" width="90" height="44" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.8"/>
+                                    <text x="55" y="39" text-anchor="middle" font-size="10" font-weight="bold" fill="#0c4a6e">Telephone / PC</text>
+                                    <text x="55" y="53" text-anchor="middle" font-size="8.5" fill="#0369a1">בית המנוי א'</text>
+
+                                    <rect x="165" y="16" width="115" height="52" rx="8" fill="#0284c7" stroke="#0c4a6e" stroke-width="1.8"/>
+                                    <text x="222" y="36" text-anchor="middle" font-size="10" font-weight="bold" fill="#ffffff">End Office</text>
+                                    <text x="222" y="50" text-anchor="middle" font-size="8.5" fill="#e0f2fe">מרכזיית קצה (Codec PCM)</text>
+
+                                    <rect x="340" y="16" width="110" height="52" rx="8" fill="#0a192f" stroke="#38bdf8" stroke-width="1.8"/>
+                                    <text x="395" y="36" text-anchor="middle" font-size="10" font-weight="bold" fill="#ffffff">Toll Office</text>
+                                    <text x="395" y="50" text-anchor="middle" font-size="8.5" fill="#bae6fd">מרכזיית חיוב / ביניים</text>
+
+                                    <rect x="510" y="16" width="115" height="52" rx="8" fill="#0284c7" stroke="#0c4a6e" stroke-width="1.8"/>
+                                    <text x="567" y="36" text-anchor="middle" font-size="10" font-weight="bold" fill="#ffffff">End Office</text>
+                                    <text x="567" y="50" text-anchor="middle" font-size="8.5" fill="#e0f2fe">מרכזיית קצה (D/A)</text>
+
+                                    <rect x="665" y="20" width="85" height="44" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.8"/>
+                                    <text x="707" y="39" text-anchor="middle" font-size="10" font-weight="bold" fill="#0c4a6e">Telephone</text>
+                                    <text x="707" y="53" text-anchor="middle" font-size="8.5" fill="#0369a1">בית המנוי ב'</text>
+
+                                    <!-- Links -->
+                                    <line x1="100" y1="42" x2="165" y2="42" stroke="#f43f5e" stroke-width="2.5" stroke-dasharray="4 3"/>
+                                    <text x="132" y="33" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#be123c">Local Loop</text>
+                                    <text x="132" y="78" text-anchor="middle" font-size="8" fill="#be123c">(אנלוגי!)</text>
+
+                                    <line x1="280" y1="42" x2="340" y2="42" stroke="#0284c7" stroke-width="3"/>
+                                    <text x="310" y="33" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#0369a1">Toll Trunk</text>
+                                    <text x="310" y="78" text-anchor="middle" font-size="8" fill="#0369a1">(דיגיטלי)</text>
+
+                                    <line x1="450" y1="42" x2="510" y2="42" stroke="#0284c7" stroke-width="3"/>
+                                    <text x="480" y="33" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#0369a1">Toll Trunk</text>
+                                    <text x="480" y="78" text-anchor="middle" font-size="8" fill="#0369a1">(דיגיטלי)</text>
+
+                                    <line x1="625" y1="42" x2="665" y2="42" stroke="#f43f5e" stroke-width="2.5" stroke-dasharray="4 3"/>
+                                    <text x="645" y="33" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#be123c">Local Loop</text>
+                                    <text x="645" y="78" text-anchor="middle" font-size="8" fill="#be123c">(אנלוגי!)</text>
+                                </svg>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+                                    <strong class="text-sky-950 block">1. המרה אנלוגית↔דיגיטלית בשיחות קול ובאינטרנט (Codec מול Modem):</strong>
+                                    <p class="text-slate-700 leading-relaxed">
+                                        מערכת ה-PSTN הוקמה במקור כמערכת אנלוגית לשיחות טלפון בלבד. כיום, מכיוון שהלולאה המקומית (<span class="font-mono">Local Loop</span>) אנלוגית ואילו הקווים בין מרכזיות הקצה (<span class="font-mono">End Offices</span>) למרכזיות החיוב (<span class="font-mono">Toll Offices</span>) והביניים הם דיגיטליים, <strong>מתבצעת המרה אנלוגית-דיגיטלית ולהיפך גם בשיחות טלפון קוליות וגם בחיבור לאינטרנט!</strong>
+                                    </p>
+                                    <ul class="list-disc list-inside text-slate-800 space-y-0.5 pt-1">
+                                        <li><strong>Codec (במרכזיית הקצה - End Office):</strong> ממיר את הקול האנלוגי לדיגיטלי בשיטת <strong>PCM</strong> — דגימת האות האנלוגי מספיק פעמים ביחידת זמן ($8,000$ דגימות בשנייה לפי נייקוויסט, כל $125\,\mu\text{s}$, עם $7$ או $8$ סיביות לדגימה $= 64\text{ kbps}$) כדי להתקרב לייצוג האנלוגי המקורי. (חלופה פשוטה יותר היא <strong>קידוד דלתא – Delta Modulation</strong>, שבה משודרת סיבית אחת לכל דגימה המציינת רק אם האות עלה או ירד במדרגה קבועה $\Delta$).</li>
+                                        <li><strong>Modem (בבית המנוי):</strong> ממיר סיביות דיגיטליות של המחשב לאות אנלוגי (ובחזרה) כדי לעבור על הלולאה המקומית.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+                                    <strong class="text-sky-950 block">2. חיבור ADSL על הלולאה המקומית: מפצלים (Splitters) ורכיב ה-DSLAM:</strong>
+                                    <p class="text-slate-700 leading-relaxed">
+                                        בטכנולוגיית <strong>ADSL</strong> מנצלים את הלולאה המקומית להעברת שיחות טלפון ואינטרנט בו-זמנית באמצעות חלוקת תדרים (FDM):
+                                    </p>
+                                    <ul class="list-disc list-inside text-slate-800 space-y-1 pt-1">
+                                        <li><strong>תפקיד המפצלים (Splitters) בבית ובמרכזייה:</strong> המפצל הוא מסנן תדרים אנלוגי פסיבי המפריד בין ערוץ הקול האנלוגי בתדרים הנמוכים ($0\text{--}4,000\text{ Hz}$) לבין ערוצי הנתונים של ה-ADSL בתדרים הגבוהים. <strong>ניתן להחליף בין המפצל שבבית הלקוח למפצל שבמרכזייה</strong> משום ששניהם מסננים פסיביים זהים לחלוטין!</li>
+                                        <li><strong>תפקיד ה-DSLAM (Digital Subscriber Line Access Multiplexer):</strong> יושב במרכזיית הקצה, מרכז את האותות האנלוגיים בתדרים הגבוהים ממאות מודמי ADSL, ממיר אותם למידע דיגיטלי (מנות) ומעבירם בקו דיגיטלי מהיר לספק האינטרנט (ISP).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- Section 4.2: Analog vs Digital, PCM, Modem, Modulation (AM/FM/PM) & Constellation Diagram -->
@@ -1890,6 +2716,40 @@
                                 </p>
                             </div>
                         </div>
+                        <!-- Sinusoidal Carrier vs Fourier + Advanced Constellation Analysis (Concentric Rings & QAM Grids) -->
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-5 text-xs">
+                            <div class="bg-white p-4 rounded-2xl border border-slate-300 shadow-2xs space-y-2">
+                                <div class="flex items-center justify-between border-b border-slate-200 pb-1.5">
+                                    <h5 class="font-black text-sm text-sky-950">〰️ גל נושא סינוסואידי לעומת פיתוח פורייה</h5>
+                                    <span class="px-2 py-0.5 rounded bg-sky-100 text-sky-900 font-bold text-[10px]">עקרון האפנון</span>
+                                </div>
+                                <p class="text-slate-700 leading-relaxed">
+                                    <strong>גל נושא סינוסואידי (Sinusoidal Carrier Wave):</strong> אות אנלוגי מחזורי מהצורה $A\sin(2\pi f t + \phi)$ בתדר קבוע. שלוש שיטות האפנון (אמפליטודה, תדר ופאזה) דומות בכך שכולן ממירות מידע דיגיטלי לאנלוגי על ידי שינוי פרמטר של גל נושא סינוסואידי בכל פרק זמן של סמל.
+                                </p>
+                                <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+                                    <strong class="text-sky-950 block">מדוע לא משדרים באמצעות פיתוח פורייה של האות הדיגיטלי?</strong>
+                                    פיתוח פורייה <strong>אינו</strong> משתמש בגל נושא סינוסואידי בודד, אלא מפרק את הגל הריבועי לסכום של גלי סינוס וקוסינוס בתדרים מרובים (הרמוניות). החסרונות של פיתוח פורייה לעומת גל נושא סינוסואידי:
+                                    <ul class="list-disc list-inside text-slate-800 space-y-0.5 pt-0.5">
+                                        <li>דורש <strong>רוחב פס רחב מאוד</strong> (תיאורטית אינסופי) להעברת ההרמוניות.</li>
+                                        <li>תדרים שונים חווים <strong>ניחות והשהיית התפשטות שונים</strong> בערוץ, מה שמעוות את האות המתקבל.</li>
+                                        <li>אינו מאפשר ריבוב תדרים (FDM) נוח בין מספר משתמשים על אותו כבל.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="bg-white p-4 rounded-2xl border border-slate-300 shadow-2xs space-y-2">
+                                <div class="flex items-center justify-between border-b border-slate-200 pb-1.5">
+                                    <h5 class="font-black text-sm text-sky-950">🎯 ניתוח מתקדם של דיאגרמות קונסטלציה (מעגלים וסריגי QAM)</h5>
+                                    <span class="px-2 py-0.5 rounded bg-sky-100 text-sky-900 font-bold text-[10px]">דגשים קריטיים</span>
+                                </div>
+                                <ul class="space-y-1.5 text-slate-700 leading-relaxed list-disc list-inside">
+                                    <li><strong>מעגל יחיד (רדיוס קבוע):</strong> כל הנקודות באותו מרחק מהראשית $\implies$ <strong>אפנון פאזה (PSK) בלבד</strong>. אם מוסיפים נקודות נוספות על <em>אותו מעגל</em>, שיטת האפנון נותרת PSK בלבד, אך כדי לחשב את קצב השידור החדש חייבים לדעת <em>כמה</em> נקודות נוספו.</li>
+                                    <li><strong>שני מעגלים קונצנטריים (ספירת פאזות חופפות!):</strong> נניח שבמעגל הפנימי יש $4$ נקודות בזוויות $45^\circ, 135^\circ, 225^\circ, 315^\circ$, ובמעגל החיצוני $12$ נקודות (4 באותן זוויות אלכסוניות + 8 ביניהן). סך הנקודות הוא $4+12=16$ ($\log_2 16 = 4$ סיביות לסמל) והמודם משלב <strong>אפנון פאזה ואמפליטודה</strong> ($2$ אמפליטודות). אך מספר <strong>הפאזות השונות</strong> הוא <strong>$12$ בלבד</strong> (ולא 16!), כי 4 הפאזות של המעגל הפנימי מתלכדות עם 4 מפאזות המעגל החיצוני! <br><em>ההיגיון ההנדסי:</em> היקף המעגל הפנימי קטן יותר, ולכן שמים עליו פחות נקודות כדי לשמור על <strong>מרחק גיאומטרי גדול בין נקודות סמוכות</strong> ולהקטין את הרגישות לרעש.</li>
+                                    <li><strong>השוואת מודמים (למשל 32-QAM מול 64-QAM):</strong> שניהם משתמשים <strong>באותו שילוב של שיטות אפנון</strong> (אמפליטודה + פאזה). ב-64-QAM הקצב גבוה יותר ($\log_2 64 = 6$ לעומת $\log_2 32 = 5$ סיביות לסמל), אך הנקודות צפופות יותר ולכן הוא רגיש יותר לרעשים. (כאשר $M$ אינו חזקה של 2, כגון $12$ או $24$ נקודות, מספר הסיביות השלמות לסמל הוא $\lfloor \log_2 M \rfloor$).</li>
+                                </ul>
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- Section 4.3: Physical Media, Access Networks & Book Error Correction (GHz vs MHz) -->
@@ -1942,7 +2802,112 @@
                 </div>
 
                 
-                    <!-- Sub-Chapter Navigation Footer -->
+                    </div>
+
+                <!-- ========================================================= -->
+                <!-- FAST STUDY MODE: TAB 4 (OS-INSPIRED CLEAN BLUE LAYOUT)    -->
+                <!-- ========================================================= -->
+                <div class="fast-mode-content">
+                    <div class="bg-white p-5 sm:p-8 rounded-2xl border border-sky-200 shadow-xs mb-6">
+                        <header class="mb-6 border-b border-slate-200 pb-4">
+                            <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
+                                <span class="px-3 py-1 rounded-full bg-sky-100 text-sky-900 font-bold text-xs border border-sky-200">
+                                    ⚡ לימוד מהיר • פרק 4
+                                </span>
+                                <div class="flex flex-wrap gap-2">
+                                    <button type="button" onclick="openSingleSim('sim-wrapper-modulation', '🎛️ מעבדת אוסצילוסקופ: אפנון AM / FM / PM, דגימת PCM ודיאגרמת קונסטלציה חיה')"
+                                        class="px-3 py-1.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-900 text-xs font-bold border border-sky-200 transition-all cursor-pointer">
+                                        🎛️ מעבדת אפנון וקונסטלציה
+                                    </button>
+                                    <button type="button" onclick="showQuestions('tab-signals', '4. אותות אנלוגיים/דיגיטליים, מודם, אפנון ורשתות גישה', event)"
+                                        class="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-2xs transition-all cursor-pointer">
+                                        ❓ שאלות תרגול (פרק 4)
+                                    </button>
+                                </div>
+                            </div>
+                            <h2 class="text-2xl sm:text-3xl font-black text-slate-800 tracking-tight">
+                                אותות אנלוגיים ודיגיטליים, PSTN, PCM, אפנון ודיאגרמת קונסטלציה
+                            </h2>
+                            <p class="text-sm text-slate-600 mt-1">
+                                הבדלים בין אות אנלוגי לדיגיטלי, המרת PCM ב-PSTN, מפצלי ADSL ו-DSLAM, גל נושא מול פורייה וקריאת דיאגרמות קונסטלציה.
+                            </p>
+                        </header>
+
+                        <!-- 4.1 Analog vs Digital & PSTN / PCM / ADSL -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+                            <div class="fast-concept-box space-y-2 text-xs sm:text-sm">
+                                <h3 class="text-base font-black text-sky-950 border-b border-sky-200/80 pb-1.5">4.1 אות אנלוגי מול דיגיטלי והמרת PCM</h3>
+                                <ul class="space-y-2 text-slate-700">
+                                    <li><strong class="text-sky-950">• אות אנלוגי:</strong> אות רציף המשתנה בצורה חלקה; רגיש להפרעות ולפגיעה באיכות לאורך זמן ומרחק.</li>
+                                    <li><strong class="text-sky-950">• אות דיגיטלי:</strong> ערכים בדידים (בינאריים); חסין יחסית לרעשי רקע וניתן לשכפול, דחיסה והעברה ללא אובדן נתונים.</li>
+                                    <li><strong class="text-sky-950">• המרה מאנלוגי לדיגיטלי (PCM – Pulse-Code Modulation):</strong> דגימת האות האנלוגי בתכיפות גבוהה ($8,000$ פעמים בשנייה בקול טלפוני) ותרגום כל דגימה לרצף סיביות דיגיטלי כדי להתקרב לייצוג האנלוגי שלו. (חלופה: <strong>קידוד דלתא</strong> המשדר סיבית $1/0$ לפי עלייה/ירידה במדרגה קבועה $\Delta$).</li>
+                                </ul>
+                            </div>
+
+                            <div class="fast-tip-box space-y-2 text-xs sm:text-sm">
+                                <h3 class="text-base font-black text-blue-950 border-b border-blue-200/80 pb-1.5">4.2 מערכת הטלפוניה (PSTN), הלולאה המקומית ו-ADSL</h3>
+                                <ul class="space-y-2 text-slate-700">
+                                    <li><strong class="text-blue-950">• מבנה ה-PSTN:</strong> הוקמה כמערכת אנלוגית לשיחות קול בלבד. כיום הקווים בין מרכזיות הקצה (<strong>End Office</strong>) למרכזיות החיוב (<strong>Toll Office</strong>) הם <strong>דיגיטליים מהירים</strong>, אך <strong>הלולאה המקומית (Local Loop)</strong> לבית המנוי נותרה <strong>אנלוגית</strong> משיקולי עלות-תועלת.</li>
+                                    <li><strong class="text-blue-950">• המרות A/D ו-D/A:</strong> מתבצעות ב-PSTN <strong>גם בשיחות טלפון קוליות</strong> (באמצעות ה-<strong>Codec</strong> בשיטת PCM במרכזיית הקצה) <strong>וגם בחיבור לאינטרנט</strong> (באמצעות ה<strong>מודם</strong> בבית המנוי).</li>
+                                    <li><strong class="text-blue-950">• ADSL, מפצלים (Splitters) ו-DSLAM:</strong> המפצלים בבית ובמרכזייה הם מסננים פסיביים זהים (ניתנים להחלפה ביניהם!) המפרידים בין תדרי הקול ($0\text{--}4\text{ kHz}$) לתדרי הנתונים הגבוהים המרוכזים ב-<strong>DSLAM</strong> במרכזייה.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 4.3 Modulation, Sinusoidal Carrier vs Fourier, and Constellation Rules -->
+                        <div class="fast-section-card">
+                            <div class="fast-section-header">
+                                <h3 class="text-base font-black text-sky-950">4.3 אפנון (Modulation), גל נושא סינוסואידי ודיאגרמת קונסטלציה</h3>
+                                <span class="text-xs font-mono font-bold text-sky-800 bg-white px-2.5 py-0.5 rounded border border-sky-200">R = Baud × log₂(M)</span>
+                            </div>
+                            <div class="p-4 sm:p-5 space-y-4 text-xs sm:text-sm">
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                                    <div class="space-y-2 text-slate-700">
+                                        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                                            <strong class="text-sky-950 block mb-1">שלוש שיטות האפנון על גל נושא סינוסואידי $A\sin(2\pi f t + \phi)$:</strong>
+                                            <div>1. <strong>אפנון אמפליטודה (AM / ASK):</strong> שינוי עוצמת/גובה הגל לסימון $0,1$.</div>
+                                            <div>2. <strong>אפנון תדר (FM / FSK):</strong> שינוי צפיפות הגל (התדר) לסימון $0,1$.</div>
+                                            <div>3. <strong>אפנון פאזה (PM / PSK):</strong> שינוי זווית/מופע הגל לסימון החלפת סיבית.</div>
+                                            <div class="mt-1.5 pt-1.5 border-t border-slate-200 text-xs text-slate-600">
+                                                <strong>למה גל נושא סינוסואידי ולא פיתוח פורייה?</strong> פיתוח פורייה מפרק את האות להרמוניות מרובות ודורש רוחב פס רחב מאוד, סובל מניחות והשהיה שונים לכל תדר, ואינו מאפשר FDM.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="fast-formula-box space-y-1.5 text-xs">
+                                        <strong class="text-sky-950 text-sm block">🎯 כללי הזהב לקריאת דיאגרמת קונסטלציה:</strong>
+                                        <ul class="list-disc list-inside space-y-1 text-slate-700">
+                                            <li><strong>מרחק מהראשית ($r$) = אמפליטודה</strong> • <strong>זווית ($\theta$) = פאזה</strong>.</li>
+                                            <li><strong>כל הנקודות על מעגל אחד:</strong> מרחק קבוע $\implies$ <strong>אפנון פאזה (PSK) בלבד</strong>.</li>
+                                            <li><strong>שני מעגלים או סריג (כגון 16/32/64-QAM):</strong> מרחקים וזוויות שונים $\implies$ <strong>שילוב של אפנון פאזה ואפנון אמפליטודה</strong>. (הגדלת מספר הנקודות מ-32 ל-64 מגדילה קצב מ-$5$ ל-$6$ ביטים לסמל, אך מקטינה מרחק בין נקודות ומגדילה רגישות לרעש).</li>
+                                            <li><strong>ספירת פאזות בשני מעגלים קונצנטריים:</strong> אם במעגל פנימי 4 נקודות ($45^\circ, 135^\circ, 225^\circ, 315^\circ$) ובחיצוני 12 נקודות (4 באותן זוויות + 8 ביניהן) $\implies$ יש $16$ נקודות ($4$ ביטים לסמל), $2$ אמפליטודות ו-<strong>$12$ פאזות שונות בלבד</strong> (כי 4 פאזות מתלכדות!). במעגל הפנימי שמים פחות נקודות כי היקפו קטן יותר, כדי לשמור על מרחק אוקלידי גדול וחסינות לרעש.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- Fast Inline Constellation & Baud Explorer -->
+                                <div class="fast-sim-card">
+                                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                        <h4 class="text-sm font-black text-sky-950">סייר קונסטלציות מהיר: זיהוי שיטת האפנון, פאזות וקצב שידור</h4>
+                                        <div class="flex flex-wrap gap-1.5 text-xs">
+                                            <button type="button" onclick="setFastConstellation('psk8')" id="fast-c-btn-psk8" class="px-3 py-1 rounded-lg font-bold bg-white text-sky-900 border border-sky-200 cursor-pointer">מעגל יחיד (8 נקודות)</button>
+                                            <button type="button" onclick="setFastConstellation('ring16')" id="fast-c-btn-ring16" class="px-3 py-1 rounded-lg font-bold bg-blue-600 text-white cursor-pointer">2 מעגלים (4 פנימי + 12 חיצוני)</button>
+                                            <button type="button" onclick="setFastConstellation('qam64')" id="fast-c-btn-qam64" class="px-3 py-1 rounded-lg font-bold bg-white text-sky-900 border border-sky-200 cursor-pointer">סריג 32-QAM מול 64-QAM</button>
+                                        </div>
+                                    </div>
+                                    <div id="fast-constellation-output" class="p-3.5 rounded-xl bg-white border border-sky-200 text-xs text-slate-800 leading-relaxed">
+                                        <strong>קונסטלציה דו-מעגלית (4 נקודות במעגל פנימי + 12 בחיצוני = 16 נקודות):</strong><br>
+                                        • <strong>שיטת אפנון:</strong> שילוב של <strong>אפנון פאזה ואפנון אמפליטודה</strong> (2 רדיוסים שונים).<br>
+                                        • <strong>מספר פאזות שונות:</strong> <strong>12 פאזות</strong> (4 הפאזות של המעגל הפנימי מתלכדות עם 4 מתוך ה-12 של המעגל החיצוני!).<br>
+                                        • <strong>סיביות לסמל:</strong> $\log_2(16) = \mathbf{4\text{ bits/symbol}}$ (למשל בקצב $2,400\text{ baud}$ נקבל $R = 9,600\text{ bps}$).
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+<!-- Sub-Chapter Navigation Footer -->
                     <div class="flex items-center justify-between gap-4 mt-4 mb-6 px-1">
                         <button onclick="showTab('tab-performance')" class="px-6 py-2.5 rounded-xl bg-white hover:bg-indigo-50 text-indigo-950 font-bold text-xs md:text-sm border border-indigo-200/90 shadow-xs hover:shadow-md transition-all flex items-center gap-2 group cursor-pointer">
                             <span class="font-mono text-sky-500 group-hover:translate-x-1 transition-transform">→</span>
@@ -1960,7 +2925,8 @@
             <!-- TAB 5: מיתוג מעגלים מול מיתוג מנות, ריבוב (FDM/TDM) וממשק השקעים          -->
             <!-- ========================================================================= -->
             <section id="tab-switching" class="tab-content">
-                <div class="content-wrapper bg-gradient-to-b from-white via-white to-sky-50/30 p-6 md:p-10 rounded-3xl shadow-sm border border-sky-300/80 mb-8">
+                <div class="deep-mode-content">
+<div class="content-wrapper bg-gradient-to-b from-white via-white to-sky-50/30 p-6 md:p-10 rounded-3xl shadow-sm border border-sky-300/80 mb-8">
                     <header class="mb-8 border-b border-slate-200 pb-6">
                         <div class="flex items-center justify-between flex-wrap gap-3 mb-3">
                             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-300 text-sky-900 text-xs font-black">
@@ -2138,6 +3104,46 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Virtual Circuit Switching Tables (VCI) Deep Dive & Solved Example -->
+                        <div class="mt-4 bg-white p-4 rounded-2xl border border-slate-300 shadow-2xs text-xs space-y-3">
+                            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-2">
+                                <h4 class="font-black text-sm text-sky-950">🔢 טבלאות מיתוג במעגל מדומה / וירטואלי (Virtual Circuit Switching – VCI):</h4>
+                                <span class="px-2.5 py-0.5 rounded-full bg-sky-100 text-sky-900 font-bold text-[11px]">החלפת VCI מקישור לקישור</span>
+                            </div>
+                            <p class="text-slate-700 leading-relaxed">
+                                ברשת <strong>מעגלים וירטואליים (Virtual Circuits)</strong>, כל מתג בנתיב מחזיק טבלת מיתוג הממפה זוג של <strong>(פורט כניסה, מזהה מעגל נכנס – <span class="font-mono">Incoming VCI</span>)</strong> לזוג של <strong>(פורט יציאה, מזהה מעגל יוצא – <span class="font-mono">Outgoing VCI</span>)</strong>. מזהה ה-<span class="font-mono">VCI</span> הוא <strong>מקומי לכל קישור פיזי</strong> ומוחלף בכל מתג.
+                            </p>
+                            <div class="p-3 rounded-xl bg-sky-50 border-r-4 border-sky-600 text-sky-950 font-semibold">
+                                💡 <strong>כלל הזהב למעקב אחרי טבלאות VCI:</strong> על כל קו פיזי המחבר בין פורט היציאה של מתג $i$ לפורט הכניסה של מתג $j$, המנה אינה משתנה לאורך הכבל — ולכן ה-<strong>Outgoing VCI</strong> של מתג $i$ <strong>חייב להיות זהה לחלוטין</strong> ל-<strong>Incoming VCI</strong> של מתג $j$ המחובר אליו באותו קו! (אם שני הקצוות של אותו כבל אינם נתונים בטבלאות, לא ניתן לדעת את המספר הספציפי שנבחר לקו זה, ואז מציינים <span class="font-mono">-1</span>).
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 overflow-x-auto">
+                                <div class="font-bold text-sky-950 mb-2">דוגמה מלאה של מעגל מדומה העובר דרך 3 מתגים ($A \to \text{Switch 1} \to \text{Switch 2} \to \text{Switch 3} \to B$):</div>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-center font-mono text-[11px]">
+                                    <div class="p-2.5 rounded-lg bg-white border border-slate-300">
+                                        <div class="font-sans font-black text-sky-950 mb-1">Switch 1 (נכנס מ-A בפורט 1, יוצא בפורט 3 ל-Switch 2)</div>
+                                        <div class="grid grid-cols-2 border-t border-slate-200 pt-1">
+                                            <div>In: Port 1, VCI=14</div>
+                                            <div class="text-blue-700 font-black">Out: Port 3, VCI=X=66</div>
+                                        </div>
+                                    </div>
+                                    <div class="p-2.5 rounded-lg bg-white border-2 border-sky-500">
+                                        <div class="font-sans font-black text-sky-950 mb-1">Switch 2 (נכנס מ-Switch 1 בפורט 1, יוצא בפורט 2 ל-Switch 3)</div>
+                                        <div class="grid grid-cols-2 border-t border-slate-200 pt-1">
+                                            <div class="text-blue-700 font-black">In: Port 1, VCI=66</div>
+                                            <div class="text-emerald-700 font-black">Out: Port 2, VCI=22</div>
+                                        </div>
+                                    </div>
+                                    <div class="p-2.5 rounded-lg bg-white border border-slate-300">
+                                        <div class="font-sans font-black text-sky-950 mb-1">Switch 3 (נכנס מ-Switch 2 בפורט 2, יוצא בפורט 3 ל-B)</div>
+                                        <div class="grid grid-cols-2 border-t border-slate-200 pt-1">
+                                            <div class="text-emerald-700 font-black">In: Port 2, VCI=Y=22</div>
+                                            <div>Out: Port 3, VCI=77</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- Section 5.2: Multiplexing (FDM, TDM, Statistical Multiplexing), Queues, Packet Loss & Book Correction -->
@@ -2205,6 +3211,44 @@
                                 </tbody>
                             </table>
                         </div>
+
+                        <!-- Multiplexing Overhead (FDM vs TDM vs CDMA), T1/T2 Lines & Cellular Technologies (AMPS, GSM, CDMA) -->
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-6 text-xs">
+                            <div class="bg-white p-4 rounded-2xl border border-slate-300 shadow-2xs space-y-2">
+                                <div class="flex items-center justify-between border-b border-slate-200 pb-1.5">
+                                    <h4 class="font-black text-sm text-sky-950">📊 התקורה בשיטות הריבוב (FDM, TDM, CDMA) וקווי T1 / T2:</h4>
+                                    <span class="px-2 py-0.5 rounded bg-sky-100 text-sky-900 font-bold text-[10px]">ריבוב בשכבה הפיזית</span>
+                                </div>
+                                <ul class="space-y-1.5 text-slate-700 leading-relaxed list-disc list-inside">
+                                    <li><strong>תקורה ב-FDM (במישור התדר):</strong> <strong>פסי משמר (<span class="font-mono">Guard Bands</span>)</strong> — רצועות תדר ריקות בין ערוצים סמוכים למניעת זליגת אותות והתאבכות.</li>
+                                    <li><strong>תקורה ב-TDM (במישור הזמן):</strong> <strong>סיביות סנכרון ובקרה</strong> ו<strong>זמני משמר (<span class="font-mono">Guard Times</span>)</strong> בין חריצי זמן. (הדומה בין TDM ל-FDM: שתיהן מחלקות ערוץ פיזי באופן סטטי ומבזבזות משאבים כשהמשתמש שותק).</li>
+                                    <li><strong>מבנה קו T1 וריבוב ל-T2:</strong> קו <strong>T1</strong> מרבב ב-TDM <strong>24 ערוצי שיחה</strong>: בכל מסגרת (כל $125\,\mu\text{s}$, כלומר $8,000$ מסגרות בשנייה) יש 24 חריצים של 8 סיביות (7 מידע + 1 בקרה) ועוד <strong>סיבית סנכרון אחת</strong> $= 193$ סיביות למסגרת, בקצב של $8,000 \times 193 = \mathbf{1.544\text{ Mbps}}$. ריבוב של 4 קווי T1 לקו <strong>T2</strong> מתבצע <strong>סיבית-אחר-סיבית (Bit Interleaving)</strong> בשיטת Round-Robin (למשל אם קווים 1–2 משדרים 1 וקווים 3–4 משדרים 0, מסגרת ה-T2 תורכב מ-193 חזרות של <span class="font-mono">1100</span>).</li>
+                                    <li><strong>ריבוב בחלוקת קוד (CDM / CDMA):</strong> כל התחנות משדרות באותו תדר ובאותו זמן באמצעות קוד שבבים (<span class="font-mono">Chip Sequence</span>) ייחודי באורך $m$ האורתוגונלי לשאר הקודים ($\mathbf{c}_i \cdot \mathbf{c}_j = 0$). <strong>התקורה:</strong> שידור $m$ שבבים עבור כל סיבית מידע בודדת. (בקוד באורך 8, לא חייבים שבכל קוד יהיו בדיוק ארבע $+1$ וארבע $-1$: קוד אחד יכול להיות כולו $+1$; ואם כל התחנות משדרות 0 במקום 1, האות המסוכם מתהפך בסימנו מ-$\mathbf{S}$ ל-$-\mathbf{S}$).</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-white p-4 rounded-2xl border border-slate-300 shadow-2xs space-y-2">
+                                <div class="flex items-center justify-between border-b border-slate-200 pb-1.5">
+                                    <h4 class="font-black text-sm text-sky-950">📱 חלוקת תדרים וריבוב ברשתות טלפוניה סלולריות (AMPS, GSM, CDMA):</h4>
+                                    <span class="px-2 py-0.5 rounded bg-sky-100 text-sky-900 font-bold text-[10px]">גישה סלולרית</span>
+                                </div>
+                                <div class="space-y-2 text-slate-700 leading-relaxed">
+                                    <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
+                                        <strong class="text-sky-950">1. דור 1 — AMPS (אנלוגי): FDMA בלבד</strong><br>
+                                        השטח מחולק לתאים משושים (<span class="font-mono">Hexagonal Cells</span>). בשני תאים שאין להם צלע משותפת מותר להשתמש באותם תחומי תדרים (<strong>שימוש חוזר בתדרים – Frequency Reuse</strong>). <em>דגש חשוב:</em> ככל שמקטינים את שטח התא (מוסיפים תאים קטנים יותר), כך <strong>גדל</strong> מספר השיחות שניתן לבצע במקביל באזור!
+                                    </div>
+                                    <div class="p-2.5 rounded-lg bg-sky-50 border-r-4 border-sky-600">
+                                        <strong class="text-sky-950">2. דור 2 — GSM (דיגיטלי): שילוב של FDMA ושל TDMA!</strong><br>
+                                        ברשת <strong>GSM</strong> חלוקת התדרים והגישה למשתמשים נעשית באמצעות <strong>שילוב של FDMA ושל TDMA</strong>: תחילה מחלקים את הספקטרום ל-124 ערוצי תדר ברוחב $200\text{ kHz}$ כל אחד (<strong>FDMA</strong>), ובתוך כל תדר מחלקים את הזמן ל-8 חריצי זמן (<strong>TDMA</strong>).
+                                    </div>
+                                    <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
+                                        <strong class="text-sky-950">3. דור 2/3 — CDMA (דיגיטלי): הפרדת קודים אורתוגונליים</strong><br>
+                                        כל התחנות בתא משדרות באותו תדר ובאותו זמן ומובחנות על ידי קודי שבבים אורתוגונליים. <em>מלכודת בניסוחי שאלות:</em> אם נשאלים על "רשת סלולרית כללית" שבה הטכנולוגיה אינה נתונה מראש, לא ניתן לקבוע בוודאות אם היא משתמשת ב-TDM, ב-FDM, בשתיהן או באף אחת מהן!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
 
                         <!-- Numerical Example of Statistical Multiplexing + Queuing Delay & Book Error Correction -->
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-6 text-xs">
@@ -2309,13 +3353,148 @@
                 </div>
 
                 
-                    <!-- Sub-Chapter Navigation Footer -->
+                    </div>
+
+                <!-- ========================================================= -->
+                <!-- FAST STUDY MODE: TAB 5 (OS-INSPIRED CLEAN BLUE LAYOUT)    -->
+                <!-- ========================================================= -->
+                <div class="fast-mode-content">
+                    <div class="bg-white p-5 sm:p-8 rounded-2xl border border-sky-200 shadow-xs mb-6">
+                        <header class="mb-6 border-b border-slate-200 pb-4">
+                            <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
+                                <span class="px-3 py-1 rounded-full bg-sky-100 text-sky-900 font-bold text-xs border border-sky-200">
+                                    ⚡ לימוד מהיר • פרק 5
+                                </span>
+                                <div class="flex flex-wrap gap-2">
+                                    <button type="button" onclick="openSingleSim('sim-wrapper-mux-switching', '📊 מעבדת ריבוב ומיתוג: FDM מול TDM מול ריבוב סטטיסטי ומחשבון קיבולת משתמשים')"
+                                        class="px-3 py-1.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-900 text-xs font-bold border border-sky-200 transition-all cursor-pointer">
+                                        📊 מעבדת ריבוב
+                                    </button>
+                                    <button type="button" onclick="showQuestions('tab-switching', '5. מיתוג מעגלים מול מיתוג מנות, ריבוב FDM/TDM ושקעים', event)"
+                                        class="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-2xs transition-all cursor-pointer">
+                                        ❓ שאלות תרגול (פרק 5)
+                                    </button>
+                                </div>
+                            </div>
+                            <h2 class="text-2xl sm:text-3xl font-black text-slate-800 tracking-tight">
+                                מיתוג מעגלים ומעגלים וירטואליים (VCI), מיתוג מנות, ריבוב ורשתות סלולריות
+                            </h2>
+                            <p class="text-sm text-slate-600 mt-1">
+                                יתרונות וחסרונות של מיתוג מעגלים מול מיתוג מנות, טבלאות VCI במעגל מדומה, ריבוב FDM / TDM / CDMA וחלוקת תדרים ב-GSM.
+                            </p>
+                        </header>
+
+                        <!-- 5.1 Circuit / Virtual Circuit vs Packet Switching -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+                            <div class="fast-concept-box space-y-2 text-xs sm:text-sm">
+                                <h3 class="text-base font-black text-sky-950 border-b border-sky-200/80 pb-1.5">5.1 מיתוג מעגלים / מעגלים וירטואליים</h3>
+                                <p class="text-slate-700">מוקם נתיב ייעודי (פיזי או לוגי) בין המקור ליעד לפני תחילת העברת המידע.</p>
+                                <div class="space-y-1 text-slate-700">
+                                    <div><strong class="text-emerald-800">✔️ יתרונות:</strong> (1) <strong>תקורה נמוכה בכל מנה</strong> (מזהה מעגל VCI קטן במקום כתובות מלאות); (2) <strong>ערבויות ביצועים</strong> ורוחב פס ייעודי; (3) <strong>הגעת המנות לפי הסדר</strong>.</div>
+                                    <div><strong class="text-rose-800">❌ חסרונות:</strong> (1) <strong>שלב הקמת קשר ממושך</strong>; (2) <strong>בזבוז משאבים</strong> בזמני שתיקה; (3) <strong>עלות זיכרון בנתבים</strong> לטבלאות המעגלים; (4) <strong>נפילת קו/נתב</strong> קוטעת את הקשר ומחייבת הקמה מחדש.</div>
+                                </div>
+                            </div>
+
+                            <div class="fast-tip-box space-y-2 text-xs sm:text-sm">
+                                <h3 class="text-base font-black text-blue-950 border-b border-blue-200/80 pb-1.5">5.2 מיתוג מנות (Packet Switching / Datagram)</h3>
+                                <p class="text-slate-700">המידע מחולק למנות עצמאיות שכל אחת מהן מכילה את כתובת היעד המלאה ומנותבת עצמאית ללא הקמת קשר מראש.</p>
+                                <div class="space-y-1 text-slate-700">
+                                    <div><strong class="text-emerald-800">✔️ יתרונות:</strong> (1) <strong>ניצולת משאבים מרבית</strong> (ריבוב סטטיסטי); (2) <strong>ללא הקמת קשר</strong>; (3) <strong>פשטות בנתבים</strong> (ללא שמירת מצב שיחות); (4) <strong>עמידות גבוהה לתקלות</strong> (ניתוב חלופי אוטומטי).</div>
+                                    <div><strong class="text-rose-800">❌ חסרונות:</strong> (1) <strong>תקורה גבוהה בכל מנה</strong> (כתובות מלאות); (2) <strong>מודל Best Effort</strong> ללא הבטחת רוחב פס או מניעת אובדן; (3) <strong>שינוי סדר החבילות והשהיות תור משתנות</strong>.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 5.3 Virtual Circuit VCI Rule & Interactive VCI Table Checker -->
+                        <div class="fast-section-card">
+                            <div class="fast-section-header">
+                                <h3 class="text-base font-black text-sky-950">5.3 טבלאות מיתוג במעגל מדומה (Virtual Circuit – VCI)</h3>
+                                <span class="text-xs font-mono font-bold text-sky-800 bg-white px-2.5 py-0.5 rounded border border-sky-200">Outgoing VCI(i) == Incoming VCI(j)</span>
+                            </div>
+                            <div class="p-4 sm:p-5 space-y-3 text-xs sm:text-sm">
+                                <p class="text-slate-700">
+                                    במעגל מדומה, כל מתג מחליף את מספר ה-<strong>VCI</strong> בכותרת המנה לפי טבלה: <span class="font-mono">(Incoming Port, VCI_in) &rarr; (Outgoing Port, VCI_out)</span>.
+                                    <strong>כלל ברזל:</strong> על כל קו פיזי המחבר בין מתג $i$ למתג $j$, ה-<strong>Outgoing VCI</strong> ביציאה ממתג $i$ <strong>שווה תמיד</strong> ל-<strong>Incoming VCI</strong> בכניסה למתג $j$! (אם שני קצוות הקו נעלמים, התשובה היא <span class="font-mono">-1</span>).
+                                </p>
+                                <div class="fast-sim-card">
+                                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                                        <strong class="text-sky-950 text-xs sm:text-sm">סימולטור מהיר 5.1: השלמת טבלאות VCI לאורך שרשרת מתגים ($A \to S_1 \to S_2 \to S_3 \to B$)</strong>
+                                        <div class="flex gap-1.5 text-xs">
+                                            <button type="button" onclick="setFastVciMode('known')" id="fast-vci-btn-known" class="px-3 py-1 rounded-lg font-bold bg-blue-600 text-white cursor-pointer">תרחיש 1: Switch 2 נתון מלא (X=66, Y=22)</button>
+                                            <button type="button" onclick="setFastVciMode('unknown')" id="fast-vci-btn-unknown" class="px-3 py-1 rounded-lg font-bold bg-white text-sky-900 border border-sky-200 cursor-pointer">תרחיש 2: שני קצוות הקו חסרים (-1)</button>
+                                        </div>
+                                    </div>
+                                    <div id="fast-vci-display" class="p-3 rounded-xl bg-white border border-sky-200 text-xs text-slate-800">
+                                        חיבור <strong>Switch 1 (פורט יציאה 3, VCI = X)</strong> אל <strong>Switch 2 (פורט כניסה 1, VCI = 66)</strong> מחייב $\mathbf{X = 66}$. חיבור <strong>Switch 2 (פורט יציאה 2, VCI = 22)</strong> אל <strong>Switch 3 (פורט כניסה 2, VCI = Y)</strong> מחייב $\mathbf{Y = 22}$.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 5.4 Multiplexing (FDM, TDM, CDMA), T1/T2 & Cellular (AMPS, GSM, CDMA) + Socket API -->
+                        <div class="fast-section-card">
+                            <div class="fast-section-header">
+                                <h3 class="text-base font-black text-sky-950">5.4 ריבוב (FDM / TDM / CDMA), קווי T1/T2, רשתות סלולר (GSM) ו-Socket API</h3>
+                                <span class="text-xs font-bold text-sky-800 bg-white px-2.5 py-0.5 rounded border border-sky-200">GSM = שילוב של FDMA ו-TDMA</span>
+                            </div>
+                            <div class="p-4 sm:p-5 space-y-4 text-xs sm:text-sm">
+                                <div class="overflow-x-auto rounded-xl border border-slate-200">
+                                    <table class="w-full min-w-[520px] text-right text-xs bg-white">
+                                        <thead class="bg-slate-100 text-sky-950 font-bold border-b border-slate-200">
+                                            <tr>
+                                                <th class="p-2.5">שיטה / טכנולוגיה</th>
+                                                <th class="p-2.5">עקרון פעולה</th>
+                                                <th class="p-2.5">ביטוי התקורה (Overhead) ודגשים</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-slate-200 text-slate-700">
+                                            <tr>
+                                                <td class="p-2.5 font-bold bg-slate-50">FDM (חלוקת תדר)</td>
+                                                <td class="p-2.5">חלוקת תחום התדרים לתתי-ערוצים קבועים לכל משתמש.</td>
+                                                <td class="p-2.5">תקורה במישור התדר: <strong>פסי משמר (Guard Bands)</strong> למניעת זליגת תדרים.</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-2.5 font-bold bg-slate-50">TDM (חלוקת זמן) וקווי T1 / T2</td>
+                                                <td class="p-2.5">חלוקת הזמן לחריצים קבועים במחזוריות (Round-Robin).</td>
+                                                <td class="p-2.5">תקורה במישור הזמן: <strong>סיביות סנכרון וזמני משמר</strong>. בקו <strong>T1</strong>: 24 ערוצים $\times 8 + 1$ סנכרון $= 193$ ביטים כל $125\,\mu\text{s}$ ($1.544\text{ Mbps}$). קו <strong>T2</strong> מרבב 4 קווי T1 סיבית-אחר-סיבית.</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-2.5 font-bold bg-slate-50">CDM / CDMA (חלוקת קוד)</td>
+                                                <td class="p-2.5">שידור באותו תדר ובאותו זמן עם קוד שבבים אורתוגונלי באורך $m$ ($\mathbf{c}_i \cdot \mathbf{c}_j = 0$).</td>
+                                                <td class="p-2.5">תקורה: <strong>$m$ שבבים לכל סיבית מידע</strong>. (קוד שכולו $+1$ חוקי לאחת התחנות; היפוך כל הסיביות מ-1 ל-0 הופך את האות מ-$\mathbf{S}$ ל-$-\mathbf{S}$).</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-2.5 font-bold bg-sky-50 text-sky-950">רשתות סלולריות: AMPS מול GSM מול CDMA</td>
+                                                <td class="p-2.5"><strong>AMPS (דור 1, אנלוגי):</strong> <span class="font-mono font-bold">FDMA</span> בלבד (תאים משושים, שימוש חוזר בתדרים בתאים ללא צלע משותפת; הקטנת התא מגדילה קיבולת).</td>
+                                                <td class="p-2.5"><strong>GSM (דור 2, דיגיטלי):</strong> <strong>שילוב של FDMA ושל TDMA!</strong> (124 תדרים של $200\text{ kHz}$ $\times$ 8 חריצי זמן). <strong>CDMA:</strong> הפרדת קודים.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                                        <strong class="text-sky-950 block mb-1">🚦 תורים, Packet Loss ושני קווים בקצב $R$:</strong>
+                                        כאשר ה-Buffer בנתב מתמלא, מנות חדשות נזרקות (<strong>Packet Loss</strong>) ונדרשות לשידור חוזר ב-TCP, ולכן העיכוב האפקטיבי אינו חסום. בנתב עם שני קישורים מקבילים בקצב $R$: מנה בודדת משודרת בקצב $R$, וזרם מנות מפוצל מגיע עד $2R$.
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                                        <strong class="text-sky-950 block mb-1">🔌 ממשק השקעים (Socket API):</strong>
+                                        <strong>בשרת (פתיחה פסיבית):</strong> <span class="font-mono font-bold">socket() &rarr; bind() &rarr; listen() &rarr; accept()</span> (המחזירה שקע חדש ללקוח בעוד השקע המקורי ממשיך להאזין).<br>
+                                        <strong>בלקוח (פתיחה אקטיבית):</strong> <span class="font-mono font-bold">socket() &rarr; connect() &rarr; send()/recv()</span>.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+<!-- Sub-Chapter Navigation Footer -->
                     <div class="flex items-center justify-between gap-4 mt-4 mb-6 px-1">
                         <button onclick="showTab('tab-signals')" class="px-6 py-2.5 rounded-xl bg-white hover:bg-sky-50 text-sky-950 font-bold text-xs md:text-sm border border-sky-200/90 shadow-xs hover:shadow-md transition-all flex items-center gap-2 group cursor-pointer">
                             <span class="font-mono text-sky-500 group-hover:translate-x-1 transition-transform">→</span>
                             <span>הקודם</span>
                         </button>
-                        <button onclick="window.location.href='2.html'" title="מעבר לפרק 2: שכבת היישום" class="relative overflow-hidden group px-7 py-2.5 rounded-xl bg-gradient-to-r from-blue-700 via-sky-600 to-blue-600 hover:from-blue-800 hover:to-sky-700 text-white font-black text-xs md:text-sm border border-sky-300 shadow-md hover:shadow-lg hover:shadow-sky-500/25 transition-all flex items-center gap-2 cursor-pointer">
+                        <button onclick="navigateCourseFile('2.html')" title="מעבר לפרק 2: שכבת היישום" class="relative overflow-hidden group px-7 py-2.5 rounded-xl bg-gradient-to-r from-blue-700 via-sky-600 to-blue-600 hover:from-blue-800 hover:to-sky-700 text-white font-black text-xs md:text-sm border border-sky-300 shadow-md hover:shadow-lg hover:shadow-sky-500/25 transition-all flex items-center gap-2 cursor-pointer">
                             <div class="absolute inset-0 silver-blue-waves-bg pointer-events-none opacity-25"></div>
                             <span class="relative z-10">הבא</span>
                             <span class="relative z-10 font-mono text-sky-200 group-hover:-translate-x-1 transition-transform">←</span>
@@ -2728,7 +3907,8 @@
                                 <option value="psk2">BPSK (M = 2 → 1 bit/sym)</option>
                                 <option value="qam4" selected>4-QAM / QPSK (M = 4 → 2 bits/sym)</option>
                                 <option value="psk8">8-PSK (M = 8 → 3 bits/sym)</option>
-                                <option value="qam16">16-QAM (M = 16 → 4 bits/sym)</option>
+                                <option value="ring16">16-QAM דו-מעגלי (4 פנימי + 12 חיצוני = 12 פאזות!)</option>
+                                <option value="qam16">16-QAM סריג (M = 16 → 4 bits/sym)</option>
                                 <option value="ask4">4-ASK (M = 4 → 2 bits/sym)</option>
                             </select>
                         </div>
@@ -3048,6 +4228,21 @@
             </div>
         </div>
 
+        
+                <div class="q-item-box p-4 rounded-xl border border-slate-300 bg-white space-y-3 shadow-xs">
+                    <div class="flex items-start gap-2">
+                        <span class="w-6 h-6 rounded-full bg-gradient-to-r from-blue-700 to-sky-600 text-white shadow-xs flex items-center justify-center text-xs font-bold shrink-0">7</span>
+                        <strong class="text-xs md:text-sm text-sky-950">נתונות שתי רשתות אתרנט עם 4 תחנות (A, B, C, D): אחת מחוברת ב-Ethernet Hub ואחת ב-Ethernet Switch. בזמן $t_0$ תחנה A משדרת מסגרת המיועדת ל-C, ובאותו רגע תחנה B משדרת מסגרת המיועדת ל-D. מה יתרחש בכל רשת?</strong>
+                    </div>
+                    <div class="space-y-2 pt-1">
+                        <button onclick="handleOptionClick(this, true, 'מדויק! ב-Ethernet Hub כל הפורטים חולקים מתחם התנגשות אחד ולכן תתרחש התנגשות; ב-Ethernet Switch כל פורט הוא מתחם התנגשות נפרד (ויש חוצצים) ולכן שתי המסגרות ישודרו בהצלחה במקביל!')" class="q-option-btn">א. ב-Ethernet Hub תהיה התנגשות בין שתי המסגרות; ב-Ethernet Switch שתי המסגרות ישודרו בהצלחה.</button>
+                        <button onclick="handleOptionClick(this, false, 'מלכודת! גם ברשת עם Hub, כותרת המסגרת מכילה כתובת MAC יעד ספציפית (C או D) וניתן לשלוח לתחנה ספציפית – הבעיה היא רק ששני שידורים בו-זמנית מתנגשים פיזית.')" class="q-option-btn">ב. ב-Ethernet Hub לא ניתן לשלוח מסגרת המיועדת לתחנה ספציפית אלא רק Broadcast; ב-Switch שתיהן ישודרו בהצלחה.</button>
+                        <button onclick="handleOptionClick(this, false, 'לא נכון: ב-Switch אין התנגשות בין שידורים אלו.')" class="q-option-btn">ג. בשתי הרשתות תהיה התנגשות בין שתי המסגרות.</button>
+                        <button onclick="handleOptionClick(this, false, 'לא נכון: ב-Hub שידור בו-זמני גורם להתנגשות.')" class="q-option-btn">ד. בשתי הרשתות שתי המסגרות ישודרו בהצלחה ללא התנגשות.</button>
+                    </div>
+                    <div class="q-feedback-box hidden"></div>
+                </div>
+
         <!-- TAB 2 QUESTIONS -->
         <div id="questions-tab-layers">
             <div class="open-questions-list space-y-4">
@@ -3173,6 +4368,21 @@
                 </div>
             </div>
         </div>
+
+        
+                <div class="q-item-box p-4 rounded-xl border border-slate-300 bg-white space-y-3 shadow-xs">
+                    <div class="flex items-start gap-2">
+                        <span class="w-6 h-6 rounded-full bg-gradient-to-r from-blue-700 to-sky-600 text-white shadow-xs flex items-center justify-center text-xs font-bold shrink-0">7</span>
+                        <strong class="text-xs md:text-sm text-sky-950">מילות מידע בנות $m$ סיביות מקודדות למילות קוד על ידי הוספת 5 סיביות בקרה קבועות (למשל פולינום CRC ממעלה 5). כיצד תלויה התקורה (Overhead) באחוזים באורך המילה $m$?</strong>
+                    </div>
+                    <div class="space-y-2 pt-1">
+                        <button onclick="handleOptionClick(this, false, 'הפוך! ככל ש-m גדל, החלק היחסי של 5 הסיביות מתוך סך הסיביות (m+5) קטן.')" class="q-option-btn">א. ככל ש-$m$ גדול יותר, התקורה באחוזים גדולה יותר.</button>
+                        <button onclick="handleOptionClick(this, false, 'לא נכון: התקורה בסיביות (5 סיביות) קבועה, אך התקורה באחוזים היא 5/(m+5) ולכן תלויה ב-m.')" class="q-option-btn">ב. התקורה באחוזים אינה תלויה ב-$m$.</button>
+                        <button onclick="handleOptionClick(this, true, 'מדויק! התקורה באחוזים היא $\frac{5}{m+5}\times 100\%$. ככל שאורך המידע $m$ גדול יותר, המכנה גדל והתקורה באחוזים קטנה יותר.')" class="q-option-btn">ג. ככל ש-$m$ גדול יותר, התקורה באחוזים קטנה יותר.</button>
+                        <button onclick="handleOptionClick(this, false, 'מלכודת! אורך שדה הבקרה קבוע תמיד (5 סיביות, גם אם יש בהן אפסים מובילים), ולכן אינו תלוי בתוצאת השארית.')" class="q-option-btn">ד. התקורה באחוזים תלויה לא רק ב-$m$ אלא גם בערכי הסיביות ובתוצאת השארית.</button>
+                    </div>
+                    <div class="q-feedback-box hidden"></div>
+                </div>
 
         <!-- TAB 3 QUESTIONS -->
         <div id="questions-tab-performance">
@@ -3300,6 +4510,21 @@
                 </div>
             </div>
         </div>
+
+        
+                <div class="q-item-box p-4 rounded-xl border border-slate-300 bg-white space-y-3 shadow-xs">
+                    <div class="flex items-start gap-2">
+                        <span class="w-6 h-6 rounded-full bg-gradient-to-r from-blue-700 to-sky-600 text-white shadow-xs flex items-center justify-center text-xs font-bold shrink-0">7</span>
+                        <strong class="text-xs md:text-sm text-sky-950">תמונה בגודל $1920 \times 1080$ פיקסלים משודרת ללא תקורה בערוץ שקצב השידור שלו $60\text{ Mbps}$, וזמן שידור התמונה הוא $553$ מילי-שניות ($0.553$ שניות). כמה בתים (Bytes) משמשים לקידוד כל פיקסל?</strong>
+                    </div>
+                    <div class="space-y-2 pt-1">
+                        <button onclick="handleOptionClick(this, true, 'מדויק! סך הפיקסלים: $1920 \times 1080 = 2,073,600$. סך הסיביות ששודרו: $60 \times 10^6 \times 0.553 \approx 33.18\times 10^6\text{ bits}$. חלוקה נותנת $16\text{ bits/pixel}$, שהם $16 / 8 = 2\text{ Bytes}$ לפיקסל!')" class="q-option-btn">א. 2 בתים (16 סיביות לפיקסל).</button>
+                        <button onclick="handleOptionClick(this, false, 'מלכודת יחידות! 16 הוא מספר הסיביות (bits) לפיקסל, אך השאלה ביקשה בתים (Bytes): 16/8 = 2 בתים.')" class="q-option-btn">ב. 16 בתים.</button>
+                        <button onclick="handleOptionClick(this, false, 'לא נכון: 3 בתים (24 סיביות) היו דורשים כ-830 מילי-שניות.')" class="q-option-btn">ג. 3 בתים (24 סיביות לפיקסל).</button>
+                        <button onclick="handleOptionClick(this, false, 'לא נכון.')" class="q-option-btn">ד. בית אחד (8 סיביות לפיקסל).</button>
+                    </div>
+                    <div class="q-feedback-box hidden"></div>
+                </div>
 
         <!-- TAB 4 QUESTIONS -->
         <div id="questions-tab-signals">
@@ -3441,6 +4666,34 @@
             </div>
         </div>
 
+        
+                <div class="q-item-box p-4 rounded-xl border border-slate-300 bg-white space-y-3 shadow-xs">
+                    <div class="flex items-start gap-2">
+                        <span class="w-6 h-6 rounded-full bg-gradient-to-r from-blue-700 to-sky-600 text-white shadow-xs flex items-center justify-center text-xs font-bold shrink-0">7</span>
+                        <strong class="text-xs md:text-sm text-sky-950">בדיאגרמת קונסטלציה של מודם יש במעגל הפנימי 4 נקודות בזוויות $45^\circ, 135^\circ, 225^\circ, 315^\circ$, ובמעגל החיצוני 12 נקודות (4 באותן זוויות אלכסוניות ועוד 8 ביניהן). בכמה פאזות שונות משתמש המודם, ובאיזה אפנון מדובר?</strong>
+                    </div>
+                    <div class="space-y-2 pt-1">
+                        <button onclick="handleOptionClick(this, true, 'מדויק! 4 הפאזות של המעגל הפנימי מתלכדות עם 4 מתוך ה-12 של המעגל החיצוני ולכן יש 12 פאזות שונות (ולא 16!), ומכיוון שיש שני רדיוסים שונים מדובר בשילוב של אפנון פאזה ואמפליטודה.')" class="q-option-btn">א. 12 פאזות שונות; שילוב של אפנון פאזה ואפנון אמפליטודה.</button>
+                        <button onclick="handleOptionClick(this, false, 'מלכודת! יש אמנם 16 נקודות בקונסטלציה, אך 4 נקודות פנימיות חולקות את אותן זוויות עם 4 נקודות חיצוניות, ולכן יש 12 פאזות שונות בלבד.')" class="q-option-btn">ב. 16 פאזות שונות; שילוב של אפנון פאזה ואפנון אמפליטודה.</button>
+                        <button onclick="handleOptionClick(this, false, 'לא נכון: יש שני מעגלים ברדיוסים שונים ולכן המודם משנה גם אמפליטודה ולא רק פאזה.')" class="q-option-btn">ג. 12 פאזות שונות; אפנון פאזה בלבד.</button>
+                        <button onclick="handleOptionClick(this, false, 'לא נכון: דיאגרמת קונסטלציה מציגה אמפליטודה ופאזה, לא תדר.')" class="q-option-btn">ד. 8 פאזות שונות; שילוב של אפנון פאזה ותדר.</button>
+                    </div>
+                    <div class="q-feedback-box hidden"></div>
+                </div>
+                <div class="q-item-box p-4 rounded-xl border border-slate-300 bg-white space-y-3 shadow-xs">
+                    <div class="flex items-start gap-2">
+                        <span class="w-6 h-6 rounded-full bg-gradient-to-r from-blue-700 to-sky-600 text-white shadow-xs flex items-center justify-center text-xs font-bold shrink-0">8</span>
+                        <strong class="text-xs md:text-sm text-sky-950">במערכת ה-PSTN שבה הלולאה המקומית אנלוגית והקווים בין מרכזיות הקצה (End Office) למרכזיות החיוב (Toll Office) דיגיטליים, כיצד מומר הקול האנושי במרכזיית הקצה והאם מתבצעת המרה גם בשיחות קול וגם באינטרנט?</strong>
+                    </div>
+                    <div class="space-y-2 pt-1">
+                        <button onclick="handleOptionClick(this, true, 'נכון מאוד! במרכזיית הקצה מתבצעת דגימת PCM של האות האנלוגי מספיק פעמים ביחידת זמן, והמרות A/D ו-D/A מתבצעות כיום גם בשיחות טלפון קוליות וגם בחיבור לאינטרנט.')" class="q-option-btn">א. באמצעות דגימה של אות הקול מספיק פעמים ביחידת זמן (PCM ב-Codec); והמרה אנלוגית-דיגיטלית ולהיפך מתבצעת גם בשיחות קוליות וגם בחיבור לאינטרנט.</button>
+                        <button onclick="handleOptionClick(this, false, 'לא נכון: FDM היא שיטת ריבוב תדרים ולא המרה מאנלוגי לדיגיטלי, וגם בשיחות קוליות מתבצעת המרה לדיגיטלי במרכזייה.')" class="q-option-btn">ב. באמצעות FDM; והמרה לדיגיטלי מתבצעת רק בחיבור לאינטרנט ולא בשיחות קוליות.</button>
+                        <button onclick="handleOptionClick(this, false, 'לא נכון: HDLC הוא פרוטוקול מסגור בשכבת הקישור.')" class="q-option-btn">ג. באמצעות פרוטוקול HDLC בשכבת הקישור.</button>
+                        <button onclick="handleOptionClick(this, false, 'לא נכון: AM משמש לאפנון על גל נושא אנלוגי ולא לדיגיטציה של קול.')" class="q-option-btn">ד. באמצעות אפנון אמפליטודה (AM) בלבד.</button>
+                    </div>
+                    <div class="q-feedback-box hidden"></div>
+                </div>
+
         <!-- TAB 5 QUESTIONS -->
         <div id="questions-tab-switching">
             <div class="open-questions-list space-y-4">
@@ -3579,6 +4832,33 @@
                     </div>
                     <div class="q-feedback-box hidden"></div>
                 </div>
+                <div class="q-item-box p-4 rounded-xl border border-slate-300 bg-white space-y-3 shadow-xs">
+                    <div class="flex items-start gap-2">
+                        <span class="w-6 h-6 rounded-full bg-gradient-to-r from-blue-700 to-sky-600 text-white shadow-xs flex items-center justify-center text-xs font-bold shrink-0">7</span>
+                        <strong class="text-xs md:text-sm text-sky-950">מעגל מדומה (Virtual Circuit) עובר דרך שלושה מתגים: Switch 1 (יוצא מפורט 3 עם VCI=X אל פורט 1 של Switch 2) $\to$ Switch 2 (נכנס בפורט 1 עם VCI=66 ויוצא בפורט 2 עם VCI=22 אל פורט 2 של Switch 3) $\to$ Switch 3 (נכנס בפורט 2 עם VCI=Y). מהם ערכי X ו-Y?</strong>
+                    </div>
+                    <div class="space-y-2 pt-1">
+                        <button onclick="handleOptionClick(this, true, 'מדויק! על כל קישור בין שני מתגים, ה-Outgoing VCI של המתג השולח זהה ל-Incoming VCI של המתג המקבל: לכן X = 66 ו-Y = 22.')" class="q-option-btn">א. $X = 66$ ו-$Y = 22$.</button>
+                        <button onclick="handleOptionClick(this, false, 'הפוך! X הוא בקו שבין Switch 1 ל-Switch 2 (כניסה 66), ו-Y הוא בקו שבין Switch 2 ל-Switch 3 (יציאה 22).')" class="q-option-btn">ב. $X = 22$ ו-$Y = 66$.</button>
+                        <button onclick="handleOptionClick(this, false, 'כאן טבלת Switch 2 נתונה במלואה ולכן ניתן לדעת בוודאות את שני הערכים.')" class="q-option-btn">ג. $X = -1$ ו-$Y = -1$ (לא ניתן לדעת).</button>
+                        <button onclick="handleOptionClick(this, false, 'לא נכון: כל מתג מחליף את ה-VCI במעבר מפורט הכניסה לפורט היציאה שלו.')" class="q-option-btn">ד. ה-VCI אינו משתנה כלל בין המתגים לאורך המסלול.</button>
+                    </div>
+                    <div class="q-feedback-box hidden"></div>
+                </div>
+                <div class="q-item-box p-4 rounded-xl border border-slate-300 bg-white space-y-3 shadow-xs">
+                    <div class="flex items-start gap-2">
+                        <span class="w-6 h-6 rounded-full bg-gradient-to-r from-blue-700 to-sky-600 text-white shadow-xs flex items-center justify-center text-xs font-bold shrink-0">8</span>
+                        <strong class="text-xs md:text-sm text-sky-950">ברשת טלפוניה סלולרית העושה שימוש בטכנולוגיית GSM, באיזו שיטה נעשית חלוקת התדרים והגישה למשתמשים?</strong>
+                    </div>
+                    <div class="space-y-2 pt-1">
+                        <button onclick="handleOptionClick(this, false, 'לא נכון: GSM משלבת חלוקת תדרים (FDMA) עם חלוקת זמן (TDMA).')" class="q-option-btn">א. TDMA בלבד.</button>
+                        <button onclick="handleOptionClick(this, false, 'לא נכון: שימוש ב-FDMA בלבד אפיין את מערכת AMPS האנלוגית מדור 1.')" class="q-option-btn">ב. FDMA בלבד.</button>
+                        <button onclick="handleOptionClick(this, false, 'לא נכון: CDMA היא טכנולוגיה נפרדת המבוססת על קודים אורתוגונליים.')" class="q-option-btn">ג. CDMA בלבד.</button>
+                        <button onclick="handleOptionClick(this, true, 'נכון מאוד! מערכת GSM היא מערכת סלולרית דיגיטלית מדור 2 המשלבת FDMA [חלוקה לתדרי 200 kHz] ו-TDMA [חלוקת כל תדר ל-8 חריצי זמן].')" class="q-option-btn">ד. שילוב של TDMA ושל FDMA.</button>
+                    </div>
+                    <div class="q-feedback-box hidden"></div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -3712,6 +4992,10 @@
 
             const mainEl = document.getElementById('main-content');
             if (mainEl) mainEl.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if (window.innerWidth < 1024) {
+                document.body.classList.add('sidebar-collapsed');
+            }
 
             if (window.MathJax && window.MathJax.typesetPromise) {
                 window.MathJax.typesetPromise([target]).catch(() => {});
@@ -4883,6 +6167,33 @@
                     { x: 195, y: 195, b: '10', a: 1.0, deg: 315 }
                 ]
             },
+            'ring16': {
+                name: '16-QAM דו-מעגלי (12 פאזות, 2 אמפליטודות)', m: 16, bits: 4,
+                pts: (function() {
+                    const res = [];
+                    [45, 135, 225, 315].forEach((deg, idx) => {
+                        const rad = deg * Math.PI / 180;
+                        res.push({
+                            x: Math.round(140 + 38 * Math.cos(rad)),
+                            y: Math.round(140 - 38 * Math.sin(rad)),
+                            b: ['0000', '0001', '0011', '0010'][idx],
+                            a: 0.45,
+                            deg: deg
+                        });
+                    });
+                    [15, 45, 75, 105, 135, 165, 195, 225, 255, 285, 315, 345].forEach((deg, idx) => {
+                        const rad = deg * Math.PI / 180;
+                        res.push({
+                            x: Math.round(140 + 82 * Math.cos(rad)),
+                            y: Math.round(140 - 82 * Math.sin(rad)),
+                            b: (idx + 4).toString(2).padStart(4, '0'),
+                            a: 1.0,
+                            deg: deg
+                        });
+                    });
+                    return res;
+                })()
+            },
             'psk8': {
                 name: '8-PSK', m: 8, bits: 3,
                 pts: [
@@ -5147,7 +6458,176 @@
         /* ===================================================================== */
         /* INITIALIZATION ON LOAD                                                */
         /* ===================================================================== */
+
+        /* ===================================================================== */
+        /* STUDY MODE MANAGER (מצב לימוד מעמיק ⇄ מצב לימוד מהיר) & MOBILE UX     */
+        /* ===================================================================== */
+        let currentStudyMode = 'deep'; // 'deep' or 'fast'
+
+        function setStudyMode(mode) {
+            currentStudyMode = (mode === 'fast') ? 'fast' : 'deep';
+            const isFast = (currentStudyMode === 'fast');
+            document.body.classList.toggle('fast-study-mode', isFast);
+
+            try {
+                localStorage.setItem('networks_unit1_study_mode', currentStudyMode);
+            } catch (e) {}
+
+            // Update floating corner pill button
+            const iconEl = document.getElementById('study-mode-btn-icon');
+            const labelEl = document.getElementById('study-mode-btn-label');
+            const hintEl = document.getElementById('study-mode-btn-switch-hint');
+            if (iconEl && labelEl && hintEl) {
+                if (isFast) {
+                    iconEl.textContent = '⚡';
+                    labelEl.textContent = 'מצב לימוד מהיר';
+                    hintEl.textContent = 'עבור למעמיק 🎓';
+                    hintEl.className = 'px-2 py-0.5 rounded-full bg-white text-sky-950 text-[10px] font-black shadow-2xs';
+                } else {
+                    iconEl.textContent = '🎓';
+                    labelEl.textContent = 'מצב לימוד מעמיק';
+                    hintEl.textContent = 'עבור למהיר ⚡';
+                    hintEl.className = 'px-2 py-0.5 rounded-full bg-sky-100 text-sky-900 border border-sky-300 text-[10px] font-black';
+                }
+            }
+
+            // Update sidebar segmented buttons
+            const btnDeep = document.getElementById('sidebar-mode-deep-btn');
+            const btnFast = document.getElementById('sidebar-mode-fast-btn');
+            if (btnDeep && btnFast) {
+                if (isFast) {
+                    btnFast.className = 'py-1.5 px-2 rounded-lg font-black bg-sky-600 text-white shadow-xs transition-all flex items-center justify-center gap-1 cursor-pointer';
+                    btnDeep.className = 'py-1.5 px-2 rounded-lg font-bold text-sky-950 hover:bg-white/70 transition-all flex items-center justify-center gap-1 cursor-pointer';
+                } else {
+                    btnDeep.className = 'py-1.5 px-2 rounded-lg font-black bg-gradient-to-r from-blue-700 to-sky-600 text-white shadow-xs transition-all flex items-center justify-center gap-1 cursor-pointer';
+                    btnFast.className = 'py-1.5 px-2 rounded-lg font-bold text-sky-950 hover:bg-white/70 transition-all flex items-center justify-center gap-1 cursor-pointer';
+                }
+            }
+
+            // Re-typeset MathJax on active tab
+            const activeTab = document.querySelector('.tab-content.active');
+            if (activeTab && window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([activeTab]).catch(() => {});
+            }
+        }
+
+        function toggleStudyMode() {
+            setStudyMode(currentStudyMode === 'deep' ? 'fast' : 'deep');
+        }
+        // Study mode is controlled solely by sidebar buttons
+
+        function navigateCourseFile(targetFile) {
+            if (window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                window.location.assign(targetFile);
+                return;
+            }
+            let toast = document.getElementById('course-nav-toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'course-nav-toast';
+                toast.className = 'fixed bottom-5 left-1/2 -translate-x-1/2 z-50 px-4 py-2.5 rounded-xl bg-sky-950 text-white text-xs font-bold border border-sky-400 shadow-xl transition-opacity duration-300';
+                document.body.appendChild(toast);
+            }
+            toast.textContent = 'קישור לקובץ הקורס "' + targetFile + '" פעיל בתיקיית הקורס המקומית.';
+            toast.style.opacity = '1';
+            clearTimeout(window._navToastTimer);
+            window._navToastTimer = setTimeout(() => {
+                if (toast) toast.style.opacity = '0';
+            }, 3000);
+        }
+
+        /* ===================================================================== */
+        /* FAST STUDY MODE INLINE MINI-SIMULATORS                                */
+        /* ===================================================================== */
+        function setFastSim1(scenario) {
+            ['hub', 'sw-diff', 'sw-same'].forEach(k => {
+                const btn = document.getElementById('fast-s1-btn-' + k);
+                if (btn) {
+                    btn.className = (k === scenario)
+                        ? 'px-3 py-1.5 rounded-lg font-bold bg-blue-600 text-white cursor-pointer'
+                        : 'px-3 py-1.5 rounded-lg font-bold bg-white text-sky-900 border border-sky-200 hover:bg-sky-50 cursor-pointer';
+                }
+            });
+            const out = document.getElementById('fast-s1-output');
+            if (!out) return;
+            if (scenario === 'hub') {
+                out.innerHTML = '<strong class="text-rose-700">תרחיש 1 — Ethernet Hub ($A\\to C$ ובמקביל $B\\to D$):</strong> תתרחש <strong>התנגשות (Collision)</strong>! ה-Hub משכפל את שני האותות לכל הפורטים ברמת השכבה הפיזית והם משבשים זה את זה. (ניתן למען תחנה ספציפית בכותרת המסגרת, אך רק תחנה אחת יכולה לשדר בכל רגע).';
+            } else if (scenario === 'sw-diff') {
+                out.innerHTML = '<strong class="text-emerald-800">תרחיש 2 — Ethernet Switch ($A\\to C$ ובמקביל $B\\to D$):</strong> <strong>שתי המסגרות משודרות בהצלחה מלאה ובמקביל!</strong> המתג פועל בשכבה 2, מפריד כל פורט למתחם התנגשות נפרד ומנתב לפי כתובת MAC.';
+            } else {
+                out.innerHTML = '<strong class="text-blue-900">תרחיש 3 — Ethernet Switch לאותו יעד ($A\\to C$ ובמקביל $B\\to C$):</strong> <strong>אין התנגשות!</strong> למתג יש <strong>חוצצי זיכרון (Buffers)</strong>: הוא קולט את שתי המסגרות במקביל מפורטי הכניסה של A ו-B, אוגר אותן בתור היציאה של C, ומשדר אותן ל-C בזו אחר זו.';
+            }
+            if (window.MathJax && window.MathJax.typesetPromise) window.MathJax.typesetPromise([out]).catch(() => {});
+        }
+
+        function calcFastOverhead() {
+            const srcB = Math.max(1, parseFloat(document.getElementById('fast-ovh-src-bytes')?.value || 100));
+            const hdrB = Math.max(0, parseFloat(document.getElementById('fast-ovh-hdr-bytes')?.value || 40));
+            const hdrBitsExtra = Math.max(0, parseFloat(document.getElementById('fast-ovh-hdr-bits')?.value || 160));
+            const srcBits = srcB * 8;
+            const ctrlBits = hdrB * 8 + hdrBitsExtra;
+            const totalBits = srcBits + ctrlBits;
+            const pct = (ctrlBits / totalBits) * 100;
+            const out = document.getElementById('fast-ovh-output');
+            const line = document.getElementById('fast-ovh-formula-line');
+            if (out) {
+                out.innerHTML = `<span class="text-[10px] text-sky-200">תקורה (Overhead):</span><strong class="text-sm text-emerald-300">${pct.toFixed(2)}%</strong>`;
+            }
+            if (line) {
+                line.textContent = `Control = ${ctrlBits} bits | Source = ${srcBits} bits | ${ctrlBits} / (${ctrlBits} + ${srcBits}) = ${pct.toFixed(2)}%`;
+            }
+        }
+
+        function setFastConstellation(kind) {
+            ['psk8', 'ring16', 'qam64'].forEach(k => {
+                const btn = document.getElementById('fast-c-btn-' + k);
+                if (btn) {
+                    btn.className = (k === kind)
+                        ? 'px-3 py-1 rounded-lg font-bold bg-blue-600 text-white cursor-pointer'
+                        : 'px-3 py-1 rounded-lg font-bold bg-white text-sky-900 border border-sky-200 cursor-pointer';
+                }
+            });
+            const out = document.getElementById('fast-constellation-output');
+            if (!out) return;
+            if (kind === 'psk8') {
+                out.innerHTML = '<strong>מעגל יחיד עם 8 נקודות (8-PSK):</strong><br>• <strong>שיטת אפנון:</strong> כל הנקודות באותו מרחק מהראשית $\\implies$ <strong>אפנון פאזה (PSK) בלבד</strong> (8 פאזות, אמפליטודה 1).<br>• <strong>סיביות לסמל:</strong> $\\log_2(8) = \\mathbf{3\\text{ bits/symbol}}$ (למשל ב-$3,600\\text{ baud}$ נקבל $R = 10,800\\text{ bps}$). הוספת נקודות על אותו מעגל שומרת על PSK בלבד אך מצופפת את הזוויות.';
+            } else if (kind === 'ring16') {
+                out.innerHTML = '<strong>קונסטלציה דו-מעגלית (4 נקודות במעגל פנימי + 12 בחיצוני = 16 נקודות):</strong><br>• <strong>שיטת אפנון:</strong> שילוב של <strong>אפנון פאזה ואפנון אמפליטודה</strong> (2 רדיוסים שונים).<br>• <strong>מספר פאזות שונות:</strong> <strong>12 פאזות</strong> (4 הפאזות של המעגל הפנימי מתלכדות עם 4 מתוך ה-12 של המעגל החיצוני!).<br>• <strong>סיביות לסמל:</strong> $\\log_2(16) = \\mathbf{4\\text{ bits/symbol}}$.';
+            } else {
+                out.innerHTML = '<strong>השוואת מודם 32-QAM לעומת מודם 64-QAM:</strong><br>• <strong>שיטת אפנון:</strong> שניהם משתמשים <strong>באותו שילוב של אפנון אמפליטודה ופאזה</strong>.<br>• <strong>הבדל וטרייד-אוף:</strong> 64-QAM מעביר $\\log_2(64)=6$ סיביות לסמל (קצב גבוה ב-20% לעומת $\\log_2(32)=5$ ב-32-QAM), אך הנקודות ב-64-QAM קרובות יותר זו לזו ולכן הוא <strong>רגיש יותר לרעשים</strong>!';
+            }
+            if (window.MathJax && window.MathJax.typesetPromise) window.MathJax.typesetPromise([out]).catch(() => {});
+        }
+
+        function setFastVciMode(mode) {
+            ['known', 'unknown'].forEach(k => {
+                const btn = document.getElementById('fast-vci-btn-' + k);
+                if (btn) {
+                    btn.className = (k === mode)
+                        ? 'px-3 py-1 rounded-lg font-bold bg-blue-600 text-white cursor-pointer'
+                        : 'px-3 py-1 rounded-lg font-bold bg-white text-sky-900 border border-sky-200 cursor-pointer';
+                }
+            });
+            const disp = document.getElementById('fast-vci-display');
+            if (!disp) return;
+            if (mode === 'known') {
+                disp.innerHTML = 'חיבור <strong>Switch 1 (פורט יציאה 3, VCI = X)</strong> אל <strong>Switch 2 (פורט כניסה 1, VCI = 66)</strong> מחייב $\\mathbf{X = 66}$. חיבור <strong>Switch 2 (פורט יציאה 2, VCI = 22)</strong> אל <strong>Switch 3 (פורט כניסה 2, VCI = Y)</strong> מחייב $\\mathbf{Y = 22}$.';
+            } else {
+                disp.innerHTML = 'אם בטבלה של Switch 1 ה-Outgoing VCI מסומן ב-$X$, ובטבלה של Switch 2 ה-Incoming VCI באותו קו מסומן גם הוא כנעלם $W$: אנו יודעים שחייב להתקיים $X = W$, אך איננו יכולים לדעת איזה מספר ספציפי הוקצה לקו זה — ולכן התשובה היא $\\mathbf{-1}$ (לא ניתן לדעת)!';
+            }
+            if (window.MathJax && window.MathJax.typesetPromise) window.MathJax.typesetPromise([disp]).catch(() => {});
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
+            if (window.innerWidth < 1024) {
+                document.body.classList.add('sidebar-collapsed');
+            }
+            try {
+                const savedMode = localStorage.getItem('networks_unit1_study_mode');
+                if (savedMode === 'fast' || savedMode === 'deep') {
+                    setStudyMode(savedMode);
+                }
+            } catch (e) {}
             selectTopoExplorer('bus');
             selectLayerExplorer(5);
             selectPerfExplorer('1byte');
@@ -5162,6 +6642,7 @@
             updateQueueSim();
         });
     </script>
+    <!-- Self-contained Unit 1 Interactive App -->
     <!-- AI Assistant Widget -->
     <script src="ai_widget.js"></script>
 </body>
