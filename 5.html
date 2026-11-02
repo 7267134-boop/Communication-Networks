@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>רשתות תקשורת מחשבים - יחידה 5: שכבת האפליקציה (Application Layer) ושירותי רשת</title>
-<meta (smtp,="" (sockets)="" content="יחידה 5 בקורס רשתות תקשורת מחשבים (20582) באוניברסיטה הפתוחה: שכבת האפליקציה ושירותי רשת (Application Layer). כולל הבחנה בין יישום, פרוטוקול יישום ופורמט נתונים, מודל לקוח-שרת מול P2P, פרוטוקול HTTP (בקשות, תגובות, קודי סטטוס, עוגיות, HTTP מתמשך עם/ללא Pipelining), שרתי מטמון (Web Proxy Caching) ובקשת Conditional GET, מערכת שמות המתחם DNS (היררכיית שרתים, רזולוציה איטרטיבית מול רקורסיבית, רשומות A/AAAA/NS/CNAME/MX), פרוטוקולי דוא" imap),="" name="ai-document-summary" pop3,="" ב-tcp="" וב-udp."="" ותכנות="" ל="" שקעים=""/>
+<meta name="ai-document-summary" content="יחידה 5 בקורס רשתות תקשורת מחשבים (20582/20948) באוניברסיטה הפתוחה: שכבת האפליקציה ושירותי רשת (Application Layer). כולל שלושה מצבי לימוד (לימוד מעמיק, לימוד בסיסי ולימוד מהיר), הבחנה בין יישום, פרוטוקול יישום ופורמט נתונים, מודל לקוח-שרת מול P2P, שקעים (Sockets) ופורטים ב-TCP וב-UDP, דוא&quot;ל (SMTP, MIME, Base64, POP3, IMAP), פרוטוקול HTTP (1.0, 1.1, 2, 3/QUIC, חישובי RTT, קאש ו-Conditional GET, עוגיות), מערכת ה-DNS (היררכיה, איטרטיבי מול רקורסיבי, רשומות A/AAAA/NS/CNAME/MX וספירת סגמנטים), רשתות כיסוי, P2P (Gnutella, DHT/Pastry, BitTorrent) ו-CDN, מולטימדיה (SIP/SDP), REST/SOAP ו-SNMP/OpenConfig."/>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com/3.4.17"></script>
 <script>
@@ -342,101 +342,251 @@ border-bottom: 1px solid rgba(56, 189, 248, 0.3) !important;
 border-left: 1px solid rgba(56, 189, 248, 0.3) !important;
 color: #ffffff !important;
 }
-/* Study Mode Switching (Deep vs Fast) */
-.fast-mode-view { display: none; }
+/* 3-Mode Study Switching (Deep / Basic / Fast) - Modelled after AI Course Example */
+.basic-mode-view, .fast-mode-view { display: none !important; }
 .deep-mode-view { display: block; }
-body.fast-study-mode .deep-mode-view { display: none !important; }
-body.fast-study-mode .fast-mode-view { display: block !important; animation: slideUp 0.25s ease-out; }
-/* Calm Blue Visual Style in Fast Study Mode (OS Chapters Style) */
-body.fast-study-mode {
-background-color: #f8fafc !important;
-background-image: none !important;
-color: #1e293b !important;
+body.study-mode-basic .deep-mode-view, body.study-mode-basic .fast-mode-view { display: none !important; }
+body.study-mode-basic .basic-mode-view { display: block !important; animation: slideUp 0.26s ease-out; }
+body.study-mode-fast .deep-mode-view, body.study-mode-fast .basic-mode-view { display: none !important; }
+body.study-mode-fast .fast-mode-view { display: block !important; animation: slideUp 0.24s ease-out; }
+
+/* Calm Blue Visual Style in Basic Study Mode (לימוד בסיסי - רגוע ונעים לקריאה) */
+body.study-mode-basic,
+body.study-mode-basic main#main-content {
+  background-color: #f3f7fc !important;
+  background-image: none !important;
+  color: #1e293b !important;
 }
-body.fast-study-mode aside.sidebar-animated-mesh {
-background: #f8fafc !important;
-animation: none !important;
-border-left: 1px solid #cbd5e1 !important;
-box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06) !important;
+body.study-mode-basic aside.sidebar-animated-mesh {
+  background: #edf3fa !important;
+  animation: none !important;
+  border-left: 1px solid #bfdbfe !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05) !important;
 }
-body.fast-study-mode .silver-waves-bg {
-display: none !important;
+body.study-mode-basic .silver-waves-bg {
+  animation: none !important;
+  opacity: 0.06 !important;
 }
-body.fast-study-mode .nav-btn.active-nav {
-background: #1d4ed8 !important;
-box-shadow: 0 2px 8px rgba(29, 78, 216, 0.22) !important;
-border-color: #1e40af !important;
+body.study-mode-basic .nav-btn.active-nav {
+  background: #dbeafe !important;
+  border-color: #60a5fa !important;
+  color: #1e3a8a !important;
+  box-shadow: 0 1px 4px rgba(30, 58, 138, 0.08) !important;
 }
-/* Fast Study Card Primitives (OS Chapters Look & Feel) */
-.fast-card {
-background-color: #ffffff;
-border: 1px solid #e2e8f0;
-border-radius: 1rem;
-padding: 1.35rem;
-box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
-margin-bottom: 1.25rem;
+body.study-mode-basic .nav-btn.active-nav span {
+  color: #1e3a8a !important;
 }
-.fast-subcard {
-background-color: #f8fafc;
-border: 1px solid #e2e8f0;
-border-radius: 0.75rem;
-padding: 1rem;
+.basic-header {
+  background: #f8fbff;
+  border: 1px solid #bfdbfe;
+  border-right: 5px solid #0284c7;
+  border-radius: 1rem;
+  padding: 1.15rem 1.35rem;
 }
-.fast-callout-blue {
-background-color: #eff6ff;
-border-right: 4px solid #2563eb;
-border-radius: 0.5rem 0 0 0.5rem;
-padding: 0.85rem 1rem;
-color: #1e3a8a;
+.basic-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 0.5rem;
+  background: #e0f2fe;
+  color: #075985;
+  border: 1px solid #7dd3fc;
+  font-size: 0.75rem;
+  font-weight: 800;
 }
-.fast-callout-warn {
-background-color: #fff1f2;
-border-right: 4px solid #e11d48;
-border-radius: 0.5rem 0 0 0.5rem;
-padding: 0.85rem 1rem;
-color: #881337;
+.basic-top-btn {
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.65rem;
+  background: #ffffff;
+  border: 1px solid #93c5fd;
+  color: #0c4a6e;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
 }
-.fast-callout-emerald {
-background-color: #ecfdf5;
-border-right: 4px solid #059669;
-border-radius: 0.5rem 0 0 0.5rem;
-padding: 0.85rem 1rem;
-color: #065f46;
+.basic-top-btn:hover {
+  background: #e0f2fe;
+  border-color: #38bdf8;
 }
-.fast-table {
-width: 100%;
-text-align: right;
-border-collapse: collapse;
-font-size: 0.85rem;
+.basic-card {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 1rem;
+  padding: 1.25rem 1.4rem;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
 }
-.fast-table th {
-background-color: #f1f5f9;
-color: #0f172a;
-font-weight: 800;
-padding: 0.7rem 0.85rem;
-border-bottom: 2px solid #cbd5e1;
-border-left: 1px solid #e2e8f0;
+.basic-card-title {
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: #0f172a;
 }
-.fast-table td {
-padding: 0.65rem 0.85rem;
-border-bottom: 1px solid #e2e8f0;
-border-left: 1px solid #f1f5f9;
-color: #334155;
-vertical-align: top;
+.basic-subcard {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  padding: 0.85rem 1rem;
 }
-.fast-table tr:hover td {
-background-color: #f8fafc;
+.basic-callout {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-right: 4px solid #0284c7;
+  border-radius: 0.65rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.82rem;
+  color: #1e293b;
+  line-height: 1.6;
+}
+.basic-callout-warn {
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  border-right: 4px solid #e11d48;
+  border-radius: 0.65rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.82rem;
+  color: #881337;
+  line-height: 1.6;
+}
+.basic-callout-emerald {
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  border-right: 4px solid #059669;
+  border-radius: 0.65rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.82rem;
+  color: #065f46;
+  line-height: 1.6;
+}
+body.study-mode-basic .sim-circle-btn {
+  background: #e0f2fe !important;
+  border: 2px solid #0284c7 !important;
+  color: #0c4a6e !important;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.14) !important;
+  width: 2.85rem !important;
+  height: 2.85rem !important;
+}
+body.study-mode-basic .sim-circle-btn:hover {
+  background: #bae6fd !important;
+  transform: scale(1.08);
+}
+
+/* Crisp Rapid-Review Visual Style in Fast Study Mode (לימוד מהיר - סקירה מרוכזת) */
+body.study-mode-fast,
+body.study-mode-fast main#main-content {
+  background-color: #f8fafc !important;
+  background-image: none !important;
+  color: #0f172a !important;
+}
+body.study-mode-fast aside.sidebar-animated-mesh {
+  background: #f1f5f9 !important;
+  animation: none !important;
+  border-left: 1px solid #cbd5e1 !important;
+}
+body.study-mode-fast .silver-waves-bg {
+  display: none !important;
+}
+body.study-mode-fast .nav-btn.active-nav {
+  background: #0284c7 !important;
+  border-color: #0369a1 !important;
+  color: #ffffff !important;
+}
+.fast-header {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-right: 4px solid #0284c7;
+  border-radius: 0.9rem;
+  padding: 1rem 1.2rem;
 }
 .fast-badge {
-display: inline-flex;
-align-items: center;
-gap: 0.35rem;
-padding: 0.2rem 0.65rem;
-border-radius: 9999px;
-font-size: 0.75rem;
-font-weight: 800;
-background-color: #dbeafe;
-color: #1e40af;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.18rem 0.65rem;
+  border-radius: 9999px;
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #7dd3fc;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+.fast-visual-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 0.55rem;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 0.85rem;
+  padding: 0.65rem;
+}
+.fast-strip-node {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.6rem;
+  padding: 0.55rem 0.7rem;
+  font-size: 0.74rem;
+  line-height: 1.45;
+  color: #1e293b;
+}
+.fast-strip-highlight {
+  background: #f0f9ff;
+  border-color: #0284c7;
+  color: #0c4a6e;
+}
+.fast-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.85rem;
+  padding: 0.95rem 1.1rem;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.02);
+}
+.fast-card-title {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #0c4a6e;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 0.35rem;
+  margin-bottom: 0.45rem;
+}
+.fast-sim-btn {
+  padding: 0.32rem 0.75rem;
+  border-radius: 0.6rem;
+  background: #f0f9ff;
+  border: 1px solid #38bdf8;
+  color: #0369a1;
+  font-size: 0.74rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.fast-sim-btn:hover {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+}
+.fast-table {
+  width: 100%;
+  text-align: right;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+.fast-table th {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  font-weight: 800;
+  padding: 0.65rem 0.8rem;
+  border-bottom: 2px solid #cbd5e1;
+  border-left: 1px solid #e2e8f0;
+}
+.fast-table td {
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid #e2e8f0;
+  border-left: 1px solid #f1f5f9;
+  color: #334155;
+  vertical-align: top;
+}
+.fast-table tr:hover td {
+  background-color: #f8fafc;
 }
 /* Compact Semantic Classes for Questions Repo & Modals (Saves ~80KB of Repeated Class Strings) */
 .q-det { border: 1px solid #7dd3fc; border-radius: 1rem; background: #fff; padding: 1rem; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
@@ -504,8 +654,8 @@ height: auto;
 </style>
     <script src="theme-manager.js"></script>
 </head>
-<body class="text-slate-800 h-screen flex overflow-hidden">
-<!-- Study Mode Toggle Button (Deep Study vs Fast Study) -->
+<body class="text-slate-800 h-screen flex overflow-hidden study-mode-deep">
+<div id="mode-switch-toast" class="fixed bottom-5 left-5 z-50 pointer-events-none opacity-0 translate-y-3 transition-all duration-300 bg-slate-900/95 text-sky-50 px-4 py-2.5 rounded-2xl shadow-xl border border-sky-400/60 text-xs font-bold flex items-center gap-2"></div>
 
 <div id="sidebar-backdrop" onclick="toggleSidebar()"></div>
 <!-- Sidebar Toggle Button -->
@@ -518,31 +668,35 @@ height: auto;
 <aside class="sidebar-animated-mesh w-[21rem] text-slate-800 flex flex-col h-full shadow-2xl z-20 flex-shrink-0 border-l border-slate-300 relative overflow-hidden">
 <div class="absolute inset-0 silver-waves-bg opacity-35 pointer-events-none"></div>
 <!-- Sidebar Header -->
-<div class="relative z-10 pt-16 px-4 pb-4 border-b border-slate-300/90 bg-white/85 backdrop-blur-md">
-<div class="grid grid-cols-2 gap-1 p-1 mb-3 rounded-xl bg-slate-200/80 border border-slate-300/80 text-xs font-bold">
-<button class="py-1.5 px-2 rounded-lg bg-blue-700 text-white shadow-xs transition-all flex items-center justify-center gap-1 cursor-pointer" id="sidebar-mode-deep" onclick="setStudyMode('deep')" type="button">
-<span>📖</span><span>לימוד מעמיק</span>
-</button>
-<button class="py-1.5 px-2 rounded-lg text-slate-700 hover:bg-white/60 transition-all flex items-center justify-center gap-1 cursor-pointer" id="sidebar-mode-fast" onclick="setStudyMode('fast')" type="button">
-<span>⚡</span><span>לימוד מהיר</span>
-</button>
-</div>
-<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-blue-900 via-sky-900 to-blue-950 border border-sky-400 text-sky-100 text-[11px] font-black mb-2 shadow-xs">
+<div class="relative z-10 p-4 border-b border-slate-300/80 bg-white/85 backdrop-blur-md flex items-start justify-between gap-2">
+<div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-blue-900 via-sky-900 to-blue-950 border border-sky-400 text-sky-100 text-[11px] font-black mb-1.5 shadow-xs">
 <span>🖧</span>
 <span>רשתות תקשורת מחשבים • יחידה 5 מתוך 7</span>
 </div>
-<h1 class="text-2xl font-black text-sky-950 tracking-tight leading-tight">
-שכבת האפליקציה <span class="bg-gradient-to-r from-blue-900 via-sky-600 to-blue-700 bg-clip-text text-transparent">(The Application Layer)</span>
+<h1 class="text-xl font-black text-sky-950 tracking-tight leading-tight">
+שכבת האפליקציה <span class="bg-gradient-to-r from-blue-900 via-sky-600 to-blue-700 bg-clip-text text-transparent">(Application Layer)</span>
 </h1>
-<p class="text-xs text-sky-900/80 mt-1.5 font-medium leading-relaxed">
+<p class="text-xs text-sky-900/80 mt-1 font-medium leading-relaxed">
 ארכיטקטורות C/S ו-P2P, דוא"ל, פרוטוקול HTTP, מערכת ה-DNS, רשתות כיסוי ו-CDN, מולטימדיה ותרגול מסכם.
 </p>
+</div>
+<button class="lg:hidden w-8 h-8 rounded-full bg-sky-100 hover:bg-sky-200 text-sky-950 flex items-center justify-center font-bold text-lg shrink-0 cursor-pointer border border-sky-300" onclick="toggleSidebar()" title="סגור תפריט">×</button>
+</div>
+<!-- 3-Mode Study Selector (Deep / Basic / Fast) -->
+<div class="relative z-10 px-3.5 py-2.5 border-b border-slate-300/80 bg-sky-50/75 backdrop-blur-md">
+<div aria-label="בחירת מצב לימוד" class="p-1 rounded-xl bg-sky-100/90 border border-sky-300/80 grid grid-cols-3 gap-1 text-[11px]" role="group">
+<button id="sidebar-mode-deep-btn" type="button" onclick="setStudyMode('deep')" class="py-1.5 px-1.5 rounded-lg font-black transition-all flex items-center justify-center gap-1 bg-gradient-to-r from-blue-700 to-sky-600 text-white shadow-xs cursor-pointer"><span>📚</span><span>מעמיק</span></button>
+<button id="sidebar-mode-basic-btn" type="button" onclick="setStudyMode('basic')" class="py-1.5 px-1.5 rounded-lg font-bold transition-all flex items-center justify-center gap-1 text-sky-950 hover:bg-white/70 cursor-pointer"><span>📖</span><span>בסיסי</span></button>
+<button id="sidebar-mode-fast-btn" type="button" onclick="setStudyMode('fast')" class="py-1.5 px-1.5 rounded-lg font-bold transition-all flex items-center justify-center gap-1 text-sky-950 hover:bg-white/70 cursor-pointer"><span>⚡</span><span>מהיר</span></button>
+</div>
+<div id="sidebar-mode-desc" class="mt-1.5 text-[10px] text-slate-600 font-semibold text-center leading-tight">מצב מעמיק: הסבר מלא, מודלים מנטליים, מעבדות חיות ושאלות תרגול</div>
 </div>
 <!-- Sidebar Navigation List -->
 <div class="relative z-10 flex-1 overflow-y-auto silver-scroll p-3 space-y-1.5">
 <div class="nav-group-header">
-<div class="nav-group-title">פרקי יחידה 5 והמעבדות החיות</div>
-<div class="nav-group-desc">הסבר סיפורי מלא, דגשים והבהרות עומק, מעבדות חיות ושאלות תרגול (❓) לכל לשונית</div>
+<div id="sidebar-part-a-title" class="nav-group-title">פרקי יחידה 5 והמעבדות החיות</div>
+<div id="sidebar-part-a-desc" class="nav-group-desc">הסבר סיפורי מלא, דגשים והבהרות עומק, מעבדות חיות ושאלות תרגול (❓) לכל לשונית</div>
 </div>
 <div class="relative group/nav mb-1.5">
 <button class="nav-btn active-nav" id="btn-tab-intro" onclick="showTab('tab-intro')" type="button">
@@ -607,7 +761,17 @@ height: auto;
 </div>
 </aside>
 <!-- Main Content -->
-<main class="flex-1 overflow-y-auto scroll-smooth bg-transparent relative">
+<main class="flex-1 overflow-y-auto scroll-smooth bg-transparent relative" id="main-content">
+<div class="lg:hidden sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-sky-200 px-3.5 py-2.5 flex items-center justify-between gap-2 shadow-xs" id="mobile-top-bar">
+<button class="px-3 py-1.5 rounded-xl bg-gradient-to-r from-blue-700 to-sky-600 text-white text-xs font-black flex items-center gap-1.5 shadow-2xs cursor-pointer" onclick="toggleSidebar()" type="button">
+<span>☰</span><span>תפריט הפרק</span>
+</button>
+<div class="flex items-center gap-1 bg-sky-100/90 border border-sky-300/80 p-0.5 rounded-lg text-[10px] font-bold">
+<button onclick="setStudyMode('deep')" id="mob-mode-deep" class="px-2 py-1 rounded-md bg-blue-700 text-white cursor-pointer" type="button">📚 מעמיק</button>
+<button onclick="setStudyMode('basic')" id="mob-mode-basic" class="px-2 py-1 rounded-md text-sky-950 cursor-pointer" type="button">📖 בסיסי</button>
+<button onclick="setStudyMode('fast')" id="mob-mode-fast" class="px-2 py-1 rounded-md text-sky-950 cursor-pointer" type="button">⚡ מהיר</button>
+</div>
+</div>
 <div class="max-w-6xl mx-auto p-6 md:p-10 lg:p-12 pb-32">
 <!-- ========================================================================= -->
 <!-- TAB 1: 5.1 FOUNDATIONS OF APPLICATION LAYER & NETWORK ARCHITECTURES -->
@@ -937,62 +1101,88 @@ $$\text{Socket} = \text{IP Address} : \text{Port Number}$$
 כעת משהבנו את ההבדל בין תוכנית יישום לפרוטוקול יישום, את הגדרת ה-Socket ואת גמישות התפקידים במודל Client–Server, אנו מוכנים לצלול אל היישום הראשון בפרק: <b>דואר אלקטרוני (E-mail)</b>. שם נראה במו עינינו כיצד הודעה עוברת שלב אחר שלב דרך סוכני משתמש ושרתי דואר, מדוע נדרש קידוד MIME, וכיצד פועלים יחד פרוטוקול הדחיפה <b>SMTP</b> ופרוטוקולי המשיכה <b>POP3</b> ו-<b>IMAP</b>.
 </p>
 </div></div>
-<div class="fast-mode-view fast-wrapper w-full block bg-white px-6 md:px-10 pb-10 pt-7 rounded-2xl shadow-sm border border-slate-200">
-<header class="mb-6 border-b border-slate-200 pb-4">
-<div class="fast-badge mb-2">⚡ מצב לימוד מהיר • חלק 5.1</div>
-<h2 class="text-3xl font-black text-slate-900 tracking-tight mb-2">5.1 יסודות שכבת האפליקציה, לקוח/שרת ו-Sockets</h2>
-<p class="text-slate-600 text-sm md:text-base leading-relaxed">
-שכבת האפליקציה (שכבה 7) היא השכבה שבה המידע מקבל משמעות (דף אינטרנט, הודעת דואר, תרגום שם). בקורס מתמקדים ב<b>פרוטוקול</b> שהיישום מריץ ולא בממשק התוכנה עצמו.
-</p>
-</header>
-<!-- 5.1.1 -->
-<div class="fast-card">
-<h3 class="text-lg font-bold text-blue-900 mb-3 border-b border-slate-200 pb-2">5.1.1 הבחנה: יישום (Application) מול פרוטוקול (Protocol) ופורמט נתונים</h3>
+<div class="basic-mode-view space-y-5">
+<div class="basic-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="basic-badge">📖 לימוד בסיסי • יחידה 5.1</span>
+<div class="flex items-center gap-2">
+<button class="basic-top-btn" onclick="showTab('tab-summary')" type="button">לתרגול מסכם 🎓</button>
+<button class="basic-top-btn" onclick="showQuestions('tab-intro', '5.1 יסודות שכבת האפליקציה וסוקטים', event)" type="button">❓ שאלות תרגול</button>
+</div>
+</div>
+<h2 class="text-2xl md:text-3xl font-black text-slate-900">5.1 יסודות שכבת האפליקציה, לקוח/שרת, P2P ו-Sockets</h2>
+<p class="text-xs md:text-sm text-slate-600 mt-1">שכבת האפליקציה (שכבה 7) היא השכבה שבה המידע מקבל משמעות אנושית ועסקית (דף אינטרנט, הודעת דוא"ל, תרגום שם מתחם). בקורס מתמקדים ב<b>פרוטוקול התקשורת</b> שהיישום מריץ ולא בממשק התוכנה עצמו.</p>
+</div>
+
+<!-- 5.1.1 Basic Card -->
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">1. הבחנה: תוכנית יישום (Application) מול פרוטוקול (Protocol) ופורמט נתונים (Format)</h3>
+<p class="text-xs text-slate-600">הפרדה הנדסית המאפשרת לתוכנות שונות לתקשר זו עם זו כל עוד הן מצייתות לאותו פרוטוקול ולאותו תקן ייצוג תוכן.</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-5-1-app-vs-proto', '🏛️ סימולציה 5.1א: יישום מול פרוטוקול העברה ופורמט נתונים')" title="פתיחת מעבדה 5.1א: יישום מול פרוטוקול ופורמט נתונים" type="button"><span class="text-xl">🏛️</span></button>
+</div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs md:text-sm">
-<div class="fast-subcard">
+<div class="basic-subcard">
 <strong class="text-slate-900 block mb-1">💻 תוכנית יישום (Application)</strong>
-<p class="text-slate-600 leading-relaxed">התוכנה שאיתה המשתמש עובד (כגון הדפדפנים <code>Chrome</code> ו-<code>Edge</code>, או תוכנת הדואר <code>Outlook</code>). יישומים שונים מתקשרים עם אותם שרתים כי הם מריצים את אותו פרוטוקול.</p>
+<p class="text-slate-700 leading-relaxed">התוכנה המעשית שאיתה המשתמש עובד בקצה (כגון הדפדפנים <code>Chrome</code>, <code>Edge</code> ו-<code>Firefox</code>, או תוכנת הדואר <code>Outlook</code>).<br/>• <b>דגש:</b> $\text{Application} \neq \text{Application Protocol}$.</p>
 </div>
-<div class="fast-subcard">
-<strong class="text-blue-800 block mb-1">📜 פרוטוקול יישום (Protocol)</strong>
-<p class="text-slate-600 leading-relaxed">מערכת החוקים להעברת ההודעות: סוגי ההודעות (בקשה/תגובה), מבנה הכותרות והשדות, וסדר חילופי המסרים (למשל: <code>HTTP</code>, <code>SMTP</code>, <code>POP3</code>, <code>IMAP</code>, <code>DNS</code>).</p>
+<div class="basic-subcard">
+<strong class="text-blue-900 block mb-1">📜 פרוטוקול יישום (Protocol)</strong>
+<p class="text-slate-700 leading-relaxed">מערכת החוקים להעברת ההודעות ברשת: סוגי ההודעות (בקשה/תגובה), תחביר הכותרות והשדות, וסדר חילופי המסרים (למשל: <code>HTTP</code>, <code>SMTP</code>, <code>POP3</code>, <code>IMAP</code>, <code>DNS</code>).</p>
 </div>
-<div class="fast-subcard">
-<strong class="text-slate-900 block mb-1">🧩 פורמט נתונים נלווה (Format)</strong>
-<p class="text-slate-600 leading-relaxed">התקן שמגדיר איך בנוי תוכן ההודעה עצמו. ב-Web: הפרוטוקול הוא <code>HTTP</code> והפורמט הוא <code>HTML</code>. בדוא"ל: הפרוטוקול הוא <code>SMTP</code> והפורמט הוא <code>RFC 822 / MIME</code>.</p>
+<div class="basic-subcard">
+<strong class="text-slate-900 block mb-1">🧩 פורמט נתונים נלווה (Companion Format)</strong>
+<p class="text-slate-700 leading-relaxed">התקן שקובע כיצד בנוי ומקודד תוכן ההודעה עצמו (ה-Payload). ב-Web: הפרוטוקול הוא <code>HTTP</code> והפורמט הוא <code>HTML</code>/<code>JPEG</code>. בדוא"ל: הפרוטוקול הוא <code>SMTP</code> והפורמט הוא <code>RFC 822 / MIME</code>.</p>
 </div>
 </div>
 </div>
-<!-- 5.1.2 -->
-<div class="fast-card">
-<h3 class="text-lg font-bold text-blue-900 mb-3 border-b border-slate-200 pb-2">5.1.2 מודל לקוח/שרת (Client/Server) לעומת P2P</h3>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm mb-3">
-<div class="fast-subcard">
-<strong class="text-blue-900 block mb-1.5">🖥️ מודל לקוח/שרת (Client–Server)</strong>
-<ul class="list-disc list-inside space-y-1 text-slate-700">
-<li><b>לקוח (Client):</b> התהליך ש<b>יוזם את הקשר</b> ושולח בקשה ראשון.</li>
-<li><b>שרת (Server):</b> התהליך ש<b>ממתין לבקשות</b> בפורט ידוע מראש ועונה עליהן.</li>
+
+<!-- 5.1.2 Basic Card -->
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">2. ארכיטקטורות יישומים: לקוח/שרת (Client/Server) לעומת עמית-לעמית (P2P)</h3>
+<p class="text-xs text-slate-600">הגדרת תפקידי היוזם והמאזין בשיחה, ויכולת התרחבות עצמית של רשתות P2P.</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-5-1-roles', '🔄 סימולציה 5.1ב: מתי שרת הופך ללקוח? (Client/Server דינמי מול P2P)')" title="פתיחת מעבדה 5.1ב: תפקידי לקוח/שרת דינמיים מול P2P" type="button"><span class="text-xl">🔄</span></button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+<div class="basic-subcard">
+<strong class="text-blue-900 block mb-1">🖥️ מודל לקוח/שרת (Client–Server)</strong>
+<ul class="list-disc list-inside space-y-1 text-slate-700 leading-relaxed">
+<li><b>לקוח (Client):</b> התהליך ש<b>יוזם את הקשר</b> ופונה ראשון בבקשה לקבלת שירות.</li>
+<li><b>שרת (Server):</b> התהליך ש<b>ממתין באופן פסיבי לבקשות</b> בפורט ידוע מראש (Well-Known Port) ומשיב עליהן.</li>
+<li>לקוחות אינם מתקשרים ישירות זה עם זה; לחברות גדולות יש חוות שרתים (Data Centers) לעמידה בעומס.</li>
 </ul>
 </div>
-<div class="fast-subcard">
-<strong class="text-blue-900 block mb-1.5">🕸️ מודל עמית לעמית (Peer-to-Peer / P2P)</strong>
-<ul class="list-disc list-inside space-y-1 text-slate-700">
-<li>תקשורת ישירה בין מחשבי קצה (Peers) ללא תלות בשרת מרכזי יחיד.</li>
-<li><b>Self-Scalability:</b> כל עמית שמצטרף תורם גם מרוחב הפס העולה שלו (Upload), ולכן קיבולת המערכת גדלה עם מספר המשתמשים.</li>
+<div class="basic-subcard">
+<strong class="text-blue-900 block mb-1">🕸️ מודל עמית לעמית (Peer-to-Peer / P2P)</strong>
+<ul class="list-disc list-inside space-y-1 text-slate-700 leading-relaxed">
+<li>תקשורת ישירה בין מחשבי קצה (Peers) שכל אחד מהם מתפקד <b>במקביל גם כלקוח וגם כשרת</b> (ללא תלות בשרת מרכזי).</li>
+<li><b>התרחבות עצמית (Self-Scalability):</b> כל עמית חדש שמצטרף מוסיף אמנם דרישת הורדה (Download), אך תורם למערכת את <b>רוחב הפס העולה שלו (Upload)</b>.</li>
+<li><b>אתגרים:</b> תחלופת עמיתים (Churn), גילוי משאבים ואבטחה.</li>
 </ul>
 </div>
 </div>
-<div class="fast-callout-warn text-xs md:text-sm">
-<strong>⚠️ דגש למבחן – "לקוח" ו"שרת" הם תפקיד ברגע נתון ולא תכונה של המכונה:</strong>
-שרת דואר של השולח מתפקד כ<b>שרת (Server)</b> כאשר המשתמש שולח אליו הודעה, ומיד אחר כך מתפקד כ<b>לקוח (Client)</b> כשהוא יוזם קשר SMTP כדי להעביר את ההודעה הלאה לשרת הדואר של הנמען.
+<div class="basic-callout-warn">
+<strong>⚠️ דגש למבחן – "לקוח" ו"שרת" הם תפקידים ברגע נתון (במקטע תקשורת ספציפי) ולא תכונה קבועה של המכונה:</strong>
+מכונה שנקראת "שרת הדואר של אליס" מתפקדת כ<b>שרת (Server)</b> כאשר תוכנת הדואר של אליס שולחת אליה מייל (מעבר 2), ומיד אחר כך מתפקדת כ<b>לקוח (Client)</b> כאשר היא יוזמת קשר TCP בפורט 25 מול שרת הדואר של בוב (מעבר 4). כך גם שרת <code>Local DNS</code> הוא שרת מול מחשב הקצה ולקוח מול שרתי ה-Root/TLD/Authoritative.
 </div>
 </div>
-<!-- 5.1.3 -->
-<div class="fast-card mb-0">
-<h3 class="text-lg font-bold text-blue-900 mb-3 border-b border-slate-200 pb-2">5.1.3 שקעים (Sockets), פורטים ובחירת פרוטוקול תובלה (TCP מול UDP)</h3>
-<!-- Basic Clean SVG Graphic Aid -->
-<div class="bg-slate-50 border border-slate-200 rounded-xl p-3 mb-4">
-<svg class="w-full h-auto" viewbox="0 0 680 110">
+
+<!-- 5.1.3 Basic Card -->
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">3. שקעים (Sockets), פורטים ובחירת פרוטוקול תובלה (TCP מול UDP)</h3>
+<p class="text-xs text-slate-600">ממשק ה-Socket בין תהליך האפליקציה לשכבת התובלה, היפוך פורטים בתשובה, וריבוב/פילוג (Demultiplexing).</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-5-1-transport', '⚖️ סימולציה 5.1ג: בורר שירותי התובלה – TCP מול UDP מול QUIC')" title="פתיחת מעבדה 5.1ג: בורר שירותי התובלה TCP מול UDP" type="button"><span class="text-xl">⚖️</span></button>
+</div>
+<div class="bg-slate-50 border border-slate-200 rounded-xl p-3">
+<svg class="w-full h-auto max-w-2xl mx-auto" viewbox="0 0 680 110">
 <rect fill="#ffffff" height="86" rx="10" stroke="#93c5fd" stroke-width="1.5" width="180" x="20" y="12"></rect>
 <text fill="#1e3a8a" font-size="12" font-weight="bold" text-anchor="middle" x="110" y="34">לקוח A (יוזם הקשר)</text>
 <rect fill="#eff6ff" height="22" rx="5" stroke="#bfdbfe" width="150" x="35" y="44"></rect>
@@ -1011,12 +1201,11 @@ $$\text{Socket} = \text{IP Address} : \text{Port Number}$$
 <text fill="#475569" font-size="10" text-anchor="middle" x="570" y="84">שכבת התובלה (TCP / UDP)</text>
 </svg>
 </div>
-<ul class="list-disc list-inside space-y-2 text-xs md:text-sm text-slate-700 mb-4">
-<li><b>Socket (שקע):</b> ממשק התוכנה בין תהליך האפליקציה לבין שכבת התובלה במערכת ההפעלה ($	ext{IP} : 	ext{Port}$).</li>
-<li><b>היפוך פורטים בין בקשה לתגובה (Port Mirroring):</b> אם לקוח $A$ שולח סגמנט $X$ לשרת $B$, ושרת $B$ משיב בסגמנט $Y$ ללקוח $A$, אזי תמיד $	ext{DestPort}(X) = 	ext{SrcPort}(Y) = P_B$ וכן $	ext{SrcPort}(X) = 	ext{DestPort}(Y) = P_A$, ואילו $	ext{DestPort}(X)
-eq 	ext{DestPort}(Y)$.</li>
-<li><b>זיהוי Socket (Demultiplexing):</b> ב-<b>UDP</b> ה-Socket מזוהה לפי <b>זוג (2-Tuple)</b> של היעד בלבד $(	ext{DstIP}, 	ext{DstPort})$ (ולכן פניות משני לקוחות לאותו שרת UDP מגיעות לאותו Socket). ב-<b>TCP</b> כל חיבור מזוהה לפי <b>רביעייה (4-Tuple)</b> מלאה $(	ext{SrcIP}, 	ext{SrcPort}, 	ext{DstIP}, 	ext{DstPort})$ (לכל לקוח Socket נפרד בשרת).</li>
-<li><b>אמינות מעל UDP:</b> שכבת היישום מקבלת שירות ישירות משכבת התובלה. להעברה אמינה מעל UDP, האפליקציה חייבת לממש בעצמה <b>מספור סידורי (Sequence Numbers)</b>, <b>אישורים (ACKs)</b> ו<b>קוצבי זמן לשידור חוזר (Timers)</b>.</li>
+<ul class="list-disc list-inside space-y-1.5 text-xs md:text-sm text-slate-700 leading-relaxed">
+<li><b>Socket (שקע):</b> ממשק התוכנה ("הדלת") בין תהליך האפליקציה לבין שכבת התובלה במערכת ההפעלה, המזוהה ע"י $\text{IP Address} : \text{Port Number}$.</li>
+<li><b>היפוך פורטים בין בקשה לתגובה (Port Mirroring):</b> כאשר לקוח $A$ שולח סגמנט בקשה $X$ לשרת $B$, ושרת $B$ משיב בסגמנט תגובה $Y$ ללקוח $A$, מתקיים תמיד: $\text{DestPort}(X) = \text{SrcPort}(Y) = P_B$ וכן $\text{SrcPort}(X) = \text{DestPort}(Y) = P_A$, ואילו $\text{DestPort}(X) \neq \text{DestPort}(Y)$.</li>
+<li><b>זיהוי Socket בשרת (Demultiplexing):</b> ב-<b>UDP</b> ה-Socket מזוהה לפי <b>זוג (2-Tuple)</b> של היעד בלבד $(\text{DstIP}, \text{DstPort})$ (פניות משני לקוחות שונים לאותו שרת UDP מגיעות לאותו Socket). ב-<b>TCP</b> כל חיבור מזוהה לפי <b>רביעייה (4-Tuple)</b> מלאה $(\text{SrcIP}, \text{SrcPort}, \text{DstIP}, \text{DstPort})$ (לכל לקוח מוקצה Socket חיבור ייעודי בשרת).</li>
+<li><b>אמינות בין שכבות:</b> שכבת היישום מדברת ישירות רק עם שכבת התובלה. אם שכבת התובלה לא-אמינה (גם מעל שכבת רשת אמינה), השירות ליישום לא-אמין; כדי לקבל אמינות מעל UDP, האפליקציה חייבת לממש בעצמה <b>מספור סידורי (Sequence Numbers)</b>, <b>אישורים (ACKs)</b> ו<b>קוצבי זמן (Timers)</b>.</li>
 </ul>
 <div class="overflow-x-auto rounded-xl border border-slate-200">
 <table class="fast-table">
@@ -1032,17 +1221,49 @@ eq 	ext{DestPort}(Y)$.</li>
 <tr>
 <td class="font-bold font-mono text-blue-900">TCP</td>
 <td>מוכוון-קשר, העברת זרם בתים <b>אמינה ולפי הסדר</b>, בקרת זרימה וגודש.</td>
-<td>$20	ext{ Bytes}$ לפחות; לחיצת יד משולשת ($1	ext{ RTT}$), Slow Start ו-HOL Blocking.</td>
+<td>$20\text{ Bytes}$ לפחות; לחיצת יד משולשת ($1\text{ RTT}$), Slow Start ו-HOL Blocking.</td>
 <td><code>HTTP/1.0, 1.1, 2</code> (פורט 80/443), <code>SMTP</code> (25), <code>POP3</code> (110), <code>IMAP</code> (143).</td>
 </tr>
 <tr>
 <td class="font-bold font-mono text-blue-900">UDP</td>
 <td>חסר-קשר (Best-Effort), <b>לא אמין</b>, מהיר וללא השהיית הקמת קשר.</td>
-<td>$8	ext{ Bytes}$ בלבד ($4$ שדות $	imes 2	ext{B}$: <code>SrcPort, DstPort, Length, Checksum</code>). $0	ext{ RTT}$ הקמה.</td>
-<td><code>DNS</code> (פורט 53 – שאילתה קצרה), <code>HTTP/3</code> (מעל <code>QUIC</code> ב-UDP), <code>SNMP</code> (161).</td>
+<td>$8\text{ Bytes}$ בלבד ($4$ שדות $\times 2\text{B}$: <code>SrcPort, DstPort, Length, Checksum</code>). $0\text{ RTT}$ הקמה.</td>
+<td><code>DNS</code> (פורט 53 – חוסך $1\text{ RTT}$ של הקמת קשר), <code>HTTP/3</code> (מעל <code>QUIC</code> ב-UDP), <code>SNMP</code> (161), <code>VoIP/RTP</code>.</td>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+</div>
+
+<div class="fast-mode-view space-y-4">
+<div class="fast-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="fast-badge">⚡ לימוד מהיר • יחידה 5.1 (סקירה מרוכזת)</span>
+<div class="flex items-center gap-1.5 flex-wrap">
+<button class="fast-sim-btn" onclick="openSingleSim('sim-5-1-app-vs-proto', '🏛️ סימולציה 5.1א: יישום מול פרוטוקול')" type="button">🏛️ מעבדה 5.1א</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-5-1-roles', '🔄 סימולציה 5.1ב: לקוח/שרת דינמי')" type="button">🔄 מעבדה 5.1ב</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-5-1-transport', '⚖️ סימולציה 5.1ג: TCP מול UDP')" type="button">⚖️ מעבדה 5.1ג</button>
+<button class="fast-sim-btn" onclick="showQuestions('tab-intro', '5.1 יסודות שכבת האפליקציה וסוקטים', event)" type="button">❓ תרגול</button>
+</div>
+</div>
+<h2 class="text-xl md:text-2xl font-black text-slate-900">5.1 יסודות שכבת האפליקציה, ארכיטקטורות C/S ו-P2P, שקעים ופורטים</h2>
+<p class="text-xs text-slate-600"><b>שכבה 7 (Application):</b> מעניקה משמעות לנתונים; מפרידה בין <b>תוכנית היישום</b> לבין <b>פרוטוקול התקשורת</b> ו<b>פורמט הנתונים</b>.</p>
+</div>
+<div class="fast-visual-strip">
+<div class="fast-strip-node"><b>1. יישום $\neq$ פרוטוקול $\neq$ פורמט:</b> דפדפן <code>Chrome</code> (יישום) מריץ <code>HTTP</code> (פרוטוקול) להעברת <code>HTML</code> (פורמט); <code>Outlook</code> מריץ <code>SMTP</code> להעברת <code>MIME</code>.</div>
+<div class="fast-strip-node"><b>2. Client מול Server:</b> <b>לקוח</b> = יוזם הקשר; <b>שרת</b> = מאזין בפורט ידוע. זהו תפקיד במקטע נתון (שרת דואר הוא שרת מול השולח ולקוח מול שרת הנמען!).</div>
+<div class="fast-strip-node"><b>3. מודל P2P:</b> עמיתים מתקשרים ישירות (גם לקוח וגם שרת). <b>Self-Scalability:</b> כל עמית מצטרף מוסיף למערכת מרוחב הפס העולה שלו (Upload).</div>
+<div class="fast-strip-node fast-strip-highlight"><b>4. Socket והיפוך פורטים ★:</b> בבקשה $X$ ($A\to B$) ותגובה $Y$ ($B\to A$): $\text{DestPort}(X)=\text{SrcPort}(Y)=P_B$ ו-$\text{SrcPort}(X)=\text{DestPort}(Y)=P_A$.</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+<div class="fast-card">
+<div class="fast-card-title">🔌 זיהוי Socket (Demultiplexing) ומבנה כותרת UDP</div>
+<p class="text-slate-700 leading-relaxed">• <b>UDP Socket (זוג / 2-Tuple):</b> מזוהה לפי $(\text{DstIP}, \text{DstPort})$ בלבד $\implies$ שני לקוחות שונים הפונים לאותו שרת UDP מנותבים לאותו Socket.<br/>• <b>TCP Socket (רביעייה / 4-Tuple):</b> מזוהה לפי $(\text{SrcIP}, \text{SrcPort}, \text{DstIP}, \text{DstPort})$ $\implies$ לכל לקוח Socket נפרד בשרת.<br/>• <b>כותרת UDP ($8\text{ Bytes}$):</b> $4$ שדות בני $16$ סיביות ($2\text{B}$) כל אחד: <code>Source Port, Dest Port, Length, Checksum</code>.</p>
+</div>
+<div class="fast-card">
+<div class="fast-card-title">⚖️ בחירת TCP מול UDP ואמינות בין שכבות</div>
+<p class="text-slate-700 leading-relaxed">• <b>מעל TCP (אמין, מוכוון-קשר, $1\text{ RTT}$ הקמה):</b> <code>HTTP/1.0–2</code> (פורט 80/443), <code>SMTP</code> (25), <code>POP3</code> (110), <code>IMAP</code> (143).<br/>• <b>מעל UDP (ללא הקמת קשר – $0\text{ RTT}$):</b> <code>DNS</code> (פורט 53 – כי לחיצת יד TCP הייתה מכפילה את ההשהיה לשאילתה קצרה!), <code>SNMP</code> (161), <code>VoIP</code>, ו-<code>HTTP/3</code> (מעל <code>QUIC</code> ב-UDP).<br/>• <b>אמינות מעל UDP:</b> מחייבת מימוש מספור סידורי, ACKs וטיימרים בתוך האפליקציה עצמה.</p>
 </div>
 </div>
 </div>
@@ -1365,6 +1586,15 @@ C: .</span>
 </div>
 </div>
 </div>
+<div class="p-4 rounded-2xl bg-sky-50 border-2 border-sky-300 text-xs md:text-sm text-slate-800 space-y-1.5 mb-6">
+<div class="font-black text-sky-950 text-sm">📌 דגשים מרכזיים לניתוח תמליל SMTP (15 שורות א'–ט"ו) ומעברי השרתים:</div>
+<ul class="list-disc list-inside space-y-1 leading-relaxed">
+<li><b>שורות הפתיחה (א)–(ג) (<code>220</code> ← <code>HELO</code> ← <code>250 Hello</code>):</b> מהוות את שלב <b>לחיצת היד המשולשת (Handshaking / Greeting) של פרוטוקול SMTP</b> בשכבת האפליקציה (המתבצע לאחר שלחיצת היד המשולשת של TCP כבר הסתיימה). שורות <code>MAIL FROM</code> מאמתות את תיבת השולח, ושורות <code>RCPT TO</code> בודקות שתיבת הנמען קיימת בשרת.</li>
+<li><b>זיהוי שורות שנשלחו ע"י השרת מול הלקוח:</b> כל שורה של שרת ה-SMTP מתחילה ב<b>קוד סטטוס מספרי בן 3 ספרות</b> (<code>220, 250, 354, 221</code> – סה"כ 7 שורות מתוך 15 בתמליל תקני עם נמען יחיד), בעוד ששורות הלקוח מתחילות בפקודות טקסט (<code>HELO, MAIL FROM, RCPT TO, DATA, QUIT</code>) או בגוף המכתב.</li>
+<li><b>שליחת הודעה שנייה באותו חיבור TCP:</b> מתבצעת מיד לאחר שהשרת מאשר את ההודעה הראשונה בשורה <code>250 Message accepted for delivery</code> (לפני שליחת פקודת <code>QUIT</code>), על ידי שליחת פקודת <code>MAIL FROM</code> חדשה.</li>
+<li><b>תפקידי Client ו-Server במעבר 4 (בין שרת הדואר של אליס לשרת הדואר של בוב):</b> שרת הדואר של אליס יוזם את פתיחת קשר ה-TCP ולכן מריץ את <b>צד הלקוח (SMTP Client)</b>, ואילו שרת הדואר של בוב מאזין בפורט 25 ומריץ את <b>צד השרת (SMTP Server)</b> (בעוד שבמעבר 2 מול אליס, שרת הדואר של אליס תפקד כשרת!). פרוטוקולי המשיכה <code>POP3</code> ו-<code>IMAP</code> פועלים רק במעבר 6 ואינם משפיעים על מעבר 4.</li>
+</ul>
+</div>
 <!-- Simulation Launcher 5.2A (SMTP) -->
 <div class="silver-box relative p-6 rounded-2xl my-6">
 <button class="sim-circle-btn absolute top-4 left-4 z-10" onclick="openSingleSim('sim-5-2-smtp', '📨 סימולציה 5.2ב: דיאלוג SMTP צעד-אחר-צעד וספירת RTT')" title="פתיחת מעבדה חיה: 📨 סימולציה 5.2ב: דיאלוג SMTP צעד-אחר-צעד">
@@ -1491,86 +1721,115 @@ C: .</span>
 ראינו כיצד SMTP ו-IMAP משתמשים בהודעות טקסט המסתיימות ב-<code>&lt;CRLF&gt;</code> ובכותרות MIME מעל TCP. בדיוק אותם עקרונות עיצוב שימשו לבניית <b>הרשת הכלל-עולמית (WWW) ופרוטוקול HTTP</b> בסעיף הבא – שם נחקור כיצד דף אינטרנט מורכב מעשרות אובייקטים, וכיצד התפתח HTTP מגרסה 1.0 האיטית ועד ל-HTTP/2 ול-HTTP/3 מעל QUIC.
 </p>
 </div></div>
-<div class="fast-mode-view fast-wrapper w-full block bg-white px-6 md:px-10 pb-10 pt-7 rounded-2xl shadow-sm border border-slate-200">
-<header class="mb-6 border-b border-slate-200 pb-4">
-<div class="fast-badge mb-2">⚡ מצב לימוד מהיר • חלק 5.2</div>
-<h2 class="text-3xl font-black text-slate-900 tracking-tight mb-2">5.2 דואר אלקטרוני: מבנה ההודעה (MIME), דחיפה (SMTP) ומשיכה (POP3 / IMAP)</h2>
-<p class="text-slate-600 text-sm md:text-base leading-relaxed">
-מערכת הדואר מפרידה בין <b>מבנה ההודעה</b> (כותרות, גוף ו-MIME) לבין <b>העברת ההודעה</b> (דחיפה ב-SMTP בין השולח והשרתים, ומשיכה ב-POP3 או IMAP על ידי הנמען).
-</p>
-</header>
-<!-- 5.2.1 -->
-<div class="fast-card">
-<h3 class="text-lg font-bold text-blue-900 mb-3 border-b border-slate-200 pb-2">5.2.1 רכיבי המערכת, מבנה הודעת דואר (RFC 822) והרחבת MIME</h3>
-<ul class="list-disc list-inside space-y-1.5 text-xs md:text-sm text-slate-700 mb-3">
-<li><b>רכיבי המערכת:</b> סוכן המשתמש (<b>User Agent</b> – כגון Outlook/Gmail), שרת הדואר (<b>MTA / Mail Daemon</b> כגון sendmail המחזיק תיבות דואר ותור הודעות יוצאות), ושער דואר (<b>Mail Gateway</b> – פועל בשיטת Store-and-Forward ושומר הודעות על <b>הדיסק הקשיח</b> גם ימים שלמים במקרה של תקלה, להבדיל מנתב IP השומר מנות ב-RAM לחלקיקי שנייה).</li>
-<li><b>מבנה בסיסי (RFC 822):</b> <b>כותרות (Header)</b> בפורמט <code>Name: Value</code> המסתיימות ב-<code>&lt;CRLF&gt;</code> (<code>From</code>, <code>To</code>, <code>Subject</code>, <code>Date</code>, וכותרת <code>Received</code> שמוסיף כל שרת בדרך), אחריהן <b>שורה ריקה (Blank Line)</b>, ואחריה <b>גוף ההודעה (Body)</b> (במקור 7-bit ASCII בלבד).</li>
-<li><b>הרחבת MIME (Multipurpose Internet Mail Extensions):</b> מוסיפה כותרות לשליחת קבצים בינאריים ושפות שאינן אנגלית:
-<ul class="list-disc list-inside mr-5 mt-1 space-y-1 text-slate-600">
-<li><code>MIME-Version: 1.0</code> ו-<code>Content-Description</code>.</li>
-<li><code>Content-Type: type/subtype</code> (למשל <code>text/plain</code>, <code>image/jpeg</code>). הסוג <code>multipart/mixed; boundary="..."</code> מאפשר צירוף מספר חלקים המופרדים על ידי מחרוזת ה-<code>boundary</code>.</li>
-<li><code>Content-Transfer-Encoding</code>: בקידוד <b><code>base64</code></b> כל <b>$3$ בתים בינאריים ($24$ סיביות)</b> מחולקים ל-$4$ קבוצות של $6$ סיביות והופכים ל-<b>$4$ תווי ASCII</b> (ניפוח של $33.3\%$, עם ריפוד <code>=</code> או <code>==</code> בסיום). קידוד <code>quoted-printable</code> משמש לטקסט שרובו ASCII.</li>
-</ul>
-</li>
-</ul>
+<div class="basic-mode-view space-y-5">
+<div class="basic-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="basic-badge">📖 לימוד בסיסי • יחידה 5.2</span>
+<div class="flex items-center gap-2">
+<button class="basic-top-btn" onclick="showTab('tab-summary')" type="button">לתרגול מסכם 🎓</button>
+<button class="basic-top-btn" onclick="showQuestions('tab-email', '5.2 דואר אלקטרוני: SMTP, MIME, POP3 ו-IMAP', event)" type="button">❓ שאלות תרגול</button>
 </div>
-<!-- 5.2.2 -->
-<div class="fast-card">
-<h3 class="text-lg font-bold text-blue-900 mb-3 border-b border-slate-200 pb-2">5.2.2 מסלול העברת הדואר (6 שלבים) ופרוטוקול SMTP</h3>
-<!-- Clean Schematic Diagram -->
-<div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 mb-4 text-xs text-center flex flex-wrap items-center justify-center gap-2 font-bold text-slate-800">
+</div>
+<h2 class="text-2xl md:text-3xl font-black text-slate-900">5.2 דואר אלקטרוני: מבנה ההודעה (MIME), דחיפה (SMTP) ומשיכה (POP3 / IMAP)</h2>
+<p class="text-xs md:text-sm text-slate-600 mt-1">מערכת הדואר האלקטרוני מפרידה בין <b>פורמט ההודעה</b> (RFC 822 ו-MIME עם קידוד Base64) לבין <b>פרוטוקול ההעברה בדחיפה (SMTP)</b> ו<b>פרוטוקולי המשיכה לקריאה (POP3 ו-IMAP)</b>.</p>
+</div>
+
+<!-- 5.2.1 Basic Card -->
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">1. רכיבי המערכת, מבנה הודעת דואר (RFC 822) והרחבת MIME / Base64</h3>
+<p class="text-xs text-slate-600">סוכן משתמש (UA), שרת דואר (MTA), שער דואר (Mail Gateway), כותרות ההודעה וקידוד קבצים בינאריים לתווי ASCII.</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-5-2-mime', '🧬 סימולציה 5.2א: בונה ומפענח הודעות MIME ו-Base64')" title="פתיחת מעבדה 5.2א: הודעות MIME וקידוד Base64" type="button"><span class="text-xl">🧬</span></button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+<div class="basic-subcard space-y-1.5">
+<strong class="text-blue-900 block">🏛️ רכיבי מערכת הדואר ותקן RFC 822</strong>
+<p class="text-slate-700 leading-relaxed">• <b>רכיבים:</b> (1) <b>User Agent (UA)</b> – תוכנת הדואר של המשתמש; (2) <b>Mail Transfer Agent (MTA)</b> – שרת הדואר המחזיק תיבות דואר (Mailboxes) ותור הודעות יוצאות (Message Queue); (3) <b>Mail Gateway</b> – שער דואר הפועל בשיטת Store-and-Forward ושומר הודעות על <b>דיסק קשיח</b> גם לימים שלמים אם שרת היעד מושבת (להבדיל מנתב IP השומר מנות ב-RAM לחלקיקי שנייה).<br/>• <b>פורמט RFC 822:</b> <b>כותרות (Header)</b> במבנה <code>Name: Value</code> (<code>From, To, Subject, Date, Received</code>), אחריהן <b>שורה ריקה (<code>&lt;CRLF&gt;</code>)</b>, ואחריה <b>גוף ההודעה (Body)</b> ב-7-bit ASCII.</p>
+</div>
+<div class="basic-subcard space-y-1.5">
+<strong class="text-blue-900 block">🧬 הרחבת MIME וקידוד Base64</strong>
+<p class="text-slate-700 leading-relaxed">• <b>כותרות MIME:</b> <code>MIME-Version: 1.0</code>, <code>Content-Description</code>, <code>Content-Type: type/subtype</code> (כגון <code>text/plain</code>, <code>image/jpeg</code>, ו-<code>multipart/mixed; boundary="..."</code> המפריד בין חלקים/קבצים מצורפים), ו-<code>Content-Transfer-Encoding</code>.<br/>• <b>קידוד <code>base64</code>:</b> מחלק כל <b>$3$ בתים בינאריים ($24$ סיביות)</b> ל-<b>$4$ קבוצות של $6$ סיביות</b> וממפה כל קבוצה לתו ASCII בטוח מתוך 64 תווים $\implies$ כל $3$ בתים הופכים ל-$4$ בתים (תוספת נפח של $\mathbf{33.3\%}$: גודל מקודד $= \frac{N}{3}\times 4$; למשל קובץ של $300\text{ KB}$ הופך ל-$400\text{ KB}$). קידוד <code>quoted-printable</code> משמש לטקסט שרובו ASCII.</p>
+</div>
+</div>
+</div>
+
+<!-- 5.2.2 Basic Card -->
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">2. מסלול העברת הדואר (6 שלבים), פרוטוקול הדחיפה SMTP ותמליל 15 השורות</h3>
+<p class="text-xs text-slate-600">זיהוי תפקידי Client/Server בכל מעבר, לחיצת היד של SMTP, פקודות הפרוטוקול וקודי התגובה של השרת.</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-5-2-smtp', '📨 סימולציה 5.2ב: דיאלוג SMTP צעד-אחר-צעד וספירת RTT')" title="פתיחת מעבדה 5.2ב: דיאלוג SMTP צעד-אחר-צעד" type="button"><span class="text-xl">📨</span></button>
+</div>
+<div class="bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs text-center flex flex-wrap items-center justify-center gap-2 font-bold text-slate-800">
 <span class="bg-white border border-slate-300 px-3 py-1.5 rounded-lg">1. סוכן אליס (UA)</span>
 <span class="text-blue-700 font-mono">→ (2) SMTP →</span>
 <span class="bg-blue-50 border border-blue-300 px-3 py-1.5 rounded-lg text-blue-950">3. שרת דואר אליס (תור)</span>
-<span class="text-blue-700 font-mono">→ (4) SMTP →</span>
+<span class="text-blue-700 font-mono">→ (4) SMTP (אליס=Client, בוב=Server) →</span>
 <span class="bg-blue-50 border border-blue-300 px-3 py-1.5 rounded-lg text-blue-950">5. שרת דואר בוב (תיבה)</span>
-<span class="text-emerald-700 font-mono">→ (6) POP3 / IMAP →</span>
+<span class="text-emerald-700 font-mono">→ (6) POP3 / IMAP / HTTP →</span>
 <span class="bg-white border border-slate-300 px-3 py-1.5 rounded-lg">סוכן בוב (UA)</span>
 </div>
-<div class="fast-callout-blue text-xs md:text-sm mb-4">
-<strong>📌 דגשים קריטיים למבחן על שלב 4 ועל SMTP:</strong>
+<div class="basic-callout">
+<strong>📌 דגשים קריטיים למבחן על שלב 4, רשומת MX ותמליל 15 השורות ב-SMTP:</strong>
 <ul class="list-disc list-inside mt-1 space-y-1">
-<li><b>במעבר 4 (בין שרת הדואר של אליס לשרת הדואר של בוב):</b> שרת הדואר של אליס יוזם את הקשר ולכן מריץ את <b>צד הלקוח (Client) של SMTP</b>, ושרת הדואר של בוב מריץ את <b>צד השרת (Server) של SMTP</b>. פרוטוקולי <code>POP3</code> ו-<code>IMAP</code> אינם משפיעים כלל על שלב 4 (הם רלוונטיים רק לשלב 6!).</li>
-<li><b>מאפייני SMTP:</b> פרוטוקול <b>דחיפה (Push)</b> מעל <b>TCP פורט 25</b>. כל פקודה ותשובה גוזלות <b>$	ext{RTT}$ אחד</b> מעבר ללחיצת היד של TCP.</li>
-<li><b>מעטפת SMTP מול כותרות ההודעה:</b> פקודות <code>MAIL FROM</code> ו-<code>RCPT TO</code> שייכות לפרוטוקול ההעברה (מעטפת המכתב שעל פיה מנתבים ה-MTAs), ואילו השורות <code>From:</code> ו-<code>To:</code> שבתוך ה-<code>DATA</code> הן כותרות של פורמט ההודעה שמוצגות לקורא.</li>
+<li><b>במעבר 4 (בין שרת הדואר של אליס לשרת הדואר של בוב):</b> שרת הדואר של אליס מתשאל את ה-DNS ברשומת <b><code>MX (Mail Exchange)</code></b> למציאת שרת הדואר של בוב, יוזם מולו קשר TCP בפורט 25 ולכן מריץ את <b>צד הלקוח (SMTP Client)</b>, ואילו שרת הדואר של בוב מריץ את <b>צד השרת (SMTP Server)</b>. פרוטוקולי <code>POP3</code> ו-<code>IMAP</code> פועלים רק בשלב 6 ואינם קשורים לשלב 4!</li>
+<li><b>מעטפת SMTP מול כותרות ההודעה:</b> פקודות <code>MAIL FROM</code> ו-<code>RCPT TO</code> שייכות לפרוטוקול ההעברה (מעטפת המכתב שעל פיה מנתבים ה-MTAs), ואילו השורות <code>From:</code> ו-<code>To:</code> שבתוך ה-<code>DATA</code> שייכות לפורמט ההודעה המוצג לקורא.</li>
+<li><b>זיהוי שורות השרת בתמליל SMTP (15 שורות א'–ט"ו):</b> כל תשובה של השרת מתחילה ב<b>קוד מספרי בן 3 ספרות</b> (<code>220, 250, 354, 221</code> – סה"כ <b>7 שורות של השרת</b> בתמליל תקני: א, ג, ה, ז, ט, יג, טו). כדי לשלוח <b>הודעה נוספת באותו חיבור TCP</b>, שולחים <code>MAIL FROM</code> חדש מיד לאחר שורה (יג) <code>250 Message accepted</code> (לפני <code>QUIT</code>).</li>
 </ul>
 </div>
 <div class="overflow-x-auto rounded-xl border border-slate-200">
 <table class="fast-table">
 <thead>
 <tr>
-<th>שלב / פקודה ב-SMTP</th>
-<th>קוד תגובת השרת ומשמעות</th>
+<th>שלב / שורות בתמליל ה-SMTP</th>
+<th>פקודות הלקוח וקודי תגובת השרת</th>
+<th>משמעות ודגשים למבחן</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="font-bold text-blue-900">לחיצת יד של SMTP (Handshaking)<br/><span class="text-xs font-mono font-normal">220 → HELO → 250 Hello</span></td>
-<td>3 השורות הראשונות לאחר הקמת ה-TCP: השרת מציג את עצמו (<code>220 hamburger.edu</code>), הלקוח מזדהה (<code>HELO crepes.fr</code>), והשרת מאשר (<code>250 Hello</code>). <b>זהו שלב לחיצת היד המשולשת של SMTP</b> (עוד לפני בדיקת תיבות הדואר!).</td>
+<td class="font-bold text-blue-900">שורות (א)–(ג): לחיצת יד של SMTP<br/><span class="text-xs font-mono font-normal">220 → HELO → 250 Hello</span></td>
+<td class="font-mono text-xs">S: 220 hamburger.edu<br/>C: HELO crepes.fr<br/>S: 250 Hello crepes.fr</td>
+<td><b>לחיצת היד המשולשת (Handshaking) של פרוטוקול SMTP</b> בשכבת האפליקציה (מתבצעת לאחר שלחיצת היד של TCP כבר הסתיימה!).</td>
 </tr>
 <tr>
-<td class="font-bold font-mono text-blue-900">MAIL FROM: &lt;alice@...&gt;</td>
-<td>כתובת השולח. השרת בודק ומחזיר <code>250 Sender ok</code>.</td>
+<td class="font-bold text-blue-900">שורות (ד)–(ה): אימות שולח</td>
+<td class="font-mono text-xs">C: MAIL FROM: &lt;alice@...&gt;<br/>S: 250 Sender ok</td>
+<td>ציון ובדיקת תיבת הדואר של השולח בשרת ($1\text{ RTT}$).</td>
 </tr>
 <tr>
-<td class="font-bold font-mono text-blue-900">RCPT TO: &lt;bob@...&gt;</td>
-<td>כתובת הנמען (אפשר כמה פעמים). השרת בודק שהתיבה קיימת ומחזיר <code>250 Recipient ok</code> (או <code>550 No such user</code>).</td>
+<td class="font-bold text-blue-900">שורות (ו)–(ז): אימות נמען</td>
+<td class="font-mono text-xs">C: RCPT TO: &lt;bob@...&gt;<br/>S: 250 Recipient ok</td>
+<td>ציון ובדיקת קיום תיבת הדואר של הנמען בשרת (אם אינה קיימת יוחזר <code>550 No such user</code>; ניתן לשלוח לכמה נמענים ברצף).</td>
 </tr>
 <tr>
-<td class="font-bold font-mono text-blue-900">DATA</td>
-<td>השרת משיב <code>354 Enter mail...</code>. הלקוח שולח את הכותרות וגוף ההודעה, ומסיים בשורה המכילה <b>נקודה בודדת בלבד (<code>.</code>)</b>. השרת מאשר ב-<code>250 Message accepted</code> (ניתן לשלוח הודעה נוספת באותו קשר ע"י <code>MAIL FROM</code> חדש לפני <code>QUIT</code>).</td>
+<td class="font-bold text-blue-900">שורות (ח)–(יג): גוף המייל</td>
+<td class="font-mono text-xs">C: DATA → S: 354 Enter mail...<br/>C: [Body] + "." → S: 250 OK</td>
+<td>שליחת כותרות וגוף ההודעה וסיומה בשורה עם <b>נקודה בודדת בלבד (<code>.</code>)</b>. לאחר <code>250 OK</code> ניתן לשלוח מייל נוסף באותו קשר!</td>
 </tr>
 <tr>
-<td class="font-bold font-mono text-blue-900">QUIT</td>
-<td>סיום שיחת ה-SMTP; השרת משיב <code>221 closing connection</code>.</td>
+<td class="font-bold text-blue-900">שורות (יד)–(טו): סגירת שיחה</td>
+<td class="font-mono text-xs">C: QUIT → S: 221 Closing</td>
+<td>סיום שיחת ה-SMTP וסגירת חיבור ה-TCP.</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<!-- 5.2.3 -->
-<div class="fast-card mb-0">
-<h3 class="text-lg font-bold text-blue-900 mb-3 border-b border-slate-200 pb-2">5.2.3 פרוטוקולי משיכת הודעות (Pull): POP3 לעומת IMAP</h3>
+
+<!-- 5.2.3 Basic Card -->
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">3. פרוטוקולי משיכת הודעות (Pull) בשלב 6: POP3 לעומת IMAP (ו-Webmail)</h3>
+<p class="text-xs text-slate-600">מדוע SMTP אינו מתאים לקריאת דואר על ידי משתמש קצה, וההבדל בין הורדה מקומית לסנכרון מלא על השרת.</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-5-2-pop-imap', '📱 סימולציה 5.2ג: POP3 מול IMAP בריבוי מכשירים')" title="פתיחת מעבדה 5.2ג: POP3 מול IMAP" type="button"><span class="text-xl">📱</span></button>
+</div>
 <div class="overflow-x-auto rounded-xl border border-slate-200">
 <table class="fast-table">
 <thead>
@@ -1583,21 +1842,53 @@ C: .</span>
 <tbody>
 <tr>
 <td class="font-bold">היכן נשמרות ההודעות?</td>
-<td>מורדות למחשב המקומי של המשתמש (ולרוב נמחקות מהשרת).</td>
+<td>מורדות למחשב המקומי של המשתמש (ולרוב נמחקות מהשרת בפקודת <code>DELE</code>).</td>
 <td>נשארות באופן קבוע בתיבת הדואר על השרת.</td>
 </tr>
 <tr>
-<td class="font-bold">תיקיות וסימונים (Flags)</td>
-<td>במחשב המקומי בלבד (אין סנכרון מול השרת).</td>
-<td>על השרת (תיקיות, דגלי <code>Seen</code>, <code>Answered</code>, <code>Deleted</code> ומחיקה סופית ב-<code>EXPUNGE</code>).</td>
+<td class="font-bold">תיקיות וסימוני מצב (Flags)</td>
+<td>במחשב המקומי בלבד (חסר מצב בין חיבורים – אינו מסנכרן תיקיות).</td>
+<td>שומר מצב (Stateful) על השרת: תיקיות, דגלי <code>Seen</code>, <code>Answered</code>, <code>Deleted</code> ומחיקה סופית ב-<code>EXPUNGE</code>.</td>
 </tr>
 <tr>
 <td class="font-bold">עבודה ממספר מכשירים</td>
-<td>לא נוחה – כל מכשיר מחזיק עותק מקומי משלו.</td>
-<td>מלאה ומסונכרנת בין כל המכשירים (טלפון, מחשב נייד וכו').</td>
+<td>לא נוחה – כל מכשיר מחזיק עותק מקומי נפרד ללא סנכרון.</td>
+<td>מלאה ומסונכרנת בין כל המכשירים (טלפון, מחשב נייד וכו'; ב-Webmail הגישה לשרת היא מעל <code>HTTP</code>).</td>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+</div>
+
+<div class="fast-mode-view space-y-4">
+<div class="fast-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="fast-badge">⚡ לימוד מהיר • יחידה 5.2 (סקירה מרוכזת)</span>
+<div class="flex items-center gap-1.5 flex-wrap">
+<button class="fast-sim-btn" onclick="openSingleSim('sim-5-2-mime', '🧬 סימולציה 5.2א: MIME ו-Base64')" type="button">🧬 מעבדה 5.2א</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-5-2-smtp', '📨 סימולציה 5.2ב: דיאלוג SMTP')" type="button">📨 מעבדה 5.2ב</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-5-2-pop-imap', '📱 סימולציה 5.2ג: POP3 מול IMAP')" type="button">📱 מעבדה 5.2ג</button>
+<button class="fast-sim-btn" onclick="showQuestions('tab-email', '5.2 דואר אלקטרוני: SMTP, MIME, POP3 ו-IMAP', event)" type="button">❓ תרגול</button>
+</div>
+</div>
+<h2 class="text-xl md:text-2xl font-black text-slate-900">5.2 דואר אלקטרוני: RFC 822, הרחבת MIME (Base64), דחיפה (SMTP) ומשיכה (POP3/IMAP)</h2>
+<p class="text-xs text-slate-600"><b>העיקרון המוביל:</b> שליחת דואר מהשולח לשרת ובין שרתים מתבצעת ב<b>דחיפה (SMTP – Push)</b>; קריאת הדואר ע"י הנמען מתבצעת ב<b>משיכה (IMAP / POP3 / HTTP – Pull)</b>.</p>
+</div>
+<div class="fast-visual-strip">
+<div class="fast-strip-node"><b>1. מבנה הודעה ו-MIME:</b> כותרות + שורה ריקה + גוף. <b>Base64:</b> כל $3$ בתים ($24$ ביט) $\to$ $4$ תווי ASCII של $6$ ביט (ניפוח $+33.3\%$: $300\text{KB}\to 400\text{KB}$).</div>
+<div class="fast-strip-node fast-strip-highlight"><b>2. מעבר 4 בין שרתי דואר ★:</b> שרת השולח מתשאל <code>DNS MX</code>, פותח קשר לשרת הנמען ומתפקד כ-<b>SMTP Client</b>; שרת הנמען מתפקד כ-<b>SMTP Server</b>.</div>
+<div class="fast-strip-node"><b>3. תמליל SMTP (פורט 25):</b> שורות א–ג (<code>220, HELO, 250</code>) = <b>לחיצת יד של SMTP</b>; שורות ד–ה = שולח; ו–ז = נמען; ח–יג = גוף המייל (מסתיים בשורת <code>.</code> בודדת).</div>
+<div class="fast-strip-node"><b>4. משיכת דואר (שלב 6):</b> <b>POP3 (110)</b> מוריד למחשב המקומי ללא סנכרון; <b>IMAP (143)</b> משאיר על השרת ומסנכרן תיקיות ודגלי מצב בין מכשירים.</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+<div class="fast-card">
+<div class="fast-card-title">📨 חוקי ברזל לניתוח דיאלוג SMTP במבחן</div>
+<p class="text-slate-700 leading-relaxed">• <b>זיהוי שורות השרת:</b> כל שורת שרת מתחילה ב<b>קוד בן 3 ספרות</b> (<code>220, 250, 354, 221</code> – סה"כ 7 שורות מתוך 15 בתמליל תקני).<br/>• <b>שליחת הודעה נוספת באותו קשר TCP:</b> שולחים <code>MAIL FROM</code> חדש מיד לאחר שורה (יג) <code>250 Message accepted</code> (לפני <code>QUIT</code>).<br/>• <b>שער דואר (Mail Gateway) מול נתב IP:</b> שניהם Store-and-Forward, אך שער דואר שומר הודעות על <b>דיסק קשיח</b> לימים שלמים, ואילו נתב IP שומר מנות ב-<b>RAM</b> לחלקיקי שנייה.</p>
+</div>
+<div class="fast-card">
+<div class="fast-card-title">📬 מעטפת ההעברה מול כותרות הפורמט</div>
+<p class="text-slate-700 leading-relaxed">• <b>מעטפת ה-SMTP:</b> הפקודות <code>MAIL FROM</code> ו-<code>RCPT TO</code> נקראות ע"י שרתי ה-MTA לניתוב המכתב.<br/>• <b>כותרות גוף ההודעה (RFC 822):</b> השורות <code>From:</code>, <code>To:</code>, <code>Subject:</code> נשלחות בתוך בלוק ה-<code>DATA</code> ומוצגות למשתמש הקצה.<br/>• <b>מדוע נמען אינו מושך דואר ב-SMTP?</b> כי SMTP הוא פרוטוקול דחיפה הדורש שרת מאזין 24/7 בפורט 25; מכשירי קצה כבויים לפרקים ולכן מושכים דואר מתיבתם בשרת באמצעות <code>IMAP</code>, <code>POP3</code> או <code>HTTP</code>.</p>
 </div>
 </div>
 </div>
@@ -1921,7 +2212,9 @@ Content-Length: 0
 <span>האם תמונות בדף HTML יושבות בהכרח באותו שרת B?</span>
 </div>
 <p class="text-slate-800 leading-relaxed">
-<b>לא בהכרח!</b> קובץ ה-<code>Base HTML</code> שהתקבל משרת $B$ מכיל רק <b>הפניות (כתובות URL)</b> לאובייקטים (כגון 3 קבצי תמונות). תמונות אלו <b>אינן חייבות להימצא בזיכרון של השרת $B$</b> – הן יכולות לשבת בשרתים אחרים לחלוטין (למשל שרת פרסומות חיצוני או שרת CDN). אובייקט שנמצא בשרת אחר מחייב פתיחת קשר TCP חדש מול אותו שרת (ותוספת של $1\text{ RTT}$ ללחיצת היד!).
+<b>לא בהכרח!</b> קובץ ה-<code>Base HTML</code> שהתקבל משרת $B$ מכיל רק <b>הפניות (כתובות URL)</b> לאובייקטים (כגון קבצי תמונות). תמונות אלו <b>אינן חייבות להימצא בזיכרון של השרת $B$</b> – הן יכולות לשבת בשרתים אחרים לחלוטין (למשל שרת פרסומות $C$ או CDN).<br/>
+• <b>ספירת חיבורי TCP וסגמנטי <code>SYN=1</code> בריבוי שרתים:</b> בדף הכולל Base HTML + 2 תמונות בשרת $B$ ועוד 2 תמונות בשרת $C$ (5 אובייקטים): ב-<b>HTTP לא-מתמיד</b> ייפתחו <b>5 קשרי TCP</b>; ב-<b>HTTP מתמיד</b> ייפתחו <b>2 קשרי TCP</b> (אחד ל-$B$ ואחד ל-$C$). מאחר שבכל לחיצת יד משולשת של TCP יש <b>2 סגמנטים עם דגל <code>SYN=1</code></b> (<code>SYN</code> מהלקוח ו-<code>SYN+ACK</code> מהשרת), פתיחת 2 קשרי TCP שולחת $2 \times 2 = \mathbf{4}$ סגמנטים עם <code>SYN=1</code>!<br/>
+• <b>שילוב עם Slow Start ב-TCP:</b> בהורדת קובץ בן $M$ סגמנטים מ-$cwnd=1\text{ MSS}$, ב-$r$ סבבי RTT עוברים עד $2^r - 1$ סגמנטים (למשל $7$ סגמנטים יורדים ב-$3$ סבבים: $1+2+4=7$, בתוספת $1\text{ RTT}$ ללחיצת היד).
 </p>
 </div>
 <div class="p-5 rounded-2xl bg-white border-2 border-sky-300 shadow-xs space-y-2">
@@ -2030,157 +2323,190 @@ Content-Length: 0
 <p class="text-xs md:text-sm text-slate-700 leading-relaxed">
 ראינו שגם בדואר אלקטרוני (<code>davidlu@openu.ac.il</code>) וגם ב-Web (<code>http://www.yahoo.com/index.html</code>) המשתמשים והאפליקציות משתמשים ב<b>שמות מתחם (Domain Names)</b>. אבל שכבת התובלה (TCP/UDP) ושכבת הרשת (IP) אינן מבינות שמות – הן חייבות <b>כתובת IP מספרית</b> כדי לפתוח Socket ולנתב מנות! לשם כך בדיוק קיימת מערכת התשתית החשובה ביותר בשכבת האפליקציה: <b>מערכת שמות המתחם (DNS)</b>, שאליה נעבור כעת ב</p>
 </div></div>
-<div class="fast-mode-view fast-wrapper w-full block bg-white px-6 md:px-10 pb-10 pt-7 rounded-2xl shadow-sm border border-slate-200">
-<header class="mb-6 border-b border-slate-200 pb-4">
-<div class="fast-badge mb-2">⚡ מצב לימוד מהיר • חלק 5.3</div>
-<h2 class="text-3xl font-black text-slate-900 tracking-tight mb-2">5.3 ה-Web ופרוטוקול HTTP: גרסאות, זמני טעינה (RTT), קאש ועוגיות</h2>
-<p class="text-slate-600 text-sm md:text-base leading-relaxed">
-דף אינטרנט מורכב מקובץ בסיס (<code>Base HTML</code>) המכיל הפניות (<code>URLs</code>) לאובייקטים נוספים (תמונות, סקריפטים). <b>האובייקטים אינם חייבים לשבת באותו שרת</b> שבו יושב ה-Base HTML (הם יכולים לשבת בשרתי פרסומות או CDN).
-</p>
-</header>
-<!-- 5.3.1 -->
-<div class="fast-card">
-<h3 class="text-lg font-bold text-blue-900 mb-3 border-b border-slate-200 pb-2">5.3.1 מבנה הודעות HTTP, מתודות וקודי סטטוס</h3>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
-<div class="fast-subcard">
+<div class="basic-mode-view space-y-5">
+<div class="basic-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="basic-badge">📖 לימוד בסיסי • יחידה 5.3</span>
+<div class="flex items-center gap-2">
+<button class="basic-top-btn" onclick="showTab('tab-summary')" type="button">לתרגול מסכם 🎓</button>
+<button class="basic-top-btn" onclick="showQuestions('tab-http', '5.3 פרוטוקול HTTP, קאש ועוגיות', event)" type="button">❓ שאלות תרגול</button>
+</div>
+</div>
+<h2 class="text-2xl md:text-3xl font-black text-slate-900">5.3 ה-Web ופרוטוקול HTTP: גרסאות (1.0–3), זמני טעינה (RTT), קאש ועוגיות</h2>
+<p class="text-xs md:text-sm text-slate-600 mt-1">דף אינטרנט מורכב מקובץ בסיס (<code>Base HTML</code>) המכיל הפניות (<code>URLs</code>) לאובייקטים נוספים. <b>האובייקטים אינם חייבים לשבת באותו שרת</b> שבו יושב ה-Base HTML (הם יכולים לשבת בשרתי פרסומות חיצוניים או CDN).</p>
+</div>
+
+<!-- 5.3.1 Basic Card -->
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">1. מבנה הודעות HTTP, מתודות, קודי סטטוס והתפתחות הגרסאות (1.0, 1.1, 2, 3)</h3>
+<p class="text-xs text-slate-600">המעבר מקשר נפרד לכל אובייקט (1.0) לקשר קבוע (1.1), ריבוב מסגרות וזרמים (2), ו-QUIC מעל UDP ללא HOL Blocking (3).</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-5-3-http-evol', '🚀 סימולציה 5.3א: HTTP/1.0 מול 1.1 מול HTTP/2 מול HTTP/3')" title="פתיחת מעבדה 5.3א: השוואת גרסאות HTTP ו-HOL Blocking" type="button"><span class="text-xl">🚀</span></button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+<div class="basic-subcard">
 <strong class="text-blue-900 block mb-1">📤 הודעת בקשה (Request) ומתודות</strong>
-<p class="text-slate-600 mb-2">נפתחת בשורת בקשה: <code>Method Path Version</code> (למשל <code>GET /index.html HTTP/1.1</code>), ואחריה כותרות (<code>Host</code>, <code>User-Agent</code>, <code>If-Modified-Since</code>, <code>Cookie</code>).</p>
-<ul class="list-disc list-inside space-y-0.5 text-slate-700">
-<li><b><code>GET</code>:</b> בקשת אובייקט מהשרת.</li>
-<li><b><code>POST</code>:</b> שליחת מידע מהלקוח לשרת (כגון תוכן טופס).</li>
-<li><b><code>HEAD</code>:</b> כמו <code>GET</code>, אך השרת מחזיר <b>רק את הכותרות ללא האובייקט</b>.</li>
-<li><b><code>PUT</code> / <code>DELETE</code>:</b> העלאת אובייקט לשרת / מחיקת אובייקט מהשרת.</li>
-</ul>
+<p class="text-slate-700 leading-relaxed">שורת בקשה: <code>Method Path Version</code> (כגון <code>GET /index.html HTTP/1.1</code>) ואחריה כותרות (<code>Host, User-Agent, If-Modified-Since, Cookie</code>).<br/>• <b>מתודות:</b> <code>GET</code> (שליפת אובייקט), <code>POST</code> (שליחת נתוני טופס בגוף הבקשה), <code>HEAD</code> (מחזיר <b>רק כותרות ללא גוף האובייקט</b> לבדיקה), <code>PUT</code> / <code>DELETE</code>.</p>
 </div>
-<div class="fast-subcard">
-<strong class="text-blue-900 block mb-1">📥 הודעת תשובה (Response) וקודי סטטוס</strong>
-<p class="text-slate-600 mb-2">נפתחת בשורת סטטוס (למשל <code>HTTP/1.1 200 OK</code>), אחריה כותרות (<code>Location</code>, <code>Expires</code>, <code>Last-Modified</code>, <code>Set-Cookie</code>), שורה ריקה, והאובייקט עצמו.</p>
-<ul class="list-disc list-inside space-y-0.5 text-slate-700">
-<li><b><code>1xx</code> (מידע):</b> הבקשה התקבלה והטיפול נמשך (<code>100 Continue</code>).</li>
-<li><b><code>2xx</code> (הצלחה):</b> הבקשה הצליחה (<code>200 OK</code>).</li>
-<li><b><code>3xx</code> (הפניה):</b> <code>301 Moved Permanently</code>, <code>302 Found</code>, <code>304 Not Modified</code>.</li>
-<li><b><code>4xx</code> (שגיאת לקוח):</b> <code>404 Not Found</code>.</li>
-<li><b><code>5xx</code> (שגיאת שרת):</b> <code>500 Internal Server Error</code>.</li>
-</ul>
+<div class="basic-subcard">
+<strong class="text-blue-900 block mb-1">📥 הודעת תגובה (Response) וקודי סטטוס</strong>
+<p class="text-slate-700 leading-relaxed">שורת סטטוס (<code>HTTP/1.1 200 OK</code>), כותרות (<code>Location, Expires, Last-Modified, Set-Cookie</code>), שורה ריקה וגוף האובייקט.<br/>• <b>קודים:</b> <code>1xx</code> מידע (<code>100 Continue</code>) • <code>2xx</code> הצלחה (<code>200 OK</code>) • <code>3xx</code> הפניה/מטמון (<code>301 Moved Permanently, 302 Found, 304 Not Modified</code>) • <code>4xx</code> שגיאת לקוח (<code>404 Not Found</code>) • <code>5xx</code> שגיאת שרת (<code>500</code>).</p>
 </div>
 </div>
-</div>
-<!-- 5.3.2 -->
-<div class="fast-card">
-<h3 class="text-lg font-bold text-blue-900 mb-3 border-b border-slate-200 pb-2">5.3.2 השוואת גרסאות HTTP (1.0, 1.1, 2, 3) ובעיית ה-HOL Blocking</h3>
-<div class="overflow-x-auto rounded-xl border border-slate-200 mb-3">
+<div class="overflow-x-auto rounded-xl border border-slate-200">
 <table class="fast-table">
 <thead>
 <tr>
 <th>גרסה</th>
-<th>שימוש בקשרי התובלה</th>
-<th>מנגנון עיקרי ומה נשאר בעייתי (HOL Blocking)</th>
+<th>ניהול קשרי התובלה</th>
+<th>חידושים מרכזיים ובעיית ה-HOL (Head-of-Line) Blocking</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="font-bold text-blue-900">HTTP/1.0<br/><span class="text-xs font-normal">(Non-Persistent)</span></td>
 <td>קשר TCP נפרד לכל אובייקט (נסגר מיד אחרי התשובה).</td>
-<td>עלות של $2\cdot	ext{RTT}$ לכל אובייקט ($1	ext{ RTT}$ לחיצת יד + $1	ext{ RTT}$ בקשה/תשובה), תקורת חוצצים בשרת ו-Slow Start מחדש בכל קשר.</td>
+<td>עלות של $2\text{ RTT}$ לכל אובייקט ($1\text{ RTT}$ לחיצת יד + $1\text{ RTT}$ בקשה/תשובה), תקורת חוצצים בשרת ו-Slow Start מחדש בכל קשר.</td>
 </tr>
 <tr>
 <td class="font-bold text-blue-900">HTTP/1.1<br/><span class="text-xs font-normal">(Persistent)</span></td>
-<td>קשר TCP קבוע יחיד לכל האובייקטים מאותו שרת (עד סרק או <code>Connection: close</code>).</td>
-<td>תומך ב-<b>Pipelining</b> (שליחת בקשות ברצף), אך סובל מ-<b>HOL Blocking ברמת האפליקציה</b>: השרת חייב להחזיר תשובות בסדר הבקשות, ולכן אובייקט כבד תוקע אובייקטים קלים אחריו.</td>
+<td>קשר TCP קבוע יחיד לכל האובייקטים מאותו שרת.</td>
+<td>תומך ב-<b>Pipelining</b>, אך סובל מ-<b>HOL Blocking ברמת האפליקציה</b>: השרת מחזיר תשובות בסדר הבקשות, ולכן אובייקט כבד תוקע אובייקטים קלים אחריו.</td>
 </tr>
 <tr>
 <td class="font-bold text-blue-900">HTTP/2</td>
-<td>קשר TCP יחיד עם חלוקה ל<b>זרמים (Streams)</b> ו<b>מסגרות (Frames)</b> המשולבות זו בזו (Multiplexing).</td>
-<td>פותר HOL ברמת האפליקציה + מוסיף תעדוף זרמים, דחיסת כותרות <b>HPACK</b> ו-<b>Server Push</b>.<br/><span class="text-rose-700 font-bold">הבעיה שנותרה – HOL ברמת TCP:</span> TCP מוסר בתים רק לפי הסדר; אובדן סגמנט TCP אחד עוצר את מסירת <b>כל הזרמים</b> (גם זרמים שהמידע שלהם כבר הגיע!).</td>
+<td>קשר TCP יחיד עם חלוקה ל<b>זרמים (Streams)</b> ו<b>מסגרות (Frames)</b>.</td>
+<td>פותר HOL ברמת האפליקציה + תעדוף זרמים, דחיסת כותרות <b>HPACK</b> ו-<b>Server Push</b>.<br/><span class="text-rose-700 font-bold">הבעיה שנותרה – HOL ברמת TCP:</span> אובדן סגמנט TCP אחד עוצר את מסירת <b>כל הזרמים</b> לאפליקציה!</td>
 </tr>
 <tr>
 <td class="font-bold text-blue-900">HTTP/3<br/><span class="text-xs font-normal">(מעל QUIC ב-UDP)</span></td>
-<td>רץ מעל <b>QUIC</b> (מעל UDP). הזרמים מנוהלים בשכבת התעבורה (QUIC).</td>
-<td>1. <b>ללא HOL Blocking:</b> אובדן מנה עוצר רק את הזרם שלה.<br/>2. <b>הקמת קשר מהירה:</b> לחיצת יד משולבת עם הצפנת TLS ב-$1	ext{ RTT}$ (ו-$0	ext{ RTT}$ בחיבור חוזר).<br/>3. <b>Connection Migration:</b> זיהוי קשר לפי <code>Connection ID</code> – שורד החלפת IP במעבר מ-Wi-Fi לסלולר.</td>
+<td>רץ מעל <b>QUIC</b> (מעל UDP). זרמים עצמאיים בשכבת התעבורה.</td>
+<td>1. <b>ללא HOL Blocking:</b> אובדן מנה עוצר רק את הזרם שלה.<br/>2. <b>לחיצת יד QUIC+TLS משולבת ב-$1\text{ RTT}$</b> (ו-$0\text{ RTT}$ בחיבור חוזר).<br/>3. <b>Connection Migration:</b> זיהוי לפי <code>Connection ID</code> השורד החלפת IP (מעבר מ-Wi-Fi לסלולר).</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="fast-callout-blue text-xs md:text-sm">
-<strong>💡 למה לא פשוט לתקן את TCP במקום לבנות את QUIC מעל UDP?</strong>
-TCP ממומש בליבת מערכת ההפעלה (Kernel) של כל מחשב, וציוד ביניים ברשת (חומות אש, NAT) בודק כותרות TCP וחוסם שינויים לא מוכרים. UDP הוא פרוטוקול "ריק" שכבר נתמך בכל מקום, ולכן QUIC נבנה מעליו בתוך האפליקציה (הדפדפן) וניתן לעדכון בקלות.
+<div class="basic-callout">
+<strong>💡 למה לא לשדרג את TCP במקום לבנות את QUIC מעל UDP?</strong>
+TCP ממומש בליבת מערכת ההפעלה (Kernel) של כל המחשבים, וציוד ביניים ברשת (חומות אש, NAT) חוסם שינויים לא מוכרים בכותרת TCP (קיפאון פרוטוקולי). UDP כבר עובר בכל מקום, ולכן QUIC נבנה מעליו במרחב המשתמש (בתוך הדפדפן) ומתעדכן בקלות.
 </div>
 </div>
-<!-- 5.3.3 -->
-<div class="fast-card">
-<h3 class="text-lg font-bold text-blue-900 mb-3 border-b border-slate-200 pb-2">5.3.3 טבלת נוסחאות זמני טעינה (RTT) של קובץ בסיס + $N$ אובייקטים מאותו שרת</h3>
-<p class="text-xs text-slate-600 mb-2">
-<b>כלל ברזל:</b> קובץ הבסיס (Base HTML) תמיד מגיע ראשון ולוקח $2\cdot	ext{RTT}$ (ב-TCP רגיל), כי רק מתוכו הדפדפן מגלה אילו $N$ אובייקטים עליו לבקש. (אם נתונים גודל אובייקט וקצב שידור, מוסיפים את זמן השידור $L/R$; אובייקט בשרת אחר דורש קשר חדש).
-</p>
+
+<!-- 5.3.2 Basic Card -->
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">2. נוסחאות זמני טעינה (RTT), ריבוי שרתים, ספירת סגמנטי <code>SYN=1</code> ו-Slow Start</h3>
+<p class="text-xs text-slate-600">קובץ ה-Base HTML תמיד יורד ראשון ($2\text{ RTT}$ ב-TCP רגיל), ורק מתוכו הדפדפן מגלה את $N$ האובייקטים המקושרים.</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-5-3-rtt-calc', '⏱️ סימולציה 5.3ב: מחשבון זמני טעינה (RTT אינטראקטיבי)')" title="פתיחת מעבדה 5.3ב: מחשבון זמני טעינה RTT" type="button"><span class="text-xl">⏱️</span></button>
+</div>
 <div class="overflow-x-auto rounded-xl border border-slate-200">
 <table class="fast-table">
 <thead>
 <tr>
-<th>שיטת העבודה / גרסת HTTP</th>
-<th>נוסחת זמן הטעינה</th>
-<th>הסבר קצר</th>
+<th>שיטת העבודה / גרסת HTTP (עבור Base HTML + $N$ אובייקטים באותו שרת)</th>
+<th>נוסחת זמן הטעינה ב-RTT</th>
+<th>הסבר קצר ומספר קשרי ה-TCP</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="font-bold">HTTP/1.0 (קשר אחד בכל פעם)</td>
-<td class="font-mono font-bold text-blue-900">(2 · RTT) + (N · 2 · RTT)</td>
-<td>$2	ext{ RTT}$ לקובץ הבסיס + $2	ext{ RTT}$ לכל אחד מ-$N$ האובייקטים ($N+1$ קשרי TCP).</td>
+<td class="font-bold">HTTP/1.0 סדרתי (קשר אחד בכל פעם)</td>
+<td class="font-mono font-bold text-blue-900">2(N + 1) RTT</td>
+<td>$2\text{ RTT}$ לקובץ הבסיס + $2\text{ RTT}$ לכל אחד מ-$N$ האובייקטים ($N+1$ קשרי TCP).</td>
 </tr>
 <tr>
-<td class="font-bold">HTTP/1.0 עם $k$ קשרים מקבילים</td>
-<td class="font-mono font-bold text-blue-900">(2 · RTT) + (⌈N / k⌉ · 2 · RTT)</td>
-<td>$2	ext{ RTT}$ לקובץ הבסיס, ובכל סבב של $2	ext{ RTT}$ יורדים $k$ אובייקטים במקביל.</td>
+<td class="font-bold">HTTP/1.0 עם $k$ חיבורי TCP מקבילים</td>
+<td class="font-mono font-bold text-blue-900">(2 + 2·⌈N / k⌉) RTT</td>
+<td>$2\text{ RTT}$ לקובץ הבסיס, ואז בכל סבב של $2\text{ RTT}$ יורדים $k$ אובייקטים במקביל.</td>
 </tr>
 <tr>
-<td class="font-bold">HTTP/1.1 בלי Pipelining</td>
-<td class="font-mono font-bold text-blue-900">(2 · RTT) + (N · RTT)</td>
-<td>$2	ext{ RTT}$ לקובץ הבסיס + $	ext{RTT}$ אחד לכל אובייקט על הקשר שכבר פתוח.</td>
+<td class="font-bold">HTTP/1.1 Persistent ללא Pipelining</td>
+<td class="font-mono font-bold text-blue-900">(N + 2) RTT</td>
+<td>$2\text{ RTT}$ לקובץ הבסיס + $1\text{ RTT}$ לכל אובייקט על הקשר שכבר פתוח (קשר TCP יחיד).</td>
 </tr>
 <tr>
 <td class="font-bold">HTTP/1.1 עם Pipelining / HTTP/2 ללא TLS</td>
-<td class="font-mono font-bold text-blue-900">2 · RTT + RTT = 3 · RTT</td>
-<td>$2	ext{ RTT}$ לקובץ הבסיס, ואז כל הבקשות נשלחות יחד והתשובות חוזרות תוך $	ext{RTT}$ אחד.</td>
+<td class="font-mono font-bold text-blue-900">3 RTT</td>
+<td>$2\text{ RTT}$ לקובץ הבסיס + $1\text{ RTT}$ לכל $N$ הבקשות הנשלחות יחד בצינור.</td>
 </tr>
 <tr>
-<td class="font-bold">HTTP/2 כולל הצפנה (TLS 1.3)</td>
-<td class="font-mono font-bold text-blue-900">3 · RTT + RTT = 4 · RTT</td>
-<td>לחיצת יד TCP ($1$) + לחיצת יד TLS ($1$) + קובץ בסיס ($1$) + כל האובייקטים ($1$).</td>
+<td class="font-bold">HTTP/2 כולל הצפנת TLS 1.3</td>
+<td class="font-mono font-bold text-blue-900">4 RTT</td>
+<td>$1\text{ RTT}$ (TCP) + $1\text{ RTT}$ (TLS) + $1\text{ RTT}$ (Base HTML) + $1\text{ RTT}$ ($N$ האובייקטים).</td>
 </tr>
 <tr>
-<td class="font-bold">HTTP/3 (הצפנה מובנית ב-QUIC)</td>
-<td class="font-mono font-bold text-blue-900">2 · RTT + RTT = 3 · RTT</td>
-<td>לחיצת יד QUIC+TLS משולבת ($1	ext{ RTT}$) + קובץ בסיס ($1$) + כל האובייקטים ($1$).</td>
-</tr>
-<tr>
-<td class="font-bold">HTTP/3 בחיבור חוזר (0-RTT)</td>
-<td class="font-mono font-bold text-blue-900">RTT + RTT = 2 · RTT</td>
-<td>בקשת קובץ הבסיס יוצאת כבר בהודעה הראשונה ($1	ext{ RTT}$) + כל האובייקטים ($1	ext{ RTT}$).</td>
+<td class="font-bold">HTTP/3 (מעל QUIC עם הצפנה מובנית)</td>
+<td class="font-mono font-bold text-blue-900">3 RTT (ו-2 RTT ב-0-RTT)</td>
+<td>$1\text{ RTT}$ (לחיצת יד QUIC+TLS משולבת) + $1\text{ RTT}$ (בסיס) + $1\text{ RTT}$ (אובייקטים).</td>
 </tr>
 </tbody>
 </table>
 </div>
+<div class="basic-callout-warn">
+<strong>⚠️ שתי שאלות חישוב נפוצות במבחן (ריבוי שרתים + Slow Start):</strong><br/>
+1. <b>אובייקטים המפוצלים בין שרת $B$ לשרת $C$:</b> בדף עם Base HTML + 2 תמונות בשרת $B$ ועוד 2 תמונות בשרת $C$ ($5$ אובייקטים): ב-<b>Non-Persistent</b> ייפתחו <b>$5$ קשרי TCP</b>; ב-<b>Persistent</b> ייפתחו <b>$2$ קשרי TCP</b> (אחד ל-$B$ ואחד ל-$C$). מאחר שבכל לחיצת יד משולשת שני הסגמנטים הראשונים (<code>SYN</code> ו-<code>SYN+ACK</code>) מדליקים <code>SYN=1</code>, ב-2 קשרי TCP נשלחים $2 \times 2 = \mathbf{4\text{ סגמנטים עם } SYN=1}$!<br/>
+2. <b>הורדת קובץ בן $M$ סגמנטים ב-Slow Start (מ-$cwnd=1\text{ MSS}$):</b> ב-$r$ סבבי RTT עוברים עד $2^r - 1$ סגמנטים (למשל קובץ של $7\text{ MSS}$ דורש $1\text{ RTT}$ ללחיצת היד ועוד $3\text{ RTT}$ להורדת $1+2+4=7$ הסגמנטים = $4\text{ RTT}$).
 </div>
-<!-- 5.3.4 -->
-<div class="fast-card mb-0">
-<h3 class="text-lg font-bold text-blue-900 mb-3 border-b border-slate-200 pb-2">5.3.4 מטמון (Cache / Conditional GET) ועוגיות (Cookies)</h3>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
-<div class="fast-subcard space-y-1.5">
-<strong class="text-blue-900 block">💾 קאש (Browser Cache &amp; Web Proxy)</strong>
-<p class="text-slate-700 leading-relaxed">
-• <b>Conditional GET בדפדפן:</b> כשלדפדפן יש עותק שמור בקאש, הוא מצרף לבקשה את הכותרת <code>If-Modified-Since</code> עם תאריך העותק. אם האובייקט לא השתנה, השרת עונה <b><code>304 Not Modified</code></b> (ללא גוף האובייקט – חוסך רוחב פס אך עדיין לוקח $1	ext{ RTT}$). אם השתנה – מחזיר <code>200 OK</code> עם הקובץ.<br/>
-• <b>Web Cache (Proxy):</b> שרת ביניים ארגוני השומר עותקים עבור כלל משתמשי הארגון (Cache Hit מול Cache Miss שפונה כלקוח לשרת המקור) – מקצר זמן תגובה וחוסך תעבורה בקו החיצוני.<br/>
-• <b>זיהוי מתוך הודעת בקשה:</b> הכותרת <code>If-Modified-Since</code> מופיעה בבקשה <b>רק</b> כאשר ללקוח יש עותק בקאש!
-</p>
 </div>
-<div class="fast-subcard space-y-1.5">
-<strong class="text-blue-900 block">🍪 חוסר מצב (Stateless) ועוגיות (Cookies)</strong>
-<p class="text-slate-700 leading-relaxed">
-• <b>Stateless היא תכונה של השרת:</b> שרת ה-HTTP אינו זוכר בקשות קודמות של אותו לקוח (ללקוח עצמו כן יש מצב – הקאש וההיסטוריה שלו).<br/>
-• <b>מנגנון העוגייה:</b> בתשובה הראשונה השרת שולח כותרת <code>Set-Cookie: id</code>. הדפדפן שומר את המזהה ומצרף אותו בכותרת <code>Cookie: id</code> בכל בקשה הבאה לאתר.<br/>
-• <b>עוגיות צד-שלישי:</b> שרת פרסומות שמוטמע במספר אתרים משלב <code>Cookie</code> קבוע עם כותרת <code>Referer</code> (כתובת האתר המפנה) למעקב אחר היסטוריית הגלישה.
-</p>
+
+<!-- 5.3.3 Basic Card -->
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">3. מטמון (Browser Cache, Web Proxy &amp; Conditional GET) ועוגיות (Cookies)</h3>
+<p class="text-xs text-slate-600">חיסכון ברוחב פס באמצעות תגובת <code>304 Not Modified</code>, ושמירת מצב משתמש מעל פרוטוקול HTTP חסר-מצב (Stateless).</p>
 </div>
+<div class="flex items-center gap-2 shrink-0">
+<button class="sim-circle-btn" onclick="openSingleSim('sim-5-3-cache', '⚡ סימולציה 5.3ג: מטמון דפדפן, Web Proxy ו-Conditional GET')" title="פתיחת מעבדה 5.3ג: מטמון ו-Conditional GET" type="button"><span class="text-xl">⚡</span></button>
+<button class="sim-circle-btn" onclick="openSingleSim('sim-5-3-cookies', '🍪 סימולציה 5.3ד: מעבדת Cookies, סל קניות ומעקב צד-שלישי')" title="פתיחת מעבדה 5.3ד: מעבדת Cookies" type="button"><span class="text-xl">🍪</span></button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+<div class="basic-subcard space-y-1.5">
+<strong class="text-blue-900 block">💾 קאש, Web Proxy ו-Conditional GET</strong>
+<p class="text-slate-700 leading-relaxed">• <b>Conditional GET:</b> כשלדפדפן (או ל-Proxy) יש עותק שמור, הוא שולח בקשת <code>GET</code> עם הכותרת <code>If-Modified-Since: &lt;date&gt;</code>. אם האובייקט לא השתנה, השרת משיב <b><code>304 Not Modified</code></b> עם גוף ריק (חוסך רוחב פס אך גוזל $1\text{ RTT}$); אם השתנה – משיב <code>200 OK</code> עם הקובץ.<br/>• <b>Web Proxy:</b> שרת מטמון ארגוני החוסך תעבורה בקו החיצוני ומקצר זמני תגובה.<br/>• <b>זיהוי מבקשת HTTP:</b> הופעת <code>If-Modified-Since</code> בבקשה מוכיחה בוודאות שללקוח כבר יש עותק שמור ב-Cache!</p>
+</div>
+<div class="basic-subcard space-y-1.5">
+<strong class="text-blue-900 block">🍪 חוסר מצב (Stateless) ו-4 רכיבי ה-Cookies</strong>
+<p class="text-slate-700 leading-relaxed">• <b>HTTP הוא Stateless:</b> השרת אינו שומר מידע על בקשות קודמות של הלקוח (ללא עוגיות שתי בקשות מאותו לקוח אינן משויכות זו לזו).<br/>• <b>4 רכיבי Cookies:</b> (1) כותרת <code>Set-Cookie: id</code> בתגובת השרת הראשונה; (2) קובץ ה-Cookie השמור בדפדפן; (3) כותרת <code>Cookie: id</code> שהדפדפן מצרף בכל בקשה הבאה לאותו אתר; (4) מסד הנתונים בשרת המקשר את ה-<code>id</code> לסל הקניות.<br/>• <b>עוגיות צד-שלישי:</b> שרת פרסומות משלב <code>Cookie</code> עם כותרת <code>Referer</code> למעקב חוצה-אתרים.</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="fast-mode-view space-y-4">
+<div class="fast-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="fast-badge">⚡ לימוד מהיר • יחידה 5.3 (סקירה מרוכזת)</span>
+<div class="flex items-center gap-1.5 flex-wrap">
+<button class="fast-sim-btn" onclick="openSingleSim('sim-5-3-http-evol', '🚀 סימולציה 5.3א: גרסאות HTTP')" type="button">🚀 מעבדה 5.3א</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-5-3-rtt-calc', '⏱️ סימולציה 5.3ב: מחשבון RTT')" type="button">⏱️ מעבדה 5.3ב</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-5-3-cache', '⚡ סימולציה 5.3ג: קאש ו-304')" type="button">⚡ מעבדה 5.3ג</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-5-3-cookies', '🍪 סימולציה 5.3ד: Cookies')" type="button">🍪 מעבדה 5.3ד</button>
+<button class="fast-sim-btn" onclick="showQuestions('tab-http', '5.3 פרוטוקול HTTP, קאש ועוגיות', event)" type="button">❓ תרגול</button>
+</div>
+</div>
+<h2 class="text-xl md:text-2xl font-black text-slate-900">5.3 פרוטוקול HTTP: גרסאות (1.0–3), נוסחאות RTT, מטמון (Conditional GET) ועוגיות</h2>
+<p class="text-xs text-slate-600"><b>פרוטוקול HTTP:</b> פרוטוקול בקשה/תגובה חסר-מצב (Stateless) מעל TCP (בגרסאות 1.0–2) או מעל QUIC ב-UDP (בגרסה 3).</p>
+</div>
+<div class="fast-visual-strip">
+<div class="fast-strip-node"><b>1. HTTP/1.0 מול 1.1:</b> ב-1.0 קשר TCP לכל אובייקט ($2\text{ RTT}$); ב-1.1 קשר קבוע (Persistent) אך סובל מ-<b>HOL Blocking באפליקציה</b>.</div>
+<div class="fast-strip-node"><b>2. HTTP/2 מול HTTP/3:</b> ב-2 זרמים, מסגרות, HPACK ו-Server Push (נותר <b>HOL ברמת TCP</b>); ב-3 מעל <b>QUIC (UDP)</b> ללא HOL כלל + Connection ID.</div>
+<div class="fast-strip-node fast-strip-highlight"><b>3. נוסחאות RTT (HTML + $N$ תמונות) ★:</b> סדרתי 1.0: $2(N+1)$ | מקבילי ($k$): $2+2\lceil N/k\rceil$ | 1.1 רגיל: $N+2$ | Pipelining/HTTP3: $3\text{ RTT}$ | HTTP/2+TLS: $4\text{ RTT}$.</div>
+<div class="fast-strip-node"><b>4. קאש ו-Cookies:</b> קאש שולח <code>If-Modified-Since</code> ומקבל <code>304 Not Modified</code> (ללא גוף). עוגיות: שרת שולח <code>Set-Cookie</code> $\to$ לקוח מחזיר <code>Cookie</code>.</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+<div class="fast-card">
+<div class="fast-card-title">🌐 מיקום אובייקטים, ריבוי שרתים וספירת סגמנטי SYN</div>
+<p class="text-slate-700 leading-relaxed">• <b>תמונות בדף HTML אינן חייבות לשבת באותו שרת $B$:</b> ה-Base HTML מכיל כתובות URL שיכולות להצביע לשרתים חיצוניים (כגון שרת פרסומות $C$ או CDN).<br/>• <b>ספירת חיבורי TCP ו-<code>SYN=1</code>:</b> עבור HTML + 2 תמונות ב-$B$ ו-2 תמונות ב-$C$ ($5$ אובייקטים): ב-Non-Persistent נפתחים $5$ קשרי TCP; ב-Persistent נפתחים $2$ קשרי TCP (אחד ל-$B$ ואחד ל-$C$), שבהקמתם נשלחים $2\times 2 = \mathbf{4\text{ סגמנטים עם } SYN=1}$ (כי גם <code>SYN</code> וגם <code>SYN+ACK</code> מדליקים <code>SYN=1</code>!).<br/>• <b>Slow Start מ-$cwnd=1$:</b> ב-$r$ סבבי RTT עוברים עד $2^r - 1$ סגמנטים ($7$ סגמנטים = $3\text{ RTT}$).</p>
+</div>
+<div class="fast-card">
+<div class="fast-card-title">🔍 מתודות, קודי סטטוס ורמזים בהודעת הבקשה</div>
+<p class="text-slate-700 leading-relaxed">• <b>מתודות:</b> <code>GET</code> (שליפה), <code>HEAD</code> (כותרות בלבד ללא גוף), <code>POST</code> (שליחת טופס), <code>PUT</code>, <code>DELETE</code>.<br/>• <b>קודים:</b> <code>200 OK</code>, <code>301/302</code> (הפניה ל-<code>Location</code>), <code>304 Not Modified</code> (העותק בקאש עדכני), <code>404 Not Found</code>, <code>500 Server Error</code>.<br/>• <b>מה מסיקים מהודעת Request בודדת?</b> (1) גרסת ה-HTTP בשורה הראשונה; (2) אם מופיעה הכותרת <code>If-Modified-Since</code> – לדפדפן הלקוח כבר יש עותק שמור ב-Cache המקומי!</p>
 </div>
 </div>
 </div>
@@ -2448,6 +2774,14 @@ $$\text{RR} = (\text{Name}, \text{Value / Data}, \text{Type}, \text{Class}, \tex
 </tbody>
 </table>
 </div>
+<div class="p-4 rounded-2xl bg-sky-50 border-2 border-sky-300 text-xs md:text-sm text-slate-800 space-y-1.5 mb-6">
+<div class="font-black text-sky-950 text-sm">📌 דגשים קריטיים לטבלאות מטמון (Cache) ב-Local DNS וספירת סגמנטים:</div>
+<ul class="list-disc list-inside space-y-1 leading-relaxed">
+<li><b>המספר המינימלי והמקסימלי של סגמנטים ב-DNS:</b> כאשר המחשב פונה ל-Local DNS, המספר המינימלי של סגמנטים ברשת הוא <b>$2$ סגמנטים בלבד</b> (בקשה מהמחשב ל-Local DNS + תשובה מיידית מה-Local DNS למחשב), והוא מתקבל כאשר כתובת ה-IP המבוקשת כבר שמורה ב-Cache של ה-Local DNS (אם הכתובת שמורה במטמון הפנימי של המחשב עצמו – $0$ סגמנטים ברשת). כשהמטמון ריק לחלוטין יישלחו <b>$8$ סגמנטים</b> ($6$ אם ה-TLD במטמון, ו-$4$ אם ה-NS המוסמך במטמון).</li>
+<li><b>מלכודת רשומת <code>A</code> של דומיין אב לעומת <code>CNAME + A</code>:</b> נניח שהמחשב מבקש את <code>ftp.example.com</code> (או <code>shop.company.co.il</code>). אם במטמון ה-Local DNS שמורה רק רשומת <code>example.com | A | 93.178.220.7</code>, השרת המקומי <b>אינו יכול לנחש</b> שלתת-הדומיין <code>ftp.example.com</code> יש אותו IP, ו<b>אין לו רשומת <code>NS</code></b> של השרת המוסמך של <code>example.com</code> – ולכן יבצע חיפוש מלא (<b>$8$ סגמנטים</b>, או $6$ אם ה-TLD במטמון)! לעומת זאת, אם במטמון שמורה <b>גם</b> רשומת <code>ftp.example.com | CNAME | example.com</code>, השרת המקומי ממפה את הכינוי לשם הקנוני <code>example.com</code>, מוצא את רשומת ה-<code>A</code> שלו במטמון, ומשיב מיד ב-<b>$2$ סגמנטים בלבד</b>!</li>
+<li><b>שינוי כתובת IP ו-TTL:</b> שרתי DNS מוסמכים אינם דוחפים (Push) עדכונים לשרתים מקומיים; אם כתובת אתר משתנה, לקוחות ימשיכו לקבל מה-Local DNS את הכתובת הישנה עד שיפוג זמן ה-<code>TTL</code> שלה במטמון.</li>
+</ul>
+</div>
 <!-- Simulation Launcher 5.4B (RR & dig) -->
 <div class="concept-box relative p-6 rounded-2xl my-6 shadow-sm">
 <button class="sim-circle-btn absolute top-4 left-4 z-10" onclick="openSingleSim('sim-5-4-rr', '🗂️ סימולציה 5.4ג: מעבדת רשומות משאב (A, NS, CNAME, MX וכלי ה-dig')" title="פתיחת מעבדה חיה: 🗂️ סימולציה 5.4ג: מעבדת רשומות משאב וכלי ה-dig">
@@ -2483,22 +2817,33 @@ $$\text{RR} = (\text{Name}, \text{Value / Data}, \text{Type}, \text{Class}, \tex
 <span>⚡</span> הגשר הנרטיבי: מעבר למודל שרת–לקוח – כיצד מפיצים תוכן בקנה מידה עולמי?
 </h4>
 <p class="text-xs md:text-sm text-slate-700 leading-relaxed">
-עד כה עסקנו בשלושת עמודי התווך הקלאסיים של שכבת האפליקציה: דואר אלקטרוני, ה-Web ומערכת ה-DNS. כעת נעבור אל <b></b> ונראה כיצד מתגברים על צוואר הבקבוק של שרת יחיד באמצעות <b>רשתות כיסוי (Overlay Networks)</b>, <b>רשתות עמית-לעמית (P2P: Gnutella, DHT/Pastry ו-BitTorrent)</b> ו<b>רשתות הפצת תוכן (CDN)</b>.
+עד כה עסקנו בשלושת עמודי התווך הקלאסיים של שכבת האפליקציה: דואר אלקטרוני, ה-Web ומערכת ה-DNS. כעת נעבור אל <b>חלק 5.5</b> ונראה כיצד מתגברים על צוואר הבקבוק של שרת יחיד באמצעות <b>רשתות כיסוי (Overlay Networks)</b>, <b>רשתות עמית-לעמית (P2P: Gnutella, DHT/Pastry ו-BitTorrent)</b> ו<b>רשתות הפצת תוכן (CDN)</b>.
 </p>
 </div></div>
-<div class="fast-mode-view fast-wrapper w-full block bg-white px-6 md:px-10 pb-10 pt-7 rounded-2xl shadow-sm border border-slate-200">
-<header class="mb-6 border-b border-slate-200 pb-4">
-<div class="fast-badge mb-2">⚡ מצב לימוד מהיר • חלק 5.4</div>
-<h2 class="text-3xl font-black text-slate-900 tracking-tight mb-2">5.4 מערכת שמות המתחם (DNS): היררכיה, רשומות משאב וספירת סגמנטים</h2>
-<p class="text-slate-600 text-sm md:text-base leading-relaxed">
-DNS מתרגם שמות מתחם קריאים (<code>www.openu.ac.il</code>) לכתובות IP מספריות. הוא פועל בשכבת היישום מעל <b>UDP בפורט 53</b> ומשרת יישומים אחרים לפני הקמת הקשר.
-</p>
-</header>
-<!-- 5.4.1 -->
-<div class="fast-card">
-<h3 class="text-lg font-bold text-blue-900 mb-3 border-b border-slate-200 pb-2">5.4.1 מרחב השמות (Domain מול Zone) והיררכיית שרתי השמות</h3>
-<p class="text-xs md:text-sm text-slate-700 mb-3">
-מרחב השמות מאורגן כ<b>עץ היררכי</b> המעובד מימין לשמאל (שורש <code>.</code> ← סיומת TLD כגון <code>.com</code>/<code>.edu</code>/<code>.il</code> ← תחום כגון <code>openu.ac.il</code> ← הוסט). <b>Domain</b> הוא תת-עץ לוגי במרחב השמות, ואילו <b>Zone</b> הוא אזור ניהול מעשי המופעל על ידי שרת DNS מוסמך (ניתן להאציל תת-דומיין כגון <code>cs.princeton.edu</code> ל-Zone עצמאי משלו).
+<div class="basic-mode-view space-y-5">
+<div class="basic-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="basic-badge">📖 לימוד בסיסי • יחידה 5.4</span>
+<div class="flex items-center gap-2">
+<button class="basic-top-btn" onclick="showTab('tab-summary')" type="button">לתרגול מסכם 🎓</button>
+<button class="basic-top-btn" onclick="showQuestions('tab-dns', '5.4 מערכת שמות המתחם DNS', event)" type="button">❓ שאלות תרגול</button>
+</div>
+</div>
+<h2 class="text-2xl md:text-3xl font-black text-slate-900">5.4 מערכת שמות המתחם (DNS): היררכיה, רשומות משאב וספירת סגמנטים</h2>
+<p class="text-xs md:text-sm text-slate-600 mt-1">מערכת ה-DNS מתרגמת שמות מתחם קריאים (<code>www.openu.ac.il</code>) לכתובות IP מספריות. היא פועלת בשכבת האפליקציה מעל <b>UDP בפורט 53</b> (כדי לחסוך את ה-RTT של הקמת קשר TCP).</p>
+</div>
+
+<!-- 5.4.1 Basic Card -->
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">1. מרחב השמות ההיררכי (Domain מול Zone) וארבעת סוגי שרתי ה-DNS</h3>
+<p class="text-xs text-slate-600">עץ השמות המעובד מימין לשמאל, האצלת סמכויות לתתי-דומיינים, וחלוקת התפקידים בין Local, Root, TLD ו-Authoritative.</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-5-4-zones', '🌳 סימולציה 5.4א: עץ השמות, האצלת Subdomains והבחנה בין Domain ל-Zone')" title="פתיחת מעבדה 5.4א: עץ השמות ו-Domain מול Zone" type="button"><span class="text-xl">🌳</span></button>
+</div>
+<p class="text-xs md:text-sm text-slate-700 leading-relaxed">
+מרחב השמות מאורגן כ<b>עץ היררכי</b> המעובד מימין לשמאל (שורש <code>.</code> ← סיומת על TLD כגון <code>.com</code>/<code>.edu</code>/<code>.il</code> ← דומיין כגון <code>princeton.edu</code> ← הוסט). <b>Domain</b> הוא תת-עץ לוגי שלם במרחב השמות, ואילו <b>Zone</b> הוא אזור הניהול המעשי שבאחריות שרת DNS מוסמך יחיד (ניתן להאציל תת-דומיין כגון <code>cs.princeton.edu</code> ל-Zone עצמאי משלו).
 </p>
 <div class="overflow-x-auto rounded-xl border border-slate-200">
 <table class="fast-table">
@@ -2511,11 +2856,11 @@ DNS מתרגם שמות מתחם קריאים (<code>www.openu.ac.il</code>) ל�
 <tbody>
 <tr>
 <td class="font-bold text-blue-900">Local DNS Server</td>
-<td>השרת המקומי (של הארגון או ספק האינטרנט) שאליו ההוסט פונה <b>תמיד ראשון</b>. מבצע את החיפוש עבור ההוסט ומחזיק <b>מטמון (Cache)</b> של תשובות קודמות לפי ה-<code>TTL</code> שלהן.</td>
+<td>שרת השמות המקומי (של הארגון או ספק האינטרנט) שאליו מחשב הקצה פונה <b>תמיד ראשון</b>. מבצע את החיפוש עבור המחשב ומחזיק <b>מטמון (Cache)</b> של תשובות קודמות לפי זמן החיים (<code>TTL</code>) שלהן.</td>
 </tr>
 <tr>
 <td class="font-bold text-blue-900">Root Server</td>
-<td>שרתי השורש. מפנים לשרת ה-<b>TLD</b> המתאים לסיומת (אינם מכירים כתובות של אתרים בודדים).</td>
+<td>שרתי השורש. מפנים לשרת ה-<b>TLD</b> המתאים לסיומת (אינם מכירים כתובות של אתרים בודדים ופועלים איטרטיבית כדי לא לקרוס תחת עומס).</td>
 </tr>
 <tr>
 <td class="font-bold text-blue-900">TLD Server</td>
@@ -2523,18 +2868,22 @@ DNS מתרגם שמות מתחם קריאים (<code>www.openu.ac.il</code>) ל�
 </tr>
 <tr>
 <td class="font-bold text-blue-900">Authoritative Server</td>
-<td>השרת המוסמך של התחום – מחזיק את רשומות האמת של הדומיין, כולל כתובות ה-IP האמיתיות של המחשבים בו.</td>
+<td>השרת המוסמך של התחום – מחזיק את רשומות האמת של הדומיין, כולל כתובות ה-IP של המחשבים בו.</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<!-- 5.4.2 -->
-<div class="fast-card">
-<h3 class="text-lg font-bold text-blue-900 mb-3 border-b border-slate-200 pb-2">5.4.2 רשומות משאב (Resource Records – RR)</h3>
-<p class="text-xs md:text-sm text-slate-700 mb-3">
-לכל רשומה בשרתי השמות יש <b>חמישה שדות</b>: <code>(Name, Value, Type, Class=IN, TTL)</code>.
-</p>
+
+<!-- 5.4.2 Basic Card -->
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">2. רשומות משאב (Resource Records – RR): A, AAAA, NS, CNAME ו-MX</h3>
+<p class="text-xs text-slate-600">חמשת השדות של כל רשומה <code>(Name, Value, Type, Class=IN, TTL)</code> ותפקיד רשומת ה-A הנלווית (Glue Record).</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-5-4-rr', '🗂️ סימולציה 5.4ג: מעבדת רשומות משאב (A, NS, CNAME, MX וכלי ה-dig)')" title="פתיחת מעבדה 5.4ג: רשומות משאב ב-DNS" type="button"><span class="text-xl">🗂️</span></button>
+</div>
 <div class="overflow-x-auto rounded-xl border border-slate-200">
 <table class="fast-table">
 <thead>
@@ -2542,51 +2891,57 @@ DNS מתרגם שמות מתחם קריאים (<code>www.openu.ac.il</code>) ל�
 <th>Type</th>
 <th>Name</th>
 <th>Value (Data)</th>
-<th>משמעות ודגשים למבחן</th>
+<th>משמעות ודגשים קריטיים למבחן</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="font-bold font-mono text-blue-900">A / AAAA</td>
-<td>שם של מחשב (Host)</td>
+<td>שם של מחשב מארח (Host)</td>
 <td>כתובת IP (IPv4 ב-<code>A</code>, IPv6 ב-<code>AAAA</code>)</td>
-<td>התרגום הסופי משם מארח לכתובת IP.</td>
+<td>התרגום הישיר משם מחשב לכתובת ה-IP שלו.</td>
 </tr>
 <tr>
 <td class="font-bold font-mono text-blue-900">NS</td>
-<td>שם של תחום (Domain)</td>
-<td>שם שרת ה-DNS המוסמך של התחום</td>
-<td>"את התשובה לתחום זה תמצא אצל שרת השמות הזה". <b>חייבת להגיע יחד עם רשומת <code>A</code> (Glue Record)</b> שנותנת את ה-IP של אותו שרת שמות למניעת לולאה!</td>
+<td>שם של דומיין (Domain)</td>
+<td>שם שרת ה-DNS המוסמך של הדומיין</td>
+<td>מציינת מיהו שרת השמות המוסמך של הדומיין. <b>חייבת להגיע יחד עם רשומת <code>A</code> (Glue Record)</b> שנותנת את ה-IP של אותו שרת שמות!</td>
 </tr>
 <tr>
 <td class="font-bold font-mono text-blue-900">CNAME</td>
 <td>כינוי / שם נרדף (Alias)</td>
 <td>השם הקנוני האמיתי (Canonical Name)</td>
-<td>ממפה כינוי (למשל <code>ftp.example.com</code>) לשם האמיתי שלו (למשל <code>example.com</code>).</td>
+<td>ממפה שם כינוי (כמו <code>ftp.example.com</code>) לשם הקנוני האמיתי שלו (כמו <code>example.com</code>). אינה מחזירה IP ישירות אלא מחייבת מציאת ה-<code>A</code> של השם הקנוני.</td>
 </tr>
 <tr>
 <td class="font-bold font-mono text-blue-900">MX</td>
-<td>שם של תחום</td>
-<td>שם שרת הדואר של התחום</td>
-<td>מציינת לאן להעביר הודעות SMTP המיועדות לכתובות דואר בתחום זה.</td>
+<td>שם של דומיין</td>
+<td>שם שרת הדואר של הדומיין</td>
+<td>מציינת לאיזה שרת דואר יש להעביר הודעות SMTP המיועדות לכתובות בדומיין זה.</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<!-- 5.4.3 -->
-<div class="fast-card mb-0">
-<h3 class="text-lg font-bold text-blue-900 mb-3 border-b border-slate-200 pb-2">5.4.3 תהליך התרגום וספירת סגמנטים במבחן (רקורסיבי מול איטרטיבי + Cache)</h3>
-<!-- Basic Clean SVG Graphic Aid for DNS 8-Segment Flow -->
-<div class="bg-slate-50 border border-slate-200 rounded-xl p-3 mb-4">
-<svg class="w-full h-auto" viewbox="0 0 700 130">
+
+<!-- 5.4.3 Basic Card -->
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">3. תשאול רקורסיבי מול איטרטיבי, ספירת סגמנטים (2 עד 10) ומלכודת CNAME במטמון</h3>
+<p class="text-xs text-slate-600">כל פנייה ותשובה ב-DNS היא זוג של 2 סגמנטי UDP; כל שלב שנמצא במטמון המקומי חוסך 2 סגמנטים.</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-5-4-dns-res', '🛰️ סימולציה 5.4ב: מסלול שאילתת DNS - איטרטיבי/רקורסיבי, Cache ו-Subdomains')" title="פתיחת מעבדה 5.4ב: מסלול שאילתת DNS וספירת סגמנטים" type="button"><span class="text-xl">🛰️</span></button>
+</div>
+<div class="bg-slate-50 border border-slate-200 rounded-xl p-3">
+<svg class="w-full h-auto max-w-2xl mx-auto" viewbox="0 0 700 130">
 <rect fill="#ffffff" height="46" rx="8" stroke="#93c5fd" stroke-width="1.5" width="115" x="20" y="42"></rect>
 <text fill="#1e3a8a" font-size="11" font-weight="bold" text-anchor="middle" x="77" y="63">מחשב קצה (Host)</text>
 <text fill="#475569" font-size="9.5" text-anchor="middle" x="77" y="78">יוזם הבקשה</text>
 <path d="M 140 55 L 250 55" stroke="#2563eb" stroke-width="2"></path>
 <text fill="#1d4ed8" font-size="10" font-weight="bold" text-anchor="middle" x="195" y="48">1 (רקורסיבי) →</text>
 <path d="M 250 75 L 140 75" stroke="#059669" stroke-width="2"></path>
-<text fill="#047857" font-size="10" font-weight="bold" text-anchor="middle" x="195" y="90">← 8 ( או 2 מ-Cache)</text>
+<text fill="#047857" font-size="10" font-weight="bold" text-anchor="middle" x="195" y="90">← 8 (או 2 מ-Cache)</text>
 <rect fill="#eff6ff" height="62" rx="10" stroke="#3b82f6" stroke-width="2" width="145" x="255" y="34"></rect>
 <text fill="#1e3a8a" font-size="12" font-weight="bold" text-anchor="middle" x="327" y="58">Local DNS Server</text>
 <text fill="#1d4ed8" font-size="10" text-anchor="middle" x="327" y="75">מחזיק Cache (לפי TTL)</text>
@@ -2604,20 +2959,49 @@ DNS מתרגם שמות מתחם קריאים (<code>www.openu.ac.il</code>) ל�
 <text fill="#0f172a" font-size="10.5" font-weight="bold" text-anchor="middle" x="610" y="113">3. Authoritative DNS</text>
 </svg>
 </div>
-<ul class="list-disc list-inside space-y-1.5 text-xs md:text-sm text-slate-700 mb-3">
-<li><b>רקורסיבי מול איטרטיבי:</b> פניית ההוסט אל ה-<code>Local DNS</code> היא <b>רקורסיבית</b> (ההוסט מצפה לתשובה סופית). פניות ה-<code>Local DNS</code> אל שרתי ה-<code>Root</code>, ה-<code>TLD</code> וה-<code>Authoritative</code> הן <b>איטרטיביות</b> (כל שרת מחזיר הפניה לשרת הבא).</li>
-<li><b>ספירת סגמנטים (כל פנייה ותשובה = 2 סגמנטים):</b>
-<ul class="list-disc list-inside mr-5 mt-1 space-y-1 text-slate-700">
-<li><b>מטמון ריק לחלוטין:</b> $4$ פניות = <b>$8$ סגמנטים</b> (או $10$ סגמנטים אם יש תת-דומיין מואצל לשרת נפרד).</li>
-<li><b>כתובת ה-TLD שמורה במטמון המקומי:</b> נחסכת הפנייה ל-Root = <b>$6$ סגמנטים</b>.</li>
-<li><b>כתובת השרת המוסמך (<code>NS</code> + <code>A</code>) שמורה במטמון המקומי:</b> פונים ישירות למוסמך = <b>$4$ סגמנטים</b>.</li>
-<li><b>המספר המינימלי של סגמנטים ברשת – $2$ סגמנטים בלבד:</b> כאשר רשומת ה-<code>A</code> המבוקשת (או רשומת <code>CNAME</code> שלה + רשומת ה-<code>A</code> של השם הקנוני) כבר שמורה במטמון ה-<code>Local DNS</code>!</li>
+<ul class="list-disc list-inside space-y-1.5 text-xs md:text-sm text-slate-700 leading-relaxed">
+<li><b>רקורסיבי מול איטרטיבי:</b> פניית מחשב הקצה אל ה-<code>Local DNS</code> היא <b>רקורסיבית</b> (מצפה לתשובה סופית); פניות ה-<code>Local DNS</code> אל ה-<code>Root</code>, ה-<code>TLD</code> וה-<code>Authoritative</code> הן <b>איטרטיביות</b> (כל שרת מחזיר הפניה לשרת הבא).</li>
+<li><b>סולם ספירת הסגמנטים ב-DNS (לפי מצב המטמון ב-Local DNS):</b>
+<br/>• <b>המספר המינימלי ברשת = $2$ סגמנטים בלבד:</b> כאשר כתובת ה-IP (או <code>CNAME</code> + <code>A</code> של הקנוני) כבר שמורה ב-Cache של ה-Local DNS ($1$ בקשה מהמחשב + $1$ תשובה מה-Local DNS).
+<br/>• <b>כתובת השרת המוסמך (<code>NS + A</code>) במטמון:</b> $\mathbf{4\text{ סגמנטים}}$ (מחשב $\leftrightarrow$ מקומי + מקומי $\leftrightarrow$ מוסמך).
+<br/>• <b>כתובת ה-TLD במטמון:</b> $\mathbf{6\text{ סגמנטים}}$ (מדלגים על שרת ה-Root).
+<br/>• <b>מטמון ריק לחלוטין:</b> $\mathbf{8\text{ סגמנטים}}$ (או $\mathbf{10\text{ סגמנטים}}$ אם יש Subdomain מואצל כגון <code>penguins.cs.princeton.edu</code>).</li>
 </ul>
-</li>
-</ul>
-<div class="fast-callout-warn text-xs md:text-sm">
+<div class="basic-callout-warn">
 <strong>⚠️ מלכודת מבחן רשמי (חיפוש <code>ftp.example.com</code> מול טבלת מטמון ב-Local DNS):</strong>
-אם במטמון ה-Local DNS שמורה רק רשומת <code>example.com | A | 93.178.220.7</code>, היא <b>אינה</b> נותנת את ה-IP של תת-הדומיין <code>ftp.example.com</code> ו<b>אינה</b> רשומת <code>NS</code> של השרת המוסמך – לכן יישלחו <b>$8$ סגמנטים</b>! אך אם קיימת במטמון <b>גם</b> השורה <code>ftp.example.com | CNAME | example.com</code>, השרת המקומי מתרגם את הכינוי ל-<code>example.com</code>, שולף את ה-<code>A</code> שלו מהמטמון, ומשיב מיד ב-<b>$2$ סגמנטים בלבד</b>.
+אם במטמון ה-Local DNS שמורה רק רשומת <code>example.com | A | 93.178.220.7</code>, היא <b>אינה</b> נותנת את ה-IP של תת-הדומיין <code>ftp.example.com</code> ו<b>אינה</b> רשומת <code>NS</code> של השרת המוסמך – לכן יישלחו <b>$8$ סגמנטים</b> (או $6$ אם ה-TLD במטמון)! אך אם קיימת במטמון <b>גם</b> השורה <code>ftp.example.com | CNAME | example.com</code>, השרת המקומי מתרגם את הכינוי ל-<code>example.com</code>, שולף את ה-<code>A</code> שלו מהמטמון, ומשיב מיד ב-<b>$2$ סגמנטים בלבד</b>!
+</div>
+</div>
+</div>
+
+<div class="fast-mode-view space-y-4">
+<div class="fast-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="fast-badge">⚡ לימוד מהיר • יחידה 5.4 (סקירה מרוכזת)</span>
+<div class="flex items-center gap-1.5 flex-wrap">
+<button class="fast-sim-btn" onclick="openSingleSim('sim-5-4-zones', '🌳 סימולציה 5.4א: עץ השמות ו-Zone')" type="button">🌳 מעבדה 5.4א</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-5-4-dns-res', '🛰️ סימולציה 5.4ב: מסלול וספירת סגמנטים')" type="button">🛰️ מעבדה 5.4ב</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-5-4-rr', '🗂️ סימולציה 5.4ג: רשומות משאב')" type="button">🗂️ מעבדה 5.4ג</button>
+<button class="fast-sim-btn" onclick="showQuestions('tab-dns', '5.4 מערכת שמות המתחם DNS', event)" type="button">❓ תרגול</button>
+</div>
+</div>
+<h2 class="text-xl md:text-2xl font-black text-slate-900">5.4 מערכת שמות המתחם (DNS): היררכיית שרתים, רשומות משאב וספירת סגמנטים</h2>
+<p class="text-xs text-slate-600"><b>DNS (UDP פורט 53):</b> מתרגם שמות מתחם לכתובות IP. משתמש ב-UDP לחיסכון ב-$1\text{ RTT}$ של הקמת קשר (וב-TCP רק לתשובות $>512\text{B}$ או Zone Transfer).</p>
+</div>
+<div class="fast-visual-strip">
+<div class="fast-strip-node"><b>1. היררכיית השרתים:</b> הוסט $\xrightarrow{\text{רקורסיבי}}$ <code>Local DNS</code> $\xrightarrow{\text{איטרטיבי}}$ <code>Root</code> $\to$ <code>TLD (.com/.il)</code> $\to$ <code>Authoritative</code>.</div>
+<div class="fast-strip-node"><b>2. 4 רשומות המשאב:</b> <code>A/AAAA</code> (שם $\to$ IP) • <code>NS</code> (דומיין $\to$ שרת שמות מוסמך + Glue <code>A</code>) • <code>CNAME</code> (כינוי $\to$ שם קנוני) • <code>MX</code> (שרת דואר).</div>
+<div class="fast-strip-node fast-strip-highlight"><b>3. סולם הסגמנטים ב-DNS ★:</b> מינימום ברשת (ב-Cache המקומי) = <b>$2$</b> | מוסמך ב-Cache = <b>$4$</b> | TLD ב-Cache = <b>$6$</b> | מטמון ריק = <b>$8$</b> (עם תת-דומיין מואצל = <b>$10$</b>).</div>
+<div class="fast-strip-node"><b>4. מלכודת CNAME במבחן ★:</b> רשומת <code>A</code> של <code>example.com</code> לבדה אינה פותרת את <code>ftp.example.com</code> ($8$ סגמנטים); צירוף <code>CNAME + A</code> במטמון פותר ב-<b>$2$ סגמנטים</b>!</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+<div class="fast-card">
+<div class="fast-card-title">🌳 Domain מול Zone ומדוע שרת ה-Root פועל איטרטיבית</div>
+<p class="text-slate-700 leading-relaxed">• <b>Domain מול Zone:</b> ה-Domain הוא תת-העץ הלוגי כולו; ה-Zone הוא החלק המנוהל בפועל בשרת מוסמך יחיד (לפני האצלת תת-דומיינים).<br/>• <b>למה Root עונה איטרטיבית?</b> כדי ששרתי השורש לא יצטרכו לשמור מצב ולבצע שאילתות המשך עבור מיליארדי בקשות בעולם.<br/>• <b>למה <code>NS</code> חייבת רשומת <code>A</code> נלווית (Glue)?</b> כי <code>NS</code> מחזירה שם שרת (למשל <code>dns.openu.ac.il</code>), וללא ה-IP שלו לא ניתן לפנות אליו!</p>
+</div>
+<div class="fast-card">
+<div class="fast-card-title">⏱️ מטמון (Cache), שדה ה-TTL ועדכון כתובות</div>
+<p class="text-slate-700 leading-relaxed">• <b>5 שדות רשומת משאב (RR):</b> <code>(Name, Value, Type, Class=IN, TTL)</code>.<br/>• <b>היעדר דחיפת עדכונים ב-DNS:</b> אם כתובת ה-IP של אתר משתנה בשרת המוסמך, שרתי Local DNS בעולם ממשיכים להחזיר ללקוחות את הכתובת הישנה מהמטמון שלהם עד שפג זמן ה-<code>TTL</code> של הרשומה!</p>
 </div>
 </div>
 </div>
@@ -2817,52 +3201,106 @@ DNS מתרגם שמות מתחם קריאים (<code>www.openu.ac.il</code>) ל�
 </p>
 </div>
 </div></div>
-<div class="fast-mode-view fast-wrapper w-full block bg-white px-6 md:px-10 pb-10 pt-7 rounded-2xl shadow-sm border border-slate-200">
-<header class="mb-6 border-b border-slate-200 pb-4">
-<div class="fast-badge mb-2">⚡ מצב לימוד מהיר • חלק 5.5</div>
-<h2 class="text-3xl font-black text-slate-900 tracking-tight mb-2">5.5 רשתות הפצת תוכן (CDN), רשתות P2P ורשתות כיסוי (Overlays)</h2>
-<p class="text-slate-600 text-sm md:text-base leading-relaxed">
-מנגנונים להפצת תוכן בקנה מידה גדול, מניעת צוואר בקבוק בשרת מקור יחיד, ופריסת שירותים וירטואליים מעל תשתית ה-IP.
-</p>
-</header>
-<!-- 5.5.1 CDN -->
+<div class="basic-mode-view space-y-5">
+<div class="basic-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="basic-badge">📖 לימוד בסיסי • יחידה 5.5</span>
+<div class="flex items-center gap-2">
+<button class="basic-top-btn" onclick="showTab('tab-summary')" type="button">לתרגול מסכם 🎓</button>
+<button class="basic-top-btn" onclick="showQuestions('tab-p2p', '5.5 רשתות כיסוי, P2P ו-CDN', event)" type="button">❓ שאלות תרגול</button>
+</div>
+</div>
+<h2 class="text-2xl md:text-3xl font-black text-slate-900">5.5 רשתות כיסוי (Overlays), רשתות P2P (Gnutella, DHT, BitTorrent) ו-CDN</h2>
+<p class="text-xs md:text-sm text-slate-600 mt-1">מנגנונים להפצת תוכן בקנה מידה גדול, בניית טופולוגיות וירטואליות מעל ה-IP, ומניעת צוואר בקבוק בשרת מקור יחיד.</p>
+</div>
+
+<!-- 5.5.1 Basic Card -->
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">1. רשתות כיסוי (Overlay Networks) וחיפוש ב-P2P: Gnutella מול DHT / Pastry</h3>
+<p class="text-xs text-slate-600">מינהור (Tunneling) מעל תשתית ה-IP, והשוואה בין הצפת שאילתות לא-מובנית לבין מעגל גיבוב עקבי מובנה ב-$O(\log N)$.</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-5-5-dht', '⭕ סימולציה 5.5א: מעגל הגיבוב העקבי (DHT / Pastry מול Gnutella)')" title="פתיחת מעבדה 5.5א: מעגל הגיבוב העקבי DHT מול Gnutella" type="button"><span class="text-xl">⭕</span></button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+<div class="basic-subcard space-y-1.5">
+<strong class="text-blue-900 block">🌐 רשתות כיסוי (Overlay Networks)</strong>
+<p class="text-slate-700 leading-relaxed">גרף וירטואלי של צמתים וקישורים לוגיים (<b>Tunnels</b>) מעל רשת ה-IP (Underlay).<br/>• <b>דוגמאות:</b> (1) <b>MBone / End-System Multicast</b> – עץ הפצה קבוצתי בין מחשבי קצה; (2) <b>6-BONE</b> – חיבור איי IPv6 במנהרות מעל IPv4; (3) <b>RON (Resilient Overlay Networks)</b> – מדידת קישורים ועקיפת תקלות או מסלולי BGP איטיים דרך צומת ביניים.</p>
+</div>
+<div class="basic-subcard space-y-1.5">
+<strong class="text-blue-900 block">🔍 P2P לא-מובנה (Gnutella) מול מובנה (DHT / Pastry)</strong>
+<p class="text-slate-700 leading-relaxed">• <b>Gnutella (Unstructured):</b> הצפת הודעות <code>QUERY</code> לכל השכנים עם <code>TTL</code>; תקורת הודעות עצומה וללא הבטחה למציאת אובייקט נדיר.<br/>• <b>DHT / Pastry (Structured):</b> ממפה צמתים ואובייקטים למעגל של $128$ ביט ב<b>גיבוב עקבי (Consistent Hashing)</b>; מנתב לפי התאמת קידומת ארוכה יותר בכל צעד ב-$\mathbf{O(\log N)}$ קפיצות ומבטיח מציאה!</p>
+</div>
+</div>
+</div>
+
+<!-- 5.5.2 Basic Card -->
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">2. שיתוף קבצים בנחיל BitTorrent ומנגנון החניקה (Choking / Tit-for-Tat)</h3>
+<p class="text-xs text-slate-600">חלוקת קובץ לחתיכות (Pieces), תפקיד ה-Tracker, ותמרוץ שיתוף פעולה למניעת טפילות (Free-Riding).</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-5-5-bittorrent', '🐝 סימולציה 5.5ב: נחיל BitTorrent ומנגנון החניקה (Tit-for-Tat)')" title="פתיחת מעבדה 5.5ב: נחיל BitTorrent ומנגנון החניקה" type="button"><span class="text-xl">🐝</span></button>
+</div>
+<ul class="list-disc list-inside space-y-1.5 text-xs md:text-sm text-slate-700 leading-relaxed">
+<li><b>מבנה הנחיל (Swarm):</b> הקובץ מחולק ל<b>חתיכות (Pieces)</b> בגודל קבוע. קובץ <code>.torrent</code> מכיל את כתובת ה-<b>Tracker</b> וגיבובי SHA-1 לאימות כל חתיכה. עמית מצטרף פונה ב-HTTP ל-Tracker ומקבל רשימת עמיתים אקראית בנחיל.</li>
+<li><b>Choking (Tit-for-Tat – מידה כנגד מידה):</b> כל עמית מעלה חתיכות (Unchokes) רק ל-4 העמיתים שמעלים אליו כרגע בקצב הגבוה ביותר (מדידה כל 10 שניות), ו<b>חונק (Chokes)</b> עמיתים אנוכיים (Free-Riders) שרק מורידים.</li>
+<li><b>Optimistic Unchoking (שחרור אופטימי):</b> כל 30 שניות העמית משחרר מחניקה עמית אקראי אחד ללא תנאי, לשתי מטרות: (1) <b>גילוי עמיתים מהירים יותר</b> בנחיל, ו-(2) <b>מתן חתיכה ראשונה לעמית חדש (Newcomer Bootstrap)</b> שטרם יש לו מה להציע בתמורה.</li>
+</ul>
+</div>
+
+<!-- 5.5.3 Basic Card -->
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">3. רשתות להפצת תוכן (CDN – Content Delivery Networks) ומנגנוני ניתוב בקשות</h3>
+<p class="text-xs text-slate-600">פריסת שרתי קצה (Edge Servers) קרוב למשתמשים, 4 מטרות ה-CDN, והבדל הגיבוב העקבי בין CDN ל-P2P.</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-5-5-cdn', '🌐 סימולציה 5.5ג: ניתוב בקשות ב-CDN - DNS TTL=20s, שכתוב URL וגיבוב עקבי')" title="פתיחת מעבדה 5.5ג: ניתוב בקשות ב-CDN" type="button"><span class="text-xl">🌐</span></button>
+</div>
+<ul class="list-disc list-inside space-y-1.5 text-xs md:text-sm text-slate-700 leading-relaxed">
+<li><b>4 מטרות ה-CDN:</b> (1) <b>קיצור זמן התגובה וההשהיה (Latency)</b> ע"י הגשת תוכן משרת קצה קרוב; (2) <b>יכולת התרחבות (Scalability)</b> ועמידה ב-Flash Crowds; (3) <b>חיסכון בתעבורה ובעומס</b> על שרת המקור (Origin); (4) <b>הגנה מפני DDoS</b>.</li>
+<li><b>שיטות להפניית בקשות (Redirectors) לשרת הקצה המיטבי:</b>
+<br/>• <b>הפניית DNS חכמה (עם TTL קצר של כ-$20$ שניות):</b> שרת ה-DNS של ה-CDN מחזיר IP של שרת קצה קרוב ופנוי; ה-TTL קצר כדי להגיב מהר לשינויי עומס (מגבלה: ה-DNS רואה רק את שם הדומיין ואת ה-IP של ה-Local DNS של הלקוח).
+<br/>• <b>שכתוב URL (URL Rewriting) / HTTP 302 Redirect</b> ו-<b>BGP Anycast</b>.</li>
+</ul>
+<div class="basic-callout">
+<strong>💡 הבחנה חשובה למבחן – גיבוב עקבי (Consistent Hashing) ב-P2P לעומת CDN:</strong>
+ב-<b>P2P (DHT)</b> אף צומת אינו מכיר את כל מיליוני העמיתים, ולכן החיפוש מנותב מצומת לצומת ב-$\mathbf{O(\log N)}$ קפיצות. ב-<b>CDN</b> מספר שרתי הקצה מנוהל וידוע, ולכן כל Redirector מחזיק את המפה המלאה ובוחר את שרת הקצה בצעד ישיר אחד ($\mathbf{O(1)}$)!
+</div>
+</div>
+</div>
+
+<div class="fast-mode-view space-y-4">
+<div class="fast-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="fast-badge">⚡ לימוד מהיר • יחידה 5.5 (סקירה מרוכזת)</span>
+<div class="flex items-center gap-1.5 flex-wrap">
+<button class="fast-sim-btn" onclick="openSingleSim('sim-5-5-dht', '⭕ סימולציה 5.5א: DHT מול Gnutella')" type="button">⭕ מעבדה 5.5א</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-5-5-bittorrent', '🐝 סימולציה 5.5ב: BitTorrent')" type="button">🐝 מעבדה 5.5ב</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-5-5-cdn', '🌐 סימולציה 5.5ג: CDN')" type="button">🌐 מעבדה 5.5ג</button>
+<button class="fast-sim-btn" onclick="showQuestions('tab-p2p', '5.5 רשתות כיסוי, P2P ו-CDN', event)" type="button">❓ תרגול</button>
+</div>
+</div>
+<h2 class="text-xl md:text-2xl font-black text-slate-900">5.5 רשתות כיסוי (Overlays), P2P (Gnutella, DHT, BitTorrent) ורשתות CDN</h2>
+<p class="text-xs text-slate-600"><b>הפצת תוכן מבוזרת:</b> מעבר משרת מרכזי בודד לרשתות וירטואליות (Overlays), נחילי P2P ושרתי קצה של CDN.</p>
+</div>
+<div class="fast-visual-strip">
+<div class="fast-strip-node"><b>1. Overlay Networks:</b> קישורים לוגיים (Tunnels) מעל IP. דוגמאות: <code>MBone</code> (Multicast), <code>6-BONE</code> (IPv6), ו-<code>RON</code> (עקיפת כשלי BGP).</div>
+<div class="fast-strip-node"><b>2. Gnutella מול DHT (Pastry):</b> Gnutella מציפה <code>QUERY</code> עם TTL (לא מובטח); DHT ממפה למעגל $128$-bit בגיבוב עקבי ומנתבת ב-$\mathbf{O(\log N)}$.</div>
+<div class="fast-strip-node fast-strip-highlight"><b>3. BitTorrent ★:</b> קובץ מחולק ל-Pieces; <b>Choking (Tit-for-Tat)</b> מונע טפילות (Free-Riders); <b>Optimistic Unchoking</b> מגלה מהירים ומשלב חדשים.</div>
+<div class="fast-strip-node"><b>4. רשתות CDN:</b> שרתי קצה (Edge) לקיצור השהיה, Scalability והגנת DDoS. הפניה ב-<b>DNS עם TTL קצר ($\sim 20\text{s}$)</b>, שכתוב URL ו-Anycast.</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
 <div class="fast-card">
-<h3 class="text-lg font-bold text-blue-900 mb-3 border-b border-slate-200 pb-2">5.5.1 רשתות להפצת תוכן (CDN – Content Delivery Networks)</h3>
-<ul class="list-disc list-inside space-y-1.5 text-xs md:text-sm text-slate-700 mb-3">
-<li><b>שרתי קצה (Edge / Surrogate Servers):</b> שרתים הפזורים גאוגרפית קרוב למשתמשים ומגישים להם עותקים של התוכן.</li>
-<li><b>מטרות ה-CDN:</b> (1) <b>קיצור זמן התגובה וההשהיה</b> (הימנעות מהשהיית התפשטות לקצה העולם), (2) <b>יכולת התרחבות (Scalability)</b> ועמידות בגלי ביקוש פתאומיים (<b>Flash Crowd</b>), (3) <b>חיסכון בעלויות תעבורה</b> והקטנת העומס על שרת המקור (Origin), ו-(4) <b>הגנה מפני מתקפות DDoS</b> באמצעות ספיגת התעבורה בשרתי הקצה.</li>
-<li><b>מנגנוני הפניית בקשות (Redirectors) לשרת הקצה המיטבי:</b>
-<ul class="list-disc list-inside mr-5 mt-1 space-y-1 text-slate-600">
-<li><b>הפניה מבוססת DNS חכם (עם TTL קצר של כ-$20$ שניות):</b> שרת ה-DNS של ה-CDN מחזיר למשתמש את ה-IP של שרת קצה קרוב ופנוי. ה-<code>TTL</code> קצר כדי לאפשר הסטת עומסים מהירה בזמן אמת (חיסרון: ה-DNS רואה רק את שם הדומיין ואת כתובת ה-Local DNS של הלקוח).</li>
-<li><b>שכתוב URL (URL Rewriting) / הפניית HTTP 302:</b> שרת המקור משכתב קישורים בתוך ה-HTML כך שיצביעו לשרת CDN ייעודי לכל סוג אובייקט.</li>
-<li><b>גיבוב עקבי (Consistent Hashing) ו-BGP Anycast:</b> פיזור URLs בין שרתי קצה במעגל גיבוב (כך שנפילת שרת אינה פוגעת בשאר השרתים), או פרסום אותו IP ממספר שרתי קצה ב-BGP (Anycast).</li>
-</ul>
-</li>
-</ul>
+<div class="fast-card-title">🔄 גיבוב עקבי (Consistent Hashing): P2P מול CDN</div>
+<p class="text-slate-700 leading-relaxed">• <b>למה גיבוב עקבי ולא $\text{hash} \bmod N$?</b> כי בעת הוספת/נפילת שרת מועברים רק המפתחות של השכן המיידי במעגל ($1/N$ מהאובייקטים) במקום ערבוב כל המיפוי.<br/>• <b>הבדל הניתוב:</b> ב-<b>P2P (DHT)</b> אין מפה מרכזית $\implies$ ניתוב מבוזר ב-$O(\log N)$ קפיצות; ב-<b>CDN</b> כל Redirector מכיר את כל שרתי הקצה $\implies$ חישוב ישיר ב-$O(1)$.</p>
 </div>
-<!-- 5.5.2 P2P & Overlays -->
-<div class="fast-card mb-0">
-<h3 class="text-lg font-bold text-blue-900 mb-3 border-b border-slate-200 pb-2">5.5.2 רשתות כיסוי (Overlay Networks) ורשתות עמית-לעמית (P2P)</h3>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs md:text-sm">
-<div class="fast-subcard space-y-1">
-<strong class="text-blue-900 block">🌐 רשתות כיסוי (Overlays)</strong>
-<p class="text-slate-600 leading-relaxed">
-רשת לוגית מעל רשת הבסיס (Underlay) שבה קישורים ממומשים כ<b>מנהרות (Tunnels)</b>. דוגמאות: <b>MBone</b> (שידור קבוצתי), <b>6-BONE</b> (פריסת IPv6), <b>End-System Multicast</b> (בניית עץ הפצה במחשבי קצה), ו-<b>RON</b> (עקיפת מסלולי BGP איטיים).
-</p>
-</div>
-<div class="fast-subcard space-y-1">
-<strong class="text-blue-900 block">🔍 חיפוש ב-P2P: Gnutella מול DHT</strong>
-<p class="text-slate-600 leading-relaxed">
-• <b>Gnutella (לא-מובנה):</b> הצפת <code>QUERY</code> לכל השכנים עם <code>TTL</code>; עומס הודעות גבוה וללא ערבות למציאת קובץ נדיר.<br/>
-• <b>DHT / Pastry (מובנה):</b> ממפה צמתים ואובייקטים למעגל של $128$ ביט ב<b>גיבוב עקבי</b> ומנתב לפי קידומת ב-$O(\log N)$ קפיצות.
-</p>
-</div>
-<div class="fast-subcard space-y-1">
-<strong class="text-blue-900 block">🐝 פרוטוקול BitTorrent</strong>
-<p class="text-slate-600 leading-relaxed">
-קובץ מחולק ל<b>חתיכות (Pieces)</b>. עמית פונה ל-<b>Tracker</b> ומצטרף לנחיל (Swarm). מנגנון <b>Choking (Tit-for-Tat)</b> חונק עמיתים אנוכיים (Free-Riders) ומתגמל עמיתים שמעלים בקצב גבוה, לצד <b>Optimistic Unchoking</b> אקראי כל $30$ שניות.
-</p>
-</div>
+<div class="fast-card">
+<div class="fast-card-title">⏱️ מדוע DNS של CDN משתמש ב-TTL קצר ומגבלותיו</div>
+<p class="text-slate-700 leading-relaxed">• <b>TTL קצר (כ-$20$ שניות):</b> מאפשר ל-CDN להסיט תנועה מיד משרת קצה עמוס או תקול לשרת פנוי.<br/>• <b>2 מגבלות הפניית DNS ב-CDN:</b> (1) שרת ה-DNS רואה רק את שם הדומיין ולא את ה-URL הספציפי; (2) הוא רואה את ה-IP של ה-<b>Local DNS</b> ולא בהכרח את ה-IP של לקוח הקצה עצמו.</p>
 </div>
 </div>
 </div>
@@ -3042,39 +3480,94 @@ m=video 51372 RTP/AVP 31</pre>
 </p>
 </div>
 </div></div>
-<div class="fast-mode-view fast-wrapper w-full block bg-white px-6 md:px-10 pb-10 pt-7 rounded-2xl shadow-sm border border-slate-200">
-<header class="mb-6 border-b border-slate-200 pb-4">
-<div class="fast-badge mb-2">⚡ מצב לימוד מהיר • חלק 5.6</div>
-<h2 class="text-3xl font-black text-slate-900 tracking-tight mb-2">5.6 מולטימדיה (SIP/SDP), שירותי אינטרנט (REST/SOAP) וניהול רשת (SNMP / SDN)</h2>
-<p class="text-slate-600 text-sm md:text-base leading-relaxed">
-ריכוז ענייני של פרוטוקולי האיתות למולטימדיה, ארכיטקטורות Web Services ופרוטוקולי ניהול הרשת.
-</p>
-</header>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs md:text-sm">
-<div class="fast-card !mb-0">
-<h3 class="text-base font-bold text-blue-900 mb-2 border-b border-slate-200 pb-1.5">📞 1. מולטימדיה: SIP, SDP ובקרת קבלה</h3>
-<ul class="list-disc list-inside space-y-1.5 text-slate-700 leading-relaxed">
-<li><b>SIP (Session Initiation Protocol):</b> מאתר משתמש בריבוי מכשירים באמצעות שרתי תיווך (Proxies).</li>
-<li><b>סדר הודעות הקמת שיחה:</b><br/><code>INVITE → 100 Trying → 180 Ringing → 200 OK → ACK</code> (ה-<code>ACK</code> והמדיה ב-<b>RTP</b> עוברים ישירות בין הקצוות!).</li>
-<li><b>SDP:</b> מתאר את פרמטרי המדיה בגוף ה-SIP (שורות <code>v, o, s, c, t, m</code>).</li>
-<li><b>Admission Control:</b> מונעת כניסת שיחה חדשה אם סך רוחב הפס של השיחות יעלה על קיבולת הקישור (למשל שתי שיחות של $64	ext{ kbps}$ על קו של $100	ext{ kbps}$).</li>
+<div class="basic-mode-view space-y-5">
+<div class="basic-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="basic-badge">📖 לימוד בסיסי • יחידה 5.6</span>
+<div class="flex items-center gap-2">
+<button class="basic-top-btn" onclick="showTab('tab-summary')" type="button">לתרגול מסכם 🎓</button>
+<button class="basic-top-btn" onclick="showQuestions('tab-advanced', '5.6 מולטימדיה, Web Services וניהול רשת', event)" type="button">❓ שאלות תרגול</button>
+</div>
+</div>
+<h2 class="text-2xl md:text-3xl font-black text-slate-900">5.6 מולטימדיה (SIP / SDP), שירותי אינטרנט (REST / SOAP) וניהול רשת (SNMP / SDN)</h2>
+<p class="text-xs md:text-sm text-slate-600 mt-1">ריכוז ממוקד של פרוטוקולי האיתות למולטימדיה ובקרת קבלה, ארכיטקטורות Web Services וניהול רשתות מודרני.</p>
+</div>
+
+<!-- 5.6.1 Basic Card -->
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">1. מולטימדיה ובקרת מושבים: SIP, SDP, RTP ובקרת קבלה (Admission Control)</h3>
+<p class="text-xs text-slate-600">איתור משתמשים דרך שרתי Proxy ב-SIP, תיאור פרמטרי המדיה ב-SDP, והזרמה ישירה ב-RTP.</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-5-6-sip', '📞 סימולציה 5.6א: איתות שיחת SIP/SDP ובקרת קבלה (Admission Control)')" title="פתיחת מעבדה 5.6א: איתות שיחת SIP/SDP" type="button"><span class="text-xl">📞</span></button>
+</div>
+<ul class="list-disc list-inside space-y-1.5 text-xs md:text-sm text-slate-700 leading-relaxed">
+<li><b>SIP (Session Initiation Protocol):</b> פרוטוקול איתות במבנה דומה ל-HTTP המאפשר איתור משתמש (כגון <code>sip:larry@princeton.edu</code>) בריבוי מכשירים באמצעות שרתי תיווך (<b>SIP Proxies / Registrars</b>).</li>
+<li><b>סדר הודעות הקמת שיחה:</b> <code>INVITE → 100 Trying → 180 Ringing → 200 OK → ACK</code>.
+<br/>• <b>דגש למבחן:</b> ההודעות הראשונות (<code>INVITE</code> עד <code>200 OK</code>) עוברות דרך שרתי ה-Proxy, אך לאחר החלפת כתובות ה-IP הישירות, הודעת ה-<b><code>ACK</code> וזרם המדיה ב-<code>RTP</code> עוברים ישירות (End-to-End) בין שני המחשבים!</b></li>
+<li><b>SDP (Session Description Protocol):</b> מצורף לגוף הודעת ה-SIP ומגדיר את פרמטרי המדיה (גרסה <code>v=</code>, בעלים <code>o=</code>, חיבור <code>c=</code>, זמן <code>t=</code>, וסוגי המדיה/פורטים/קודקים <code>m=audio 49170 RTP/AVP 0</code>).</li>
+<li><b>בקרת קבלה (Admission Control):</b> תעדוף תורים (DiffServ) אינו מספיק אם סך קצב השיחות עולה על קיבולת הקישור (למשל שתי שיחות של $64\text{ kbps}$ על קו של $100\text{ kbps}$); Admission Control ב-SIP Proxy חוסמת כניסת שיחה חדשה שתגרום לעומס יתר.</li>
 </ul>
 </div>
-<div class="fast-card !mb-0">
-<h3 class="text-base font-bold text-blue-900 mb-2 border-b border-slate-200 pb-1.5">🔄 2. שירותי Web: REST מול SOAP</h3>
-<ul class="list-disc list-inside space-y-1.5 text-slate-700 leading-relaxed">
-<li><b>גישת REST:</b> ארכיטקטורה קלת-משקל המתייחסת לשירותים כאל משאבי Web המזוהים ב-<code>URI</code> ומשתמשת במתודות ה-HTTP הטבעיות (<code>GET, POST, PUT, DELETE</code>) עם JSON או XML.</li>
-<li><b>גישת SOAP + WSDL:</b> מסגרת להגדרת פרוטוקול מותאם אישית בסגנון RPC עם מעטפות XML כבדות, כאשר WSDL מגדיר תבניות החלפת הודעות (MEP), סכמת XML ואיגוד (Binding) לפרוטוקול התחתון.</li>
+
+<!-- 5.6.2 Basic Card -->
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">2. שירותי אינטרנט (Web Services): ארכיטקטורת REST לעומת SOAP ו-WSDL</h3>
+<p class="text-xs text-slate-600">שתי הגישות לתקשורת בין אפליקציות עסקיות מעל תשתית ה-Web.</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-5-6-rest-soap', '🔄 סימולציה 5.6ב: REST מול SOAP/WSDL – השוואת בקשות ותקורה')" title="פתיחת מעבדה 5.6ב: REST מול SOAP/WSDL" type="button"><span class="text-xl">🔄</span></button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+<div class="basic-subcard">
+<strong class="text-blue-900 block mb-1">🌐 גישת REST (Representational State Transfer)</strong>
+<p class="text-slate-700 leading-relaxed">מתייחסת לשירותים כאל משאבי Web רגילים המזוהים ע"י <code>URI</code>, ומשתמשת במתודות הטבעיות של HTTP (<code>GET, POST, PUT, DELETE</code>) עם ייצוג נתונים קל כגון <code>JSON</code> או <code>XML</code>. קלת-משקל, מהירה ונפוצה בענן.</p>
+</div>
+<div class="basic-subcard">
+<strong class="text-blue-900 block mb-1">📦 גישת SOAP + WSDL</strong>
+<p class="text-slate-700 leading-relaxed">מסגרת לבניית פרוטוקולים מותאמים אישית בסגנון RPC עם מעטפות <code>XML</code> כבדות. שפת <b>WSDL</b> מגדירה פורמלית את פעולות השירות, תבניות החלפת ההודעות (MEP), סכמת ה-XML והאיגוד (Binding) לפרוטוקול התחתון.</p>
+</div>
+</div>
+</div>
+
+<!-- 5.6.3 Basic Card -->
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">3. ניהול רשתות ומערכות: SNMP / MIB-II, OpenConfig (YANG/gNMI) ו-SDN</h3>
+<p class="text-xs text-slate-600">ניטור טבלאות דינמיות ב-SNMP מעל UDP, והמעבר לניהול אוטומטי פרוגרמטי (Zero-Touch) והפרדת מישור הבקרה ב-SDN.</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-5-6-snmp', '📟 סימולציה 5.6ג: תשאול עץ ה-MIB ב-SNMP - GET / GET-NEXT מול OpenConfig')" title="פתיחת מעבדה 5.6ג: SNMP מול OpenConfig" type="button"><span class="text-xl">📟</span></button>
+</div>
+<ul class="list-disc list-inside space-y-1.5 text-xs md:text-sm text-slate-700 leading-relaxed">
+<li><b>SNMP + MIB-II (מעל UDP פורט 161/162):</b> פרוטוקול בקשה/תשובה לקריאת ועדכון משתני ניהול בעץ ה-<b>MIB</b> (המזוהים ע"י OIDs בתחביר <b>ASN.1</b> ומקודדים ב-<b>BER</b>). תומך ב-<code>GET</code>, <code>SET</code> ו-<b><code>GET-NEXT</code></b> (המאפשר לסרוק שורות של טבלאות דינמיות כגון טבלת הניתוב ע"י החזרת הערך והמזהה של המשתנה הבא בעץ).</li>
+<li><b>OpenConfig + YANG + gNMI:</b> בעוד SNMP התמקד בניטור (Monitoring) בלבד, OpenConfig מגדיר מודלי נתונים אחידים בשפת <b>YANG</b> (בלתי-תלויים ביצרן) מעל פרוטוקול <b>gNMI</b> הן להגדרה פרוגרמטית (Configuration) והן לניטור אוטומטי (Zero-Touch Management).</li>
+<li><b>SDN (Software-Defined Networking):</b> הפרדת <b>מישור הבקרה (Control Plane)</b> מ<b>מישור הנתונים (Data Plane)</b> של המתגים וריכוזו בבקר תוכנה מרכזי (SDN Controller).</li>
 </ul>
 </div>
-<div class="fast-card !mb-0">
-<h3 class="text-base font-bold text-blue-900 mb-2 border-b border-slate-200 pb-1.5">📟 3. ניהול רשת: SNMP, OpenConfig ו-SDN</h3>
-<ul class="list-disc list-inside space-y-1.5 text-slate-700 leading-relaxed">
-<li><b>SNMP + MIB-II (מעל UDP):</b> תומך ב-<code>GET</code>, <code>SET</code> ו-<code>GET-NEXT</code> (לסריקת טבלאות דינמיות בעץ ה-MIB לפי מזהי ASN.1 וקידוד BER).</li>
-<li><b>OpenConfig + YANG + gNMI:</b> ניהול אפס-מגע (Zero-Touch) לניטור והגדרה אוטומטית של נתבים במודל אחיד בלתי-תלוי ביצרן.</li>
-<li><b>SDN:</b> הפרדת <b>מישור הבקרה (Control Plane)</b> מ<b>מישור הנתונים (Data Plane)</b> וניהול מרכזי בתוכנה.</li>
-</ul>
 </div>
+
+<div class="fast-mode-view space-y-4">
+<div class="fast-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="fast-badge">⚡ לימוד מהיר • יחידה 5.6 (סקירה מרוכזת)</span>
+<div class="flex items-center gap-1.5 flex-wrap">
+<button class="fast-sim-btn" onclick="openSingleSim('sim-5-6-sip', '📞 סימולציה 5.6א: SIP ו-SDP')" type="button">📞 מעבדה 5.6א</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-5-6-rest-soap', '🔄 סימולציה 5.6ב: REST מול SOAP')" type="button">🔄 מעבדה 5.6ב</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-5-6-snmp', '📟 סימולציה 5.6ג: SNMP ו-OpenConfig')" type="button">📟 מעבדה 5.6ג</button>
+<button class="fast-sim-btn" onclick="showQuestions('tab-advanced', '5.6 מולטימדיה, Web Services וניהול רשת', event)" type="button">❓ תרגול</button>
+</div>
+</div>
+<h2 class="text-xl md:text-2xl font-black text-slate-900">5.6 מולטימדיה (SIP/SDP), שירותי Web (REST/SOAP) וניהול רשת (SNMP / OpenConfig / SDN)</h2>
+<p class="text-xs text-slate-600"><b>תמצית 5.6:</b> איתות שיחות זמן-אמת (SIP/SDP), תקשורת בין מערכות (REST מול SOAP) וניהול רשתות אוטומטי (SNMP/OpenConfig/SDN).</p>
+</div>
+<div class="fast-visual-strip">
+<div class="fast-strip-node fast-strip-highlight"><b>1. SIP &amp; RTP ★:</b> <code>INVITE → 100 → 180 → 200 OK</code> עוברים דרך <b>SIP Proxies</b>; ה-<code>ACK</code> וזרם המדיה ב-<code>RTP</code> עוברים <b>ישירות בין הקצוות</b>!</div>
+<div class="fast-strip-node"><b>2. SDP &amp; Admission Control:</b> SDP מתאר קודקים ופורטים בגוף ה-SIP; <b>Admission Control</b> חוסמת שיחה חדשה אם סך רוחב הפס חורג מקיבולת הקו.</div>
+<div class="fast-strip-node"><b>3. REST מול SOAP:</b> <b>REST</b> משתמש ב-URI ובמתודות HTTP (<code>GET/POST/PUT/DELETE</code> + JSON); <b>SOAP+WSDL</b> משתמש במעטפות XML כבדות ו-RPC.</div>
+<div class="fast-strip-node"><b>4. SNMP, OpenConfig ו-SDN:</b> <code>GET-NEXT</code> ב-SNMP סורק טבלאות ב-MIB; <b>OpenConfig/YANG/gNMI</b> מאפשר קונפיגורציה אוטומטית; <b>SDN</b> מפריד בקרה מנתונים.</div>
 </div>
 </div>
 <!-- Sub-Chapter Navigation Footer -->
@@ -3335,7 +3828,7 @@ m=video 51372 RTP/AVP 31</pre>
 <h3 class="text-2xl font-black text-sky-950 mb-4 flex items-center gap-3">
 <span class="bg-gradient-to-r from-blue-700 to-sky-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-black text-lg shadow-xs">5</span>
 <div>
-<div>ריכוז שאלות ותרגילי מבחן מרכזיים ליחידה 5 (1–12) עם פתרונות מלאים</div>
+<div>ריכוז שאלות ותרגילי מבחן מרכזיים ליחידה 5 (1–14) עם פתרונות מלאים</div>
 <div class="text-xs font-normal text-slate-500 mt-0.5">לחצו על כל שאלה לפתיחת הפתרון המלא והמנומק שלב-אחר-שלב</div>
 </div>
 </h3>
@@ -3462,41 +3955,72 @@ $$\frac{300,000}{3} \times 4 = \mathbf{400,000\text{ Bytes}} = 400\text{ KB}$$
 • <b>המעבר ל-OpenConfig / YANG / gNMI:</b> SNMP נועד היסטורית ל<b>ניטור</b> וכמעט לא טיפל ב<b>הגדרה אוטומטית (Configuration)</b> של התקנים. <b>OpenConfig</b> מגדיר מודלי נתונים משותפים בשפת <b>YANG</b> המכסים באופן שווה ניטור והגדרה פרוגרמטית (מעל <b>gNMI</b> או NETCONF) לצורך אוטומציה וניהול אפס-מגע (Zero-Touch Management).</p>
 </div>
 </details>
+<details class="group border border-sky-300 rounded-2xl bg-sky-50/70 p-4 transition-all shadow-xs">
+<summary class="cursor-pointer font-bold text-xs md:text-sm text-sky-950 flex items-center justify-between list-none">
+<span>תרגיל 13 (טבלת מטמון DNS עם CNAME ו-A): משתמש מקליד בדפדפן <code>ftp.example.com</code> והמחשב שולח סגמנט שאילתת DNS אל ה-Local DNS. (א) כמה סגמנטים יישלחו אם במטמון ה-Local DNS יש רק <code>(example.com, A, 93.178.220.7)</code> ו-<code>(www.example.com, CNAME, example.com)</code>? (ב) כמה סגמנטים יישלחו אם בנוסף יש במטמון גם <code>(ftp.example.com, CNAME, example.com)</code>?</span>
+<span class="text-slate-700 group-open:rotate-180 transition-transform font-mono text-sm">▼</span>
+</summary>
+<div class="mt-3 pt-3 border-t border-sky-200 text-xs md:text-sm text-slate-700 leading-relaxed space-y-1.5">
+<p>• <b>סעיף א' ($\mathbf{8}$ סגמנטים):</b> בטבלת המטמון אין רשומה עבור <code>ftp.example.com</code> ואין רשומת <code>NS</code> של השרת המוסמך של <code>example.com</code> (רשומת ה-<code>A</code> של <code>example.com</code> אינה אומרת מה ה-IP של <code>ftp.example.com</code>). לכן ה-Local DNS מבצע חיפוש איטרטיבי מלא מול ה-Root ($2$), ה-TLD של <code>.com</code> ($2$) והשרת המוסמך של <code>example.com</code> ($2$), בתוספת הבקשה והתשובה מול המחשב ($2$) = $\mathbf{8\text{ סגמנטים}}$.<br/>
+• <b>סעיף ב' ($\mathbf{2}$ סגמנטים בלבד – המינימום ברשת!):</b> רשומת ה-<code>CNAME</code> ממפה את הכינוי <code>ftp.example.com</code> לשם הקנוני <code>example.com</code>, ורשומת ה-<code>A</code> של <code>example.com</code> כבר נמצאת במטמון המקומי! לכן ה-Local DNS משיב מיד למחשב ללא פנייה לשום שרת חיצוני ($1$ בקשה + $1$ תגובה = $\mathbf{2\text{ סגמנטים}}$).</p>
+</div>
+</details>
+<details class="group border border-sky-300 rounded-2xl bg-sky-50/70 p-4 transition-all shadow-xs">
+<summary class="cursor-pointer font-bold text-xs md:text-sm text-sky-950 flex items-center justify-between list-none">
+<span>תרגיל 14 (אינטגרציית DNS, HTTP בריבוי שרתים, סגמנטי SYN ו-Slow Start): דף מכיל Base HTML + 2 תמונות בשרת $B$, ועוד 2 תמונות בשרת $C$. (א) כמה קשרי TCP וכמה סגמנטים עם <code>SYN=1</code> יישלחו ב-HTTP לא-מתמיד לעומת HTTP מתמיד? (ב) אם קובץ שגודלו $7\text{ MSS}$ מורד משרת שזמן ה-RTT אליו הוא $50\text{ ms}$ (ובו-זמנית DNS לקח $130\text{ ms}$), כמה זמן תיקח הורדת הקובץ ב-Slow Start מ-$cwnd=1\text{ MSS}$?</span>
+<span class="text-slate-700 group-open:rotate-180 transition-transform font-mono text-sm">▼</span>
+</summary>
+<div class="mt-3 pt-3 border-t border-sky-200 text-xs md:text-sm text-slate-700 leading-relaxed space-y-1.5">
+<p>• <b>סעיף א':</b> ישנם $5$ אובייקטים בסך הכול ($3$ בשרת $B$ ו-$2$ בשרת $C$). ב-<b>HTTP לא-מתמיד</b> נפתחים $\mathbf{5\text{ קשרי TCP}}$ ($10$ סגמנטים עם <code>SYN=1</code>). ב-<b>HTTP מתמיד</b> נפתחים $\mathbf{2\text{ קשרי TCP בלבד}}$ (אחד מול $B$ ואחד מול $C$); מאחר שבכל לחיצת יד משולשת שני הסגמנטים הראשונים (<code>SYN</code> ו-<code>SYN+ACK</code>) מדליקים <code>SYN=1</code>, יישלחו $2 \times 2 = \mathbf{4\text{ סגמנטים עם } SYN=1}$.<br/>
+• <b>סעיף ב':</b> ב-Slow Start (מ-$cwnd=1\text{ MSS}$), ב-$3$ סבבי RTT עוברים $1 + 2 + 4 = 7$ סגמנטים ($3 \times 50 = 150\text{ ms}$), בתוספת $1\text{ RTT}$ ללחיצת היד של TCP ($50\text{ ms}$) = $200\text{ ms}$ לשלב ה-TCP+HTTP, וביחד עם שלב ה-DNS ($130\text{ ms}$) מתקבל זמן כולל של $130 + 200 = \mathbf{330\text{ ms}}$.</p>
+</div>
+</details>
 </div>
 </div></div>
-<div class="fast-mode-view fast-wrapper w-full block bg-white px-6 md:px-10 pb-10 pt-7 rounded-2xl shadow-sm border border-slate-200">
-<header class="mb-6 border-b border-slate-200 pb-4">
-<div class="fast-badge mb-2">⚡ מצב לימוד מהיר • חלק 5.7</div>
-<h2 class="text-3xl font-black text-slate-900 tracking-tight mb-2">5.7 סיכום ממוקד למבחן: טבלת פרוטוקולים, זרימה מקצה לקצה ושאלות מרכזיות</h2>
-<p class="text-slate-600 text-sm md:text-base leading-relaxed">
-ריכוז כל פרוטוקולי היחידה, סדר הפעולות מרגע הקלדת כתובת בדפדפן, ופתרונות תמציתיים לשאלות הליבה.
-</p>
-</header>
-<!-- 5.7.1 End-to-End Flow -->
-<div class="fast-card">
-<h3 class="text-lg font-bold text-blue-900 mb-3 border-b border-slate-200 pb-2">1. מה קורה מרגע הקלדת <code>http://www.openu.ac.il/index.html</code> בדפדפן?</h3>
+<div class="basic-mode-view space-y-5">
+<div class="basic-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="basic-badge">📖 לימוד בסיסי • יחידה 5.7</span>
+<div class="flex items-center gap-2">
+<button class="basic-top-btn" onclick="showQuestions('tab-summary', '5.7 סיכום אינטגרטיבי וניתוח למבחן', event)" type="button">❓ שאלות סינתזה למבחן</button>
+</div>
+</div>
+<h2 class="text-2xl md:text-3xl font-black text-slate-900">5.7 סיכום ממוקד למבחן: טבלת פרוטוקולים, זרימה מקצה לקצה ושאלות מרכזיות</h2>
+<p class="text-xs md:text-sm text-slate-600 mt-1">ריכוז כל פרוטוקולי היחידה, סדר הפעולות המלא מרגע הקלדת כתובת בדפדפן, ופתרונות תמציתיים לשאלות הבחינות.</p>
+</div>
+
+<!-- 5.7.1 Basic Card -->
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">1. מה קורה מרגע הקלדת <code>http://www.openu.ac.il/index.html</code> בדפדפן?</h3>
+<p class="text-xs text-slate-600">ארבעת השלבים מקצה לקצה המשלבים את שכבות הקישור (ARP), הרשת (IP), התובלה (UDP/TCP) והאפליקציה (DNS/HTTP).</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-5-7-e2e', '🎬 סימולציה 5.7א: המסע המלא של בקשת Web – מ-DNS ו-ARP ועד HTTP')" title="פתיחת מעבדה 5.7א: המסע המלא של בקשת Web" type="button"><span class="text-xl">🎬</span></button>
+</div>
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs md:text-sm">
-<div class="fast-subcard border-r-4 border-r-blue-600">
+<div class="basic-subcard border-r-4 border-r-blue-600">
 <strong class="text-blue-900 block mb-1">שלב 1: תרגום DNS (UDP 53)</strong>
-<p class="text-slate-600">המחשב שולח שאילתת DNS ל-Local DNS (ובהיעדר MAC של נתב הסף – מבצע קודם <code>ARP</code> בשכבה 2). מקבל את כתובת ה-IP של השרת ($2$ עד $8$ סגמנטים).</p>
+<p class="text-slate-700">המחשב שולח שאילתת DNS ל-Local DNS (ובהיעדר MAC של נתב הסף – מבצע קודם <code>ARP</code> בשכבה 2). מקבל את כתובת ה-IP של השרת ($2$ עד $8$ סגמנטים).</p>
 </div>
-<div class="fast-subcard border-r-4 border-r-blue-600">
+<div class="basic-subcard border-r-4 border-r-blue-600">
 <strong class="text-blue-900 block mb-1">שלב 2: הקמת קשר TCP (פורט 80)</strong>
-<p class="text-slate-600">לחיצת יד משולשת ($1	ext{ RTT}$): הלקוח שולח <code>SYN=1, ACK=0</code> ← השרת משיב <code>SYN=1, ACK=1</code> ← הלקוח משיב <code>ACK=1</code>.</p>
+<p class="text-slate-700">לחיצת יד משולשת ($1\text{ RTT}$): הלקוח שולח <code>SYN=1, ACK=0</code> ← השרת משיב <code>SYN=1, ACK=1</code> ← הלקוח משיב <code>ACK=1</code> ($2$ סגמנטים עם <code>SYN=1</code>!).</p>
 </div>
-<div class="fast-subcard border-r-4 border-r-blue-600">
+<div class="basic-subcard border-r-4 border-r-blue-600">
 <strong class="text-blue-900 block mb-1">שלב 3: בקשת Base HTML</strong>
-<p class="text-slate-600">הדפדפן שולח <code>GET /index.html HTTP/1.1</code> (עם כותרות <code>Host</code>, <code>Cookie</code> או <code>If-Modified-Since</code>) ומקבל <code>200 OK</code> (עוד $1	ext{ RTT}$).</p>
+<p class="text-slate-700">הדפדפן שולח <code>GET /index.html HTTP/1.1</code> (עם כותרות <code>Host</code>, <code>Cookie</code> או <code>If-Modified-Since</code>) ומקבל <code>200 OK</code> (עוד $1\text{ RTT}$).</p>
 </div>
-<div class="fast-subcard border-r-4 border-r-blue-600">
+<div class="basic-subcard border-r-4 border-r-blue-600">
 <strong class="text-blue-900 block mb-1">שלב 4: שליפת $N$ אובייקטים</strong>
-<p class="text-slate-600">הדפדפן מפענח את ה-HTML ושולף את התמונות (בקשרים חדשים ב-1.0, באותו קשר ב-1.1/2, או בקשר חדש אם התמונה יושבת בשרת חיצוני!).</p>
+<p class="text-slate-700">הדפדפן מפענח את ה-HTML ושולף את התמונות (בקשרים חדשים ב-1.0, באותו קשר ב-1.1/2, או בקשר TCP חדש אם התמונה יושבת בשרת חיצוני!).</p>
 </div>
 </div>
 </div>
-<!-- 5.7.2 Master Table -->
-<div class="fast-card">
-<h3 class="text-lg font-bold text-blue-900 mb-3 border-b border-slate-200 pb-2">2. טבלת השוואה מרכזית של פרוטוקולי שכבת האפליקציה</h3>
+
+<!-- 5.7.2 Basic Card -->
+<div class="basic-card space-y-3">
+<h3 class="basic-card-title">2. טבלת השוואה מרכזית של פרוטוקולי שכבת האפליקציה</h3>
 <div class="overflow-x-auto rounded-xl border border-slate-200">
 <table class="fast-table">
 <thead>
@@ -3535,14 +4059,14 @@ $$\frac{300,000}{3} \times 4 = \mathbf{400,000\text{ Bytes}} = 400\text{ KB}$$
 <td>TCP (פורט 80 / 443)</td>
 <td>Pull (לקוח יוזם)</td>
 <td>Stateless (+Cookies)</td>
-<td>ב-1.0 קשר לכל אובייקט ($2	ext{ RTT}$); ב-1.1 קשר קבוע (HOL באפליקציה); ב-2 מסגרות וזרמים (נותר HOL ברמת TCP).</td>
+<td>ב-1.0 קשר לכל אובייקט ($2\text{ RTT}$); ב-1.1 קשר קבוע (HOL באפליקציה); ב-2 מסגרות וזרמים (נותר HOL ברמת TCP).</td>
 </tr>
 <tr>
 <td class="font-bold font-mono text-blue-900">HTTP/3</td>
 <td>UDP (מעל QUIC)</td>
 <td>Pull (לקוח יוזם)</td>
 <td>Stateless (+Cookies)</td>
-<td>זרמים עצמאיים ב-QUIC ללא HOL Blocking, הקמת קשר + TLS ב-$1	ext{ RTT}$, ו-Connection ID לשרידות מעבר רשת.</td>
+<td>זרמים עצמאיים ב-QUIC ללא HOL Blocking, הקמת קשר + TLS ב-$1\text{ RTT}$, ו-Connection ID לשרידות מעבר רשת.</td>
 </tr>
 <tr>
 <td class="font-bold font-mono text-blue-900">DNS</td>
@@ -3555,52 +4079,103 @@ $$\frac{300,000}{3} \times 4 = \mathbf{400,000\text{ Bytes}} = 400\text{ KB}$$
 </table>
 </div>
 </div>
-<!-- 5.7.3 Quick Exam Answers -->
-<div class="fast-card">
-<h3 class="text-lg font-bold text-blue-900 mb-3 border-b border-slate-200 pb-2">3. תמצית פתרונות לשאלות מבחן קלאסיות ביחידה 5</h3>
+
+<!-- 5.7.3 Basic Card -->
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">3. תמצית פתרונות לשאלות מבחן קלאסיות ביחידה 5</h3>
+<p class="text-xs text-slate-600">ריכוז 6 תבניות החישוב וההבנה המרכזיות שמופיעות בבחינות האמת.</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-5-7-traps', '🎯 סימולציה 5.7ב: מאמן מלכודות מבחן ושאלות חישוב משולבות')" title="פתיחת מעבדה 5.7ב: מאמן מלכודות מבחן" type="button"><span class="text-xl">🎯</span></button>
+</div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
-<div class="fast-subcard">
+<div class="basic-subcard">
 <strong class="text-blue-900 block mb-1">1. טעינת דף עם $N=12$ תמונות מאותו שרת:</strong>
-<p class="text-slate-700">ב-HTTP/1.0 טורי: $2+12	imes 2 = \mathbf{26	ext{ RTT}}$ ($13$ קשרים); ב-HTTP/1.0 עם $k=4$ מקבילים: $2+\lceil 12/4
-ceil	imes 2 = \mathbf{8	ext{ RTT}}$; ב-HTTP/1.1 ללא Pipelining: $2+12 = \mathbf{14	ext{ RTT}}$; ב-HTTP/2 עם TLS: $\mathbf{4	ext{ RTT}}$; ב-HTTP/3 (QUIC): $\mathbf{3	ext{ RTT}}$ (ובחיבור חוזר $\mathbf{2	ext{ RTT}}$).</p>
+<p class="text-slate-700">ב-HTTP/1.0 טורי: $2+12\times 2 = \mathbf{26\text{ RTT}}$ ($13$ קשרים); ב-HTTP/1.0 עם $k=4$ מקבילים: $2+\lceil 12/4\rceil\times 2 = \mathbf{8\text{ RTT}}$; ב-HTTP/1.1 ללא Pipelining: $2+12 = \mathbf{14\text{ RTT}}$; ב-HTTP/2 עם TLS: $\mathbf{4\text{ RTT}}$; ב-HTTP/3 (QUIC): $\mathbf{3\text{ RTT}}$ (ובחיבור חוזר $\mathbf{2\text{ RTT}}$).</p>
 </div>
-<div class="fast-subcard">
-<strong class="text-blue-900 block mb-1">2. תמונה בשרת פרסומות חיצוני וזיהוי בקשה מהקאש:</strong>
-<p class="text-slate-700">אובייקט בשרת אחר מחייב פתיחת קשר TCP חדש ($+2	ext{ RTT}$ לתמונה). אם בבקשת ה-HTTP מופיעה הכותרת <code>If-Modified-Since</code>, ניתן להסיק שללקוח כבר יש עותק שמור ב-Cache המקומי.</p>
+<div class="basic-subcard">
+<strong class="text-blue-900 block mb-1">2. תמונות בשרתים שונים וספירת <code>SYN=1</code>:</strong>
+<p class="text-slate-700">קובץ ה-Base HTML מכיל הפניות URL שיכולות לשבת בשרתים חיצוניים. עבור HTML+2 תמונות ב-$B$ ו-2 תמונות ב-$C$: ב-Non-Persistent ייפתחו $5$ קשרי TCP; ב-Persistent ייפתחו $2$ קשרי TCP ויישלחו $2\times 2 = \mathbf{4\text{ סגמנטים עם } SYN=1}$.</p>
 </div>
-<div class="fast-subcard">
+<div class="basic-subcard">
 <strong class="text-blue-900 block mb-1">3. אובדן סגמנט של תמונה 1 כשללקוח כבר הגיעה תמונה 2:</strong>
 <p class="text-slate-700">ב-<b>HTTP/2</b> (מעל TCP): שכבת ה-TCP לא תמסור את תמונה 2 לדפדפן עד שהסגמנט החסר של תמונה 1 ישודר מחדש (HOL ברמת TCP). ב-<b>HTTP/3</b> (מעל QUIC): תמונה 2 נמסרת מיד ומוצגת!</p>
 </div>
-<div class="fast-subcard">
-<strong class="text-blue-900 block mb-1">4. קידוד קובץ של $300	ext{ KB}$ ב-Base64 ומעבר 4 ב-SMTP:</strong>
-<p class="text-slate-700">ב-Base64 כל $3$ בתים הופכים ל-$4$ תווים, ולכן הגודל גדל ל-$
-rac{300}{3}	imes 4 = \mathbf{400	ext{ KB}}$. בהעברת מייל משרת השולח לשרת הנמען (מעבר 4): שרת השולח הוא <b>לקוח SMTP</b> ושרת הנמען הוא <b>שרת SMTP</b>.</p>
+<div class="basic-subcard">
+<strong class="text-blue-900 block mb-1">4. קידוד $300\text{ KB}$ ב-Base64, מעבר 4 ותמליל SMTP:</strong>
+<p class="text-slate-700">ב-Base64 הגודל גדל ל-$\frac{300}{3}\times 4 = \mathbf{400\text{ KB}}$. במעבר 4: שרת השולח הוא <b>לקוח SMTP</b> ושרת הנמען הוא <b>שרת SMTP</b>. שורות א–ג (<code>220, HELO, 250</code>) הן <b>לחיצת היד המשולשת של SMTP</b>.</p>
+</div>
+<div class="basic-subcard">
+<strong class="text-blue-900 block mb-1">5. טבלת מטמון DNS (מלכודת <code>ftp.example.com</code>):</strong>
+<p class="text-slate-700">רשומת <code>A</code> של <code>example.com</code> לבדה אינה נותנת את ה-IP של <code>ftp.example.com</code> ואינה רשומת <code>NS</code> $\implies$ $\mathbf{8\text{ סגמנטים}}$. הוספת <code>CNAME (ftp → example.com)</code> פותרת מהמטמון ב-$\mathbf{2\text{ סגמנטים בלבד}}$ (המינימום ברשת!).</p>
+</div>
+<div class="basic-subcard">
+<strong class="text-blue-900 block mb-1">6. היפוך פורטים ב-UDP/TCP (בקשה $X$ ותגובה $Y$):</strong>
+<p class="text-slate-700">מלקוח $A$ (פורט $P_A$) לשרת $B$ (פורט $P_B$): בבקשה $X$ מתקיים $\text{Src}=P_A, \text{Dst}=P_B$, ובתגובה $Y$ הפורטים מתהפכים: $\text{Src}=P_B, \text{Dst}=P_A$ (ולכן $\text{Dst}(X)=\text{Src}(Y)$).</p>
 </div>
 </div>
 </div>
-<!-- 5.7.4 Quick Quiz Launchers -->
-<div class="fast-card mb-0">
-<h3 class="text-lg font-bold text-blue-900 mb-3 border-b border-slate-200 pb-2">4. פתיחת חלונות התרגול העצמי לפי תתי-פרקים</h3>
+
+<!-- 5.7.4 Basic Card -->
+<div class="basic-card space-y-3">
+<h3 class="basic-card-title">4. פתיחת חלונות התרגול העצמי לפי תתי-פרקים</h3>
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs md:text-sm">
-<button class="fast-subcard text-right hover:bg-blue-50 hover:border-blue-300 transition cursor-pointer flex items-center justify-between" onclick="showQuestions('tab-intro', '5.1 יסודות שכבת האפליקציה', event)" type="button">
+<button class="basic-subcard text-right hover:bg-blue-50 hover:border-blue-300 transition cursor-pointer flex items-center justify-between" onclick="showQuestions('tab-intro', '5.1 יסודות שכבת האפליקציה', event)" type="button">
 <span><b>5.1</b> יסודות, C/S ו-Sockets</span><span class="text-blue-700 font-bold">❓ תרגול</span>
 </button>
-<button class="fast-subcard text-right hover:bg-blue-50 hover:border-blue-300 transition cursor-pointer flex items-center justify-between" onclick="showQuestions('tab-email', '5.2 דואר אלקטרוני: SMTP, MIME, POP3 ו-IMAP', event)" type="button">
+<button class="basic-subcard text-right hover:bg-blue-50 hover:border-blue-300 transition cursor-pointer flex items-center justify-between" onclick="showQuestions('tab-email', '5.2 דואר אלקטרוני: SMTP, MIME, POP3 ו-IMAP', event)" type="button">
 <span><b>5.2</b> דוא"ל: SMTP, MIME, IMAP</span><span class="text-blue-700 font-bold">❓ תרגול</span>
 </button>
-<button class="fast-subcard text-right hover:bg-blue-50 hover:border-blue-300 transition cursor-pointer flex items-center justify-between" onclick="showQuestions('tab-http', '5.3 ה-Web, פרוטוקול HTTP, קאש ועוגיות', event)" type="button">
+<button class="basic-subcard text-right hover:bg-blue-50 hover:border-blue-300 transition cursor-pointer flex items-center justify-between" onclick="showQuestions('tab-http', '5.3 ה-Web, פרוטוקול HTTP, קאש ועוגיות', event)" type="button">
 <span><b>5.3</b> HTTP/1.0–3, קאש ועוגיות</span><span class="text-blue-700 font-bold">❓ תרגול</span>
 </button>
-<button class="fast-subcard text-right hover:bg-blue-50 hover:border-blue-300 transition cursor-pointer flex items-center justify-between" onclick="showQuestions('tab-dns', '5.4 מערכת שמות המתחם – DNS', event)" type="button">
+<button class="basic-subcard text-right hover:bg-blue-50 hover:border-blue-300 transition cursor-pointer flex items-center justify-between" onclick="showQuestions('tab-dns', '5.4 מערכת שמות המתחם – DNS', event)" type="button">
 <span><b>5.4</b> מערכת ה-DNS ורשומות משאב</span><span class="text-blue-700 font-bold">❓ תרגול</span>
 </button>
-<button class="fast-subcard text-right hover:bg-blue-50 hover:border-blue-300 transition cursor-pointer flex items-center justify-between" onclick="showQuestions('tab-p2p', '5.5 רשתות כיסוי, P2P ו-CDN', event)" type="button">
+<button class="basic-subcard text-right hover:bg-blue-50 hover:border-blue-300 transition cursor-pointer flex items-center justify-between" onclick="showQuestions('tab-p2p', '5.5 רשתות כיסוי, P2P ו-CDN', event)" type="button">
 <span><b>5.5</b> CDN, P2P ורשתות כיסוי</span><span class="text-blue-700 font-bold">❓ תרגול</span>
 </button>
-<button class="fast-subcard text-right bg-blue-50/70 border-blue-300 hover:bg-blue-100 transition cursor-pointer flex items-center justify-between" onclick="showQuestions('tab-summary', '5.7 סינתזה ושאלות מבחן משולבות', event)" type="button">
+<button class="basic-subcard text-right bg-blue-50/70 border-blue-300 hover:bg-blue-100 transition cursor-pointer flex items-center justify-between" onclick="showQuestions('tab-summary', '5.7 סינתזה ושאלות מבחן משולבות', event)" type="button">
 <span><b>5.7</b> שאלות סינתזה ומבחן משולבות</span><span class="text-blue-800 font-black">🎯 תרגול מסכם</span>
 </button>
+</div>
+</div>
+</div>
+
+<div class="fast-mode-view space-y-4">
+<div class="fast-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="fast-badge">⚡ לימוד מהיר • יחידה 5.7 (כרטיס חזרה סופי למבחן)</span>
+<div class="flex items-center gap-1.5 flex-wrap">
+<button class="fast-sim-btn" onclick="openSingleSim('sim-5-7-e2e', '🎬 סימולציה 5.7א: המסע המלא של בקשת Web')" type="button">🎬 מעבדה 5.7א</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-5-7-traps', '🎯 סימולציה 5.7ב: מאמן מלכודות מבחן')" type="button">🎯 מעבדה 5.7ב</button>
+<button class="fast-sim-btn" onclick="showQuestions('tab-summary', '5.7 סינתזה ושאלות מבחן משולבות', event)" type="button">❓ שאלות סינתזה</button>
+</div>
+</div>
+<h2 class="text-xl md:text-2xl font-black text-slate-900">5.7 כרטיס סיכום על למבחן: כל הפרוטוקולים, הפורטים, הנוסחאות והמלכודות בדף אחד</h2>
+<p class="text-xs text-slate-600"><b>חזרה מהירה לפני בחינה:</b> מפת הזרימה המלאה מרגע הקלדת URL בדפדפן וחוקי הברזל לפתרון שאלות יחידה 5.</p>
+</div>
+<div class="fast-visual-strip">
+<div class="fast-strip-node"><b>שלב 1 – DNS (UDP 53):</b> שאילתה ל-Local DNS ($2$ סגמנטים מ-Cache או עד $8$ סגמנטים מול Root $\to$ TLD $\to$ Authoritative).</div>
+<div class="fast-strip-node"><b>שלב 2 – TCP Handshake (80/443):</b> $1\text{ RTT}$ ($3$ סגמנטים, מתוכם <b>$2$ סגמנטים עם <code>SYN=1</code></b>: הראשון מהלקוח והשני מהשרת).</div>
+<div class="fast-strip-node"><b>שלב 3 – Base HTML ($1\text{ RTT}$):</b> שליחת <code>GET</code> (עם <code>Cookie</code> / <code>If-Modified-Since</code>) וקבלת <code>200 OK</code> או <code>304 Not Modified</code>.</div>
+<div class="fast-strip-node fast-strip-highlight"><b>שלב 4 – שליפת $N$ אובייקטים ★:</b> מאותו שרת או משרתים חיצוניים (כל שרת חיצוני מחייב פתיחת קשר TCP חדש!).</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+<div class="fast-card">
+<div class="fast-card-title">📊 פורטים ופרוטוקולים שחייבים לזכור בעל-פה</div>
+<p class="text-slate-700 leading-relaxed">• <b>SMTP (TCP 25 – Push):</b> שליחת דוא"ל (מלקוח לשרת ובין שרתים). במעבר 4: שרת השולח = Client, שרת הנמען = Server. שורות א–ג = לחיצת יד; שורות שרת מתחילות בקוד בן 3 ספרות.<br/>• <b>POP3 (TCP 110 – Pull) מול IMAP (TCP 143 – Pull):</b> POP3 מוריד למחשב ללא סנכרון; IMAP שומר ומסנכרן תיקיות על השרת.<br/>• <b>HTTP/1.0–2 (TCP 80/443) מול HTTP/3 (QUIC מעל UDP):</b> Stateless (+Cookies).<br/>• <b>DNS (UDP 53):</b> תרגום שמות ל-IP לפי TTL.<br/>• <b>SIP/RTP ו-SNMP (UDP 161):</b> איתות מולטימדיה וניהול רשת (<code>GET-NEXT</code>).</p>
+</div>
+<div class="fast-card">
+<div class="fast-card-title">🧮 נוסחאון מהיר ליחידה 5</div>
+<p class="text-slate-700 leading-relaxed">• <b>זמן טעינת HTML + $N$ אובייקטים מאותו שרת:</b><br/>
+– HTTP/1.0 סדרתי: $\mathbf{2(N+1)\text{ RTT}}$ ($N+1$ קשרי TCP).<br/>
+– HTTP/1.0 עם $k$ מקבילים: $\mathbf{(2 + 2\lceil N/k \rceil)\text{ RTT}}$.<br/>
+– HTTP/1.1 ללא Pipelining: $\mathbf{(N+2)\text{ RTT}}$ (קשר TCP אחד).<br/>
+– HTTP/1.1 עם Pipelining / HTTP/2 ללא TLS / HTTP/3: $\mathbf{3\text{ RTT}}$.<br/>
+• <b>קידוד Base64 ב-MIME:</b> $\text{Encoded Size} = \frac{\text{Original}}{3} \times 4$ ($+33.3\%$).<br/>
+• <b>סגמנטים ב-DNS:</b> $2$ (ב-Local Cache) | $4$ (NS ב-Cache) | $6$ (TLD ב-Cache) | $8$ (Cache ריק).</p>
 </div>
 </div>
 </div>
@@ -4505,7 +5080,7 @@ rac{300}{3}	imes 4 = \mathbf{400	ext{ KB}}$. בהעברת מייל משרת הש
 <span>ב. השרת מחזיר קוד 250 Completed, והלקוח סוגר מיד את קשר ה-TCP במכת FIN.</span>
 </button>
 <button class="q-option-btn" onclick="handleOptionClick(this, true, 'מדויק לחלוטין! זהו הפורמט המדויק לפי תקן RFC 5321.')">
-<span>ג. השרת מחזיר קוד 354 Start mail input, והלקוח מסיים ברצף של נקודה בודדת בשורה חדשה: <crlf>.<crlf></crlf></crlf></span>
+<span>ג. השרת מחזיר קוד 354 Start mail input, והלקוח מסיים ברצף של נקודה בודדת בשורה חדשה: &lt;CRLF&gt;.&lt;CRLF&gt;</span>
 </button>
 <button class="q-option-btn" onclick="handleOptionClick(this, false, 'שגוי לחלוטין. 404 הוא שגיאת Not Found ב-HTTP, ו-SMTP אינו משתמש ב-Null byte.')">
 <span>ד. השרת מחזיר קוד 404 Ready, והלקוח שולח תו Null בייט (0x00).</span>
@@ -6129,38 +6704,72 @@ m = audio 49170 RTP/AVP 0
 <script>
 const TAB_ORDER = ['tab-intro', 'tab-email', 'tab-http', 'tab-dns', 'tab-p2p', 'tab-advanced', 'tab-summary'];
 let currentStudyMode = 'deep';
-function setStudyMode(mode) {
-currentStudyMode = (mode === 'fast') ? 'fast' : 'deep';
-const isFast = (currentStudyMode === 'fast');
-document.body.classList.toggle('fast-study-mode', isFast);
-const labelEl = document.getElementById('study-mode-label');
-const subEl = document.getElementById('study-mode-sub');
-const iconEl = document.getElementById('study-mode-icon');
-const btnDeep = document.getElementById('sidebar-mode-deep');
-const btnFast = document.getElementById('sidebar-mode-fast');
-if (isFast) {
-if (labelEl) labelEl.textContent = 'לימוד מהיר';
-if (subEl) subEl.textContent = 'מעבר ללימוד מעמיק 📖';
-if (iconEl) {
-iconEl.className = 'w-8 h-8 rounded-xl bg-gradient-to-br from-amber-500 to-blue-600 text-white flex items-center justify-center shadow-xs shrink-0';
-iconEl.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>';
+let modeToastTimer = null;
+function showModeToast(msg) {
+  const toast = document.getElementById('mode-switch-toast');
+  if (!toast) return;
+  toast.textContent = msg;
+  toast.classList.remove('opacity-0', 'translate-y-3');
+  toast.classList.add('opacity-100', 'translate-y-0');
+  if (modeToastTimer) clearTimeout(modeToastTimer);
+  modeToastTimer = setTimeout(() => {
+    toast.classList.remove('opacity-100', 'translate-y-0');
+    toast.classList.add('opacity-0', 'translate-y-3');
+  }, 2600);
 }
-if (btnFast) btnFast.className = 'py-1.5 px-2 rounded-lg bg-blue-700 text-white shadow-xs transition-all flex items-center justify-center gap-1 cursor-pointer';
-if (btnDeep) btnDeep.className = 'py-1.5 px-2 rounded-lg text-slate-700 hover:bg-white/60 transition-all flex items-center justify-center gap-1 cursor-pointer';
-} else {
-if (labelEl) labelEl.textContent = 'לימוד מעמיק';
-if (subEl) subEl.textContent = 'מעבר ללימוד מהיר ⚡';
-if (iconEl) {
-iconEl.className = 'w-8 h-8 rounded-xl bg-gradient-to-br from-blue-700 to-sky-500 text-white flex items-center justify-center shadow-xs shrink-0';
-iconEl.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>';
-}
-if (btnDeep) btnDeep.className = 'py-1.5 px-2 rounded-lg bg-blue-700 text-white shadow-xs transition-all flex items-center justify-center gap-1 cursor-pointer';
-if (btnFast) btnFast.className = 'py-1.5 px-2 rounded-lg text-slate-700 hover:bg-white/60 transition-all flex items-center justify-center gap-1 cursor-pointer';
-}
-try {
-localStorage.setItem('net_ch5_study_mode', currentStudyMode);
-} catch (e) {}
-onKatexLoad();
+
+function setStudyMode(mode, silent) {
+  if (!['deep', 'basic', 'fast'].includes(mode)) mode = 'deep';
+  currentStudyMode = mode;
+  document.body.classList.remove('study-mode-deep', 'study-mode-basic', 'study-mode-fast', 'fast-study-mode');
+  document.body.classList.add('study-mode-' + mode);
+
+  const btnDeep = document.getElementById('sidebar-mode-deep-btn');
+  const btnBasic = document.getElementById('sidebar-mode-basic-btn');
+  const btnFast = document.getElementById('sidebar-mode-fast-btn');
+  const mobDeep = document.getElementById('mob-mode-deep');
+  const mobBasic = document.getElementById('mob-mode-basic');
+  const mobFast = document.getElementById('mob-mode-fast');
+  const descEl = document.getElementById('sidebar-mode-desc');
+  const partATitle = document.getElementById('sidebar-part-a-title');
+  const partADesc = document.getElementById('sidebar-part-a-desc');
+
+  const inactiveCls = 'py-1.5 px-1.5 rounded-lg font-bold transition-all flex items-center justify-center gap-1 text-sky-950 hover:bg-white/70 cursor-pointer';
+  const activeDeepCls = 'py-1.5 px-1.5 rounded-lg font-black transition-all flex items-center justify-center gap-1 bg-gradient-to-r from-blue-700 to-sky-600 text-white shadow-xs cursor-pointer';
+  const activeBasicCls = 'py-1.5 px-1.5 rounded-lg font-black transition-all flex items-center justify-center gap-1 bg-sky-700 text-white shadow-xs cursor-pointer';
+  const activeFastCls = 'py-1.5 px-1.5 rounded-lg font-black transition-all flex items-center justify-center gap-1 bg-blue-600 text-white shadow-xs cursor-pointer';
+
+  if (btnDeep) btnDeep.className = (mode === 'deep') ? activeDeepCls : inactiveCls;
+  if (btnBasic) btnBasic.className = (mode === 'basic') ? activeBasicCls : inactiveCls;
+  if (btnFast) btnFast.className = (mode === 'fast') ? activeFastCls : inactiveCls;
+
+  const mobInactive = 'px-2 py-1 rounded-md text-sky-950 cursor-pointer';
+  const mobActive = 'px-2 py-1 rounded-md bg-blue-700 text-white cursor-pointer';
+  if (mobDeep) mobDeep.className = (mode === 'deep') ? mobActive : mobInactive;
+  if (mobBasic) mobBasic.className = (mode === 'basic') ? mobActive : mobInactive;
+  if (mobFast) mobFast.className = (mode === 'fast') ? mobActive : mobInactive;
+
+  if (mode === 'deep') {
+    if (descEl) descEl.textContent = 'מצב מעמיק: הסבר מלא, מודלים מנטליים, מעבדות חיות ושאלות תרגול';
+    if (partATitle) partATitle.textContent = 'פרקי יחידה 5 והמעבדות החיות (לימוד מעמיק)';
+    if (partADesc) partADesc.textContent = 'הסבר סיפורי מלא, דגשים והבהרות עומק, מעבדות חיות ושאלות תרגול (❓) לכל לשונית';
+    if (!silent) showModeToast('📚 מצב לימוד מעמיק: הסבר מלא, עזרים גרפיים, מעבדות ותרגילים');
+  } else if (mode === 'basic') {
+    if (descEl) descEl.textContent = 'מצב בסיסי: הסבר תכלס רגוע ונעים לקריאה + עזרים גרפיים ומעבדות';
+    if (partATitle) partATitle.textContent = 'פרקי יחידה 5 – הסבר ממוקד וסימולציות (לימוד בסיסי)';
+    if (partADesc) partADesc.textContent = 'כל חומר הפרק ודגשי הבחינות בצורה ישירה, רגועה ונקייה מעומס ויזואלי';
+    if (!silent) showModeToast('📖 מצב לימוד בסיסי: הסבר תכלס רגוע + עזרים גרפיים וסימולציות');
+  } else if (mode === 'fast') {
+    if (descEl) descEl.textContent = 'מצב מהיר: סקירה מרוכזת ומהירה של כל מושגי הפרק בדקות ספורות';
+    if (partATitle) partATitle.textContent = 'פרקי יחידה 5 – סקירה מהירה ומרוכזת (לימוד מהיר)';
+    if (partADesc) partADesc.textContent = 'מעבר מהיר על כל מושגי הליבה, הנוסחאות ומלכודות המבחן של הפרק';
+    if (!silent) showModeToast('⚡ מצב לימוד מהיר: סקירה מרוכזת של כל מושגי הפרק');
+  }
+
+  try {
+    localStorage.setItem('net_ch5_study_mode', mode);
+  } catch (e) {}
+  onKatexLoad();
 }
 // toggleTheme handled by theme-manager.js
 function onKatexLoad() {

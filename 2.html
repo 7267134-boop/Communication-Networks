@@ -337,137 +337,256 @@ border-bottom: 1px solid rgba(186, 230, 253, 0.9);
 border-left: 1px solid rgba(186, 230, 253, 0.9);
 color: #0f172a;
 }
-/* ==================== DUAL STUDY MODE & MOBILE RESPONSIVENESS ==================== */
+/* ==================== 3-STATE STUDY MODE (DEEP / BASIC / FAST) ==================== */
+.basic-mode-view, .fast-mode-view { display: none !important; }
+body.study-mode-basic .deep-mode-view, body.study-mode-basic .fast-mode-view,
+body[data-study-mode="basic"] .deep-mode-view, body[data-study-mode="basic"] .fast-mode-view { display: none !important; }
+body.study-mode-basic .basic-mode-view,
+body[data-study-mode="basic"] .basic-mode-view { display: block !important; animation: fadeInTab 0.28s ease-out; }
+body.study-mode-fast .deep-mode-view, body.study-mode-fast .basic-mode-view,
+body[data-study-mode="fast"] .deep-mode-view, body[data-study-mode="fast"] .basic-mode-view { display: none !important; }
+body.study-mode-fast .fast-mode-view,
+body[data-study-mode="fast"] .fast-mode-view { display: block !important; animation: fadeInTab 0.28s ease-out; }
+body.study-mode-basic .deep-only-block, body.study-mode-fast .deep-only-block { display: none !important; }
+
+/* --- BASIC MODE: Calm, Low-Glare Slate-Sky Reading Palette --- */
+body.study-mode-basic,
+body.study-mode-basic main#main-content,
+body[data-study-mode="basic"] {
+    background-color: #f4f7fa !important;
+    background-image: none !important;
+    color: #1e293b !important;
+}
+body.study-mode-basic .silver-waves-bg,
+body.study-mode-basic .silver-blue-waves-bg {
+    animation: none !important;
+    opacity: 0.06 !important;
+}
+body.study-mode-basic .sidebar-animated-mesh {
+    background: #edf2f7 !important;
+    animation: none !important;
+    border-left-color: #cbd5e1 !important;
+}
+body.study-mode-basic .nav-group-header {
+    background: #e2ecf5 !important;
+    border-right-color: #0369a1 !important;
+    box-shadow: none !important;
+}
+body.study-mode-basic .nav-btn {
+    background: rgba(255, 255, 255, 0.85) !important;
+    border-color: #cbd5e1 !important;
+    color: #334155 !important;
+}
+body.study-mode-basic .nav-btn.active-nav {
+    background: #dbeafe !important;
+    border-color: #60a5fa !important;
+    color: #1e3a8a !important;
+    box-shadow: 0 1px 4px rgba(30, 58, 138, 0.08) !important;
+}
+body.study-mode-basic .nav-btn.active-nav::after { display: none !important; }
+body.study-mode-basic .sim-circle-btn {
+    background: #e0f2fe !important;
+    border: 2px solid #0284c7 !important;
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.14) !important;
+    animation: none !important;
+}
+.basic-header {
+    background: #fbfdff;
+    border: 1px solid #cbd5e1;
+    border-right: 5px solid #0369a1;
+    border-radius: 1rem;
+    padding: 1.15rem 1.35rem;
+}
+.basic-badge {
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    border-radius: 0.5rem;
+    background: #e0f2fe;
+    color: #075985;
+    border: 1px solid #bae6fd;
+    font-size: 0.75rem;
+    font-weight: 800;
+}
+.basic-top-btn {
+    padding: 0.35rem 0.75rem;
+    border-radius: 0.65rem;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #0c4a6e;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+.basic-top-btn:hover { background: #f0f9ff; border-color: #7dd3fc; }
+.basic-card {
+    background: #ffffff;
+    border: 1px solid #d8e3ef;
+    border-radius: 1rem;
+    padding: 1.25rem 1.4rem;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+}
+.basic-card-title {
+    font-size: 1.08rem;
+    font-weight: 800;
+    color: #0f172a;
+}
+.basic-subcard {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 0.85rem 1rem;
+}
+.basic-callout {
+    background: #f0f7ff;
+    border: 1px solid #bae6fd;
+    border-right: 4px solid #0284c7;
+    border-radius: 0.65rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.81rem;
+    color: #1e293b;
+    line-height: 1.6;
+}
+.basic-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+}
+.basic-table th {
+    background: #eff6ff;
+    color: #0c4a6e;
+    font-weight: 800;
+    text-align: right;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid #cbd5e1;
+}
+.basic-table td {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #e2e8f0;
+    color: #334155;
+    vertical-align: top;
+}
+.basic-table tr:nth-child(even) td { background: #f8fafc; }
+
+/* --- FAST MODE: Crisp High-Speed Overview Palette --- */
+body.study-mode-fast,
+body.study-mode-fast main#main-content,
 body[data-study-mode="fast"] {
-background-color: #f8fafc !important;
-background-image: none !important;
-color: #1e293b;
+    background-color: #f8fafc !important;
+    background-image: none !important;
+    color: #0f172a !important;
 }
-body[data-study-mode="fast"] .deep-mode-view {
-display: none !important;
+body.study-mode-fast .silver-waves-bg,
+body.study-mode-fast .silver-blue-waves-bg,
+body.study-mode-fast .nav-btn.active-nav::after {
+    display: none !important;
+    animation: none !important;
 }
-body[data-study-mode="fast"] .fast-mode-view {
-display: block !important;
+body.study-mode-fast .sidebar-animated-mesh {
+    background: #f1f5f9 !important;
+    animation: none !important;
 }
-body:not([data-study-mode="fast"]) .fast-mode-view {
-display: none !important;
+body.study-mode-fast .nav-btn.active-nav {
+    background: #0284c7 !important;
+    color: #ffffff !important;
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.2) !important;
 }
-body:not([data-study-mode="fast"]) .deep-mode-view {
-display: block !important;
-}
-body[data-study-mode="fast"] .sidebar-animated-mesh {
-background: #f8fafc !important;
-animation: none !important;
-}
-body[data-study-mode="fast"] .silver-waves-bg,
-body[data-study-mode="fast"] .silver-blue-waves-bg,
-body[data-study-mode="fast"] .nav-btn.active-nav::after {
-display: none !important;
-animation: none !important;
-}
-body[data-study-mode="fast"] .nav-btn.active-nav {
-background: #0284c7 !important;
-box-shadow: 0 2px 6px rgba(2, 132, 199, 0.2) !important;
-}
-/* OS-Chapter Inspired Fast Mode Components (Calm Blue Palette) */
-.fast-mode-view {
-font-family: 'Heebo', sans-serif;
-}
+.fast-mode-view { font-family: 'Heebo', sans-serif; }
 .fast-header {
-background: #ffffff;
-border: 1px solid #e2e8f0;
-border-right: 5px solid #0284c7;
-border-radius: 1rem;
-padding: 1.25rem 1.5rem;
-margin-bottom: 1.25rem;
-box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+    background: #ffffff;
+    border: 1px solid #dbe3ec;
+    border-right: 4px solid #0284c7;
+    border-radius: 0.9rem;
+    padding: 1rem 1.2rem;
 }
 .fast-badge {
-display: inline-flex;
-align-items: center;
-gap: 0.35rem;
-background: #e0f2fe;
-color: #0369a1;
-font-weight: 800;
-font-size: 0.75rem;
-padding: 0.2rem 0.65rem;
-border-radius: 9999px;
-margin-bottom: 0.5rem;
+    display: inline-block;
+    padding: 0.18rem 0.65rem;
+    border-radius: 9999px;
+    background: #e0f2fe;
+    color: #0369a1;
+    border: 1px solid #7dd3fc;
+    font-size: 0.72rem;
+    font-weight: 800;
+}
+.fast-visual-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 0.55rem;
+    background: #eef4f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.85rem;
+    padding: 0.65rem;
+}
+.fast-strip-node {
+    background: #ffffff;
+    border: 1px solid #dbe3ec;
+    border-radius: 0.6rem;
+    padding: 0.55rem 0.7rem;
+    font-size: 0.74rem;
+    line-height: 1.45;
+    color: #1e293b;
+}
+.fast-strip-highlight {
+    background: #f0f9ff;
+    border-color: #0284c7;
+    color: #0c4a6e;
 }
 .fast-card {
-background: #ffffff;
-border: 1px solid #e2e8f0;
-border-radius: 1rem;
-padding: 1.25rem 1.5rem;
-margin-bottom: 1rem;
-box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.85rem;
+    padding: 0.95rem 1.1rem;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.02);
 }
 .fast-card-title {
-font-size: 1.15rem;
-font-weight: 800;
-color: #0f172a;
-border-bottom: 1px solid #f1f5f9;
-padding-bottom: 0.5rem;
-margin-bottom: 0.85rem;
-display: flex;
-align-items: center;
-gap: 0.5rem;
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: #075985;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 0.35rem;
+    margin-bottom: 0.45rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
 }
-.fast-subcard {
-background: #f8fafc;
-border: 1px solid #e2e8f0;
-border-radius: 0.75rem;
-padding: 1rem;
+.fast-sim-btn {
+    padding: 0.32rem 0.75rem;
+    border-radius: 0.6rem;
+    background: #f0f9ff;
+    border: 1px solid #38bdf8;
+    color: #0369a1;
+    font-size: 0.74rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.15s ease;
 }
-.fast-accent-blue {
-background: #f0f9ff;
-border-right: 4px solid #0284c7;
-border-radius: 0.5rem;
-padding: 0.85rem 1rem;
-}
-.fast-accent-slate {
-background: #f8fafc;
-border-right: 4px solid #475569;
-border-radius: 0.5rem;
-padding: 0.85rem 1rem;
-}
-.fast-sim-bar {
-background: #f0f9ff;
-border: 1px solid #bae6fd;
-border-radius: 0.85rem;
-padding: 0.75rem 1rem;
-display: flex;
-align-items: center;
-justify-content: space-between;
-flex-wrap: wrap;
-gap: 0.75rem;
+.fast-sim-btn:hover {
+    background: #0284c7;
+    color: #ffffff;
+    border-color: #0284c7;
 }
 .fast-table {
-width: 100%;
-border-collapse: collapse;
-font-size: 0.85rem;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.76rem;
 }
 .fast-table th {
-background: #f1f5f9;
-color: #0f172a;
-font-weight: 800;
-text-align: right;
-padding: 0.6rem 0.75rem;
-border: 1px solid #cbd5e1;
+    background: #f1f5f9;
+    color: #0f172a;
+    font-weight: 800;
+    text-align: right;
+    padding: 0.45rem 0.6rem;
+    border: 1px solid #cbd5e1;
 }
 .fast-table td {
-padding: 0.55rem 0.75rem;
-border: 1px solid #e2e8f0;
-color: #334155;
-vertical-align: top;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #e2e8f0;
+    color: #334155;
+    vertical-align: top;
 }
-.fast-table tr:nth-child(even) td {
-background: #f8fafc;
-}
-/* Study Mode Switcher Corner Pill */
+.fast-table tr:nth-child(even) td { background: #f8fafc; }
 
-
-body[data-study-mode="fast"] 
 /* Consolidated Question Repo Classes (saves >150KB of repeated class strings) */
 .q-open-det { border: 1px solid #bae6fd; border-radius: 1rem; background: #ffffff; padding: 1.25rem; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }
 .q-open-det:hover { border-color: #7dd3fc; }
@@ -523,7 +642,7 @@ overflow-x: auto;
 }
 }
 </style>
-    <script src="theme-manager.js"></script>
+    <script>(function(){try{if(location.protocol==='file:'||location.hostname==='localhost'||location.hostname==='127.0.0.1'){['theme-manager.js','ai_widget.js'].forEach(function(s){var e=document.createElement('script');e.src=s;document.head.appendChild(e);});}}catch(err){}})();</script>
 </head>
 <body class="text-slate-800 h-screen flex overflow-hidden">
 <!-- Study Mode Corner Toggle Button (Deep Study <-> Fast Study) -->
@@ -551,21 +670,27 @@ overflow-x: auto;
 <p class="text-[11px] text-sky-900/80 mt-1 font-medium leading-relaxed">
 העברת סיביות ותווך, אפנון וקידוד (NRZ/NRZI/Manchester/4B5B), מסגור (PPP/HDLC/SONET), שגיאות (Parity/Checksum/CRC), חלון הזזה ו-Ethernet.
 </p>
-<!-- Synchronized Dual Study Mode Segmented Switch -->
-<div class="mt-3 p-1 rounded-xl bg-sky-100/80 border border-sky-200 grid grid-cols-2 gap-1 text-xs font-bold">
-<button id="sidebar-mode-deep" onclick="setStudyMode('deep')" class="py-1.5 px-2 rounded-lg bg-gradient-to-r from-blue-700 to-sky-600 text-white shadow-xs flex items-center justify-center gap-1 transition-all cursor-pointer">
-<span>🔬</span><span>לימוד מעמיק</span>
+<!-- Synchronized 3-State Study Mode Segmented Switch -->
+<div class="mt-3 p-1 rounded-xl bg-sky-100/90 border border-sky-300/80 grid grid-cols-3 gap-1 text-[11px]" role="group" aria-label="בחירת מצב לימוד">
+<button type="button" id="sidebar-mode-deep-btn" onclick="setStudyMode('deep')" class="py-1.5 px-1.5 rounded-lg font-black transition-all flex items-center justify-center gap-1 bg-gradient-to-r from-blue-700 to-sky-600 text-white shadow-xs cursor-pointer">
+<span>📚</span><span>מעמיק</span>
 </button>
-<button id="sidebar-mode-fast" onclick="setStudyMode('fast')" class="py-1.5 px-2 rounded-lg text-sky-900 hover:bg-white/70 flex items-center justify-center gap-1 transition-all cursor-pointer">
-<span>⚡</span><span>לימוד מהיר</span>
+<button type="button" id="sidebar-mode-basic-btn" onclick="setStudyMode('basic')" class="py-1.5 px-1.5 rounded-lg font-bold transition-all flex items-center justify-center gap-1 text-sky-950 hover:bg-white/70 cursor-pointer">
+<span>📖</span><span>בסיסי</span>
 </button>
+<button type="button" id="sidebar-mode-fast-btn" onclick="setStudyMode('fast')" class="py-1.5 px-1.5 rounded-lg font-bold transition-all flex items-center justify-center gap-1 text-sky-950 hover:bg-white/70 cursor-pointer">
+<span>⚡</span><span>מהיר</span>
+</button>
+</div>
+<div id="sidebar-mode-desc" class="mt-1.5 text-[10px] text-sky-950/80 font-semibold text-center leading-tight">
+מצב מעמיק: הסבר מלא, מודלים מנטליים, עזרים גרפיים, מעבדות ותרגילים
 </div>
 </div>
 <!-- Sidebar Navigation List -->
 <div class="relative z-10 flex-1 overflow-y-auto silver-scroll p-3 space-y-1.5">
-<div class="nav-group-header">
-<div class="nav-group-title">פרקי יחידה 2 והמעבדות החיות</div>
-<div class="nav-group-desc">הסבר סיפורי מלא, דגשים והבהרות עומק, 11 מעבדות עגולות ושאלות תרגול (❓) לכל לשונית</div>
+<div class="nav-group-header" id="sidebar-group-part-1">
+<div class="nav-group-title" id="sidebar-part-1-title">פרקי יחידה 2 והמעבדות החיות (לימוד מעמיק)</div>
+<div class="nav-group-desc" id="sidebar-part-1-desc">הסבר סיפורי מלא, מודלים מנטליים, דגשים והבהרות עומק, מעבדות חיות ושאלות תרגול (❓)</div>
 </div>
 <div class="relative group/nav mb-1.5">
 <button onclick="showTab('tab-physical')" id="btn-tab-physical" class="nav-btn active-nav">
@@ -627,20 +752,20 @@ title="שאלות מנחות ואמריקאיות - פרק 7">❓</button>
 <!-- Sidebar Footer: Course Chapter Navigation & Main Index -->
 <div class="relative z-10 p-2.5 border-t border-sky-200/90 bg-white/90 backdrop-blur-md space-y-1.5 mt-auto">
 <div class="grid grid-cols-2 gap-1.5">
-<a href="1.html" class="relative overflow-hidden py-2 px-2 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-950 font-bold text-[11px] border border-sky-200/90 flex items-center justify-center gap-1 group transition-all shadow-2xs text-center cursor-pointer" title="חזרה לפרק 1: מבוא ומושגים יסודיים">
+<button type="button" onclick="navigateToLocalFile('1.html', false)" class="relative overflow-hidden py-2 px-2 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-950 font-bold text-[11px] border border-sky-200/90 flex items-center justify-center gap-1 group transition-all shadow-2xs text-center cursor-pointer" title="חזרה לפרק 1: מבוא ומושגים יסודיים">
 <span class="font-mono text-xs text-sky-500 group-hover:translate-x-0.5 transition-transform">→</span>
 <span>לפרק הקודם</span>
-</a>
-<a href="3.html" class="relative overflow-hidden py-2 px-2 rounded-lg bg-gradient-to-r from-blue-700 via-sky-600 to-blue-600 hover:from-blue-800 hover:to-sky-700 text-white font-bold text-[11px] border border-sky-300 flex items-center justify-center gap-1 group transition-all shadow-xs text-center cursor-pointer" title="מעבר לפרק 3: שכבת הרשת (Network Layer)">
+</button>
+<button type="button" onclick="navigateToLocalFile('3.html', false)" class="relative overflow-hidden py-2 px-2 rounded-lg bg-gradient-to-r from-blue-700 via-sky-600 to-blue-600 hover:from-blue-800 hover:to-sky-700 text-white font-bold text-[11px] border border-sky-300 flex items-center justify-center gap-1 group transition-all shadow-xs text-center cursor-pointer" title="מעבר לפרק 3: שכבת הרשת (Network Layer)">
 <div class="absolute inset-0 silver-blue-waves-bg pointer-events-none opacity-25"></div>
 <span class="relative z-10">לפרק הבא</span>
 <span class="relative z-10 font-mono text-xs text-sky-200 group-hover:-translate-x-0.5 transition-transform">←</span>
-</a>
+</button>
 </div>
-<a href="index.html" class="relative overflow-hidden w-full py-2 px-3 rounded-lg bg-gradient-to-r from-sky-100 via-sky-50 to-blue-100 hover:bg-sky-200 text-sky-950 font-black text-xs border border-sky-300 flex items-center justify-center gap-2 transition-all shadow-2xs group cursor-pointer text-center" title="פתיחת פורטל הקורס הראשי">
+<button type="button" onclick="navigateToLocalFile('index.html', false)" class="relative overflow-hidden w-full py-2 px-3 rounded-lg bg-gradient-to-r from-sky-100 via-sky-50 to-blue-100 hover:bg-sky-200 text-sky-950 font-black text-xs border border-sky-300 flex items-center justify-center gap-2 transition-all shadow-2xs group cursor-pointer text-center" title="פתיחת פורטל הקורס הראשי">
 <span class="text-sm">🏠</span>
 <span>תוכן עניינים ואינדקס הקורס</span>
-</a>
+</button>
 </div>
 </aside>
 <!-- Main Content -->
@@ -849,7 +974,7 @@ title="שאלות מנחות ואמריקאיות - פרק 7">❓</button>
 <li><strong>שני מעגלים או סריג ריבועי (כגון 16-QAM, 32-QAM, 64-QAM):</strong> הנקודות נבדלות גם במרחקן מהראשית וגם בזוויתן $\implies$ <strong>שילוב של אפנון אמפליטודה (ASK) ואפנון פאזה (PSK)</strong>. (למשל, במודם עם 4 נקודות במעגל פנימי בזוויות $45^\circ, 135^\circ, 225^\circ, 315^\circ$ ו-12 נקודות במעגל חיצוני הכוללות את אותן 4 זוויות ועוד 8 ביניהן, יש סה"כ <strong>12 פאזות שונות</strong> ו-2 אמפליטודות = 16 נקודות).</li>
 <li><strong>נוסחת קצב השידור ב-bps:</strong> אם בדיאגרמה יש $M$ נקודות וקצב האיתות הוא $B\text{ baud}$ (סמלים בשנייה), כל סמל נושא $\log_2(M)$ סיביות:
 $$R = B \times \log_2(M)\text{ bps}$$
-הגדלת $M$ (למשל מ-32-QAM עם 5 ביטים לסמל ל-64-QAM עם 6 ביטים לסמל) מגדילה את קצב השידור באותו Baud, אך מקרבת את הנקודות זו לזו ומגבירה את הרגישות לרעש.</li>
+הגדלת $M$ (למשל מ-32-QAM עם 5 ביטים לסמל ל-64-QAM עם 6 ביטים לסמל — תוספת של $20\%$ בקצב, כששניהם משלבים ASK+PSK) מגדילה את קצב השידור באותו Baud, אך מקרבת את הנקודות זו לזו ומגבירה את הרגישות לרעש. כמו כן, עבור אותו $M$ (כגון $M=16$), מודם <strong>16-QAM</strong> מפזר את הנקודות בשני ממדים (משרעת ופאזה) ולכן המרחק המינימלי בין נקודות סמוכות גדול יותר (ועמיד יותר לרעשים) מאשר צפיפות 16 נקודות על מעגל יחיד (16-PSK); ואם מוסיפים נקודות על אותו מעגל ללא ציון מספרן, שיטת האפנון נותרת PSK בלבד אך לא ניתן לחשב את קצב השידור החדש.</li>
 </ul>
 </div>
 <div class="p-5 rounded-2xl bg-white border border-sky-200 shadow-xs space-y-2">
@@ -859,7 +984,10 @@ $$R = B \times \log_2(M)\text{ bps}$$
 <li><strong>הפרדת משתמשים ברשתות סלולריות:</strong>
 <br>• <strong>AMPS (דור 1, אנלוגי):</strong> מבוסס על <strong>FDMA בלבד</strong> (חלוקת תדרים בין תאים משושים; תאים שאינם סמוכים ממחזרים תדרים, וככל שהתאים קטנים יותר ניתן לבצע יותר שיחות במקביל באותו אזור).
 <br>• <strong>GSM (דור 2, דיגיטלי):</strong> מבוסס על <strong>שילוב של FDMA ו-TDMA</strong> (חלוקה לערוצי תדר של $200\text{ kHz}$, וחלוקת כל תדר ל-8 חריצי זמן).
-<br>• <strong>CDMA (הפרדת קודים):</strong> כל התחנות משדרות באותו תדר ובאותו זמן. לכל תחנה קוד שבבים (Chip Sequence) באורך $m$ מתוך $\{+1, -1\}^m$, כאשר כל שני קודים אורתוגונליים ($\mathbf{c}_i \cdot \mathbf{c}_j = 0$). לשידור <code>1</code> משדרים $\mathbf{c}_i$ ולשידור <code>0</code> משדרים $-\mathbf{c}_i$. (הערה: לא בכל קוד חייבים להיות בדיוק $m/2$ אחדות ו-$m/2$ מינוס-אחדות — למשל קוד אחד יכול להיות כולו $+1$ ובלבד ששאר הקודים מאוזנים ואורתוגונליים אליו וזה לזה).</li>
+<br>• <strong>CDMA (הפרדת קודים):</strong> כל התחנות משדרות באותו תדר ובאותו זמן. לכל תחנה קוד שבבים (Chip Sequence) באורך $m$ מתוך $\{+1, -1\}^m$, כאשר כל שני קודים אורתוגונליים ($\mathbf{c}_i \cdot \mathbf{c}_j = 0$). לשידור <code>1</code> משדרים $\mathbf{c}_i$ ולשידור <code>0</code> משדרים $-\mathbf{c}_i$, והפענוח מתבצע ע"י מכפלה פנימית $\frac{\mathbf{S}\cdot \mathbf{c}_i}{m}$. (דגשים: לא בכל קוד חייבים להיות בדיוק $m/2$ ערכי $+1$ ו-$m/2$ ערכי $-1$ — קוד אחד יכול להיות כולו $+1$ ובלבד ששאר הקודים מאוזנים ואורתוגונליים אליו וזה לזה; ומלינאריות החיבור, אם כל התחנות משדרות <code>0</code> במקום <code>1</code>, האות המתקבל בתחנת הבסיס יהיה בדיוק בסימן הפוך: $-\mathbf{S}$).</li>
+<li><strong>המרה מאנלוגי לדיגיטלי (PCM מול קידוד דלתא) וריבוב קווי (TDM/FDM וקו T1):</strong>
+<br/>• <strong>PCM (בטלפוניה PSTN):</strong> דגימת הקול האנושי (עד $4\text{ kHz}$) בקצב $8,000$ דגימות בשנייה וייצוג כל דגימה ב-$8$ סיביות $\implies$ קצב של $64\text{ kbps}$ לערוץ שיחה. לעומת זאת, ב<strong>קידוד דלתא (Delta Modulation)</strong> משודרת סיבית אחת בלבד לכל דגימה המציינת רק אם האות האנלוגי עלה (<code>1</code>) או ירד (<code>0</code>) במדרגה קבועה $\Delta$ ביחס לדגימה הקודמת.
+<br/>• <strong>קו T1 ותקורת TDM מול FDM:</strong> קו T1 מרבב ב-TDM $24$ ערוצי שיחה: בכל מסגרת בת $125\,\mu\text{s}$ יש $24 \times 8 = 192$ סיביות ועוד סיבית סנכרון אחת $= 193$ סיביות למסגרת $\implies 8,000 \times 193 = 1.544\text{ Mbps}$. ב-<strong>FDM</strong> התקורה היא תחומי תדר ריקים (Guard Bands) למניעת זליגת תדרים, ואילו ב-<strong>TDM</strong> התקורה היא סיביות סנכרון (Framing bits) לזיהוי גבולות המסגרת.</li>
 </ul>
 </div>
 </div>
@@ -887,90 +1015,158 @@ $$R = B \times \log_2(M)\text{ bps}$$
 </div>
 </div>
 <!-- ==================== FAST STUDY MODE: TAB 1 ==================== -->
-<div class="fast-mode-view">
-<div class="fast-header">
-<div class="flex items-center justify-between flex-wrap gap-2">
-<span class="fast-badge">⚡ מצב לימוד מהיר • פרק 1 מתוך 7</span>
-<button onclick="showQuestions('tab-physical', '1. העברת סיביות על גבי תווך קווי', event)" class="px-3 py-1.5 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-900 border border-sky-200 text-xs font-bold cursor-pointer">❓ שאלות תרגול</button>
+<div class="basic-mode-view space-y-5">
+<div class="basic-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="basic-badge">📖 לימוד בסיסי • פרק 1 מתוך 7</span>
+<div class="flex items-center gap-2">
+<button type="button" class="basic-top-btn" onclick="showTab('tab-exercises')">לנוסחאון ומעבדת תרגול 📝</button>
+<button type="button" class="basic-top-btn" onclick="showQuestions('tab-physical', '1. העברת סיביות על גבי תווך קווי', event)">❓ שאלות תרגול</button>
 </div>
-<h2 class="text-2xl md:text-3xl font-black text-slate-900 mt-1">1. העברת סיביות על גבי תווך קווי ואפנון</h2>
-<p class="text-sm text-slate-600 mt-1">תפקידי משדר, מקלט ומתאם רשת, בעיות שחזור שעון ונדידת קו הבסיס, אפנון אנלוגי (ASK/FSK/PSK/QAM) וריבוב (FDMA/TDMA/CDMA).</p>
 </div>
-<div class="fast-card">
-<h3 class="fast-card-title"><span>🔌</span><span>1.1 רכיבי התקשורת והקצאת זמן קבוע לביט</span></h3>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-<div class="fast-subcard">
-<strong class="text-slate-900 block mb-1">משדר, מקלט ומתאם רשת (Adapter / NIC)</strong>
-<ul class="list-disc list-inside text-xs text-slate-700 space-y-1">
-<li><strong>צומת (Node):</strong> המחשב המארח, הנתב או המתג.</li>
-<li><strong>מתאם רשת (NIC):</strong> ממיר ביטים לוגיים לאותות פיזיים (מתח חשמלי / אור / רדיו) בצד ה<strong>משדר</strong>, ודוגם את האותות חזרה לביטים בצד ה<strong>מקלט</strong>.</li>
-<li><strong>הקצאת זמן קבוע ($\Delta t = 1/R$):</strong> על התווך עוברים מתחים רציפים בלבד. כדי לדעת כמה סיביות זהות נשלחו ברצף (כגון <code>1111</code>), שני הצדדים חייבים שעון מסונכרן וזמן קבוע לכל סיבית.</li>
-</ul>
+<h2 class="text-2xl md:text-3xl font-black text-slate-900">1. העברת סיביות על גבי תווך קווי, אפנון וריבוב</h2>
+<p class="text-xs md:text-sm text-slate-600 mt-1">המרת ביטים לוגיים לאותות פיזיים באמצעות מתאם הרשת (NIC), בעיות שחזור שעון ונדידת קו הבסיס בפתרון הנאיבי, אפנון על גל נושא (ASK/FSK/PSK/QAM) וריבוב (FDM/TDM/CDMA).</p>
 </div>
-<div class="fast-subcard flex flex-col justify-center">
-<svg viewBox="0 0 420 90" class="w-full h-auto">
-<rect x="10" y="20" width="95" height="48" rx="6" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.5"/>
-<text x="57" y="42" text-anchor="middle" font-size="11" font-weight="bold" fill="#0c4a6e">משדר (NIC)</text>
-<text x="57" y="57" text-anchor="middle" font-size="9" fill="#475569">ביטים ➔ מתח</text>
-<line x1="105" y1="44" x2="315" y2="44" stroke="#64748b" stroke-width="2"/>
-<path d="M130 38 H160 V22 H190 V38 H220 V22 H250 V38 H280" fill="none" stroke="#0284c7" stroke-width="2"/>
-<text x="210" y="62" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#0369a1">תווך פיזי: אותות חשמליים רציפים</text>
-<rect x="315" y="20" width="95" height="48" rx="6" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.5"/>
-<text x="362" y="42" text-anchor="middle" font-size="11" font-weight="bold" fill="#0c4a6e">מקלט (NIC)</text>
-<text x="362" y="57" text-anchor="middle" font-size="9" fill="#475569">דגימת שעון ➔ ביטים</text>
+
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">1.1 רכיבי הקישור הפיזי, הקצאת זמן קבוע ($\Delta t = 1/R$) ושתי בעיות הפתרון הנאיבי</h3>
+<p class="text-xs text-slate-600 mt-0.5">תפקיד מתאם הרשת (NIC), צורך בשעון מסונכרן, וכשלי הפתרון הנאיבי ברצף ארוך של סיביות זהות.</p>
+</div>
+<button type="button" class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-wrapper-clock-baseline', 'מעבדה 1.1: סימולטור שחזור שעון (Clock Recovery) ונדידת קו הבסיס (Baseline Wander)')" title="פתיחת מעבדה 1.1: שחזור שעון ונדידת קו הבסיס">
+<svg class="w-8 h-8" fill="none" viewBox="0 0 48 48">
+<circle cx="24" cy="24" fill="#18181b" r="15" stroke="#ffffff" stroke-width="2.2"></circle>
+<path d="M24 14 V24 L31 28" stroke="#e4e4e7" stroke-linecap="round" stroke-width="2.6"></path>
+<path d="M12 36 Q24 28 36 36" stroke="#a1a1aa" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+
+<div class="my-2 p-3 rounded-xl bg-[#f4f8fb] border border-[#cbd5e1] overflow-x-auto">
+<svg class="w-full h-auto max-w-2xl mx-auto" viewBox="0 0 640 105">
+<rect x="12" y="18" width="135" height="68" rx="8" fill="#ffffff" stroke="#0284c7" stroke-width="1.5"/>
+<text x="79" y="44" text-anchor="middle" font-size="12" font-weight="800" fill="#0c4a6e">משדר (NIC)</text>
+<text x="79" y="64" text-anchor="middle" font-size="10.5" fill="#475569">ביטים 0/1 ➔ מתח V±</text>
+<line x1="147" y1="52" x2="493" y2="52" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,4"/>
+<path d="M165 68 H210 V32 H255 V68 H300 V32 H435 V68 H475" fill="none" stroke="#0284c7" stroke-width="2.4"/>
+<text x="320" y="22" text-anchor="middle" font-size="11" font-weight="700" fill="#0369a1">הקצאת זמן קבוע לכל ביט (Δt = 1/R)</text>
+<text x="367" y="88" text-anchor="middle" font-size="10.5" font-weight="700" fill="#b91c1c">ברצף 111... או 000...: סחיפת שעון + נדידת קו בסיס!</text>
+<rect x="493" y="18" width="135" height="68" rx="8" fill="#ffffff" stroke="#0284c7" stroke-width="1.5"/>
+<text x="560" y="44" text-anchor="middle" font-size="12" font-weight="800" fill="#0c4a6e">מקלט (NIC)</text>
+<text x="560" y="64" text-anchor="middle" font-size="10.5" fill="#475569">דגימה לפי שעון ➔ ביטים</text>
 </svg>
 </div>
-</div>
-</div>
-<div class="fast-card">
-<h3 class="fast-card-title"><span>⚠️</span><span>1.2 שתי הבעיות של הפתרון הנאיבי ברצף סיביות זהות</span></h3>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
-<div class="fast-accent-blue">
-<strong class="text-sky-950 block mb-1">1. שחזור שעון (Clock Recovery) – בעיה בציר הזמן ($X$)</strong>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs md:text-sm">
+<div class="basic-subcard">
+<strong class="text-slate-900 block mb-1">1. צומת, מתאם רשת והקצאת $\Delta t$</strong>
 <p class="text-slate-700 leading-relaxed">
-שעוני המשדר והמקלט סובלים מסחיפה קלה (Clock Drift). המקלט מסנכרן את שעונו לפי <strong>שינויי מתח (Transitions)</strong> ברצפים כגון <code>1,0,1</code> או <code>0,1,0</code>. ברצף ארוך של סיביות זהות (<code>11111...</code> או <code>00000...</code>) אין שינויי מתח, השעון נסחף והמקלט דוגם כמות שגויה של סיביות.
+• <b>צומת (Node):</b> מחשב מארח, נתב או מתג.<br/>
+• <b>מתאם רשת (NIC):</b> ממיר ביטים לוגיים לאותות פיזיים (מתח חשמלי/אור/רדיו) במשדר, ודוגם אותם חזרה במקלט.<br/>
+• <b>זמן קבוע לביט ($\Delta t = 1/R$):</b> על הקו עוברים מתחים רציפים ללא רווחים; כדי להבחין בין ביט בודד לרצף ביטים זהים (כגון <code>1111</code>), חובה להקצות לכל ביט פרק זמן קבוע $\Delta t$.
 </p>
 </div>
-<div class="fast-accent-slate">
-<strong class="text-slate-900 block mb-1">2. נדידת קו הבסיס (Baseline Wander) – בעיה בציר המתח ($Y$)</strong>
+<div class="basic-subcard">
+<strong class="text-sky-950 block mb-1">2. בעיה א': שחזור שעון (ציר הזמן $X$)</strong>
 <p class="text-slate-700 leading-relaxed">
-המקלט קובע אם סיבית היא <code>1</code> או <code>0</code> ביחס ל<strong>ממוצע נע</strong> של מתח הקו (קו הבסיס). ברצף ממושך של סיביות זהות, הממוצע הנע נודד ומתקרב לרמת המתח המשודרת, כך שכל רעש קטן גורם לחציית הסף ולפענוח שגוי של הסיבית.
+שעוני המשדר והמקלט סובלים מסחיפה טבעית (Clock Drift). המקלט מסנכרן את שעונו לפי <b>מעברי מתח (Transitions)</b> בין גבוה לנמוך. בפתרון הנאיבי (גבוה=<code>1</code>, נמוך=<code>0</code>), רצף ארוך של סיביות זהות (<code>1111...</code> או <code>0000...</code>) אינו מייצר מעברי מתח, השעון נסחף והמקלט דוגם כמות שגויה של סיביות.
+</p>
+</div>
+<div class="basic-subcard">
+<strong class="text-sky-950 block mb-1">3. בעיה ב': נדידת קו הבסיס (ציר המתח $Y$)</strong>
+<p class="text-slate-700 leading-relaxed">
+המקלט קובע אם סיבית היא <code>1</code> או <code>0</code> על ידי השוואת המתח הרגעי ל<b>ממוצע נע</b> של מתחי העבר (קו הבסיס / סף ההחלטה). ברצף ממושך של סיביות זהות, הממוצע הנע נודד ומתקרב לרמת המתח המשודרת, כך שכל רעש זעיר חוצה את הסף וגורם לפענוח שגוי.
 </p>
 </div>
 </div>
 </div>
-<div class="fast-card">
-<h3 class="fast-card-title"><span>📡</span><span>1.3 אפנון אנלוגי (ASK/FSK/PSK/QAM), קונסטלציה וריבוב סלולרי</span></h3>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
-<div class="fast-subcard space-y-1.5">
-<strong class="text-slate-900 block">אפנון על גל נושא סינוסואידי $A\sin(2\pi f t + \phi)$:</strong>
+
+<div class="basic-card space-y-3">
+<h3 class="basic-card-title">1.2 אפנון אנלוגי על גל נושא (ASK, FSK, PSK, QAM) ודיאגרמות קונסטלציה</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+<div class="basic-subcard space-y-1.5">
+<strong class="text-slate-900 block">ארבע שיטות האפנון על גל סינוסואידי $A\sin(2\pi f t + \phi)$:</strong>
 <ul class="list-disc list-inside text-slate-700 space-y-1">
-<li><strong>ASK (משרעת):</strong> שינוי עוצמת הגל $A$.</li>
-<li><strong>FSK (תדר):</strong> שינוי תדירות הגל $f$ (צפוף = <code>1</code>, מרווח = <code>0</code>).</li>
-<li><strong>PSK (פאזה):</strong> שינוי זווית המופע $\phi$ (בדיאגרמת קונסטלציה: כל הנקודות על <strong>מעגל יחיד</strong> ברדיוס קבוע).</li>
-<li><strong>QAM (משרעת + פאזה):</strong> הנקודות נבדלות גם במרחקן מהראשית וגם בזוויתן (שני מעגלים או סריג כגון 16-QAM, 32-QAM, 64-QAM).</li>
-<li><strong>נוסחת קצב השידור:</strong> עבור $M$ נקודות בדיאגרמה וקצב איתות $B\text{ baud}$:
-$$R = B \cdot \log_2(M)\text{ bps}$$
-(הגדלת $M$ מעלה את הקצב אך מקרבת נקודות ומגבירה רגישות לרעש).</li>
-<li><strong>גל נושא מול פורייה:</strong> פיתוח פורייה אינו משתמש בגל נושא בודד אלא בסכום תדרים מרובים; חסרונותיו: דורש רוחב פס עצום, ניחות שונה לכל תדר ומניעת FDM.</li>
+<li><b>ASK (אפנון משרעת):</b> שינוי עוצמת הגל $A$ (למשל גל סינוס עבור <code>1</code> וקו אפס עבור <code>0</code>).</li>
+<li><b>FSK (אפנון תדר):</b> שינוי תדירות הגל $f$ (גל צפוף בתדר $f_1$ עבור <code>1</code> וגל מרווח בתדר $f_0$ עבור <code>0</code>).</li>
+<li><b>PSK (אפנון פאזה/מופע):</b> שינוי זווית המופע $\phi$. בדיאגרמת קונסטלציה כל הנקודות נמצאות באותו מרחק מראשית הצירים (<b>מעגל יחיד</b> ברדיוס קבוע).</li>
+<li><b>QAM (שילוב משרעת + פאזה):</b> הנקודות נבדלות גם במרחקן מהראשית ($r=\sqrt{x^2+y^2}$) וגם בזווית הקרן שלהן (למשל שני מעגלים קונצנטריים או סריג 16-QAM / 32-QAM / 64-QAM).</li>
 </ul>
 </div>
-<div class="fast-subcard space-y-1.5">
+<div class="basic-subcard space-y-1.5">
+<strong class="text-slate-900 block">חישוב קצב השידור ($R$) ודגשי דיאגרמות קונסטלציה:</strong>
+<ul class="list-disc list-inside text-slate-700 space-y-1">
+<li><b>נוסחת קצב השידור:</b> עבור $M$ נקודות בדיאגרמה וקצב איתות $B\text{ baud}$ (סימבולים לשנייה), כל סימבול מייצג $\log_2(M)$ סיביות:
+$$R = B \cdot \log_2(M)\text{ bps}$$</li>
+<li><b>ספירת פאזות ואמפליטודות:</b> נקודות היושבות על אותו אלכסון באותו רביע חולקות <b>אותה פאזה</b>! נקודות באותו מרחק מהראשית חולקות <b>אותה אמפליטודה</b>.</li>
+<li><b>השוואת מודמים (כגון 32-QAM מול 64-QAM, ו-16-QAM מול 16-PSK):</b> 32-QAM ו-64-QAM משתמשים באותו שילוב אפנון (ASK+PSK); ל-64-QAM קצב גבוה ב-$20\%$ ($6$ לעומת $5$ סיביות לסימבול) אך נקודותיו צפופות יותר ולכן הוא רגיש יותר לרעש. בדומה, <b>16-QAM עמיד יותר לרעש מ-16-PSK</b> כי פיזור הנקודות בשני ממדים (משרעת ופאזה) מגדיל את המרחק המינימלי ביניהן לעומת צפיפותן על מעגל יחיד. (הוספת נקודות על אותו מעגל שומרת על PSK בלבד, אך ללא מספר הנקודות שנוספו לא ניתן לחשב את $R$).</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="basic-card space-y-3">
+<h3 class="basic-card-title">1.3 גל נושא מול פורייה, PCM מול קידוד דלתא, קו T1 וריבוב סלולרי (AMPS / GSM / CDMA)</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+<div class="basic-subcard space-y-1.5">
+<strong class="text-slate-900 block">פיתוח פורייה, דגימת קול (PCM / דלתא) וריבוב קווי (FDM / TDM / T1):</strong>
+<ul class="list-disc list-inside text-slate-700 space-y-1">
+<li><b>גל נושא מול פיתוח פורייה:</b> פיתוח פורייה מפרק את האות הדיגיטלי לסכום תדרים מרובים (אינו משתמש בגל נושא בודד). חסרונותיו: דורש רוחב פס עצום, תדרים שונים עוברים ניחות שונה בערוץ (עיוות), ואינו מאפשר FDM פשוט.</li>
+<li><b>PCM מול קידוד דלתא (Delta Modulation):</b> ב-PCM (טלפוניה PSTN) דוגמים קול ($4\text{ kHz}$) בקצב $8,000$ דגימות/שנייה $\times 8$ סיביות $= \mathbf{64\text{ kbps}}$. בקידוד דלתא משודרת סיבית 1 בלבד לדגימה המציינת אם האות עלה (<code>1</code>) או ירד (<code>0</code>) במדרגה קבועה $\Delta$.</li>
+<li><b>קו T1 ותקורת FDM מול TDM:</b> קו T1 מרבב ב-TDM $24$ ערוצי שיחה: $(24\times 8 + 1\text{ sync bit}) \times 8,000 = 193 \times 8,000 = \mathbf{1.544\text{ Mbps}}$. ב-<b>FDM</b> התקורה היא תחומי תדר ריקים (Guard Bands), וב-<b>TDM</b> התקורה היא סיביות סנכרון (Framing bits).</li>
+</ul>
+</div>
+<div class="basic-subcard space-y-1.5">
 <strong class="text-slate-900 block">שיטות גישה וריבוב ברשתות סלולריות:</strong>
 <ul class="list-disc list-inside text-slate-700 space-y-1">
-<li><strong>AMPS (דור 1, אנלוגי):</strong> <strong>FDMA בלבד</strong> (חלוקת תדרים בין תאים משושים; הקטנת שטח התא מגדילה את מספר השיחות המקבילות; תאים ללא צלע משותפת ממחזרים תדרים).</li>
-<li><strong>GSM (דור 2, דיגיטלי):</strong> <strong>שילוב של FDMA ו-TDMA</strong> ($124$ ערוצי תדר של $200\text{ kHz}$, כל תדר מחולק ל-$8$ חריצי זמן).</li>
-<li><strong>CDMA (הפרדת קודים):</strong> כל התחנות משדרות באותו תדר ובאותו זמן. לכל תחנה וקטור שבבים $\mathbf{c}_i \in \{+1,-1\}^m$ כאשר הקודים אורתוגונליים: $\mathbf{c}_i \cdot \mathbf{c}_j = 0$. שידור <code>1</code> = $+\mathbf{c}_i$, שידור <code>0</code> = $-\mathbf{c}_i$. פענוח: $\frac{\mathbf{S} \cdot \mathbf{c}_i}{m}$.</li>
+<li><b>AMPS (דור 1, אנלוגי):</b> <b>FDMA בלבד</b> בתאים משושים. הקטנת שטח התאים מגדילה את מספר השיחות המקבילות באזור; תאים ללא צלע משותפת ממחזרים אותם תדרים (Frequency Reuse).</li>
+<li><b>GSM (דור 2, דיגיטלי):</b> <b>שילוב של FDMA ו-TDMA</b> ($124$ ערוצי תדר של $200\text{ kHz}$, כל תדר מחולק ל-$8$ חריצי זמן).</li>
+<li><b>CDMA (הפרדת קודים):</b> כל התחנות משדרות באותו תדר ובאותו זמן. לכל תחנה קוד שבבים $\mathbf{c}_i \in \{+1,-1\}^m$ כאשר $\mathbf{c}_i \cdot \mathbf{c}_j = 0$ לכל $i\neq j$. שידור <code>1</code> $= +\mathbf{c}_i$, שידור <code>0</code> $= -\mathbf{c}_i$ (אם כולן משדרות <code>0</code> במקום <code>1</code> האות המתקבל מתהפך ל-$-\mathbf{S}$). פענוח: $d_i = \frac{\mathbf{S}\cdot \mathbf{c}_i}{m}$. (תחנה אחת יכולה לקבל קוד שכולו $+1$ ובלבד ששאר הקודים מאוזנים ואורתוגונליים).</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="fast-sim-bar">
-<div class="text-xs md:text-sm font-bold text-sky-950">🕹️ מעבדה 1.1: סימולטור שחזור שעון ונדידת קו הבסיס</div>
-<button onclick="openSingleSim('sim-wrapper-clock-baseline', 'מעבדה 1.1: סימולטור שחזור שעון ונדידת קו הבסיס')" class="px-4 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold cursor-pointer">פתיחת סימולטור</button>
+</div>
+
+<div class="fast-mode-view space-y-4">
+<div class="fast-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+<span class="fast-badge">⚡ לימוד מהיר • פרק 1 מתוך 7 (סקירה מרוכזת)</span>
+<div class="flex items-center gap-1.5 flex-wrap">
+<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-wrapper-clock-baseline', 'מעבדה 1.1: סימולטור שחזור שעון ונדידת קו הבסיס')">🕹️ מעבדה 1.1: שעון וקו בסיס</button>
+<button type="button" class="fast-sim-btn" onclick="showQuestions('tab-physical', '1. העברת סיביות על גבי תווך קווי', event)">❓ שאלות תרגול</button>
 </div>
 </div>
-<!-- Sub-Chapter Navigation Footer -->
+<h2 class="text-xl md:text-2xl font-black text-slate-900">1. העברת סיביות בתווך קווי, אפנון (ASK/FSK/PSK/QAM) וריבוב (FDM/TDM/CDMA)</h2>
+<p class="text-xs text-slate-600"><b>עיקרון הליבה:</b> מתאם הרשת (NIC) ממיר סיביות לאותות פיזיים בפרקי זמן קבועים ($\Delta t = 1/R$), תוך התמודדות עם סחיפת שעון, נדידת קו בסיס ורעש בערוץ.</p>
+</div>
+
+<div class="fast-visual-strip">
+<div class="fast-strip-node"><b>1. הקצאת זמן קבוע ($\Delta t$):</b> על התווך עוברים מתחים רציפים; חובה שעון מסונכרן וזמן קבוע $\Delta t = 1/R$ לכל ביט.</div>
+<div class="fast-strip-node"><b>2. שחזור שעון (ציר $X$):</b> סנכרון לפי מעברי מתח; רצף <code>111...</code> או <code>000...</code> גורם לאובדן סנכרון (Clock Drift).</div>
+<div class="fast-strip-node"><b>3. נדידת קו בסיס (ציר $Y$):</b> סף ההחלטה הוא ממוצע נע; רצף סיביות זהות מושך את הממוצע למתח המשודר וגורם לשגיאות.</div>
+<div class="fast-strip-node fast-strip-highlight"><b>4. קצב שידור באפנון ($M$ נקודות):</b> $$R = B \cdot \log_2(M)\text{ bps}$$ הגדלת $M$ מעלה קצב אך מקטינה מרחק בין נקודות (רגישות לרעש).</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+<div class="fast-card">
+<div class="fast-card-title">📡 אפנון על גל נושא $A\sin(2\pi f t + \phi)$ וקונסטלציה</div>
+<p class="text-slate-700 leading-relaxed">
+• <b>ASK (משרעת $A$):</b> גל סינוס ל-<code>1</code>, אפס ל-<code>0</code> • <b>FSK (תדר $f$):</b> תדר גבוה ל-<code>1</code>, נמוך ל-<code>0</code> • <b>PSK (פאזה $\phi$):</b> כל הנקודות על <b>מעגל יחיד</b> ברדיוס קבוע (הוספת נקודות על אותו מעגל שומרת על PSK, אך ללא מספרן לא ניתן לחשב $R$) • <b>QAM (משרעת + פאזה):</b> נקודות במרחקים וזוויות שונים (נקודות על אותו אלכסון באותו רביע = <b>אותה פאזה</b>).<br/>
+• <b>16-QAM מול 16-PSK:</b> אותו קצב ($4B$), אך 16-QAM מפזר נקודות ב-2 ממדים $\implies$ מרחק אוקלידי גדול יותר ועמידות עדיפה לרעש • <b>64-QAM מול 32-QAM:</b> אותו שילוב (ASK+PSK); ל-64-QAM קצב גבוה ב-$20\%$ ($6$ מול $5$ ביטים לסימבול) אך רגיש יותר לרעש.
+</p>
+</div>
+<div class="fast-card">
+<div class="fast-card-title">🌊 פורייה, PCM מול דלתא, קו T1 וריבוב סלולרי</div>
+<p class="text-slate-700 leading-relaxed">
+• <b>פיתוח פורייה:</b> סכום תדרים מרובים (ללא גל נושא בודד) — דורש רוחב פס עצום, ניחות שונה לכל תדר ומונע FDM.<br/>
+• <b>PCM מול דלתא:</b> ב-PCM דוגמים $8,000\text{ Hz} \times 8\text{ bits} = \mathbf{64\text{ kbps}}$; ב<b>קידוד דלתא</b> סיבית 1 לדגימה (עלייה/ירידה ב-$\Delta$). <b>קו T1 (TDM):</b> $(24\times 8 + 1)\times 8,000 = \mathbf{1.544\text{ Mbps}}$. תקורת FDM = Guard Bands; תקורת TDM = סיביות סנכרון.<br/>
+• <b>סלולר:</b> <b>AMPS (דור 1):</b> FDMA בלבד (הקטנת תא מגדילה קיבולת; מחזור תדרים בתאים ללא צלע משותפת) • <b>GSM (דור 2):</b> שילוב <b>FDMA + TDMA</b> • <b>CDMA:</b> קודים אורתוגונליים $\mathbf{c}_i \cdot \mathbf{c}_j = 0$, פענוח $\frac{\mathbf{S}\cdot\mathbf{c}_i}{m}$ (תחנה אחת יכולה להיות כולה $+1$; שידור <code>0</code> ע"י כולן הופך סימן ל-$-\mathbf{S}$).
+</p>
+</div>
+</div>
+</div>
 <div class="mt-12 pt-6 pb-2 border-t border-sky-300/40 flex flex-wrap items-center justify-between gap-4">
 <span class="text-xs text-slate-400 font-bold px-3 py-2">תחילת הפרק</span>
 <button onclick="showTab('tab-encoding'); window.scrollTo({top: 0, behavior: 'smooth'});" class="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-700 via-sky-600 to-blue-600 hover:from-blue-800 hover:to-sky-700 text-white font-bold text-xs md:text-sm shadow-md hover:shadow-lg transition-all group">
@@ -1334,19 +1530,35 @@ $$R = B \cdot \log_2(M)\text{ bps}$$
 </div>
 </div>
 <!-- ==================== FAST STUDY MODE: TAB 2 ==================== -->
-<div class="fast-mode-view">
-<div class="fast-header">
-<div class="flex items-center justify-between flex-wrap gap-2">
-<span class="fast-badge">⚡ מצב לימוד מהיר • פרק 2 מתוך 7</span>
-<button onclick="showQuestions('tab-encoding', '2. שיטות קידוד (Line Coding)', event)" class="px-3 py-1.5 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-900 border border-sky-200 text-xs font-bold cursor-pointer">❓ שאלות תרגול</button>
+<div class="basic-mode-view space-y-5">
+<div class="basic-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="basic-badge">📖 לימוד בסיסי • פרק 2 מתוך 7</span>
+<div class="flex items-center gap-2">
+<button type="button" class="basic-top-btn" onclick="showTab('tab-exercises')">לנוסחאון ומעבדת תרגול 📝</button>
+<button type="button" class="basic-top-btn" onclick="showQuestions('tab-encoding', '2. שיטות קידוד (Line Coding)', event)">❓ שאלות תרגול</button>
 </div>
-<h2 class="text-2xl md:text-3xl font-black text-slate-900 mt-1">2. שיטות קידוד קו (Line Coding)</h2>
-<p class="text-sm text-slate-600 mt-1">השוואה מלאה של 5 שיטות הקידוד: RZ, NRZ, NRZI, Manchester ו-4B/5B בשילוב NRZI.</p>
 </div>
-<div class="fast-card">
-<h3 class="fast-card-title"><span>📊</span><span>2.1 חמש שיטות הקידוד הקוויות – הגדרות וטבלת השוואה</span></h3>
+<h2 class="text-2xl md:text-3xl font-black text-slate-900">2. שיטות קידוד קו (Line Coding): RZ, NRZ, NRZI, Manchester ו-4B/5B</h2>
+<p class="text-xs md:text-sm text-slate-600 mt-1">השוואת חמש שיטות הקידוד בשכבה הפיזית, האיזון בין סנכרון שעון לבין יעילות רוחב הפס (Baud מול Bit Rate), וכללי חישוב זמני מתח קבוע.</p>
+</div>
+
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">2.1 חמש שיטות הקידוד הקוויות – הגדרות, השוואה ותרשים גלים</h3>
+<p class="text-xs text-slate-600 mt-0.5">חוקי הקידוד, רמות המתח, עמידות בסחיפת שעון ונדידת קו בסיס, ויעילות ניצול רוחב הפס.</p>
+</div>
+<button type="button" class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-wrapper-encoding-osc', 'מעבדה 2.1: אוסצילוסקופ חי ל-5 שיטות הקידוד ומתרגם 4B/5B')" title="פתיחת מעבדה 2.1: אוסצילוסקופ שיטות הקידוד">
+<svg class="w-8 h-8" fill="none" viewBox="0 0 48 48">
+<rect fill="#18181b" height="24" rx="4" stroke="#ffffff" stroke-width="2" width="34" x="7" y="12"></rect>
+<path d="M11 28 H17 V18 H23 V28 H29 V18 H37" stroke="#e4e4e7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</button>
+</div>
+
 <div class="overflow-x-auto">
-<table class="fast-table">
+<table class="basic-table">
 <thead>
 <tr>
 <th>שיטת קידוד</th>
@@ -1357,90 +1569,128 @@ $$R = B \cdot \log_2(M)\text{ bps}$$
 </thead>
 <tbody>
 <tr>
-<td class="font-bold text-sky-900">RZ (Return to Zero)</td>
-<td><strong>3 רמות</strong> ($+V, 0, -V$). <code>1</code>: חיובי$\to$ניטרלי באמצע הביט; <code>0</code>: שלילי$\to$ניטרלי באמצע הביט.</td>
-<td>סנכרון מלא (2 שינויי מתח בכל סיבית), אך מחייב 3 רמות מתח וכבלים קצרים ויקרים.</td>
-<td><strong>50%</strong> (תדר כפול: 2 שינויי מתח לביט)</td>
+<td class="font-bold text-slate-900">RZ (Return to Zero)</td>
+<td><b>3 רמות</b> ($+V, 0, -V$). <code>1</code>: חיובי$\to$אפס באמצע הביט; <code>0</code>: שלילי$\to$אפס באמצע הביט.</td>
+<td>סנכרון מלא (2 שינויי מתח בכל סיבית), אך דורש 3 רמות מתח וכבלים קצרים ויקרים.</td>
+<td><b>50%</b> (תדר כפול: 2 שינויי מתח לביט)</td>
 </tr>
 <tr>
-<td class="font-bold text-sky-900">NRZ (Non-Return to Zero)</td>
-<td><strong>2 רמות</strong> ($+V, -V$). <code>1</code>: מתח גבוה קבוע; <code>0</code>: מתח נמוך קבוע.</td>
-<td><strong>כושל</strong> גם ברצפי <code>1</code> וגם ברצפי <code>0</code> (אובדן שעון ונדידת קו בסיס).</td>
-<td><strong>100%</strong> ($	ext{Baud} = 	ext{Bit Rate}$)</td>
+<td class="font-bold text-slate-900">NRZ (Non-Return to Zero)</td>
+<td><b>2 רמות</b> ($+V, -V$). <code>1</code>: מתח גבוה קבוע; <code>0</code>: מתח נמוך קבוע.</td>
+<td><b>כושל</b> גם ברצפי <code>1</code> וגם ברצפי <code>0</code> (אובדן שעון ונדידת קו בסיס).</td>
+<td><b>100%</b> ($\text{Baud} = \text{Bit Rate}$)</td>
 </tr>
 <tr>
-<td class="font-bold text-sky-900">NRZI (NRZ Invert)</td>
-<td><strong>2 רמות</strong> ($+V, -V$). <code>1</code>: <strong>היפוך</strong> רמת המתח; <code>0</code>: <strong>ללא שינוי</strong> ברמת המתח.</td>
-<td>פותר רצפים של <code>1</code>, אך <strong>עדיין כושל ברצפים ארוכים של <code>0</code></strong>.</td>
-<td><strong>100%</strong> (ללא תקורת סיביות)</td>
+<td class="font-bold text-slate-900">NRZI (NRZ Invert)</td>
+<td><b>2 רמות</b> ($+V, -V$). <code>1</code>: <b>היפוך</b> רמת המתח; <code>0</code>: <b>ללא שינוי</b> ברמת המתח.</td>
+<td>פותר רצפים של <code>1</code>, אך <b>עדיין כושל ברצפים ארוכים של <code>0</code></b>.</td>
+<td><b>100%</b> (ללא תקורת סיביות)</td>
 </tr>
 <tr>
-<td class="font-bold text-sky-900">Manchester</td>
-<td><strong>2 רמות</strong> ($+V, -V$). מעבר מתח באמצע כל סיבית: <code>1</code> = גבוה$\to$נמוך, <code>0</code> = נמוך$\to$גבוה (במוסכמת הקורס).</td>
-<td><strong>סנכרון מושלם</strong> (מעבר בכל ביט) ואפס נדידת קו בסיס (איזון DC מלא).</td>
-<td><strong>50%</strong> (תדר כפול: $\text{Baud} = 2 \times \text{Bit Rate}$)</td>
+<td class="font-bold text-slate-900">Manchester</td>
+<td><b>2 רמות</b> ($+V, -V$). מעבר מתח באמצע כל סיבית: <code>1</code> = גבוה$\to$נמוך (זהה ל-Clock יורד), <code>0</code> = נמוך$\to$גבוה (XOR של Clock ו-NRZ).</td>
+<td><b>סנכרון מושלם</b> (מעבר בכל ביט, מתח קבוע לכל היותר $t$) ואפס נדידת קו בסיס (איזון DC מלא).</td>
+<td><b>50%</b> (תדר כפול: $\text{Baud} = 2 \times \text{Bit Rate}$)</td>
 </tr>
 <tr>
 <td class="font-bold text-sky-900">4B/5B + NRZI</td>
-<td>כל רביעיית סיביות (4B) מוחלפת בחמישייה (5B) עם <strong>לכל היותר 3 אפסים רצופים</strong>, והתוצאה משודרת ב-<strong>NRZI</strong>.</td>
-<td>פותר את בעיית רצפי האפסים של NRZI תוך שמירה על סנכרון שעון מעולה.</td>
-<td><strong>80% יעילות</strong> (סיבית 1 נוספת לכל 4 סיביות = 25% תקורה)</td>
+<td>כל רביעיית סיביות (4B) מוחלפת בחמישייה (5B) עם <b>לכל היותר 3 אפסים רצופים</b> (עד 0 אחד בהתחלה ועד 2 בסוף), והתוצאה משודרת ב-<b>NRZI</b>.</td>
+<td>פותר את בעיית רצפי האפסים של NRZI תוך שמירה על סנכרון שעון מעולה (מתח קבוע לכל היותר $4t$).</td>
+<td><b>80% יעילות</b> (סיבית 1 נוספת לכל 4 סיביות = 25% תקורה)</td>
 </tr>
 </tbody>
 </table>
 </div>
-<!-- Clean Static Waveform Diagram -->
-<div class="mt-4 p-3 bg-slate-50 rounded-xl border border-slate-200">
-<div class="text-xs font-bold text-slate-700 mb-1">תרשים גלים השוואתי עבור סדרת הביטים <code>0 1 0 0 1 1</code>:</div>
-<svg viewBox="0 0 600 145" class="w-full h-auto dir-ltr">
-<g stroke="#cbd5e1" stroke-dasharray="3 3" stroke-width="1">
-<line x1="90" y1="10" x2="90" y2="135"/><line x1="170" y1="10" x2="170" y2="135"/><line x1="250" y1="10" x2="250" y2="135"/><line x1="330" y1="10" x2="330" y2="135"/><line x1="410" y1="10" x2="410" y2="135"/><line x1="490" y1="10" x2="490" y2="135"/><line x1="570" y1="10" x2="570" y2="135"/>
+
+<div class="my-2 p-3 rounded-xl bg-[#f4f8fb] border border-[#cbd5e1] overflow-x-auto">
+<div class="text-xs font-bold text-slate-700 mb-1">תרשים גלים השוואתי עבור סדרת הביטים <code>0 1 0 0 1 1</code> (מחזור שעון $t$):</div>
+<svg class="w-full h-auto max-w-2xl mx-auto" viewBox="0 0 520 135">
+<g stroke="#cbd5e1" stroke-dasharray="3,3" stroke-width="1">
+<line x1="100" y1="15" x2="100" y2="125"/><line x1="165" y1="15" x2="165" y2="125"/><line x1="230" y1="15" x2="230" y2="125"/><line x1="295" y1="15" x2="295" y2="125"/><line x1="360" y1="15" x2="360" y2="125"/><line x1="425" y1="15" x2="425" y2="125"/><line x1="490" y1="15" x2="490" y2="125"/>
 </g>
 <g font-family="monospace" font-size="12" font-weight="bold" fill="#0f172a" text-anchor="middle">
-<text x="130" y="20">0</text><text x="210" y="20">1</text><text x="290" y="20">0</text><text x="370" y="20">0</text><text x="450" y="20">1</text><text x="530" y="20">1</text>
+<text x="132" y="14">0</text><text x="197" y="14">1</text><text x="262" y="14">0</text><text x="327" y="14">0</text><text x="392" y="14">1</text><text x="457" y="14">1</text>
 </g>
-<text x="10" y="48" font-family="sans-serif" font-size="11" font-weight="bold" fill="#0369a1">NRZ</text>
-<path d="M90 54 H170 V34 H250 V54 H410 V34 H570" fill="none" stroke="#0284c7" stroke-width="2.2"/>
-<text x="10" y="85" font-family="sans-serif" font-size="11" font-weight="bold" fill="#0f172a">NRZI</text>
-<path d="M90 92 H210 V72 H450 V92 H530 V72 H570" fill="none" stroke="#334155" stroke-width="2.2"/>
-<text x="10" y="122" font-family="sans-serif" font-size="11" font-weight="bold" fill="#1d4ed8">Manchester</text>
-<path d="M90 130 H130 V110 H210 V130 H290 V110 H330 V130 H370 V110 H450 V130 H490 V110 H530 V130 H570" fill="none" stroke="#2563eb" stroke-width="2.2"/>
+<text x="12" y="42" font-size="11" font-weight="bold" fill="#334155">NRZ</text>
+<path d="M100 48 H165 V26 H230 V48 H360 V26 H490" fill="none" stroke="#0284c7" stroke-width="2.2"/>
+<text x="12" y="80" font-size="11" font-weight="bold" fill="#0369a1">NRZI</text>
+<path d="M100 86 H165 V64 H360 V86 H425 V64 H490" fill="none" stroke="#0d9488" stroke-width="2.2"/>
+<text x="12" y="116" font-size="11" font-weight="bold" fill="#7c3aed">Manchester</text>
+<path d="M100 122 H132.5 V100 H197.5 V122 H262.5 V100 H295 V122 H327.5 V100 H360 V100 H392.5 V122 H425 V100 H457.5 V122 H490" fill="none" stroke="#7c3aed" stroke-width="2.2"/>
 </svg>
 </div>
 </div>
+
+<div class="basic-card space-y-3">
+<h3 class="basic-card-title">2.2 כללים חישוביים מהירים לשאלות קידוד (NRZI, 4B/5B ו-Manchester)</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs md:text-sm">
+<div class="basic-subcard">
+<strong class="text-slate-900 block mb-1">1. משך מתח קבוע מרבי ב-NRZI</strong>
+<p class="text-slate-700 leading-relaxed">
+ב-NRZI המתח מתהפך באמצע/תחילת תא של <code>1</code> ונשאר קבוע ב-<code>0</code>:<br/>
+• בסדרה <code>010101010101</code>: סביב תת-הרצף <code>101</code> יש חצי מחזור מ-<code>1</code> הראשון + מחזור שלם של ה-<code>0</code> + חצי מחזור עד ההיפוך ב-<code>1</code> הבא $= \frac{t}{2} + t + \frac{t}{2} = \mathbf{2t}$ (לעומת $1t$ ב-NRZ).<br/>
+• ברצף של $z$ אפסים אחרי סיבית <code>1</code>: המתח קבוע במשך $\mathbf{(z+1)t}$. בסדרה בת $N$ סיביות שכולה <code>0</code>: המתח קבוע במשך $\mathbf{N \cdot t}$.
+</p>
+</div>
+<div class="basic-subcard">
+<strong class="text-slate-900 block mb-1">2. חישובי קידוד 4B/5B + NRZI</strong>
+<p class="text-slate-700 leading-relaxed">
+• <b>מספר סיביות משודרות:</b> $N_{\text{out}} = N_{\text{in}} \times \frac{5}{4}$ (עבור $12$ סיביות $\implies \mathbf{15}$; עבור $16$ סיביות $\implies \mathbf{20}$).<br/>
+• <b>רצף אפסים מרבי:</b> כל מילת 5B חוקית מתחילה בלכל היותר <code>0</code> אחד ומסתיימת בלכל היותר שני <code>0</code> (סה"כ 21 מילים חוקיות מתוך 32, שמתוכן 16 למידע ו-5 לבקרה). לכן בחיבור שתי מילים יש לכל היותר <b>3 אפסים רצופים</b>, ולעולם <b>לא קיימת סדרה בעלת מתח קבוע לכל אורך השידור</b> (תשובה <code>-1</code>).
+</p>
+</div>
+<div class="basic-subcard">
+<strong class="text-slate-900 block mb-1">3. פענוח Manchester מול Clock</strong>
+<p class="text-slate-700 leading-relaxed">
+כאשר נתון איור של אות השעון (Clock) מעל אות Manchester:<br/>
+• בודקים את המחזור הראשון (או את מוסכמת הקורס שבה גל ה-Clock יורד באמצע כל מחזור):<br/>
+• <b>מעבר זהה ל-Clock</b> (ירידה מגבוה לנמוך באמצע התא) $= \mathbf{1}$.<br/>
+• <b>מעבר הפוך ל-Clock</b> (עלייה מנמוך לגבוה באמצע התא) $= \mathbf{0}$.<br/>
+• ב-Manchester המתח קבוע לכל היותר במשך $\mathbf{t}$ (כששתי סיביות סמוכות שונות זו מזו).
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="fast-mode-view space-y-4">
+<div class="fast-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+<span class="fast-badge">⚡ לימוד מהיר • פרק 2 מתוך 7 (סקירה מרוכזת)</span>
+<div class="flex items-center gap-1.5 flex-wrap">
+<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-wrapper-encoding-osc', 'מעבדה 2.1: אוסצילוסקופ חי ל-5 שיטות הקידוד')">🕹️ מעבדה 2.1: אוסצילוסקופ קידוד</button>
+<button type="button" class="fast-sim-btn" onclick="showQuestions('tab-encoding', '2. שיטות קידוד (Line Coding)', event)">❓ שאלות תרגול</button>
+</div>
+</div>
+<h2 class="text-xl md:text-2xl font-black text-slate-900">2. שיטות קידוד קו (Line Coding): RZ, NRZ, NRZI, Manchester ו-4B/5B</h2>
+<p class="text-xs text-slate-600"><b>עיקרון הליבה:</b> קידוד הקו מכריע בין יעילות ניצול רוחב הפס ($\text{Bit Rate} / \text{Baud Rate}$) לבין כמות מעברי המתח הנדרשים לשחזור שעון ולמניעת נדידת קו הבסיס.</p>
+</div>
+
+<div class="fast-visual-strip">
+<div class="fast-strip-node"><b>1. NRZ (100% יעילות):</b> <code>1</code>=גבוה, <code>0</code>=נמוך. כושל גם ברצפי <code>1</code> וגם ברצפי <code>0</code>.</div>
+<div class="fast-strip-node"><b>2. NRZI (100% יעילות):</b> <code>1</code>=היפוך מתח, <code>0</code>=ללא שינוי. פותר רצפי <code>1</code> אך כושל ברצפי <code>0</code>.</div>
+<div class="fast-strip-node"><b>3. Manchester ו-RZ (50% יעילות):</b> מעבר בכל ביט (סנכרון מושלם, מתח קבוע עד $t$), אך דורשים קצב Baud כפול!</div>
+<div class="fast-strip-node fast-strip-highlight"><b>4. 4B/5B + NRZI (80% יעילות ★):</b> 4 ביטים $\to$ 5 ביטים עם עד 3 אפסים רצופים; שידור ב-NRZI ללא אובדן שעון ($25\%$ תקורה).</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
 <div class="fast-card">
-<h3 class="fast-card-title"><span>🎯</span><span>2.2 כללים חישוביים מהירים למבחן (NRZI, 4B/5B ומנצ'סטר)</span></h3>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs md:text-sm">
-<div class="fast-accent-blue">
-<strong class="text-sky-950 block mb-1">זמן מתח קבוע מרבי ב-NRZI (מחזור $t$)</strong>
-<p class="text-slate-700">
-• בסדרה <code>010101010101</code>: סביב כל <code>101</code> יש $\frac{t}{2} + t + \frac{t}{2} = \mathbf{2t}$ של מתח קבוע (לעומת $1t$ ב-NRZ).<br>
-• בסדרה כללית בת $N$ סיביות (כגון $N=16$): במקרה שכולה <code>0</code> המתח קבוע במשך $\mathbf{N \cdot t}$ ($16t_0$).
+<div class="fast-card-title">⏱️ חישוב זמן מתח קבוע מרבי ($T_{\max}$)</div>
+<p class="text-slate-700 leading-relaxed">
+• <b>ב-NRZI על הסדרה <code>010101010101</code>:</b> סביב כל תת-רצף <code>101</code> המתח קבוע במשך $\frac{t}{2} + t + \frac{t}{2} = \mathbf{2t}$ (לעומת $1t$ ב-NRZ ו-$1t$ ב-Manchester).<br/>
+• <b>ב-NRZI כללי:</b> רצף של $z$ אפסים אחרי סיבית <code>1</code> נותן מתח קבוע במשך $\mathbf{(z+1)t}$; סדרה בת $N$ סיביות שכולה <code>0</code> נותנת מתח קבוע במשך $\mathbf{N\cdot t}$ (למשל $16t_0$ עבור $N=16$).<br/>
+• <b>ב-4B/5B + NRZI:</b> כל חמישייה מתחילה בעד <code>0</code> אחד ומסתיימת בעד שני <code>0</code> $\implies$ עד 3 אפסים רצופים (מתח קבוע עד $4t$); <b>לעולם אין מתח קבוע לכל אורך השידור</b> (תשובה <code>-1</code>).
 </p>
 </div>
-<div class="fast-accent-blue">
-<strong class="text-sky-950 block mb-1">קידוד 4B/5B של $N$ סיביות</strong>
-<p class="text-slate-700">
-• מספר הסיביות המשודרות: $N \times \frac{5}{4}$ (עבור 12 סיביות $\to \mathbf{15}$; עבור 16 סיביות $\to \mathbf{20}$).<br>
-• כל מילת 5B מתחילה בלכל היותר <code>0</code> אחד ומסתיימת בלכל היותר שני <code>0</code> $\implies$ עד 3 אפסים רצופים; <strong>לעולם אין מתח קבוע לכל אורך השידור</strong> (תשובה <code>-1</code>).
-</p>
-</div>
-<div class="fast-accent-slate">
-<strong class="text-slate-900 block mb-1">Manchester מול אות השעון (Clock)</strong>
-<p class="text-slate-700">
-כאשר גל ה-Clock יורד באמצע כל מחזור (גבוה בחצי הראשון, נמוך בשני):<br>
-• גל מנצ'סטר יורד באמצע התא (זהה ל-Clock) = סיבית <code>1</code>.<br>
-• גל מנצ'סטר עולה באמצע התא (הפוך ל-Clock) = סיבית <code>0</code>.
+<div class="fast-card">
+<div class="fast-card-title">🎯 נוסחת אורך 4B/5B ופענוח Manchester מול Clock</div>
+<p class="text-slate-700 leading-relaxed">
+• <b>מספר סיביות משודרות ב-4B/5B:</b> $N_{\text{out}} = N_{\text{in}} \times \frac{5}{4}$ (עבור $12$ ביטים $\implies \mathbf{15}$; עבור $16$ ביטים $\implies \mathbf{20}$). מתוך $2^5=32$ חמישיות יש 21 חוקיות (16 למידע + 5 לבקרה כגון Idle/JK/TT).<br/>
+• <b>פענוח Manchester מול גל Clock:</b> כאשר ה-Clock יורד באמצע המחזור: מעבר מנצ'סטר <b>יורד (זהה ל-Clock) = <code>1</code></b>; מעבר מנצ'סטר <b>עולה (הפוך ל-Clock) = <code>0</code></b> (תמיד לאמת לפי הסיבית הראשונה הנתונה בשאלה).
 </p>
 </div>
 </div>
 </div>
-<div class="fast-sim-bar">
-<div class="text-xs md:text-sm font-bold text-sky-950">🕹️ מעבדה 2.1: אוסצילוסקופ חי ל-5 שיטות הקידוד ומתרגם 4B/5B</div>
-<button onclick="openSingleSim('sim-wrapper-encoding-osc', 'מעבדה 2.1: אוסצילוסקופ חי ל-5 שיטות הקידוד')" class="px-4 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold cursor-pointer">פתיחת סימולטור</button>
-</div>
-</div>
-<!-- Sub-Chapter Navigation Footer -->
 <div class="mt-12 pt-6 pb-2 border-t border-sky-300/40 flex flex-wrap items-center justify-between gap-4">
 <button onclick="showTab('tab-physical'); window.scrollTo({top: 0, behavior: 'smooth'});" class="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/90 hover:bg-white text-sky-900 font-bold text-xs md:text-sm border border-sky-300/80 shadow-xs hover:shadow-md transition-all group">
 <svg class="w-4 h-4 text-sky-700 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
@@ -1687,71 +1937,139 @@ $$\text{Rate} = 810 \times 8 \times 8,000 = 51.84\text{ Mbps}$$
 </div>
 </div>
 <!-- ==================== FAST STUDY MODE: TAB 3 ==================== -->
-<div class="fast-mode-view">
+<div class="basic-mode-view space-y-5">
+<div class="basic-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="basic-badge">📖 לימוד בסיסי • פרק 3 מתוך 7</span>
+<div class="flex items-center gap-2">
+<button type="button" class="basic-top-btn" onclick="showTab('tab-exercises')">לנוסחאון ומעבדת תרגול 📝</button>
+<button type="button" class="basic-top-btn" onclick="showQuestions('tab-framing', '3. מסגור נתונים (Framing)', event)">❓ שאלות תרגול</button>
+</div>
+</div>
+<h2 class="text-2xl md:text-3xl font-black text-slate-900">3. מסגור נתונים (Framing): מונחה בתים (PPP), מונחה סיביות (HDLC) ומבוסס שעון (SONET)</h2>
+<p class="text-xs md:text-sm text-slate-600 mt-1">חלוקת זרם הסיביות מהשכבה הפיזית למסגרות בדידות בשכבת הערוץ, ופתרון בעיית הופעת דגל הסיום בתוך הנתונים באמצעות דחיסת תווים או דחיסת סיביות.</p>
+</div>
+
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">3.1 מטרות המסגור, מסגור מונחה בתים (PPP) ודחיסת תווים (Byte Stuffing)</h3>
+<p class="text-xs text-slate-600 mt-0.5">שלוש הסיבות לחלוקת מידע למסגרות, ושימוש בבית זקיף (Flag) ותו בריחה (ESC) בפרוטוקול PPP.</p>
+</div>
+<button type="button" class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-wrapper-framing', 'מעבדה 3.1: סימולטור PPP Byte Stuffing, HDLC Bit Stuffing ומסגור SONET')" title="פתיחת מעבדה 3.1: סימולטור המסגור">
+<svg class="w-8 h-8" fill="none" viewBox="0 0 48 48">
+<rect fill="#18181b" height="22" rx="4" stroke="#ffffff" stroke-width="2" width="32" x="8" y="13"></rect>
+<line stroke="#a1a1aa" stroke-width="2" x1="15" x2="15" y1="13" y2="35"></line>
+<line stroke="#a1a1aa" stroke-width="2" x1="33" x2="33" y1="13" y2="35"></line>
+<text fill="#ffffff" font-family="monospace" font-size="9" font-weight="900" text-anchor="middle" x="24" y="27">0111110</text>
+</svg>
+</button>
+</div>
+
+<div class="my-2 p-3 rounded-xl bg-[#f4f8fb] border border-[#cbd5e1] overflow-x-auto">
+<svg class="w-full h-auto max-w-2xl mx-auto" viewBox="0 0 640 100">
+<rect x="10" y="12" width="195" height="76" rx="8" fill="#ffffff" stroke="#0284c7" stroke-width="1.5"/>
+<text x="107" y="34" text-anchor="middle" font-size="11.5" font-weight="800" fill="#0c4a6e">1. מונחה בתים (PPP)</text>
+<text x="107" y="54" text-anchor="middle" font-size="10" fill="#334155">Flag = 0x7E | ESC = 0x7D</text>
+<text x="107" y="72" text-anchor="middle" font-size="9.5" fill="#0369a1">דחיסת ESC לפני Flag או ESC במידע</text>
+<rect x="222" y="12" width="195" height="76" rx="8" fill="#f0f9ff" stroke="#0284c7" stroke-width="2"/>
+<text x="319" y="34" text-anchor="middle" font-size="11.5" font-weight="900" fill="#075985">2. מונחה סיביות (HDLC ★)</text>
+<text x="319" y="54" text-anchor="middle" font-size="10" font-family="monospace" fill="#0f172a">Flag = 01111110 (8b × 2 = 16b)</text>
+<text x="319" y="72" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0369a1">אחרי 11111 במידע ➔ דוחסים 0</text>
+<rect x="434" y="12" width="195" height="76" rx="8" fill="#ffffff" stroke="#0284c7" stroke-width="1.5"/>
+<text x="531" y="34" text-anchor="middle" font-size="11.5" font-weight="800" fill="#0c4a6e">3. מבוסס שעון (SONET STS-1)</text>
+<text x="531" y="54" text-anchor="middle" font-size="10" fill="#334155">9×90 = 810B כל 125μs (8,000/s)</text>
+<text x="531" y="72" text-anchor="middle" font-size="9.5" fill="#0369a1">קצב קבוע 51.84 Mbps (ללא דחיסה)</text>
+</svg>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+<div class="basic-subcard space-y-1">
+<strong class="text-slate-900 block">מדוע מחלקים מידע למסגרות (Frames)?</strong>
+<ul class="list-disc list-inside text-slate-700 space-y-1">
+<li><b>1. שיתוף משאבים (ריבוב סטטיסטי):</b> מספר תחנות משדרות מסגרות לסירוגין בלי שתחנה אחת תחסום את הקו.</li>
+<li><b>2. בקרת שגיאות יעילה:</b> בשגיאה משדרים מחדש רק את המסגרת הפגומה ולא קובץ שלם.</li>
+<li><b>3. מגבלות חוצצים (Buffers):</b> מתאמי רשת ומתגים קולטים גושים בגודל סופי ומוגדר מראש.</li>
+</ul>
+</div>
+<div class="basic-subcard space-y-1">
+<strong class="text-slate-900 block">מסגור מונחה בתים (PPP) ודחיסת תווים (Character Stuffing):</strong>
+<p class="text-slate-700 leading-relaxed">
+תחילת וסוף המסגרת מסומנים ע"י <b>בית זקיף (Flag = <code>0x7E</code> = <code>01111110</code>)</b>.<br/>
+• <b>כלל המשדר:</b> אם בנתונים מופיע התו <code>Flag</code>, מוסיפים לפניו תו בקרה/בריחה <b><code>ESC</code> (<code>0x7D</code>)</b>. אם בנתונים מופיע <code>ESC</code> עצמו, מוסיפים גם לפניו <code>ESC</code> נוסף (ב-PPP מבוצע גם XOR עם <code>0x20</code>).<br/>
+• <b>כלל המקלט:</b> בקבלת <code>ESC</code> מתעלמים ממנו ומתייחסים לבית הבא אחריו כאל מידע רגיל.
+</p>
+</div>
+</div>
+</div>
+
+<div class="basic-card space-y-3">
+<h3 class="basic-card-title">3.2 מסגור מונחה סיביות (HDLC Bit Stuffing) ומסגור מבוסס שעון (SONET STS-1)</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+<div class="basic-subcard space-y-1.5">
+<strong class="text-slate-900 block">1. מסגור מונחה סיביות (HDLC) ודחיסת סיביות (Bit Stuffing):</strong>
+<p class="text-slate-700 leading-relaxed">
+כל מסגרת נפתחת ומסתיימת בדגל <b><code>01111110</code></b> (8 סיביות לכל דגל = <b>16 סיביות דגלים בסך הכול</b>).<br/>
+• <b>כלל המשדר (TX):</b> בכל פעם שמופיעות בנתונים <b>5 סיביות <code>1</code> רצופות (<code>11111</code>)</b>, המשדר דוחס מיד אחריהן סיבית <b><code>0</code></b> (הדחיסה מבוצעת במטען בלבד ולא בדגלים).<br/>
+• <b>כלל המקלט (RX) לאחר 5 סיביות <code>1</code> רצופות:</b> בוחן את הסיבית ה-6 (וה-7):<br/>
+&nbsp;&nbsp;– אם הסיבית ה-6 היא <b><code>0</code></b> (<code>111110</code>): זו סיבית שנדחסה $\implies$ המקלט מסיר אותה וממשיך.<br/>
+&nbsp;&nbsp;– אם הסיבית ה-6 היא <b><code>1</code></b> וה-7 היא <b><code>0</code></b> (<code>01111110</code>): זהו דגל סוף המסגרת.<br/>
+&nbsp;&nbsp;– אם הסיבית ה-6 היא <b><code>1</code></b> וה-7 היא <b><code>1</code></b> (<code>1111111</code>): שגיאת קו $\implies$ המסגרת נפסלת.
+</p>
+</div>
+<div class="basic-subcard space-y-1.5">
+<strong class="text-slate-900 block">2. חישובי אורך מסגרת ב-HDLC ומסגור SONET STS-1:</strong>
+<p class="text-slate-700 leading-relaxed">
+• <b>דוגמאות חישוב אורך מסגרת HDLC (כולל 2 הדגלים = +16 סיביות):</b><br/>
+&nbsp;&nbsp;– עבור $200$ סיביות שכולן <code>0</code>: $200 + 0 + 16 = \mathbf{216\text{ סיביות}}$.<br/>
+&nbsp;&nbsp;– עבור $200$ סיביות שכולן <code>1</code>: $200 + \lfloor 200/5 \rfloor + 16 = 200 + 40 + 16 = \mathbf{256\text{ סיביות}}$.<br/>
+&nbsp;&nbsp;– עבור $40$ חזרות של התבנית <code>011111</code> ($240$ סיביות): בכל תבנית יש 5 אחדות $\implies$ $40$ אפסים נדחסים $+ 16$ סיביות דגלים $= \mathbf{296\text{ סיביות}}$.<br/>
+• <b>מסגור מבוסס שעון (SONET STS-1):</b> ברשתות אופטיות נמנעים מדחיסה ומשתמשים במסגרת בגודל קבוע של <b>$810$ בתים</b> ($9 \times 90$) המשודרת כל <b>$125\,\mu\text{s}$</b> ($8,000$ מסגרות בשנייה, בדומה לקצב דגימת הקול ב-PCM). קצב השידור: $810 \times 8 \times 8,000 = \mathbf{51.84\text{ Mbps}}$. המקלט ננעל על 2 בתי סנכרון בתחילת המסגרת וחותך כל 810 בתים.
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="fast-mode-view space-y-4">
 <div class="fast-header">
-<div class="flex items-center justify-between flex-wrap gap-2">
-<span class="fast-badge">⚡ מצב לימוד מהיר • פרק 3 מתוך 7</span>
-<button onclick="showQuestions('tab-framing', '3. מסגור נתונים (Framing)', event)" class="px-3 py-1.5 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-900 border border-sky-200 text-xs font-bold cursor-pointer">❓ שאלות תרגול</button>
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+<span class="fast-badge">⚡ לימוד מהיר • פרק 3 מתוך 7 (סקירה מרוכזת)</span>
+<div class="flex items-center gap-1.5 flex-wrap">
+<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-wrapper-framing', 'מעבדה 3.1: סימולטור PPP, HDLC ו-SONET')">🕹️ מעבדה 3.1: סימולטור מסגור</button>
+<button type="button" class="fast-sim-btn" onclick="showQuestions('tab-framing', '3. מסגור נתונים (Framing)', event)">❓ שאלות תרגול</button>
 </div>
-<h2 class="text-2xl md:text-3xl font-black text-slate-900 mt-1">3. מסגור נתונים (Framing)</h2>
-<p class="text-sm text-slate-600 mt-1">מטרות החלוקה למסגרות ושלוש שיטות המסגור: מונחה בתים (PPP), מונחה סיביות (HDLC) ומבוסס שעון (SONET).</p>
+</div>
+<h2 class="text-xl md:text-2xl font-black text-slate-900">3. מסגור נתונים (Framing): מונחה בתים (PPP), מונחה סיביות (HDLC) ו-SONET</h2>
+<p class="text-xs text-slate-600"><b>3 מטרות המסגור:</b> (1) שיתוף הקו בריבוב סטטיסטי בין תחנות; (2) שידור חוזר של מסגרת בודדת בשגיאה; (3) התאמה לגודל חוצצים (Buffers) סופי.</p>
+</div>
+
+<div class="fast-visual-strip">
+<div class="fast-strip-node"><b>1. מונחה בתים (PPP):</b> דגל <code>0x7E</code>. אם <code>Flag</code> או <code>ESC</code> (<code>0x7D</code>) במידע $\implies$ דוחסים לפניהם <code>ESC</code>.</div>
+<div class="fast-strip-node fast-strip-highlight"><b>2. מונחה סיביות (HDLC ★):</b> דגל פתיחה וסיום <code>01111110</code> ($2\times 8 = 16$ ביטים). אחרי כל <code>11111</code> במידע המשדר דוחס <code>0</code>.</div>
+<div class="fast-strip-node"><b>3. מקלט HDLC אחרי <code>11111</code>:</b> ביט 6 הוא <code>0</code> $\implies$ מסיר וממשיך | <code>10</code> $\implies$ סוף מסגרת | <code>11</code> $\implies$ שגיאה בקו.</div>
+<div class="fast-strip-node"><b>4. מבוסס שעון (SONET STS-1):</b> גודל קבוע $9\times 90 = \mathbf{810\text{B}}$ כל $125\,\mu\text{s}$ ($8,000$/שנייה) $\implies \mathbf{51.84\text{ Mbps}}$.</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+<div class="fast-card">
+<div class="fast-card-title">🧮 נוסחאות אורך מסגרת ב-HDLC (נתונים באורך $n$ + 2 דגלים)</div>
+<p class="text-slate-700 leading-relaxed">
+• <b>אורך מינימלי (ללא 5 אחדות רצופות, למשל הכל <code>0</code>):</b> $L_{\min} = n + 16$ (עבור $n=200 \implies \mathbf{216\text{ סיביות}}$).<br/>
+• <b>אורך מקסימלי (הכל <code>1</code>):</b> $L_{\max} = n + \lfloor n/5 \rfloor + 16$ (עבור $n=200 \implies 200 + 40 + 16 = \mathbf{256\text{ סיביות}}$).<br/>
+• <b>סדרה מחזורית (למשל $40$ חזרות של <code>011111</code>, $n=240$):</b> כל חזרה מכילה <code>11111</code> וגוררת דחיסת <code>0</code> אחד $\implies 240 + 40 + 16 = \mathbf{296\text{ סיביות}}$.
+</p>
 </div>
 <div class="fast-card">
-<h3 class="fast-card-title"><span>📦</span><span>3.1 מדוע מחלקים מידע למסגרות?</span></h3>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs md:text-sm">
-<div class="fast-subcard"><strong>1. שיתוף משאבים על הקו:</strong> מספר תחנות משדרות מסגרות ב"תורות" (ריבוב סטטיסטי) בלי לחסום את הקו.</div>
-<div class="fast-subcard"><strong>2. בקרת שגיאות יעילה:</strong> בשגיאה משדרים מחדש רק את המסגרת הפגומה ולא את הקובץ כולו.</div>
-<div class="fast-subcard"><strong>3. מגבלות זיכרון (Buffers):</strong> כרטיסי רשת ומתגים קולטים גושים בגודל סופי ומוגדר ולא זרם אינסופי.</div>
-</div>
-</div>
-<div class="fast-card">
-<h3 class="fast-card-title"><span>🖼️</span><span>3.2 שלוש שיטות המסגור בשכבת הערוץ</span></h3>
-<div class="space-y-4 text-xs md:text-sm">
-<div class="fast-accent-blue">
-<strong class="text-sky-950 text-base block mb-1">1. מסגור מונחה בתים (Byte-Oriented: PPP) ודחיסת תווים (Character Stuffing)</strong>
+<div class="fast-card-title">🔍 השוואת 3 שיטות המסגור</div>
 <p class="text-slate-700 leading-relaxed">
-המידע מאורגן כרצף בתים (8 סיביות). תחילת וסוף המסגרת מסומנים על ידי <strong>בית זקיף (Flag)</strong> מוסכם: <code>0x7E</code> (<code>01111110</code>).<br>
-• <strong>הבעיה והפתרון (דחיסת תווים):</strong> אם <code>0x7E</code> מופיע בתוך הנתונים, המשדר מוסיף לפניו <strong>תו בקרה / בריחה (ESC = <code>0x7D</code>)</strong>. אם תו הבקרה עצמו מופיע בנתונים, מוסיפים גם לפניו תו בקרה נוסף (ב-PPP תקני מבוצע גם XOR עם <code>0x20</code> כך ש-<code>7E</code> הופך ל-<code>7D 5E</code> ו-<code>7D</code> הופך ל-<code>7D 5D</code>).
-</p>
-</div>
-<div class="fast-accent-blue">
-<strong class="text-sky-950 text-base block mb-1">2. מסגור מונחה סיביות (Bit-Oriented: HDLC) ודחיסת ביטים (Bit Stuffing)</strong>
-<p class="text-slate-700 leading-relaxed mb-2">
-המסגרת היא זרם סיביות באורך כלשהו, המוקף בדגל פתיחה ובדגל סיום: <code>01111110</code> (8 סיביות לכל דגל = <strong>16 סיביות דגלים בסך הכול</strong>).
-</p>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-<div class="bg-white p-3 rounded-lg border border-sky-200">
-<strong class="text-sky-900 block mb-1">כלל המשדר (TX):</strong>
-בכל פעם שהמשדר מזהה בנתונים <strong>5 סיביות <code>1</code> רצופות (<code>11111</code>)</strong>, הוא דוחס מיד אחריהן סיבית <code>0</code> אוטומטית (הדחיסה מתבצעת בנתונים בלבד ולא בדגלים!).<br>
-• <em>דוגמה ל-200 סיביות מידע (כולל 2 הדגלים):</em><br>
-אם כולן <code>0</code>: $200 + 0 + 16 = \mathbf{216\text{ סיביות}}$.<br>
-אם כולן <code>1</code>: $200 + \lfloor 200/5 \rfloor + 16 = 200 + 40 + 16 = \mathbf{256\text{ סיביות}}$.
-</div>
-<div class="bg-white p-3 rounded-lg border border-sky-200">
-<strong class="text-sky-900 block mb-1">כלל המקלט (RX) אחרי 5 סיביות <code>1</code> רצופות:</strong>
-בוחן את הסיבית ה-6 (ובמידת הצורך ה-7):<br>
-• <strong>הביט ה-6 הוא <code>0</code> (<code>111110</code>):</strong> ביט שנדחס $\implies$ המקלט מתעלם ממנו וממשיך.<br>
-• <strong>הביט ה-6 הוא <code>1</code> והביט ה-7 הוא <code>0</code> (<code>01111110</code>):</strong> דגל סוף המסגרת הרשמי.<br>
-• <strong>הביט ה-6 הוא <code>1</code> והביט ה-7 הוא <code>1</code> (<code>1111111</code>):</strong> שגיאה בקו $\implies$ המסגרת נפסלת.
-</div>
-</div>
-</div>
-<div class="fast-accent-slate">
-<strong class="text-slate-900 text-base block mb-1">3. מסגור מבוסס שעון (Clock-Based: SONET STS-1)</strong>
-<p class="text-slate-700 leading-relaxed">
-ברשתות סיבים אופטיים מהירות נמנעים מדחיסת תווים/ביטים (שדורשת עיבוד כבד ויוצרת גודל מסגרת משתנה).<br>
-• <strong>גודל וקצב קבועים:</strong> כל מסגרת היא בגודל קבוע של <strong>810 בתים</strong> ($9 \times 90$) ומשודרת בדיוק כל <strong>$125\,\mu\text{s}$</strong> ($8,000$ מסגרות בשנייה $\implies$ קצב $810 \times 8 \times 8,000 = \mathbf{51.84\text{ Mbps}}$).<br>
-• <strong>נעילת סנכרון וחיתוך עיוור:</strong> בתחילת כל מסגרת מופיעים <strong>2 בתי בקרה</strong> מוסכמים. ברגע שהמקלט מזהה אותם מחזורית כל 810 בתים ($125\,\mu\text{s}$), הוא מתקבע על הגבולות ומבצע חיתוך מהיר כל 810 בתים ללא חיפוש סימני סוף.
+• <b>PPP (Character Stuffing):</b> פשוט למימוש בתוכנה בגבולות בתים, אך כובל לגודל תו של 8 ביטים ומוסיף בית שלם על כל הופעת דגל/ESC.<br/>
+• <b>HDLC (Bit Stuffing):</b> תומך במסגרות בכל אורך סיביות ומוסיף סיבית <code>0</code> בודדת בלבד אחרי חמישה <code>1</code>.<br/>
+• <b>SONET (Clock-Based):</b> מונע את הצורך לסרוק ולדחוס סיביות בקצבים אופטיים גבוהים; ננעל על 2 בתי בקרה מחזוריים כל $810$ בתים ($125\,\mu\text{s}$).
 </p>
 </div>
 </div>
 </div>
-<div class="fast-sim-bar">
-<div class="text-xs md:text-sm font-bold text-sky-950">🕹️ מעבדה 3.1: סימולטור דחיסת תווים ב-PPP, דחיסת ביטים ב-HDLC ו-SONET</div>
-<button onclick="openSingleSim('sim-wrapper-framing', 'מעבדה 3.1: סימולטור PPP Byte Stuffing, HDLC Bit Stuffing ו-SONET')" class="px-4 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold cursor-pointer">פתיחת סימולטור</button>
-</div>
-</div>
-<!-- Sub-Chapter Navigation Footer -->
 <div class="mt-12 pt-6 pb-2 border-t border-sky-300/40 flex flex-wrap items-center justify-between gap-4">
 <button onclick="showTab('tab-encoding'); window.scrollTo({top: 0, behavior: 'smooth'});" class="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/90 hover:bg-white text-sky-900 font-bold text-xs md:text-sm border border-sky-300/80 shadow-xs hover:shadow-md transition-all group">
 <svg class="w-4 h-4 text-sky-700 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
@@ -2121,7 +2439,7 @@ $$M(x) = 1\cdot x^7 + 0\cdot x^6 + 0\cdot x^5 + 1\cdot x^4 + 1\cdot x^3 + 0\cdot
 <strong class="text-sky-950 block">1. קוד שכפול ללא זוגיות ($MM$) לעומת שכפול עם זוגיות ($AA$):</strong>
 <ul class="list-disc list-inside space-y-1">
 <li><strong>שכפול נאיבי $MM$ (ללא סיבית זוגיות, אורך $2m$):</strong> אם למילת מידע $M$ בת $m$ סיביות משרשרים את עצמה ומשדרים $MM$, לקוד יש <strong>יכולת גילוי שגיאה בודדת בלבד ואפס יכולת תיקון (0 שגיאות)</strong>! מדוע? כשנופלת שגיאה בסיבית אחת, שני החצאים שונים זה מזה, אך בהיעדר סיבית זוגיות אין למקלט שום דרך לדעת איזה חצי הוא הנכון ואיזה המשובש.</li>
-<li><strong>שכפול עם זוגיות $AA$ (אורך $2m+2$, תקורה $\frac{m+2}{2m+2}$):</strong> מוסיפים ל-$M$ סיבית זוגיות לקבלת מילה $A$ בת $m+1$ סיביות, ומשדרים את $AA$. לקוד זה יש <strong>יכולת תיקון של שגיאה אחת (1-bit FEC)</strong>! תהליך התיקון: המקלט מפריד את המילה לשני חצאיה ובודק את הזוגיות של כל חצי. בשגיאה בודדת, חצי אחד ייכשל בבדיקת הזוגיות והחצי השני יעבור אותה תקין — והמקלט מחלץ את $M$ מהחצי שהזוגיות שלו תקינה!</li>
+<li><strong>שכפול עם זוגיות $AA$ (אורך $2m+2$, תקורה $\frac{m+2}{2m+2}$):</strong> מוסיפים ל-$M$ סיבית זוגיות לקבלת מילה $A$ בת $m+1$ סיביות, ומשדרים את $AA$. לקוד זה יש <strong>יכולת תיקון של שגיאה אחת (1-bit FEC)</strong>! תהליך התיקון: המקלט מפריד את המילה לשני חצאיה ובודק את הזוגיות של כל חצי. בשגיאה בודדת, חצי אחד ייכשל בבדיקת הזוגיות והחצי השני יעבור אותה תקין — והמקלט מחלץ את $M$ מהחצי שהזוגיות שלו תקינה! (הערה: <strong>קוד שכפול משולש $MMM$</strong> ללא סיבית זוגיות גם הוא מתקן שגיאה אחת לפי הצבעת רוב של 2 מתוך 3 ומגלה כל 2 שגיאות בדומה ל-$AA$, אך בתקורה גבוהה יותר של $\frac{2m}{3m}=66.7\%$).</li>
 </ul>
 </div>
 <div class="bg-white p-4 rounded-xl border border-sky-200 space-y-1.5">
@@ -2130,6 +2448,7 @@ $$M(x) = 1\cdot x^7 + 0\cdot x^6 + 0\cdot x^5 + 1\cdot x^4 + 1\cdot x^3 + 0\cdot
 <ul class="list-disc list-inside space-y-1">
 <li><strong>עבור 8 שגיאות בדיוק:</strong> <em>ייתכן שיתגלו</em> (למשל 3 שגיאות בשורה 1 ו-5 שגיאות בשורה 2), ו<em>ייתכן שלא יתגלו</em> (למשל שגיאות ב-8 קודקודים של שני מלבנים זרים: $(1,1),(1,2),(2,1),(2,2)$ ו-$(3,3),(3,4),(4,3),(4,4)$).</li>
 <li><strong>עבור 6 שגיאות בדיוק:</strong> <em>ייתכן שיתגלו</em> (למשל 3 שגיאות בשורה 1 ו-3 שגיאות בשורה 2 בעמודות שונות), ו<em>ייתכן שלא יתגלו</em> כאשר ב-3 שורות וב-3 עמודות יש בדיוק 2 שגיאות בכל שורה ובעמודה — למשל המיקומים $(1,1),(1,2)$, $(2,2),(2,3)$, ו-$(3,1),(3,3)$!</li>
+<li><strong>עבור כל מספר אי-זוגי של שגיאות (כגון 5 או 7 שגיאות):</strong> השגיאות <strong>יתגלו תמיד ב-100% מהמקרים</strong> (לא ייתכן שלא יתגלו), משום שאי-גילוי מחייב מספר זוגי של שגיאות בכל שורה, וסכום של מספרים זוגיים לעולם אינו יכול להיות אי-זוגי!</li>
 </ul>
 </div>
 <div class="bg-white p-4 rounded-xl border border-sky-200 space-y-1.5">
@@ -2141,6 +2460,7 @@ $$M(x) = 1\cdot x^7 + 0\cdot x^6 + 0\cdot x^5 + 1\cdot x^4 + 1\cdot x^3 + 0\cdot
 <ul class="list-disc list-inside space-y-1">
 <li><strong>שילוב Parity + CRC:</strong> שניהם מנגנוני גילוי בלבד ולכן השילוב מתקן <strong>0 שגיאות</strong>. אם $G(x)$ כבר מכיל את הגורם $(x+1)$ (מספר מחוברים זוגי, כגון $x^3+x^2+x+1$), ה-CRC לבדו מגלה כל מספר אי-זוגי של שגיאות וסיבית הזוגיות מיותרת! אם ל-$G(x)$ מספר מחוברים אי-זוגי (כגון $x^{15}+x^{14}+1$), הוספת סיבית זוגיות מוסיפה גילוי של כל מספר אי-זוגי של שגיאות.</li>
 <li><strong>פולינום מנוון $G(x) = x^k$:</strong> כפל $M(x)$ ב-$x^k$ מתחלק ב-$x^k$ ללא שארית תמיד, ולכן סיביות ה-CRC הן תמיד $k$ אפסים! קוד כזה אינו מגלה אף שגיאה בסיביות המידע $M(x)$ והגדלת $k$ אינה משפרת את גילוי השגיאות במידע.</li>
+<li><strong>השוואת מילת קוד באורך $2^n-1$ בין קוד המינג לקוד CRC:</strong> בקוד המינג באורך $2^n-1$ ידוע שיש $n$ סיביות בקרה ולכן אורך המידע הוא $2^n-1-n$; לעומת זאת בקוד CRC אורך המידע הוא $(2^n-1) - r$, ולכן <strong>לא ניתן לדעת את אורך מילת המידע ללא ידיעת מעלת הפולינום היוצר $r = \deg(G)$</strong>.</li>
 </ul>
 </div>
 </div>
@@ -2168,78 +2488,105 @@ $$M(x) = 1\cdot x^7 + 0\cdot x^6 + 0\cdot x^5 + 1\cdot x^4 + 1\cdot x^3 + 0\cdot
 </div>
 </div>
 <!-- ==================== FAST STUDY MODE: TAB 4 ==================== -->
-<div class="fast-mode-view">
-<div class="fast-header">
-<div class="flex items-center justify-between flex-wrap gap-2">
-<span class="fast-badge">⚡ מצב לימוד מהיר • פרק 4 מתוך 7</span>
-<button onclick="showQuestions('tab-errors', '4. גילוי ותיקון שגיאות (CRC)', event)" class="px-3 py-1.5 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-900 border border-sky-200 text-xs font-bold cursor-pointer">❓ שאלות תרגול</button>
-</div>
-<h2 class="text-2xl md:text-3xl font-black text-slate-900 mt-1">4. גילוי ותיקון שגיאות (Error Detection & Correction)</h2>
-<p class="text-sm text-slate-600 mt-1">נוסחת התקורה, סיבית זוגיות, קודי שכפול ($MM$ מול $AA$), מטריצת זוגיות דו-ממדית, Checksum במשלים ל-1 ו-CRC במודולו 2.</p>
-</div>
-<div class="fast-card">
-<h3 class="fast-card-title"><span>📐</span><span>4.1 מושגי יסוד, נוסחת התקורה וקודי שכפול</span></h3>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
-<div class="fast-accent-blue">
-<strong class="text-sky-950 block mb-1">נוסחת התקורה (Overhead) הרשמית בקורס</strong>
-<p class="text-slate-700 leading-relaxed">
-למילת מידע בת $m$ סיביות מצרפים $r$ <strong>סיביות ביקורת (יתירות)</strong> לקבלת מילת קוד באורך $m + r$:
-$$\text{Overhead (\%)} = \frac{\text{Check Bits}}{\text{Codeword Length}} = \frac{r}{m + r} \times 100\%$$
-• ככל ש-$m$ גדול יותר (עבור $r$ קבוע), התקורה באחוזים <strong>קטנה יותר</strong>.<br>
-• <em>דוגמה:</em> ב-CRC ממעלה $r=12$ עם תקורה של $2\%$: $\frac{12}{m+12} = 0.02 \implies m+12 = 600 \implies \mathbf{m = 588}$.
-</p>
-</div>
-<div class="fast-accent-slate">
-<strong class="text-slate-900 block mb-1">קוד שכפול עם זוגיות ($AA$) לעומת ללא זוגיות ($MM$)</strong>
-<p class="text-slate-700 leading-relaxed">
-• <strong>קוד $MM$ (שרשור $M$ לעצמה, ללא זוגיות):</strong> בעל יכולת <strong>גילוי שגיאה בודדת בלבד ואפס יכולת תיקון</strong> (כי כששני החצאים שונים אין דרך לדעת איזה חצי נכון).<br>
-• <strong>קוד $AA$ (הוספת סיבית זוגיות ל-$M$ לקבלת $A$, ושידור $AA$):</strong> <strong>מתקן שגיאה אחת (1-bit FEC)</strong>! בשגיאה בודדת, חצי אחד נכשל בבדיקת הזוגיות והחצי השני עובר אותה תקין — והמקלט לוקח את החצי שהזוגיות שלו תקינה.
-</p>
+<div class="basic-mode-view space-y-5">
+<div class="basic-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="basic-badge">📖 לימוד בסיסי • פרק 4 מתוך 7</span>
+<div class="flex items-center gap-2">
+<button type="button" class="basic-top-btn" onclick="showTab('tab-exercises')">לנוסחאון ומעבדת תרגול 📝</button>
+<button type="button" class="basic-top-btn" onclick="showQuestions('tab-errors', '4. גילוי ותיקון שגיאות (Parity, Checksum, CRC)', event)">❓ שאלות תרגול</button>
 </div>
 </div>
+<h2 class="text-2xl md:text-3xl font-black text-slate-900">4. גילוי ותיקון שגיאות: תקורה, קודי שכפול, זוגיות 1D/2D, Checksum ו-CRC</h2>
+<p class="text-xs md:text-sm text-slate-600 mt-1">הוספת סיביות יתירות לגילוי ולתיקון שגיאות בערוץ רועש: נוסחת התקורה, קודי $MM$/$AA$/$MMM$, מטריצת זוגיות דו-ממדית, Checksum במשלים ל-1 וחילוק פולינומים במודולו 2 (CRC).</p>
 </div>
-<div class="fast-card">
-<h3 class="fast-card-title"><span>🔢</span><span>4.2 סיבית זוגיות, מטריצת זוגיות ו-Checksum במשלים ל-1</span></h3>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs md:text-sm">
-<div class="fast-subcard space-y-1">
-<strong class="text-sky-900 block text-sm">1. סיבית זוגיות (1D Parity)</strong>
-<p class="text-slate-700">מוסיפים סיבית אחת כך שמספר ה-<code>1</code> יהיה זוגי.</p>
-<p class="text-slate-700"><strong>יתרון:</strong> תקורה של סיבית בודדת; מגלה כל <strong>מספר אי-זוגי</strong> של שגיאות.<br><strong>חיסרון:</strong> אין תיקון שגיאות; מפספס כל <strong>מספר זוגי</strong> של שגיאות (עבור $n=5$ סיביות ו-$p=0.5$, $15$ מתוך $31$ דפוסי השגיאות הם זוגיים ולא מתגלים).</p>
+
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">4.1 נוסחת התקורה, קודי שכפול ($MM$ מול $AA$), זוגיות 1D/2D ו-Checksum</h3>
+<p class="text-xs text-slate-600 mt-0.5">חישוב אחוז התקורה, יכולת תיקון שגיאה בקוד $AA$ ובמטריצת זוגיות דו-ממדית, וסיכום ביקורת במשלים ל-1.</p>
 </div>
-<div class="fast-subcard space-y-1">
-<strong class="text-sky-900 block text-sm">2. מטריצת זוגיות (2D Parity)</strong>
-<p class="text-slate-700">סיבית זוגיות לכל שורה ולכל עמודה.</p>
-<p class="text-slate-700"><strong>יתרון:</strong> <strong>תיקון שגיאה בודדת</strong> (בהצלבת השורה והעמודה השגויות) וגילוי כל 1, 2, 3 שגיאות.<br><strong>מתי שגיאות לא מתגלות?</strong> כאשר <strong>בכל שורה ובכל עמודה יש מספר זוגי של שגיאות</strong> (כגון 4 שגיאות בקודקודי מלבן, 8 שגיאות בשני מלבנים, או 6 שגיאות ב-3 שורות ו-3 עמודות עם 2 שגיאות בכל שורה/עמודה). לכן ב-6 או 8 שגיאות <em>ייתכן שיתגלו וייתכן שלא יתגלו</em>.</p>
+<button type="button" class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-wrapper-parity2d', 'מעבדה 4.1: מטריצת זוגיות דו-ממדית (2D Parity) ותיקון שגיאות')" title="פתיחת מעבדה 4.1: מטריצת זוגיות דו-ממדית">
+<svg class="w-8 h-8" fill="none" viewBox="0 0 48 48">
+<rect fill="#18181b" height="30" rx="4" stroke="#ffffff" stroke-width="2" width="30" x="9" y="9"></rect>
+<line stroke="#71717a" stroke-width="1.5" x1="19" x2="19" y1="9" y2="39"></line>
+<line stroke="#71717a" stroke-width="1.5" x1="29" x2="29" y1="9" y2="39"></line>
+<line stroke="#71717a" stroke-width="1.5" x1="9" x2="39" y1="19" y2="19"></line>
+<line stroke="#71717a" stroke-width="1.5" x1="9" x2="39" y1="29" y2="29"></line>
+<rect fill="#ffffff" height="10" width="10" x="19" y="19"></rect>
+</svg>
+</button>
 </div>
-<div class="fast-subcard space-y-1">
-<strong class="text-sky-900 block text-sm">3. Checksum במשלים ל-1</strong>
-<p class="text-slate-700">מחלקים למילים ומחברים. אם יש נשא (Carry), מוסיפים אותו לתוצאה (End-Around Carry), ואז הופכים סיביות (NOT):<br>
-<code>10100 + 10011 = 100111</code> $\to$ <code>00111 + 1 = 01000</code> (או בדוגמת הסיכום <code>01110</code> $\to$ היפוך <code>10001</code>).<br>
-<strong>המקלט:</strong> מחבר את הסכום עם ה-Checksum; אם הכול <code>11111</code> — תקין. <strong>חיסרון:</strong> אין תיקון; מפספס זוג שגיאות שמגדיל מילה אחת ומקטין אחרת באותו ערך.</p>
+
+<div class="my-2 p-3 rounded-xl bg-[#f4f8fb] border border-[#cbd5e1] overflow-x-auto">
+<svg class="w-full h-auto max-w-2xl mx-auto" viewBox="0 0 640 105">
+<rect x="10" y="10" width="195" height="84" rx="8" fill="#ffffff" stroke="#0284c7" stroke-width="1.5"/>
+<text x="107" y="30" text-anchor="middle" font-size="11.5" font-weight="800" fill="#0c4a6e">נוסחת התקורה (Overhead)</text>
+<text x="107" y="54" text-anchor="middle" font-size="12" font-family="monospace" font-weight="800" fill="#0369a1">Overhead = r / (m + r)</text>
+<text x="107" y="76" text-anchor="middle" font-size="9.5" fill="#475569">ככל ש-m גדל ➔ התקורה ב-% קטנה!</text>
+<rect x="222" y="10" width="195" height="84" rx="8" fill="#ffffff" stroke="#0284c7" stroke-width="1.5"/>
+<text x="319" y="30" text-anchor="middle" font-size="11.5" font-weight="800" fill="#0c4a6e">קוד AA מול קוד MM</text>
+<text x="319" y="52" text-anchor="middle" font-size="10" fill="#334155">MM: מגלה 1, מתקן 0</text>
+<text x="319" y="72" text-anchor="middle" font-size="10" font-weight="700" fill="#0369a1">AA (עם זוגיות): מתקן 1, מגלה 2!</text>
+<rect x="434" y="10" width="195" height="84" rx="8" fill="#f0f9ff" stroke="#0284c7" stroke-width="2"/>
+<text x="531" y="30" text-anchor="middle" font-size="11.5" font-weight="900" fill="#075985">מטריצת זוגיות (2D Parity)</text>
+<text x="531" y="52" text-anchor="middle" font-size="10" fill="#0f172a">מתקנת 1 (הצלבה) | מגלה כל אי-זוגי (5,7)</text>
+<text x="531" y="72" text-anchor="middle" font-size="9.5" font-weight="700" fill="#b91c1c">לא מתגלה: זוגי בכל שורה ועמודה (4 במלבן)</text>
+</svg>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+<div class="basic-subcard space-y-1.5">
+<strong class="text-slate-900 block">1. נוסחת התקורה וקודי שכפול ($MM$, $AA$, $MMM$):</strong>
+<ul class="list-disc list-inside text-slate-700 space-y-1">
+<li><b>נוסחת התקורה הרשמית:</b> עבור $m$ סיביות מידע ו-$r$ סיביות יתירות (מילת קוד $m+r$):
+$$\text{Overhead (\%)} = \frac{r}{m + r} \times 100\%$$
+ככל ש-$m$ גדול יותר (עבור $r$ קבוע), התקורה באחוזים <b>קטנה יותר</b>! (דוגמה: ב-CRC ממעלה $r=12$ עם תקורה $2\%$: $\frac{12}{m+12}=0.02 \implies \mathbf{m=588}$; במטריצה $n\times n$ עם CRC ממעלה $7$ לכל שורה: $\frac{7n}{n^2+7n}=\frac{7}{n+7}$ שקטנה כש-$n$ גדל).</li>
+<li><b>קוד $MM$ (ללא זוגיות):</b> מגלה שגיאה אחת אך מתקן <b>0 שגיאות</b> (אין דרך לדעת איזה חצי תקין).</li>
+<li><b>קוד $AA$ (כאשר $A = M + \text{Parity}$ באורך $m+1$):</b> תקורה $\frac{m+2}{2m+2}$. <b>מתקן שגיאה אחת</b> (החצי הפגום נכשל בזוגיות והחצי השני עובר תקין) ומגלה כל 2 שגיאות ($d_{\min}=4$). (<b>קוד $MMM$</b> משולש מתקן 1 לפי רוב ומגלה 2 בתקורה גבוהה יותר של $\frac{2m}{3m}$).</li>
+</ul>
+</div>
+<div class="basic-subcard space-y-1.5">
+<strong class="text-slate-900 block">2. זוגיות 1D, מטריצת זוגיות 2D ו-Checksum במשלים ל-1:</strong>
+<ul class="list-disc list-inside text-slate-700 space-y-1">
+<li><b>זוגיות 1D:</b> מוסיפה סיבית 1 להשלמת מספר ה-<code>1</code> לזוגי. מגלה כל <b>מספר אי-זוגי</b> של שגיאות; מפספסת כל מספר זוגי (במילה בת 5 סיביות עם $p=0.5$, $15/32$ מכלל הדפוסים או $15/31$ מהשיבושים הם זוגיים ולא מתגלים).</li>
+<li><b>מטריצת זוגיות 2D:</b> סיבית זוגיות לכל שורה ולכל עמודה. <b>מתקנת שגיאה בודדת</b> (בהצלבת השורה והעמודה השגויות) ומגלה כל 2 או 3 שגיאות, וכן <b>מגלה תמיד (100%) כל מספר אי-זוגי של שגיאות (כגון 5 או 7)</b>! שגיאות לא יתגלו אמ"מ <b>בכל שורה ובכל עמודה יש מספר זוגי של שגיאות</b> (מינימום 4 בקודקודי מלבן; ב-6 או 8 שגיאות ייתכן שיתגלו וייתכן שלא).</li>
+<li><b>Internet Checksum:</b> חיבור מילים במשלים ל-1 (נשא מהסיבית העליונה מוחזר לתחתונה Wrap-around carry) והיפוך סיביות (NOT). במקלט מחברים הכול — תקין אם מתקבל <code>111...1</code>. גילוי בלבד (אפס תיקון).</li>
+</ul>
 </div>
 </div>
 </div>
-<div class="fast-card">
-<h3 class="fast-card-title"><span>👑</span><span>4.3 בדיקת יתירות מחזורית (CRC – Cyclic Redundancy Check)</span></h3>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
-<div class="space-y-2 text-slate-700">
-<p>מבוססת על חילוק פולינומים במודולו 2 (פעולת <strong>XOR</strong> ללא נשא/השאלה) בפולינום יוצר מוסכם $G(x)$ ממעלה $k$ (בעל $k+1$ סיביות):</p>
-<ol class="list-decimal list-inside space-y-1 font-medium">
-<li><strong>צד שולח:</strong> מרפדים את מילת המידע $M$ ב-<strong>$k$ אפסים</strong> בסופה ($x^k M(x)$), מחלקים ב-$G(x)$ באמצעות XOR עד לקבלת שארית $R(x)$ בת $k$ סיביות, ומחליפים את $k$ האפסים בשארית $R(x)$.</li>
-<li><strong>צד מקבל:</strong> מחלק את מילת הקוד שהתקבלה ב-$G(x)$. שארית $0$ $\implies$ תקין; אחרת $\implies$ שגוי.</li>
-</ol>
-<div class="fast-accent-blue mt-2">
-<strong class="text-sky-950 block">מה CRC מגלה ומה חומק ממנו?</strong>
-• <strong>ללא תיקון שגיאות</strong> (גילוי בלבד).<br>
-• מגלה כל שגיאה בודדת (כשאיברי $x^k$ ו-$1$ קיימים), כל מספר אי-זוגי של שגיאות <strong>אם $G(x)$ מתחלק ב-$(x+1)$</strong> (כלומר יש בו <strong>מספר זוגי של אחדות</strong>, ואז הוספת סיבית זוגיות נפרדת מיותרת!), וכל רצף שגיאות (Burst) באורך $\le k$.<br>
-• <strong>לא יתגלה:</strong> אך ורק כאשר פולינום השגיאה $E(x)$ מתחלק ב-$G(x)$ ללא שארית (לדוגמה לשיבוש ב-3 סיביות שלא יתגלה עם $G(x)=x^3+x+1$: בוחרים $E(x) = G(x)$ או $x\cdot G(x)$).
+
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">4.2 בדיקת יתירות מחזורית (CRC – Cyclic Redundancy Check) בחילוק מודולו 2</h3>
+<p class="text-xs text-slate-600 mt-0.5">ייצוג פולינומי, חילוק XOR ארוך, אילו שגיאות מתגלות ($E(x)$), ודוגמה פתורה מלאה.</p>
 </div>
+<button type="button" class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-wrapper-crc-checksum', 'מעבדה 4.2: מחשבון חילוק ארוך ב-CRC - מודולו 2 ו-Internet Checksum')" title="פתיחת מעבדה 4.2: מחשבון CRC ו-Checksum">
+<svg class="w-8 h-8" fill="none" viewBox="0 0 48 48">
+<rect fill="#18181b" height="26" rx="5" stroke="#ffffff" stroke-width="2" width="32" x="8" y="11"></rect>
+<text fill="#ffffff" font-family="monospace" font-size="11" font-weight="900" text-anchor="middle" x="24" y="28">CRC⊕</text>
+</svg>
+</button>
 </div>
-<div class="fast-subcard font-mono text-xs dir-ltr text-left bg-slate-900 text-sky-100 p-4 rounded-xl">
-<div class="text-sky-300 font-bold mb-1">Worked Example: M = 10110010, G(x) = x³+x²+1 (1101, k=3)</div>
-<div>1. Append k=3 zeros: 10110010<span class="text-amber-300">000</span></div>
-<div>2. Modulo-2 (XOR) Division by 1101:</div>
-                                <pre class="!p-2 !my-1 !bg-slate-950 !text-xs !border-slate-700">10110010000 : 1101
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+<div class="basic-subcard space-y-1.5">
+<strong class="text-slate-900 block">אלגוריתם ה-CRC ותכונות גילוי שגיאות ($G(x)$ ממעלה $k$):</strong>
+<ul class="list-disc list-inside text-slate-700 space-y-1">
+<li><b>צד שולח:</b> מרפדים את המידע $M$ ב-<b>$k$ אפסים</b> ($x^k M(x)$), מחלקים ב-$G(x)$ ב-XOR עד לקבלת שארית $R(x)$ בת $k$ סיביות, ומשדרים $T(x) = x^k M(x) \oplus R(x)$.</li>
+<li><b>צד מקבל:</b> מחלק את המילה שהתקבלה ב-$G(x)$. שארית $0 \implies$ תקין; אחרת $\implies$ שגוי. <b>ללא יכולת תיקון שגיאות (0 שגיאות)</b>!</li>
+<li><b>מתי שגיאה לא מתגלה?</b> אך ורק כאשר פולינום השגיאה $E(x)$ מתחלק ב-$G(x)$ ללא שארית! (לשיבוש מינימלי שלא יתגלה בוחרים $E(x) = G(x)$).</li>
+<li><b>כללי $G(x)$:</b> (1) אם ב-$G(x)$ לפחות 2 מחוברים ($x^k$ ו-$1$) $\implies$ מגלה כל שגיאה בודדת וכל צביר שגיאות (Burst) באורך $\le k$. (2) אם $G(x)$ מתחלק ב-$(x+1)$ (<b>מספר מחוברים זוגי</b>) $\implies$ מגלה כל מספר אי-זוגי של שגיאות (ואז הוספת סיבית זוגיות נפרדת מיותרת לחלוטין!). (3) <b>פולינום מנוון $G(x)=x^k$:</b> מוסיף $k$ אפסים קבועים ואינו מגלה <b>אף שגיאה</b> במידע! (4) במילת קוד באורך $2^n-1$: בהמינג אורך המידע הוא $2^n-1-n$, אך ב-CRC לא ניתן לדעת את אורך המידע ללא ידיעת המעלה $r=\deg(G)$.</li>
+</ul>
+</div>
+<div class="basic-subcard">
+<strong class="text-slate-900 block mb-1">דוגמת חילוק מלאה: $M = 10110010$, $G(x) = x^3+x^2+1$ (<code>1101</code>, $k=3$)</strong>
+<pre class="p-2.5 rounded-lg bg-slate-900 text-sky-100 font-mono text-[11px] leading-snug overflow-x-auto" dir="ltr">1. Append k=3 zeros: 10110010000
+2. XOR Division by 1101:
+10110010000 : 1101
 1101
 ----
  1100
@@ -2254,20 +2601,54 @@ $$\text{Overhead (\%)} = \frac{\text{Check Bits}}{\text{Codeword Length}} = \fra
       01100
        1101
        ----
-        001  &lt;-- Remainder R = 001</pre>
-<div class="text-emerald-300 font-bold">3. Transmitted Codeword: 10110010<span class="underline">001</span></div>
+        001  &lt;-- Remainder R = 001
+3. Transmitted Codeword: 10110010001</pre>
 </div>
 </div>
 </div>
-<div class="fast-sim-bar">
-<div class="text-xs md:text-sm font-bold text-sky-950">🕹️ מעבדות פרק 4: מטריצת זוגיות דו-ממדית (4.1) ומחשבון חילוק CRC + Checksum (4.2)</div>
-<div class="flex gap-2">
-<button onclick="openSingleSim('sim-wrapper-parity2d', 'מעבדה 4.1: סימולטור מטריצת זוגיות דו-ממדית (2D Parity)')" class="px-3 py-1.5 rounded-lg bg-white hover:bg-sky-50 text-sky-800 border border-sky-300 text-xs font-bold cursor-pointer">מעבדת 2D Parity</button>
-<button onclick="openSingleSim('sim-wrapper-crc-checksum', 'מעבדה 4.2: מחשבון חילוק ארוך ב-CRC, אוגר LFSR ו-Checksum')" class="px-3 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold cursor-pointer">מחשבון CRC ו-Checksum</button>
+</div>
+
+<div class="fast-mode-view space-y-4">
+<div class="fast-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+<span class="fast-badge">⚡ לימוד מהיר • פרק 4 מתוך 7 (סקירה מרוכזת)</span>
+<div class="flex items-center gap-1.5 flex-wrap">
+<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-wrapper-parity2d', 'מעבדה 4.1: סימולטור מטריצת זוגיות דו-ממדית')">🕹️ מעבדה 4.1: 2D Parity</button>
+<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-wrapper-crc-checksum', 'מעבדה 4.2: מחשבון חילוק ארוך ב-CRC ו-Checksum')">🕹️ מעבדה 4.2: CRC ו-Checksum</button>
+<button type="button" class="fast-sim-btn" onclick="showQuestions('tab-errors', '4. גילוי ותיקון שגיאות (CRC)', event)">❓ שאלות תרגול</button>
+</div>
+</div>
+<h2 class="text-xl md:text-2xl font-black text-slate-900">4. גילוי ותיקון שגיאות: תקורה, קודי שכפול, זוגיות 1D/2D, Checksum ו-CRC</h2>
+<p class="text-xs text-slate-600"><b>נוסחת התקורה הרשמית:</b> $\text{Overhead (\%)} = \frac{r}{m+r}\times 100\%$ — ככל שאורך המידע $m$ גדל (עבור $r$ קבוע), התקורה באחוזים <b>קטנה</b>!</p>
+</div>
+
+<div class="fast-visual-strip">
+<div class="fast-strip-node"><b>1. קוד $MM$ מול $AA$:</b> $MM$ (ללא זוגיות) מגלה 1 ומתקן 0. $AA$ (עם זוגיות) <b>מתקן 1 ומגלה 2</b> (החצי התקין עובר זוגיות; תקורה $\frac{m+2}{2m+2}$).</div>
+<div class="fast-strip-node"><b>2. זוגיות 1D:</b> מגלה כל מספר <b>אי-זוגי</b> של שגיאות (אפס תיקון; ב-5 ביטים עם $p=0.5$, $15/32$ מהדפוסים זוגיים ולא מתגלים).</div>
+<div class="fast-strip-node"><b>3. מטריצת זוגיות 2D:</b> <b>מתקנת 1</b> (הצלבה), מגלה 2, 3 ו<b>כל אי-זוגי (5, 7) ב-100%</b>! לא מתגלה: זוגי בכל שורה ועמודה (4 במלבן; 6/8 תלוי במבנה).</div>
+<div class="fast-strip-node fast-strip-highlight"><b>4. CRC (מעלה $k$):</b> חילוק מודולו-2 (XOR) ב-$G(x)$. מוסיף $k$ סיביות שארית. גילוי בלבד (0 תיקון). חומק אמ"מ $G(x) \mid E(x)$.</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+<div class="fast-card">
+<div class="fast-card-title">👑 כללי הזהב של CRC ופולינום יוצר $G(x)$</div>
+<p class="text-slate-700 leading-relaxed">
+• <b>חישוב $m$ מתקורה:</b> מעלה $r=12$ ותקורה $2\% \implies \frac{12}{m+12}=0.02 \implies \mathbf{m=588}$.<br/>
+• <b>דוגמת חילוק:</b> $M=10110010$, $G(x)=x^3+x^2+1$ (<code>1101</code>) $\implies$ חילוק <code>10110010000</code> ב-<code>1101</code> נותן שארית <code>001</code> $\implies$ <b><code>10110010001</code></b>.<br/>
+• <b>גילוי אי-זוגי ושילוב Parity:</b> $G(x)$ מגלה כל מספר אי-זוגי של שגיאות אמ"מ $(x+1)\mid G(x)$ (<b>מספר מחוברים זוגי</b> ב-$G(x)$, ואז סיבית זוגיות נוספת מיותרת!).<br/>
+• <b>מלכודת $G(x)=x^k$:</b> רק משרשר $k$ אפסים קבועים — <b>לא מגלה אף שגיאה במידע</b>! • <b>המינג מול CRC באורך $2^n-1$:</b> ב-CRC אי אפשר לדעת את אורך המידע בלי מעלת $G(x)$.
+</p>
+</div>
+<div class="fast-card">
+<div class="fast-card-title">🔢 Internet Checksum במשלים ל-1</div>
+<p class="text-slate-700 leading-relaxed">
+• <b>חישוב במשדר:</b> מחברים את המילים; אם נוצר נשא (Carry) מעבר לסיבית העליונה מוסיפים אותו לסיבית התחתונה (Wrap-around carry), ובסוף <b>הופכים את כל הסיביות (NOT)</b>.<br/>
+• <b>בדיקה במקלט:</b> מחברים את כל המילים יחד עם ה-Checksum במשלים ל-1; אם התוצאה היא כולה אחדות (<code>111...1</code>, שמייצגת $-0$) — המידע תקין.<br/>
+• <b>חיסרון:</b> גילוי בלבד (ללא תיקון), וחלש מ-CRC כי אינו מגלה שגיאות שמקזזות זו את זו באותה עמודה (הגדלת מילה אחת והקטנת אחרת באותו ערך).
+</p>
 </div>
 </div>
 </div>
-<!-- Sub-Chapter Navigation Footer -->
 <div class="mt-12 pt-6 pb-2 border-t border-sky-300/40 flex flex-wrap items-center justify-between gap-4">
 <button onclick="showTab('tab-framing'); window.scrollTo({top: 0, behavior: 'smooth'});" class="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/90 hover:bg-white text-sky-900 font-bold text-xs md:text-sm border border-sky-300/80 shadow-xs hover:shadow-md transition-all group">
 <svg class="w-4 h-4 text-sky-700 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
@@ -2579,7 +2960,8 @@ $$SWS + RWS \le 2^k$$
 <ul class="list-disc list-inside space-y-1">
 <li>ב-<strong>Go-Back-N</strong> גודל חלון השליחה המרבי הוא $SWS = 2^k - 1$ (למשל $7$ עבור $k=3$, או $15$ עבור $k=4$).</li>
 <li>ב-<strong>Selective Repeat</strong> סימטרי גודל החלון המרבי הוא $SWS = 2^{k-1}$ בלבד (למשל $4$ עבור $k=3$, או $8$ עבור $k=4$).</li>
-<li>לכן, בערוץ נקי מרעשים שבו $C > 2^{k-1}$, <strong>פרוטוקול Go-Back-N משיג ניצולת ערוץ גבוהה יותר מ-Selective Repeat</strong> עם אותו $k$! (ומנגד, אם $RWS$ נקבע לערך שרירותי, גודל חלון השליחה המרבי הוא $SWS_{\max} = 2^k - RWS$).</li>
+<li>לכן, בערוץ נקי מרעשים שבו $C > 2^{k-1}$, <strong>פרוטוקול Go-Back-N משיג ניצולת ערוץ גבוהה יותר מ-Selective Repeat</strong> עם אותו $k$! (ומנגד, אם $RWS$ נקבע לערך שרירותי כגון $RWS=92$ מתוך $128$, גודל חלון השליחה המרבי יורד ל-$SWS_{\max} = 2^k - RWS = 36$ ופוגע בתפוקה; כמו כן ב-GBN אם קובעים בטעות $SWS = 2^k$, הפרוטוקול ייכשל <strong>רק אם אישורים עלולים לאבוד</strong> — אם אישורים אינם אובדים לעולם הוא לא ייכשל!).</li>
+<li><strong>שידור חוזר ב-GBN ($RWS=1$) כשראש חלון הקבלה כבר ב-$2$:</strong> אם השולח משדר את $0..5$ ברצף כשראש חלון הקבלה של $B$ הוא $2$, פירוש הדבר ש-$0$ ו-$1$ כבר התקבלו בסבב קודם וה-ACKs עליהן אבדו; לכן במשלוח הנוכחי $0,1$ נזרקות ככפילויות (ואם $1$ תאבד כעת זה לא יפריע כלל לקליטת $2..5$!).</li>
 </ul>
 </div>
 <div class="bg-white p-4 rounded-xl border border-sky-200 space-y-1.5">
@@ -2616,121 +2998,171 @@ $$SWS + RWS \le 2^k$$
 </div>
 </div>
 <!-- ==================== FAST STUDY MODE: TAB 5 ==================== -->
-<div class="fast-mode-view">
-<div class="fast-header">
-<div class="flex items-center justify-between flex-wrap gap-2">
-<span class="fast-badge">⚡ מצב לימוד מהיר • פרק 5 מתוך 7</span>
-<button onclick="showQuestions('tab-reliable', '5. שידור אמין וחלונות הזזה', event)" class="px-3 py-1.5 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-900 border border-sky-200 text-xs font-bold cursor-pointer">❓ שאלות תרגול</button>
+<div class="basic-mode-view space-y-5">
+<div class="basic-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="basic-badge">📖 לימוד בסיסי • פרק 5 מתוך 7</span>
+<div class="flex items-center gap-2">
+<button type="button" class="basic-top-btn" onclick="showTab('tab-exercises')">לנוסחאון ומעבדת תרגול 📝</button>
+<button type="button" class="basic-top-btn" onclick="showQuestions('tab-reliable', '5. שידור אמין וחלונות הזזה (Sliding Window)', event)">❓ שאלות תרגול</button>
 </div>
-<h2 class="text-2xl md:text-3xl font-black text-slate-900 mt-1">5. שידור אמין וחלונות הזזה (Sliding Window)</h2>
-<p class="text-sm text-slate-600 mt-1">אישורים (ACK) ו-Timeout, השוואת Stop-and-Wait, Go-Back-N ו-Selective Repeat, 4 מדיניויות האישור ותנאי $SWS + RWS \le 2^k$.</p>
 </div>
-<div class="fast-card">
-<h3 class="fast-card-title"><span>🔄</span><span>5.1 מנגנוני השידור האמין ו-3 מדיניויות החלון</span></h3>
-<p class="text-xs md:text-sm text-slate-700 mb-3">
-בשל חוסר ודאות בערוץ (בעיית שני הצבאות), שידור אמין נשען על <strong>אישורי קבלה (ACK)</strong> ו<strong>קוצב זמן (Timeout)</strong> לשידור חוזר. לשולח יש <strong>חלון שליחה ($SWS$)</strong> של מסגרות ששודרו וטרם אושרו ($LFS - LAR \le SWS$), ולמקלט יש <strong>חלון קבלה ($RWS$)</strong> של חוצצים למסגרות שמחוץ לסדר ($LAF - LFR = RWS$):
-</p>
+<h2 class="text-2xl md:text-3xl font-black text-slate-900">5. שידור אמין וחלונות הזזה: Stop-and-Wait, Go-Back-N ו-Selective Repeat</h2>
+<p class="text-xs md:text-sm text-slate-600 mt-1">מנגנוני ACK ו-Timeout, מצביעי השולח והמקבל ($LAR, LFS, LFR, LAF$), השוואת 3 מדיניויות החלון ו-4 מדיניויות האישור, ותנאי המספור הסופי $SWS + RWS \le 2^k$.</p>
+</div>
+
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">5.1 מצביעי חלון ההזזה, 3 מדיניויות החלון ו-4 מדיניויות שליחת האישורים</h3>
+<p class="text-xs text-slate-600 mt-0.5">השוואת Stop-and-Wait, Go-Back-N (פרוטוקול 5) ו-Selective Repeat (פרוטוקול 6), ומדיניויות ACK, NAK, Additional ACKs ו-SACK.</p>
+</div>
+<button type="button" class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-wrapper-sliding-window', 'מעבדה 5.1: סימולטור חלון הזזה, מדיניויות ACK ותרחיש הכישלון SWS+RWS > N')" title="פתיחת מעבדה 5.1: סימולטור חלון ההזזה">
+<svg class="w-8 h-8" fill="none" viewBox="0 0 48 48">
+<rect fill="#18181b" height="16" rx="4" stroke="#a1a1aa" stroke-width="1.8" width="36" x="6" y="16"></rect>
+<rect fill="#ffffff" height="20" rx="3" stroke="#07162c" stroke-width="2.2" width="18" x="14" y="14"></rect>
+<text fill="#07162c" font-family="monospace" font-size="10" font-weight="900" text-anchor="middle" x="23" y="27">SWP</text>
+</svg>
+</button>
+</div>
+
+<div class="my-2 p-3 rounded-xl bg-[#f4f8fb] border border-[#cbd5e1] overflow-x-auto">
+<svg class="w-full h-auto max-w-2xl mx-auto" viewBox="0 0 640 96">
+<rect x="10" y="12" width="295" height="72" rx="8" fill="#ffffff" stroke="#0284c7" stroke-width="1.5"/>
+<text x="157" y="34" text-anchor="middle" font-size="11.5" font-weight="800" fill="#0c4a6e">חלון השולח (Sender Window: SWS)</text>
+<text x="157" y="54" text-anchor="middle" font-size="11" font-family="monospace" font-weight="700" fill="#0369a1">LFS - LAR ≤ SWS</text>
+<text x="157" y="72" text-anchor="middle" font-size="9.5" fill="#475569">LAR = אחרונה שאושרה | LFS = אחרונה שנשלחה</text>
+<rect x="335" y="12" width="295" height="72" rx="8" fill="#f0f9ff" stroke="#0284c7" stroke-width="2"/>
+<text x="482" y="34" text-anchor="middle" font-size="11.5" font-weight="900" fill="#075985">חלון המקבל (Receiver Window: RWS)</text>
+<text x="482" y="54" text-anchor="middle" font-size="11" font-family="monospace" font-weight="700" fill="#0369a1">LAF - LFR = RWS | SWS + RWS ≤ 2^k</text>
+<text x="482" y="72" text-anchor="middle" font-size="9.5" fill="#0f172a">LFR = אחרונה שהועברה לרשת | LAF = מרבית מותרת</text>
+</svg>
+</div>
+
 <div class="overflow-x-auto">
-<table class="fast-table">
+<table class="basic-table">
 <thead>
 <tr>
-<th>שם המדיניות</th>
-<th>SWS</th>
-<th>RWS</th>
-<th>אופן הפעולה</th>
-<th>יתרונות, חסרונות ותנאי מספור ($k$ ביטים)</th>
+<th>מדיניות חלון</th>
+<th>$SWS$ / $RWS$</th>
+<th>אופן הפעולה בעת אובדן מסגרת</th>
+<th>יתרונות, חסרונות וחלון מרבי ($k$ ביטים)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="font-bold text-sky-900">Stop-and-Wait</td>
-<td class="font-mono font-bold">1</td>
-<td class="font-mono font-bold">1</td>
-<td>שולח מסגרת בודדת וממתין ל-ACK לפני שליחת הבאה. דורש מספור סידורי של ביט 1 (<code>0/1</code>) לזיהוי שידור חוזר כש-ACK אובד.</td>
-<td><strong>יתרון:</strong> פשטות ומינימום זיכרון.<br><strong>חיסרון:</strong> נצילות נמוכה $U = \frac{T_{\text{trans}}}{T_{\text{trans}} + 2d}$.</td>
+<td class="font-bold text-slate-900">Stop-and-Wait (פרוטוקול 4)</td>
+<td>$SWS=1$<br/>$RWS=1$</td>
+<td>שולח מסגרת אחת וממתין ל-ACK. דורש מספור סידורי בן ביט 1 (<code>0/1</code>) לזיהוי כפילות כש-ACK אובד.</td>
+<td><b>יתרון:</b> מינימום זיכרון וטיימר יחיד.<br/><b>חיסרון:</b> נצילות נמוכה $U = \frac{T_{\text{trans}}}{T_{\text{trans}}+2d}$.</td>
 </tr>
 <tr>
-<td class="font-bold text-sky-900">Go-Back-N (פרוטוקול 5)</td>
-<td class="font-mono font-bold">&gt; 1</td>
-<td class="font-mono font-bold">1</td>
-<td>המקלט מקבל מסגרות <strong>אך ורק לפי הסדר</strong> וזורק כל מסגרת שמגיעה אחרי מסגרת חסרה. ב-Timeout השולח משדר מחדש את המסגרת החסרה ואת כל הבאות אחריה.</td>
-<td><strong>יתרון:</strong> אין צורך בחוצצים במקלט; חלון שליחה עד $SWS_{\max} = 2^k - 1$ (יעיל יותר מ-SR בערוץ נקי מרעשים!).<br><strong>חיסרון:</strong> בזבוז בשידור חוזר של מסגרות תקינות.</td>
+<td class="font-bold text-slate-900">Go-Back-N (פרוטוקול 5)</td>
+<td>$SWS > 1$<br/>$RWS = 1$</td>
+<td>המקלט מקבל מסגרות <b>אך ורק לפי הסדר</b> וזורק כל מסגרת שמגיעה אחרי מסגרת חסרה. השולח משדר מחדש מהמסגרת החסרה והלאה.</td>
+<td><b>יתרון:</b> אפס חוצצים במקלט; חלון עד $\mathbf{SWS_{\max} = 2^k - 1}$ (יעיל יותר מ-SR בערוץ נקי מרעשים!). <b>חיסרון:</b> שידור חוזר של מסגרות תקינות.</td>
 </tr>
 <tr>
 <td class="font-bold text-sky-900">Selective Repeat (פרוטוקול 6)</td>
-<td class="font-mono font-bold">&gt; 1</td>
-<td class="font-mono font-bold">&gt; 1</td>
-<td>המקלט <strong>אוגר בחוצצים</strong> מסגרות תקינות שהגיעו מחוץ לסדר בתוך חלון הקבלה. ברגע שראש החלון החסר מגיע, כל הרצף מועבר יחד לשכבת הרשת.</td>
-<td><strong>יתרון:</strong> רק המסגרת החסרה משודרת שוב.<br><strong>חיסרון:</strong> חוצצים במקלט; חלון מרבי $SWS_{\max} = 2^{k-1}$ (כש-$RWS=SWS$).</td>
+<td>$SWS > 1$<br/>$RWS > 1$</td>
+<td>המקלט <b>אוגר בחוצצים</b> מסגרות תקינות שהגיעו מחוץ לסדר בתוך חלון הקבלה. כשהחור בראש החלון מתמלא, כל הרצף מועבר יחד לשכבת הרשת.</td>
+<td><b>יתרון:</b> רק המסגרת החסרה משודרת שוב.<br/><b>חיסרון:</b> דורש חוצצים במקלט; חלון מרבי $\mathbf{SWS_{\max} = 2^{k-1}}$ (כש-$RWS=SWS$).</td>
 </tr>
 </tbody>
 </table>
 </div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+<div class="basic-subcard space-y-1">
+<strong class="text-slate-900 block">ארבע מדיניויות שליחת האישורים (ACK Policies):</strong>
+<ul class="list-disc list-inside text-slate-700 space-y-1">
+<li><b>1. בסיסית (Cumulative ACK):</b> אישור מצטבר נשלח רק כשמסגרת (או רצף) מועברת לשכבת הרשת.</li>
+<li><b>2. NAK (אישור שלילי):</b> כשמגיעה מסגרת משובשת או מסגרת מתקדמת יותר מראש החלון, המקלט שולח NAK על ראש החלון החסר לשידור חוזר מיידי בלי להמתין ל-Timeout. <b>דגש:</b> ב-SR המסגרת התקינה שהגיעה מחוץ לסדר <b>נשמרת בחוצץ ולא נזרקת</b>! (ניתן לשלב NAK גם ב-GBN לזירוז השידור החוזר).</li>
+<li><b>3. Additional ACKs (אישורים נוספים):</b> על כל מסגרת שמגיעה נשלח אישור מצטבר על המסגרת האחרונה שהועברה לשכבת הרשת (עמידות לאובדן ACKs).</li>
+<li><b>4. Selective ACKs (SACK):</b> אישור פרטני על המסגרת $n$ שהגיעה בלבד (אינו מאשר שהקודמות הגיעו).</li>
+</ul>
 </div>
-<div class="fast-card">
-<h3 class="fast-card-title"><span>📨</span><span>5.2 ארבע מדיניויות שליחת האישורים (ACK Policies)</span></h3>
-<div class="overflow-x-auto">
-<table class="fast-table">
-<thead>
-<tr>
-<th>מדיניות אישור</th>
-<th>מתי נשלח אישור מהמקלט?</th>
-<th>משמעות האישור ודגשים למבחן</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="font-bold text-sky-900">1. בסיסית (Cumulative)</td>
-<td>רק כשמסגרת (או רצף) מועברת לשכבת הרשת.</td>
-<td>אישור מצטבר: כל המסגרות עד $n$ (או עד ראש החלון החדש) התקבלו כסדרן.</td>
-</tr>
-<tr>
-<td class="font-bold text-sky-900">2. NAK (שלילי)</td>
-<td>בנוסף לבסיסית — כשמגיעה מסגרת משובשת או מסגרת שאינה בראש חלון הקבלה.</td>
-<td>נשלח NAK עם המספר שבראש חלון הקבלה; גורר שידור חוזר מיידי ללא המתנה ל-Timeout (ב-SR המסגרת שהגיעה מחוץ לסדר <strong>נשמרת בחוצץ ולא נזרקת</strong>!).</td>
-</tr>
-<tr>
-<td class="font-bold text-sky-900">3. Additional ACKs</td>
-<td>עבור כל מסגרת שמגיעה למקבל נשלח אישור מצטבר על המסגרת האחרונה שכן הועברה לשכבת הרשת.</td>
-<td>מייצר עותקים נוספים לעמידות באובדן אישורים. (אם מסגרות $0..3$ הגיעו ל-$B$ ורק אישור אחד מתוך ה-4 הגיע ל-$A$: ראש חלון השליחה של $A$ יהיה מינימום $\mathbf{1}$ ומקסימום $\mathbf{4}$).</td>
-</tr>
-<tr>
-<td class="font-bold text-sky-900">4. Selective ACKs (SACK)</td>
-<td>על כל מסגרת שמגיעה בהצלחה, גם אם רק נשמרה בחוצץ.</td>
-<td>מאשר <strong>רק</strong> שהמסגרת $n$ עצמה הגיעה (אי אפשר להסיק שהקודמות הגיעו).</td>
-</tr>
-</tbody>
-</table>
+<div class="basic-subcard space-y-1">
+<strong class="text-slate-900 block">תנאי המספור הסופי ($SWS + RWS \le 2^k$) וניצולת 100%:</strong>
+<ul class="list-disc list-inside text-slate-700 space-y-1">
+<li><b>מניעת חפיפה בין מחזורי מספור ($N = 2^k$):</b>
+$$SWS + RWS \le 2^k \implies SWS_{\max} = 2^k - RWS$$
+ב-SR ($RWS=SWS$): $SWS_{\max} = 2^{k-1}$ (אם מגדילים את $RWS$ למשל ל-$92$ מתוך $128$, $SWS_{\max}$ צונח ל-$36$ וחונק את התפוקה!). ב-GBN ($RWS=1$): $SWS_{\max} = 2^k - 1$ (אם קובעים $SWS=2^k$, הפרוטוקול ייכשל <b>רק אם אישורים עלולים לאבוד</b>; אם אישורים אינם אובדים לעולם, לא ייכשל).</li>
+<li><b>חלון לשידור רציף (100% ניצולת בערוץ נקי):</b> $SWS \ge 1 + \frac{2d \cdot R}{L}$ (או בזמן סיבוב $x+y \le SWS \cdot T$). לכן בערוץ נקי מרעשים עם BDP גדול ואותו $k$, <b>GBN יעיל יותר מ-SR</b> ($2^k-1 > 2^{k-1}$)!</li>
+</ul>
 </div>
 </div>
-<div class="fast-card">
-<h3 class="fast-card-title"><span>⚖️</span><span>5.3 תנאי המספור הסופי ($SWS + RWS \le 2^k$) וכללי מעקב</span></h3>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
-<div class="fast-accent-blue">
-<strong class="text-sky-950 block mb-1">אי-שוויון מרחב המספרים הסידוריים ($N = 2^k$)</strong>
+</div>
+
+<div class="basic-card space-y-2.5">
+<h3 class="basic-card-title">5.2 כללי מעקב חלונות במבחן (SR מול GBN) והבדלים מול TCP</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs md:text-sm">
+<div class="basic-subcard">
+<strong class="text-slate-900 block mb-1">1. מעקב Additional ACKs ב-$RWS=1$</strong>
 <p class="text-slate-700 leading-relaxed">
-כדי למנוע בלבול בין שידור חוזר של מסגרת ישנה לבין מסגרת חדשה מהמחזור הבא, חובה לקיים:
-$$SWS + RWS \le 2^k$$
-• עבור $RWS = SWS$: $SWS_{\max} = 2^{k-1}$.<br>
-• עבור $RWS = 1$ (GBN): $SWS_{\max} = 2^k - 1$ (חריגה ל-$SWS=2^k$ תיכשל גם אם אישורים אינם אובדים, כאשר מסגרת מידע אובדת).<br>
-• לחלון שמנצל 100% מהערוץ נדרש: $SWS \ge 1 + \frac{2d \cdot R}{L}$.
+אם $A$ שלח את $0,1,2,3$ ל-$B$ ($RWS=1$), כולן הגיעו ו-$B$ שלח 4 אישורים (על $0,1,2,3$), אך <b>רק אישור אחד הגיע ל-$A$</b> (ושלושה אבדו):<br/>
+• <b>מיקום מינימלי של ראש חלון השליחה:</b> $\mathbf{1}$ (אם רק האישור על $0$ הגיע).<br/>
+• <b>מיקום מקסימלי של ראש חלון השליחה:</b> $\mathbf{4}$ (אם האישור המצטבר על $3$ הגיע).
 </p>
 </div>
-<div class="fast-accent-slate">
-<strong class="text-slate-900 block mb-1">מעקב חוצצים ב-SR והבדלים מול TCP</strong>
+<div class="basic-subcard">
+<strong class="text-slate-900 block mb-1">2. מעקב חוצצים ב-SR ושידור חוזר ב-GBN</strong>
 <p class="text-slate-700 leading-relaxed">
-• כשראש חלון הקבלה זז מ-$h_1$ ל-$h_2$, הועברו לשכבת הרשת כל המסגרות $h_1 \dots h_2-1$ (באותו מחזור מספור), ונפתחו $h_2 - h_1$ חוצצים חדשים <strong>ריקים</strong> בקצה הימני של החלון.<br>
-• <strong>SR בשכבת הערוץ מול TCP:</strong> ב-SR ממספרים <strong>מסגרות</strong> וגודל החלון קבוע; ב-TCP ממספרים <strong>בתים</strong> וגודל החלון דינמי.
+• <b>ב-SR:</b> אם ראש חלון הקבלה זז מ-$h_1$ ל-$h_2$, הועברו לשכבת הרשת כל המסגרות הרציפות $h_1 \dots h_2-1$ (במודולו $2^k$), ונפתחו $h_2-h_1$ חוצצים חדשים <b>ריקים</b> בקצה הימני של החלון.<br/>
+• <b>ב-GBN:</b> אם ראש חלון הקבלה כבר ב-$2$ ו-$A$ משדר שוב את $0..5$, סימן ש-$0,1$ כבר התקבלו בעבר וה-ACKs עליהן אבדו (לכן $0,1$ נזרקות ככפילויות, ואובדן של $1$ כעת לא יפריע לקליטת $2..5$).
+</p>
+</div>
+<div class="basic-subcard">
+<strong class="text-slate-900 block mb-1">3. SR בשכבת הערוץ מול TCP בתובלה</strong>
+<p class="text-slate-700 leading-relaxed">
+• <b>מספור:</b> ב-SR ממספרים <b>מסגרות</b>; ב-TCP ממספרים <b>בתים</b>.<br/>
+• <b>גודל חלון:</b> ב-SR קבוע; ב-TCP דינמי (`rwnd`, `cwnd`).<br/>
+• <b>שכבת תובלה מעל רשת אמינה:</b> אם השולח מגביל שליחה למספר החוצצים הפנויים שהכריז המקבל, אין צורך לשמור עותקים בשולח; אם אינו מגביל — חובה לשמור עותקים.
 </p>
 </div>
 </div>
 </div>
-<div class="fast-sim-bar">
-<div class="text-xs md:text-sm font-bold text-sky-950">🕹️ מעבדה 5.1: סימולטור חלון ההזזה, 4 מדיניויות האישור וכשל $SWS+RWS > 2^k$</div>
-<button onclick="openSingleSim('sim-wrapper-sliding-window', 'מעבדה 5.1: סימולטור חלון ההזזה ו-4 מדיניויות האישור')" class="px-4 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold cursor-pointer">פתיחת סימולטור</button>
+</div>
+
+<div class="fast-mode-view space-y-4">
+<div class="fast-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+<span class="fast-badge">⚡ לימוד מהיר • פרק 5 מתוך 7 (סקירה מרוכזת)</span>
+<div class="flex items-center gap-1.5 flex-wrap">
+<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-wrapper-sliding-window', 'מעבדה 5.1: סימולטור חלון ההזזה ו-4 מדיניויות האישור')">🕹️ מעבדה 5.1: חלון הזזה</button>
+<button type="button" class="fast-sim-btn" onclick="showQuestions('tab-reliable', '5. שידור אמין וחלונות הזזה', event)">❓ שאלות תרגול</button>
 </div>
 </div>
-<!-- Sub-Chapter Navigation Footer -->
+<h2 class="text-xl md:text-2xl font-black text-slate-900">5. שידור אמין וחלונות הזזה: Stop-and-Wait, Go-Back-N ו-Selective Repeat</h2>
+<p class="text-xs text-slate-600"><b>אי-שוויון המספור הסופי ($k$ ביטים, $N=2^k$):</b> $SWS + RWS \le 2^k \implies$ ב-GBN ($RWS=1$): $\mathbf{SWS_{\max} = 2^k-1}$ | ב-SR ($RWS=SWS$): $\mathbf{SWS_{\max} = 2^{k-1}}$.</p>
+</div>
+
+<div class="fast-visual-strip">
+<div class="fast-strip-node"><b>1. Stop-and-Wait ($1,1$):</b> ביט מספור יחיד (<code>0/1</code>) לזיהוי כפילות באובדן ACK. נצילות $U = \frac{T_{\text{trans}}}{T_{\text{trans}}+2d}$.</div>
+<div class="fast-strip-node"><b>2. Go-Back-N ($RWS=1$):</b> מקבל רק לפי הסדר וזורק מסגרות שאחרי חור. בערוץ נקי מרעשים עם BDP גדול: <b>יעיל יותר מ-SR</b> ($2^k-1 > 2^{k-1}$)!</div>
+<div class="fast-strip-node fast-strip-highlight"><b>3. Selective Repeat ($RWS=SWS$):</b> אוגר בחוצצים מסגרות מחוץ לסדר ומשדר שוב רק את המסגרת החסרה. מעביר לרשת ברצף כשראש החלון מתמלא.</div>
+<div class="fast-strip-node"><b>4. 4 מדיניויות ACK:</b> בסיסית (מצטבר בהעברה לרשת) • NAK (שלילי על ראש החלון; המסגרת שהגיעה נשמרת בחוצץ!) • Additional ACKs • SACK.</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+<div class="fast-card">
+<div class="fast-card-title">🎯 תבניות מעקב חלונות נפוצות במבחן</div>
+<p class="text-slate-700 leading-relaxed">
+• <b>Additional ACKs עם $RWS=1$:</b> נשלחו $0..3$, כולן הגיעו ל-$B$, ורק אישור 1 מתוך ה-4 הגיע ל-$A$ $\implies$ ראש חלון השליחה של $A$ הוא <b>מינימום $1$</b> (הגיע ACK 0) ו<b>מקסימום $4$</b> (הגיע ACK 3).<br/>
+• <b>מעקב חוצצים ב-SR:</b> כשראש חלון הקבלה זז מ-$h_1$ ל-$h_2$, הועברו לשכבת הרשת כל המסגרות $h_1 \dots h_2-1$ (במודולו $2^k$, או עם מחזור מלא נוסף אם חל עיטוף), ונפתחו $h_2-h_1$ חוצצים חדשים <b>ריקים</b> בקצה הימני.<br/>
+• <b>שידור $0..5$ ב-GBN כשראש חלון הקבלה ב-$2$:</b> $0,1$ כבר התקבלו בעבר וה-ACKs עליהן אבדו $\implies$ $0,1$ נזרקות ככפילויות (אובדן $1$ כעת לא מפריע!).
+</p>
+</div>
+<div class="fast-card">
+<div class="fast-card-title">⚖️ מקרי קצה: $SWS=2^k$, הגדלת $RWS$, ו-SR מול TCP</div>
+<p class="text-slate-700 leading-relaxed">
+• <b>חריגה ל-$SWS=2^k$ ב-GBN:</b> נכשלת <b>רק אם אישורים עלולים לאבוד</b> (אם ACKs לעולם לא אובדים — לא תיכשל!).<br/>
+• <b>הגדלת $RWS$ מעבר ל-$2^{k-1}$ ב-SR (כגון $RWS=92$ מתוך $128$):</b> מקטינה את $SWS_{\max}$ ל-$128-92=36$ ו<b>פוגעת בתפוקה</b> (חוצצים מעבר ל-$SWS$ אינם מנוצלים).<br/>
+• <b>SR מול TCP:</b> ב-SR ממספרים <b>מסגרות</b> והחלון קבוע; ב-TCP ממספרים <b>בתים</b> והחלון דינמי. ברשת אמינה ב-100%, אין צורך לשמור עותקים בשולח אמ"מ השולח מגביל שליחה למספר החוצצים הפנויים במקבל.
+</p>
+</div>
+</div>
+</div>
 <div class="mt-12 pt-6 pb-2 border-t border-sky-300/40 flex flex-wrap items-center justify-between gap-4">
 <button onclick="showTab('tab-errors'); window.scrollTo({top: 0, behavior: 'smooth'});" class="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/90 hover:bg-white text-sky-900 font-bold text-xs md:text-sm border border-sky-300/80 shadow-xs hover:shadow-md transition-all group">
 <svg class="w-4 h-4 text-sky-700 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
@@ -3081,7 +3513,7 @@ $$T_{\text{trans}} \ge 2 \cdot T_{\text{prop}} \iff \frac{L_{\min}}{R} \ge \frac
 <p>נניח שבזמן $t_0$ הערוץ שקט, ול-$k \ge 2$ תחנות יש מסגרת מוכנה לשידור:</p>
 <ul class="list-disc list-inside space-y-1">
 <li><strong>ב-1-CSMA וב-0-CSMA:</strong> כאשר תחנה מאזינה לערוץ ומגלה שהוא <strong>פנוי (שקט)</strong>, בשני הפרוטוקולים היא משדרת מיד בהסתברות $1$! לכן בזמן $t_0$ כל $k$ התחנות משדרות יחד, <strong>בהכרח מתרחשת התנגשות בהסתברות $1$ ($100\%$)</strong>, וההסתברות לשידור מוצלח ב-$t_0$ היא $\mathbf{0}$. (אחרי ההתנגשות הראשונה בין 2 תחנות באתרנט, כל אחת תגריל מ-$\{0,1\}$ ואז הסיכוי להתנגשות שנייה יהיה $0.5$).</li>
-<li><strong>ב-$p$-CSMA:</strong> כל תחנה משדרת בהסתברות $p$, ולכן ההסתברות לשידור מוצלח ב-$t_0$ היא $\mathbf{k p (1-p)^{k-1}}$, וההסתברות להתנגשות (הפעלת Backoff) היא $1 - (1-p)^k - k p (1-p)^{k-1}$.</li>
+<li><strong>ב-$p$-CSMA:</strong> כל תחנה משדרת בהסתברות $p$, ולכן ההסתברות לשידור מוצלח ב-$t_0$ היא $\mathbf{k p (1-p)^{k-1}}$ (מקסימלי עבור $p=1/k$), וההסתברות להתנגשות (הפעלת Backoff) היא $1 - (1-p)^k - k p (1-p)^{k-1}$. (אם לכל תחנה יש מסגרת מוכנה ב-$t_0$ בהסתברות $q$, מציבים הסתברות שידור אפקטיבית $s = q\cdot p$ ב-$p$-CSMA ו-$s = q$ ב-1-CSMA וב-0-CSMA).</li>
 </ul>
 </div>
 <div class="bg-white p-4 rounded-xl border border-sky-200 space-y-1.5">
@@ -3098,6 +3530,7 @@ $$T_{\text{trans}} \ge 2 \cdot T_{\text{prop}} \iff \frac{L_{\min}}{R} \ge \frac
 <li><strong>סריקה אקטיבית (Active Scanning):</strong> המחשב $H_1$ משדר מסגרת <strong>Probe Request</strong> אחת ב-Broadcast לכל נקודות הגישה (APs) שבטווח. כל אחת מ-$N$ נקודות הגישה שבטווח משיבה במסגרת <strong>Probe Response</strong> ($N$ מסגרות). המחשב בוחר AP אחד ושולח אליו מסגרת <strong>Association Request</strong>, וה-AP הנבחר משיב במסגרת <strong>Association Response</strong>.
 <br><em>סיכום מסגרות עבור 2 נקודות גישה (AP1, AP2) בטווח:</em> המחשב $H_1$ משדר <strong>2 מסגרות</strong> (Probe Request + Association Request), ושני ה-APs יחד משדרים $2 + 1 = \mathbf{3\text{ מסגרות}}$ (שני Probe Responses + אחד Association Response).</li>
 <li><strong>סריקה פסיבית (Passive Scanning):</strong> נקודות הגישה משדרות תקופתית מסגרות משואה (<strong>Beacons</strong>). המחשב מאזין להן ללא שליחת Probe, ושולח רק Association Request (מסגרת אחת מ-$H_1$) ומקבל Association Response.</li>
+<li><strong>תחנה נסתרת (Hidden Terminal) מול תחנה חשופה (Exposed Terminal) במערך קווי $A - B - C - D$:</strong> כאשר $A$ ו-$C$ משדרות ל-$B$, תחנה $C$ אינה שומעת את $A$ וגורמת להתנגשות אצל $B$ (<strong>תחנה נסתרת</strong> — נפתרת ע"י מסגרת ה-CTS שמשדרת $B$ ושמשתיקה את $C$). מנגד, כאשר $B$ משדרת ל-$A$ ותחנה $C$ רוצה לשדר ל-$D$, תחנה $C$ שומעת את $B$ ונמנעת לשווא משידור למרות ששידור מ-$C$ ל-$D$ לא היה מפריע לקליטה ב-$A$ או ב-$D$ (<strong>תחנה חשופה</strong>).</li>
 </ul>
 </div>
 </div>
@@ -3125,107 +3558,179 @@ $$T_{\text{trans}} \ge 2 \cdot T_{\text{prop}} \iff \frac{L_{\min}}{R} \ge \frac
 </div>
 </div>
 <!-- ==================== FAST STUDY MODE: TAB 6 ==================== -->
-<div class="fast-mode-view">
-<div class="fast-header">
-<div class="flex items-center justify-between flex-wrap gap-2">
-<span class="fast-badge">⚡ מצב לימוד מהיר • פרק 6 מתוך 7</span>
-<button onclick="showQuestions('tab-ethernet', '6. אתרנט וגישה לערוץ משותף', event)" class="px-3 py-1.5 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-900 border border-sky-200 text-xs font-bold cursor-pointer">❓ שאלות תרגול</button>
+<div class="basic-mode-view space-y-5">
+<div class="basic-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="basic-badge">📖 לימוד בסיסי • פרק 6 מתוך 7</span>
+<div class="flex items-center gap-2">
+<button type="button" class="basic-top-btn" onclick="showTab('tab-exercises')">לנוסחאון ומעבדת תרגול 📝</button>
+<button type="button" class="basic-top-btn" onclick="showQuestions('tab-ethernet', '6. אתרנט וגישה לערוץ משותף (CSMA/CD)', event)">❓ שאלות תרגול</button>
 </div>
-<h2 class="text-2xl md:text-3xl font-black text-slate-900 mt-1">6. אתרנט וגישה לערוץ משותף (Ethernet & Multiple Access)</h2>
-<p class="text-sm text-slate-600 mt-1">מצבי הערוץ, Hub מול Switch, וריאציות CSMA, זיהוי התנגשויות (CSMA/CD), גודל מסגרת מינימלי, Exponential Backoff ורשתות אלחוטיות (802.11).</p>
 </div>
-<div class="fast-card">
-<h3 class="fast-card-title"><span>🌐</span><span>6.1 מצבי הערוץ, Hub מול Switch ווריאציות CSMA</span></h3>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm mb-4">
-<div class="fast-subcard">
-<strong class="text-slate-900 block mb-1">3 מצבי הערוץ המשותף ומבנה Ethernet</strong>
-<p class="text-slate-700">הערוץ נמצא תמיד באחד מ-3 מצבים: <strong>פנוי (Idle)</strong>, <strong>שידור מוצלח</strong> (תחנה אחת משדרת), או <strong>התנגשות (Collision)</strong>. באתרנט קלאסי ($10\text{ Mbps}$, עד $2,500\text{m}$ עם 4 Repeaters): כותרת 14B + סיומת 4B CRC = 18B תקורה; מידע 46–1500B (עם Padding אם קטן מ-46B).</p>
+<h2 class="text-2xl md:text-3xl font-black text-slate-900">6. אתרנט וגישה לערוץ משותף: CSMA, CSMA/CD, Backoff ורשתות אלחוטיות (802.11)</h2>
+<p class="text-xs md:text-sm text-slate-600 mt-1">מצבי הערוץ המשותף, רכזת (Hub) מול מתג (Switch), השוואת 1-CSMA / p-CSMA / 0-CSMA, גזירת אורך מסגרת מינימלי ($L_{\min}$), אלגוריתם Binary Exponential Backoff ורשתות אלחוטיות (CSMA/CA, תחנה נסתרת/חשופה ו-Active/Passive Scanning).</p>
 </div>
-<div class="fast-subcard">
-<strong class="text-slate-900 block mb-1">Ethernet Hub (שכבה 1) מול Ethernet Switch (שכבה 2)</strong>
-<p class="text-slate-700">
-• <strong>Hub (רכזת):</strong> משדרת כל אות לכל הפורטים (מתחם התנגשות אחד) $\implies$ שידור סימולטני $A\to C$ ו-$B\to D$ גורם <strong>להתנגשות</strong>.<br>
-• <strong>Switch (מתג):</strong> מנתב לפי כתובות MAC עם חוצצים ובידוד פורטים $\implies$ שידור סימולטני $A\to C$ ו-$B\to D$ <strong>עובר בהצלחה ללא התנגשות</strong>.
+
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">6.1 מצבי הערוץ, Hub מול Switch ושלוש וריאציות CSMA</h3>
+<p class="text-xs text-slate-600 mt-0.5">התנהגות התחנות כשהערוץ פנוי (כולל בזמן אתחול $t_0$) וכשהערוץ תפוס, ונוסחאות ההסתברות ב-$p$-CSMA.</p>
+</div>
+<button type="button" class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-wrapper-ethernet', 'מעבדה 6.1: סימולטור CSMA/CD, גודל מסגרת מינימלי, p-CSMA ו-Exponential Backoff')" title="פתיחת מעבדה 6.1: סימולטור Ethernet ו-CSMA/CD">
+<svg class="w-8 h-8" fill="none" viewBox="0 0 48 48">
+<circle cx="24" cy="24" fill="#18181b" r="15" stroke="#ffffff" stroke-width="2"></circle>
+<path d="M12 24 H36 M20 18 L28 30 M28 18 L20 30" stroke="#e4e4e7" stroke-linecap="round" stroke-width="2.4"></path>
+</svg>
+</button>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+<div class="basic-subcard space-y-1">
+<strong class="text-slate-900 block">3 מצבי הערוץ ומבנה מסגרת Ethernet (802.3):</strong>
+<p class="text-slate-700 leading-relaxed">
+• <b>3 מצבי הערוץ:</b> פנוי (Idle), שידור מוצלח (תחנה 1 משדרת), או התנגשות (Collision).<br/>
+• <b>מבנה מסגרת 802.3:</b> כותרת $14\text{B}$ (יעד 6B, מקור 6B, Type 2B) + סיומת $4\text{B}$ CRC $= 18\text{B}$ תקורה; מטען $46\text{–}1500\text{B}$ (כולל Padding אם קטן מ-46B); אורך מינימלי $64\text{B} = 512\text{ bits}$. (באתרנט קלאסי 10BASE5: עד $2,500\text{m}$ מ-5 מקטעים של $500\text{m}$ ו-4 משחזרים Repeaters).
+</p>
+</div>
+<div class="basic-subcard space-y-1">
+<strong class="text-slate-900 block">Ethernet Hub (שכבה 1) מול Ethernet Switch (שכבה 2):</strong>
+<p class="text-slate-700 leading-relaxed">
+• <b>Hub (רכזת):</b> משכפלת כל אות פיזי לכל הפורטים (מתחם התנגשות יחיד) $\implies$ שידור בו-זמני $A\to C$ ו-$B\to D$ גורם <b>להתנגשות ודאית</b>.<br/>
+• <b>Switch (מתג):</b> מנתב מסגרות לפי כתובות MAC עם חוצצים ובידוד פורטים $\implies$ שידור בו-זמני $A\to C$ ו-$B\to D$ (או אף שתיהן ל-$C$) <b>עובר בהצלחה ללא התנגשות</b>!
 </p>
 </div>
 </div>
+
 <div class="overflow-x-auto">
-<table class="fast-table">
+<table class="basic-table">
 <thead>
 <tr>
 <th>פרוטוקול CSMA</th>
-<th>כאשר הערוץ פנוי (כולל בזמן אתחול $t_0$)</th>
+<th>כאשר הערוץ פנוי (כולל באתחול $t_0$ עם $k\ge 2$ תחנות מוכנות)</th>
 <th>כאשר הערוץ תפוס</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="font-bold text-sky-900">1-persistent (האתרנט)</td>
-<td>משדרת מיד (בהסתברות $1$). אם $k \ge 2$ תחנות מאזינות לערוץ שקט ב-$t_0$ $\implies$ <strong>התנגשות ודאית (הסתברות 1, הצלחה 0)</strong>.</td>
-<td>מאזינה ברציפות ומשדרת מיד ברגע שהערוץ מתפנה (אם 2 תחנות המתינו — יתנגשו בוודאות).</td>
+<td class="font-bold text-slate-900">1-persistent (אתרנט)</td>
+<td>משדרת מיד בהסתברות $1$. לכן ב-$t_0$ עם $k\ge 2$ תחנות מוכנות: <b>התנגשות ודאית ($P(\text{Collision})=1$, הצלחה $0$)</b>!</td>
+<td>מאזינה ברציפות ומשדרת מיד ברגע שהערוץ מתפנה (בעומס גבוה גורם להתנגשויות חוזרות).</td>
 </tr>
 <tr>
-<td class="font-bold text-sky-900">p-persistent</td>
-<td>משדרת בהסתברות $p$, ובהסתברות $1-p$ ממתינה לחריץ הבא.<br>עבור $k$ תחנות: $P(\text{Success}) = k p (1-p)^{k-1}$, $P(\text{Idle}) = (1-p)^k$.</td>
-<td>ממתינה עד שיתפנה ואז משדרת בהסתברות $p$ (מצמצם התנגשויות).</td>
+<td class="font-bold text-sky-900">p-persistent (חריצי זמן)</td>
+<td>משדרת בהסתברות $p$, וממתינה לחריץ הבא בהסתברות $1-p$.<br/>• <b>הסתברות שידור מוצלח:</b> $P(\text{Success}) = k p (1-p)^{k-1}$ (מקסימלי עבור $p=1/k$).<br/>• <b>הסתברות ערוץ פנוי:</b> $P(\text{Idle}) = (1-p)^k$ | <b>התנגשות:</b> $1 - (1-p)^k - k p (1-p)^{k-1}$.<br/>(אם לכל תחנה יש מסגרת בהסתברות $q$, מציבים $s = q\cdot p$ במקום $p$).</td>
+<td>מאזינה עד שהערוץ מתפנה ואז מגרילה שידור בהסתברות $p$.</td>
 </tr>
 <tr>
-<td class="font-bold text-sky-900">0-persistent (nonpersistent)</td>
-<td>משדרת מיד (בהסתברות $1$). לכן גם ב-0-CSMA ב-$t_0$ כשהערוץ שקט ו-$k \ge 2$ תחנות מוכנות $\implies$ <strong>התנגשות בהסתברות 1</strong>!</td>
-<td><strong>אינה מאזינה ברציפות:</strong> ממתינה זמן אקראי ורק אז בודקת שוב את הערוץ (עדיף בעומס גבוה).</td>
+<td class="font-bold text-slate-900">0-persistent (nonpersistent)</td>
+<td>משדרת מיד בהסתברות $1$ כשהערוץ פנוי! לכן <b>גם ב-0-CSMA בזמן $t_0$ כשהערוץ שקט ו-$k\ge 2$ תחנות מוכנות: התנגשות בהסתברות $1$ (הצלחה $0$)</b>!</td>
+<td><b>אינה מאזינה ברציפות:</b> ממתינה פרק זמן אקראי ורק אז בודקת שוב את הערוץ (<b>עדיף על 1-CSMA בעומס גבוה</b> כי מפזר את הניסיונות).</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
+
+<div class="basic-card space-y-3">
+<h3 class="basic-card-title">6.2 CSMA/CD, גודל מסגרת מינימלי ($L_{\min}$) ואלגוריתם Binary Exponential Backoff</h3>
+<div class="my-2 p-3 rounded-xl bg-[#f4f8fb] border border-[#cbd5e1] overflow-x-auto">
+<svg class="w-full h-auto max-w-2xl mx-auto" viewBox="0 0 640 96">
+<rect x="10" y="10" width="300" height="76" rx="8" fill="#ffffff" stroke="#0284c7" stroke-width="1.5"/>
+<text x="160" y="32" text-anchor="middle" font-size="11.5" font-weight="800" fill="#0c4a6e">תנאי גילוי התנגשות (CSMA/CD: 2τ)</text>
+<text x="160" y="54" text-anchor="middle" font-size="11.5" font-family="monospace" font-weight="800" fill="#0369a1">L_min / R ≥ 2d / v  ⇒  L_min = (2d/v)·R</text>
+<text x="160" y="74" text-anchor="middle" font-size="9.5" fill="#475569">דורש 3 פרמטרים: אורך כבל d, מהירות v, וקצב שידור R!</text>
+<rect x="330" y="10" width="300" height="76" rx="8" fill="#f0f9ff" stroke="#0284c7" stroke-width="2"/>
+<text x="480" y="32" text-anchor="middle" font-size="11.5" font-weight="900" fill="#075985">Binary Exponential Backoff (BEB)</text>
+<text x="480" y="54" text-anchor="middle" font-size="11" font-family="monospace" font-weight="700" fill="#0f172a">k ∈ {0 .. 2^min(i,10) - 1} × Slot(2τ)</text>
+<text x="480" y="74" text-anchor="middle" font-size="9.5" fill="#0369a1">חריץ τ כושל כש-k_A=0, k_B=1 במרחק τ; מעל 16 ניסיונות = כישלון</text>
+</svg>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+<div class="basic-subcard space-y-1.5">
+<strong class="text-slate-900 block">1. זיהוי התנגשויות (CD), Jamming ואורך מסגרת מינימלי:</strong>
+<ul class="list-disc list-inside text-slate-700 space-y-1">
+<li><b>פעולת תחנה המזהה התנגשות:</b> מפסיקה מיד את שידור המסגרת ומשדרת <b>רצף שיבוש (Jamming)</b> כדי להבטיח שכל התחנות יזהו את ההתנגשות.</li>
+<li><b>תנאי המקרה הגרוע ($2\tau$):</b> תחנה $A$ משדרת ב-$t=0$; ברגע $\tau-\epsilon$ (ממש לפני שהאות מגיע לקצה הרחוק) תחנה $B$ משדרת; גל ההתנגשות חוזר ל-$A$ בזמן $2\tau = \frac{2d}{v}$. כדי ש-$A$ עדיין תשדר בזמן $2\tau$:
+$$T_{\text{frame}} = \frac{L_{\min}}{R} \ge 2\tau \implies L_{\min} = \frac{2d}{v}\cdot R, \quad d_{\max} = \frac{L_{\min}\cdot v}{2R}$$</li>
+<li><b>דגש למבחן:</b> לחישוב $L_{\min}$ בסיביות חובה לדעת <b>3 פרמטרים</b>: אורך הכבל $d$, מהירות ההתפשטות $v$ וקצב השידור $R$.</li>
+</ul>
+</div>
+<div class="basic-subcard space-y-1.5">
+<strong class="text-slate-900 block">2. אלגוריתם Binary Exponential Backoff ואורך החריץ $2\tau$:</strong>
+<ul class="list-disc list-inside text-slate-700 space-y-1">
+<li><b>חוק ההגרלה:</b> לאחר התנגשות מס' $i$, התחנה מגרילה $k \in \{0, 1, \dots, 2^i - 1\}$ וממתינה $k$ חריצי זמן באורך $2\tau$ ($51.2\,\mu\text{s}$). התקרה ננעלת ב-$i=10$ ($0..1023$), ואחרי 16 התנגשויות מוותרים.</li>
+<li><b>מדוע אורך חריץ הזמן חייב להיות $2\tau$ ולא $\tau$?</b> אילו החריץ היה $\tau$, תחנה $A$ שהגרילה $0$ משדרת ב-$t=0$, והאות שלה מגיע ל-$B$ (במרחק $\tau$ שהגרילה $1$) בדיוק ב-$t=\tau$ כש-$B$ מתחילה לשדר — ונוצרת התנגשות! אם החריץ גדול מ-$2\tau$, הפרוטוקול עובד תקין אך מבזבז זמן ערוץ פנוי.</li>
+<li><b>אפקט הלכידה (Capture Effect):</b> תחנה שניצחה מאפסת את מונה ההתנגשויות שלה ל-$i=0$ ונהנית מסיכוי גבוה יותר לנצח גם בהתנגשות הבאה מול תחנה שמונה ההתנגשויות שלה גבוה.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="basic-card space-y-3">
+<h3 class="basic-card-title">6.3 רשתות אלחוטיות (IEEE 802.11: CSMA/CA, תחנה נסתרת/חשופה ו-Scanning) ותקני האסימון</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+<div class="basic-subcard space-y-1.5">
+<strong class="text-slate-900 block">1. CSMA/CA, תחנה נסתרת מול חשופה, ו-RTS/CTS:</strong>
+<ul class="list-disc list-inside text-slate-700 space-y-1">
+<li><b>מדוע באלחוט אין CD אלא CA (מניעה)?</b> אנטנה אלחוטית אינה יכולה לשדר ולהאזין בו-זמנית (השידור המקומי מחריש את המקלט), ולא כל התחנות שומעות זו את זו.</li>
+<li><b>תחנה נסתרת (Hidden) מול תחנה חשופה (Exposed) ב-$A - B - C - D$:</b>
+<br/>– <b>תחנה נסתרת:</b> $A$ ו-$C$ משדרות ל-$B$; $C$ לא שומעת את $A$ וגורמת להתנגשות אצל $B$. <b>פתרון (RTS/CTS):</b> $A$ שולחת RTS קצר ל-$B$, ו-$B$ משיבה ב-<b>CTS</b> שנקלט גם אצל $C$ ומשתיק אותה עד סוף השידור.
+<br/>– <b>תחנה חשופה:</b> $B$ משדרת ל-$A$ ו-$C$ רוצה לשדר ל-$D$; $C$ שומעת את $B$ ונמנעת לשווא משידור שלא היה מפריע לקליטה ב-$A$ או ב-$D$.</li>
+</ul>
+</div>
+<div class="basic-subcard space-y-1.5">
+<strong class="text-slate-900 block">2. Active מול Passive Scanning ומדוע האתרנט ניצח את ה-Token:</strong>
+<ul class="list-disc list-inside text-slate-700 space-y-1">
+<li><b>סריקה אקטיבית (Active Scanning) מול $N$ נקודות גישה (APs):</b> המחשב $H_1$ משדר <b>2 מסגרות</b> (1 Probe Request ב-Broadcast + 1 Association Request ל-AP הנבחר); ה-APs משדרים יחד <b>$N+1$ מסגרות</b> ($N$ מסגרות Probe Response + מסגרת Association Response אחת מה-AP הנבחר; עבור 2 APs: <b>3 מסגרות</b>).</li>
+<li><b>סריקה פסיבית (Passive Scanning):</b> ה-APs משדרים Beacons תקופתיים, והמחשב שולח רק Association Request (מסגרת 1) ומקבל Association Response.</li>
+<li><b>ניצחון Ethernet על Token Bus (802.4) ו-Token Ring (802.5):</b> פשטות ניהולית (ללא ניהול טבעת ושחזור אסימון שאבד), עלות חומרה נמוכה, וגמישות שדרוג הדרגתי לקצבים גבוהים ולמתגים.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div class="fast-mode-view space-y-4">
+<div class="fast-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+<span class="fast-badge">⚡ לימוד מהיר • פרק 6 מתוך 7 (סקירה מרוכזת)</span>
+<div class="flex items-center gap-1.5 flex-wrap">
+<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-wrapper-ethernet', 'מעבדה 6.1: סימולטור CSMA/CD, גודל מסגרת מינימלי ו-Exponential Backoff')">🕹️ מעבדה 6.1: CSMA/CD ו-Backoff</button>
+<button type="button" class="fast-sim-btn" onclick="showQuestions('tab-ethernet', '6. אתרנט וגישה לערוץ משותף', event)">❓ שאלות תרגול</button>
+</div>
+</div>
+<h2 class="text-xl md:text-2xl font-black text-slate-900">6. אתרנט וגישה לערוץ משותף: CSMA, CSMA/CD, Backoff ורשתות אלחוטיות (802.11)</h2>
+<p class="text-xs text-slate-600"><b>תנאי גילוי התנגשויות ב-CSMA/CD:</b> זמן שידור מסגרת חייב לכסות לפחות פעמיים זמן התפשטות ($2\tau = \frac{2d}{v}$): $\mathbf{L_{\min} = \frac{2d}{v}\cdot R}$ (דורש 3 פרמטרים: $d, v, R$).</p>
+</div>
+
+<div class="fast-visual-strip">
+<div class="fast-strip-node"><b>1. Hub מול Switch:</b> Hub (שכבה 1) = מתחם התנגשות אחד ($\implies$ התנגשות). Switch (שכבה 2) = בידוד פורטים וחוצצים ($\implies$ שידור סימולטני מוצלח!).</div>
+<div class="fast-strip-node"><b>2. 1-CSMA ו-0-CSMA ב-$t_0$:</b> כשהערוץ שקט ו-$k\ge 2$ תחנות מוכנות, <b>בשניהם</b> כולן משדרות מיד $\implies \mathbf{P(\text{Collision})=1}$! (בעומס גבוה 0-CSMA עדיף כי ממתין אקראית כשעסוק).</div>
+<div class="fast-strip-node fast-strip-highlight"><b>3. $p$-CSMA ($k$ תחנות):</b> $P(\text{Success}) = k p (1-p)^{k-1}$, $P(\text{Idle}) = (1-p)^k$ (אופטימלי: $p=1/k$; עם הסתברות מסגרת $q$: $s=q\cdot p$).</div>
+<div class="fast-strip-node"><b>4. Exponential Backoff:</b> אחרי התנגשות $i$, מגרילים $k \in \{0..2^{\min(i,10)}-1\}$ חריצים באורך $2\tau$ (חריץ $\tau$ כושל; $>2\tau$ תקין אך בזבזני; ויתור ב-16).</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
 <div class="fast-card">
-<h3 class="fast-card-title"><span>⚡</span><span>6.2 CSMA/CD, Jamming, אורך מסגרת מינימלי ונסיגה מעריכית (Backoff)</span></h3>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
-<div class="fast-accent-blue space-y-1.5">
-<strong class="text-sky-950 block">זיהוי התנגשויות (CD) ואורך מסגרת מינימלי ($L_{\min}$)</strong>
+<div class="fast-card-title">⚡ CSMA/CD, Jamming ואורך מסגרת/כבל</div>
 <p class="text-slate-700 leading-relaxed">
-בעת זיהוי התנגשות התחנה: (1) <strong>עוצרת מיד את השידור</strong>, ו-(2) משדרת <strong>רצף שיבוש (Jamming בן 32 סיביות)</strong> כדי שכל התחנות ישמעו את ההתנגשות.<br>
-• כדי שהתחנה תשמע התנגשות מהקצה המרוחק לפני שתסיים לשדר, זמן השידור חייב לכסות לפחות פעמיים זמן התפשטות ($2\tau = \frac{2d}{v}$):
-$$\frac{L_{\min}}{R} \ge 2\tau \implies L_{\min} = 2 \cdot \tau \cdot R = \frac{2d}{v} \cdot R$$
-• לחישוב $L_{\min}$ בסיביות חובה לדעת <strong>3 פרמטרים</strong>: אורך הכבל $d$, מהירות ההתפשטות $v$ וקצב השידור $R$ (באתרנט $10\text{ Mbps}$ עם $2\tau=51.2\,\mu\text{s}$: $L_{\min} = 512\text{ bits} = 64\text{ Bytes}$).
+• <b>בזיהוי התנגשות:</b> מפסיקים מיד שידור ומשדרים <b>Jamming</b> כדי שכולם ישמעו.<br/>
+• <b>אורך מסגרת מינימלי ואורך כבל מרבי:</b> $L_{\min} = \frac{2d}{v}\cdot R$ (באתרנט קלאסי: $51.2\,\mu\text{s} \times 10\text{ Mbps} = 512\text{b} = 64\text{B}$, כותרת+CRC=18B, מידע 46–1500B) ו-$d_{\max} = \frac{L_{\min}\cdot v}{2R}$.<br/>
+• <b>מדוע חריץ הזמן ב-Backoff הוא $2\tau$?</b> אילו היה $\tau$, תחנה $A$ ($k_A=0$) משדרת ב-$t=0$ והאות מגיע ל-$B$ (במרחק $\tau$ עם $k_B=1$) רק ב-$t=\tau$ בדיוק כש-$B$ משדרת $\implies$ התנגשות!
 </p>
-</div>
-<div class="fast-accent-slate space-y-1.5">
-<strong class="text-slate-900 block">נסיגה מעריכית בינארית (Binary Exponential Backoff)</strong>
-<p class="text-slate-700 leading-relaxed">
-• אחרי ההתנגשות ה-$n$-ית, התחנה מגרילה $k \in \{0, 1, \dots, 2^n - 1\}$ וממתינה $k$ חריצי זמן באורך $2\tau$ ($51.2\,\mu\text{s}$). החזקה נעצרת ב-$n=10$ (עד $1023$), ומוותרים אחרי <strong>16 ניסיונות</strong>.<br>
-• <strong>מדוע אורך חריץ הזמן חייב להיות $2\tau$?</strong> אילו החריץ היה $\tau$ בלבד, תחנה $A$ שהגרילה $0$ משדרת ב-$t=0$, והאות שלה מגיע ל-$B$ (שמרחקה $\tau$ והגרילה $1$) רק ב-$t=\tau$ — בדיוק כש-$B$ מתחילה לשדר, ונוצרת התנגשות! (חריץ גדול מ-$2\tau$ עובד תקין אך מבזבז זמן).
-</p>
-</div>
-</div>
 </div>
 <div class="fast-card">
-<h3 class="fast-card-title"><span>📶</span><span>6.3 רשתות אלחוטיות (802.11) ותקני האסימון שנעלמו</span></h3>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
-<div class="fast-subcard space-y-1">
-<strong class="text-sky-900 block">אלחוט: CSMA/CA, RTS/CTS ו-Active Scanning</strong>
-<p class="text-slate-700">
-בגלל חוסר יכולת לשדר ולהאזין בו-זמנית ובעיית התחנה הנסתרת, מבצעים מניעת התנגשויות (CA): המתנה אקראית מראש ו<strong>הזמנת הערוץ (RTS $\to$ CTS)</strong> המקפיאה תחנות שכנות.<br>
-• <strong>התחברות ב-Active Scanning מול $N$ נקודות גישה (APs):</strong> המחשב $H_1$ משדר <strong>2 מסגרות</strong> (1 Probe Request ב-Broadcast + 1 Association Request ל-AP הנבחר); ה-APs משדרים יחד <strong>$N + 1$ מסגרות</strong> ($N$ מסגרות Probe Response + מסגרת Association Response אחת מה-AP הנבחר; עבור 2 APs: <strong>3 מסגרות</strong>). ב-Passive Scanning ה-APs משדרים Beacons והמחשב שולח רק Association Request.
-</p>
-</div>
-<div class="fast-subcard space-y-1">
-<strong class="text-sky-900 block">מדוע האתרנט ניצח את Token Bus (802.4) ו-Token Ring (802.5)?</strong>
-<p class="text-slate-700">
-תקני האסימון מונעים התנגשויות על ידי העברת אסימון מעגלית, אך האתרנט השתלט על השוק בזכות 3 יתרונות:<br>
-1. <strong>פשטות ניהולית:</strong> קל לתחזוקה ולהוספת מחשב חדש ללא ניהול טבעת או שחזור אסימון שאבד.<br>
-2. <strong>עלות נמוכה:</strong> רכיבי תשתית ומתאמי רשת זולים.<br>
-3. <strong>גמישות ושדרוג הדרגתי:</strong> תאימות לאחור ושדרוג חלק לקצבים גבוהים ולמתגים.
+<div class="fast-card-title">📶 אלחוט (802.11: CSMA/CA, RTS/CTS, Scanning) ו-Token</div>
+<p class="text-slate-700 leading-relaxed">
+• <b>תחנה נסתרת מול חשופה ($A-B-C-D$):</b> $A,C \to B$ = <b>נסתרת</b> ($C$ לא שומעת את $A$, נפתרת ע"י CTS של $B$ שמשתיק את $C$). $B\to A$ ו-$C\to D$ = <b>חשופה</b> ($C$ שומעת את $B$ ונמנעת לשווא).<br/>
+• <b>Active Scanning מול $N$ APs:</b> המחשב $H_1$ משדר <b>2 מסגרות</b> (Probe Req + Assoc Req); ה-APs משדרים יחד <b>$N+1$ מסגרות</b> ($N$ Probe Resp + 1 Assoc Resp; עבור 2 APs: <b>3 מסגרות</b>). ב-Passive Scanning: ה-APs משדרים Beacons ו-$H_1$ שולח רק Assoc Req.<br/>
+• <b>ניצחון Ethernet על Token Bus/Ring:</b> פשטות ניהולית (ללא אובדן אסימון), זול, ושדרוג קל למתגים.
 </p>
 </div>
 </div>
 </div>
-<div class="fast-sim-bar">
-<div class="text-xs md:text-sm font-bold text-sky-950">🕹️ מעבדה 6.1: מחשבון מסגרת מינימלית ב-CSMA/CD, הסתברויות $p$-CSMA וזירת Backoff</div>
-<button onclick="openSingleSim('sim-wrapper-ethernet', 'מעבדה 6.1: סימולטור CSMA/CD, גודל מסגרת מינימלי ו-Exponential Backoff')" class="px-4 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold cursor-pointer">פתיחת סימולטור</button>
-</div>
-</div>
-<!-- Sub-Chapter Navigation Footer -->
 <div class="mt-12 pt-6 pb-2 border-t border-sky-300/40 flex flex-wrap items-center justify-between gap-4">
 <button onclick="showTab('tab-reliable'); window.scrollTo({top: 0, behavior: 'smooth'});" class="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/90 hover:bg-white text-sky-900 font-bold text-xs md:text-sm border border-sky-300/80 shadow-xs hover:shadow-md transition-all group">
 <svg class="w-4 h-4 text-sky-700 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
@@ -3371,49 +3876,102 @@ $$T_{\text{trans}} \ge 2d \implies L_{\min} = 2 \cdot d \cdot R \quad (\text{In 
 </div>
 </div>
 <!-- ==================== FAST STUDY MODE: TAB 7 ==================== -->
-<div class="fast-mode-view">
-<div class="fast-header">
-<div class="flex items-center justify-between flex-wrap gap-2">
-<span class="fast-badge">⚡ מצב לימוד מהיר • פרק 7 מתוך 7</span>
-<button onclick="showQuestions('tab-exercises', '7. סיכום, נוסחאות ומעבדת תרגול', event)" class="px-3 py-1.5 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-900 border border-sky-200 text-xs font-bold cursor-pointer">❓ מאגר שאלות מסכם</button>
+<div class="basic-mode-view space-y-5">
+<div class="basic-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="basic-badge">📖 לימוד בסיסי • פרק 7 מתוך 7</span>
+<div class="flex items-center gap-2">
+<button type="button" class="basic-top-btn" onclick="showQuestions('tab-exercises', '7. שאלות ותרגילים מסכמים ליחידה 2', event)">❓ מאגר שאלות מסכם</button>
 </div>
-<h2 class="text-2xl md:text-3xl font-black text-slate-900 mt-1">7. דף נוסחאות מרוכז וסיכום מהיר למבחן</h2>
-<p class="text-sm text-slate-600 mt-1">ריכוז כל נוסחאות החישוב וכללי הברזל של יחידה 2 במקום אחד.</p>
+</div>
+<h2 class="text-2xl md:text-3xl font-black text-slate-900">7. סיכום יחידה 2, דף נוסחאות מלא ומעבדת פתרון תרגילי מבחן</h2>
+<p class="text-xs md:text-sm text-slate-600 mt-1">טבלת-על מסכמת לכל נושאי השכבה הפיזית ושכבת הערוץ, ריכוז נוסחאות החישוב למבחן, ומעבדה מודרכת לפתרון שאלות מבחן משולבות.</p>
+</div>
+
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">7.1 דף נוסחאות מרוכז ליחידה 2 ומעבדת פתרון שאלות מבחן</h3>
+<p class="text-xs text-slate-600 mt-0.5">כל נוסחאות החישוב וכללי הברזל של יחידה 2 במקום אחד, לצד סימולטור מודרך לפתרון 5 שאלות מבחן משולבות.</p>
+</div>
+<button type="button" class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-wrapper-exam-solver', 'מעבדה 7.1: סימולטור מודרך לפתרון שאלות מבחן משולבות ביחידה 2')" title="פתיחת מעבדה 7.1: פותר תרגילי מבחן ביחידה 2">
+<svg class="w-8 h-8" fill="none" viewBox="0 0 48 48">
+<rect fill="#18181b" height="30" rx="5" stroke="#ffffff" stroke-width="2" width="30" x="9" y="9"></rect>
+<path d="M16 20 L22 24 L16 28 M24 28 H32" stroke="#e4e4e7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</button>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+<div class="basic-subcard space-y-1.5">
+<strong class="text-slate-900 block">1. השכבה הפיזית, קידוד, מסגור וגילוי שגיאות:</strong>
+<ul class="list-disc list-inside text-slate-700 space-y-1">
+<li><b>קצב שידור בדיאגרמת קונסטלציה ($M$ נקודות):</b> $R = B \cdot \log_2(M)\text{ bps}$.</li>
+<li><b>דגימת PCM וקו T1:</b> $R_{\text{PCM}} = 8,000 \times 8 = 64\text{ kbps}$, $R_{\text{T1}} = (24\times 8 + 1)\times 8,000 = 1.544\text{ Mbps}$.</li>
+<li><b>פענוח CDMA ($m$ שבבים):</b> $d_i = \frac{\mathbf{S}\cdot \mathbf{c}_i}{m} \in \{+1, -1, 0\}$.</li>
+<li><b>קידוד 4B/5B + NRZI:</b> יעילות $80\%$, אורך משודר $N_{\text{out}} = N_{\text{in}} \times \frac{5}{4}$ (עד 3 אפסים רצופים; ב-NRZI על <code>010101...</code> מתח קבוע מרבי $2t$).</li>
+<li><b>מסגור HDLC ($n$ סיביות מידע + 2 דגלים):</b> מינימום $n+16$, מקסימום $n + \lfloor n/5 \rfloor + 16$.</li>
+<li><b>מסגור SONET STS-1:</b> $810\text{B}$ כל $125\,\mu\text{s}$ ($8,000$/שנייה) $\implies 51.84\text{ Mbps}$.</li>
+<li><b>אחוז תקורה (Overhead) בגילוי שגיאות:</b> $\text{Overhead (\%)} = \frac{r}{m+r}\times 100\%$ (קטן ככל ש-$m$ גדל; בקוד $AA$: $\frac{m+2}{2m+2}$, מתקן שגיאה 1).</li>
+</ul>
+</div>
+<div class="basic-subcard space-y-1.5">
+<strong class="text-slate-900 block">2. חלונות הזזה, CSMA ו-Ethernet CSMA/CD:</strong>
+<ul class="list-disc list-inside text-slate-700 space-y-1">
+<li><b>תנאי מספור סופי ($k$ ביטים, $N=2^k$):</b> $SWS + RWS \le 2^k$. ב-GBN ($RWS=1$): $SWS_{\max} = 2^k-1$; ב-SR ($RWS=SWS$): $SWS_{\max} = 2^{k-1}$.</li>
+<li><b>נצילות וחלון לניצולת 100%:</b> $U = \frac{T_{\text{trans}}}{T_{\text{trans}}+2\tau}$, $SWS_{\text{full}} \ge 1 + \frac{2\tau R}{L}$ (או $x+y \le SWS\cdot T$).</li>
+<li><b>הסתברויות $p$-CSMA ($k$ תחנות):</b> $P(\text{Success}) = k p (1-p)^{k-1}$, $P(\text{Idle}) = (1-p)^k$, $P(\text{Collision}) = 1 - (1-p)^k - k p (1-p)^{k-1}$. (ב-1-CSMA וב-0-CSMA ב-$t_0$: $P(\text{Collision})=1$).</li>
+<li><b>אורך מסגרת מינימלי ואורך כבל מרבי ב-CSMA/CD:</b>
+$$L_{\min} = \frac{2d}{v}\cdot R, \quad d_{\max} = \frac{L_{\min}\cdot v}{2R}$$</li>
+<li><b>Exponential Backoff:</b> אחרי התנגשות $i$, מגרילים $k \in \{0..2^{\min(i,10)}-1\}$ חריצים באורך $2\tau$.</li>
+<li><b>802.11 Active Scanning מול $N$ APs:</b> המחשב משדר $\mathbf{2}$ מסגרות; ה-APs משדרים $\mathbf{N+1}$ מסגרות.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div class="fast-mode-view space-y-4">
+<div class="fast-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+<span class="fast-badge">⚡ לימוד מהיר • פרק 7 מתוך 7 (דף נוסחאות וסיכום למבחן)</span>
+<div class="flex items-center gap-1.5 flex-wrap">
+<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-wrapper-exam-solver', 'מעבדה 7.1: סימולטור מודרך לפתרון שאלות מבחן ביחידה 2')">🕹️ מעבדה 7.1: פותר תרגילי מבחן</button>
+<button type="button" class="fast-sim-btn" onclick="showQuestions('tab-exercises', '7. סיכום, נוסחאות ומעבדת תרגול', event)">❓ מאגר שאלות מסכם</button>
+</div>
+</div>
+<h2 class="text-xl md:text-2xl font-black text-slate-900">7. צ'יט-שיט ונוסחאון מהיר ליחידה 2 (השכבה הפיזית ושכבת הערוץ)</h2>
+<p class="text-xs text-slate-600"><b>ריכוז מהיר לפני מבחן:</b> כל הנוסחאות וכללי ההכרעה המיידיים לשאלות חישוב והבנה ביחידה 2.</p>
+</div>
+
+<div class="fast-visual-strip">
+<div class="fast-strip-node"><b>1. קונסטלציה ו-CDMA:</b> $R = B\log_2(M)$ | $d_i = \frac{\mathbf{S}\cdot\mathbf{c}_i}{m}$ | GSM = FDMA+TDMA | AMPS = FDMA.</div>
+<div class="fast-strip-node"><b>2. קידוד ומסגור:</b> NRZI ב-<code>0101..</code> = $2t$ | 4B/5B = $N\times\frac{5}{4}$ (80%) | HDLC = $n + \text{stuffed} + 16$ | SONET = $51.84\text{ Mbps}$.</div>
+<div class="fast-strip-node"><b>3. שגיאות ו-CRC:</b> תקורה $\frac{r}{m+r}$ (קטנה כש-$m$ גדל) | קוד $AA$ מתקן 1 | 2D Parity מגלה 100% מאי-זוגי, מפספס 4 במלבן.</div>
+<div class="fast-strip-node fast-strip-highlight"><b>4. חלון הזזה ו-CSMA/CD:</b> $SWS+RWS \le 2^k$ (GBN: $2^k-1$, SR: $2^{k-1}$) | $L_{\min} = \frac{2d}{v}\cdot R$ | חריץ Backoff = $2\tau$.</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+<div class="fast-card">
+<div class="fast-card-title">🧮 נוסחאות שכבה פיזית, קידוד, מסגור ושגיאות</div>
+<p class="text-slate-700 leading-relaxed">
+• <b>קונסטלציה:</b> $R = B\log_2(M)$ (פאזה = זווית הקרן; 16-QAM עמיד יותר מ-16-PSK).<br/>
+• <b>PCM ו-T1:</b> $R_{\text{PCM}} = 64\text{ kbps}$, $R_{\text{T1}} = 193 \times 8,000 = 1.544\text{ Mbps}$.<br/>
+• <b>4B/5B:</b> $N_{\text{out}} = \frac{5}{4}N_{\text{in}}$ (עד 3 אפסים רצופים; תשובה <code>-1</code> למתח קבוע לכל האורך).<br/>
+• <b>HDLC:</b> דגל <code>01111110</code> ($16\text{b}$ ל-2 דגלים); דחיסת <code>0</code> אחרי כל <code>11111</code>.<br/>
+• <b>תקורת CRC:</b> $\frac{r}{m+r}\times 100\%$ (עבור $r=12$ ו-$2\% \implies m=588$). $(x+1)\mid G(x) \iff$ מספר מחוברים זוגי $\implies$ מגלה כל מספר אי-זוגי של שגיאות.
+</p>
 </div>
 <div class="fast-card">
-<h3 class="fast-card-title"><span>🧮</span><span>7.1 נוסחאון מהיר ליחידה 2</span></h3>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
-<div class="fast-subcard space-y-2">
-<strong class="text-sky-900 block border-b pb-1">השכבה הפיזית, קידוד, מסגור ושגיאות</strong>
-<ul class="list-disc list-inside space-y-1 text-slate-700">
-<li><strong>קצב שידור בדיאגרמת קונסטלציה ($M$ נקודות):</strong> $R = \text{Baud} \times \log_2(M)\text{ bps}$.</li>
-<li><strong>קידוד 4B/5B:</strong> יעילות $80\%$; אורך משודר $N_{\text{out}} = N_{\text{in}} \times \frac{5}{4}$ (לכל היותר 3 אפסים רצופים).</li>
-<li><strong>מסגור HDLC (נתונים באורך $n$ + שני דגלים):</strong> מינימום $n + 16$ סיביות (עבור אפסים); מקסימום $n + \lfloor n/5 \rfloor + 16$ סיביות (עבור אחדות).</li>
-<li><strong>מסגור SONET STS-1:</strong> $810\text{B}$ כל $125\,\mu\text{s}$ ($8,000$ בשנייה) $\implies 51.84\text{ Mbps}$.</li>
-<li><strong>אחוז תקורה (Overhead) בגילוי שגיאות:</strong>
-$$\text{Overhead (\%)} = \frac{r}{m + r} \times 100\%$$
-(עבור CRC ממעלה $r$, מתווספות $r$ סיביות; ככל ש-$m$ גדל התקורה באחוזים קטנה).</li>
-</ul>
-</div>
-<div class="fast-subcard space-y-2">
-<strong class="text-sky-900 block border-b pb-1">חלונות הזזה, CSMA ו-Ethernet CSMA/CD</strong>
-<ul class="list-disc list-inside space-y-1 text-slate-700">
-<li><strong>תנאי מספור סופי ($k$ ביטים, $N=2^k$):</strong> $SWS + RWS \le 2^k$. ב-GBN ($RWS=1$): $SWS_{\max} = 2^k - 1$; ב-SR ($RWS=SWS$): $SWS_{\max} = 2^{k-1}$.</li>
-<li><strong>נצילות וחלון למילוי הצינור:</strong> $U = \frac{T_{\text{trans}}}{T_{\text{trans}} + 2\tau}$, $SWS_{\text{full}} = 1 + \frac{2\tau R}{L}$.</li>
-<li><strong>הסתברויות $p$-CSMA ($k$ תחנות):</strong> $P(\text{Success}) = k p (1-p)^{k-1}$, $P(\text{Idle}) = (1-p)^k$. (ב-1-CSMA וב-0-CSMA ב-$t_0$ כשהערוץ שקט: $P(\text{Collision})=1$).</li>
-<li><strong>אורך מסגרת מינימלי ואורך כבל מרבי ב-CSMA/CD:</strong>
-$$L_{\min} = \frac{2d}{v} \cdot R, \quad d_{\max} = \frac{L_{\min} \cdot v}{2R}$$</li>
-<li><strong>Exponential Backoff:</strong> אחרי התנגשות $i$, מגרילים $k \in \{0..2^{\min(i,10)}-1\}$ חריצי זמן באורך $2\tau$.</li>
-</ul>
+<div class="fast-card-title">🌐 נוסחאות חלונות הזזה, CSMA, אתרנט ו-802.11</div>
+<p class="text-slate-700 leading-relaxed">
+• <b>חלונות הזזה ($N=2^k$):</b> $SWS + RWS \le 2^k$. בערוץ נקי עם BDP גדול: GBN ($2^k-1$) יעיל מ-SR ($2^{k-1}$). ב-Additional ACKs ($RWS=1$) על $0..3$ כש-1 שורד: מינימום $1$, מקסימום $4$.<br/>
+• <b>$p$-CSMA ($k$ תחנות):</b> $P(\text{Success}) = k p (1-p)^{k-1}$, $P(\text{Idle}) = (1-p)^k$. ב-1-CSMA וב-0-CSMA ב-$t_0$ כשהערוץ שקט: $P(\text{Collision})=1$.<br/>
+• <b>CSMA/CD:</b> $L_{\min} = \frac{2d}{v}\cdot R$, $d_{\max} = \frac{L_{\min}\cdot v}{2R}$. <b>Active Scanning ($N$ APs):</b> המחשב משדר $2$ מסגרות, ה-APs משדרים $N+1$.
+</p>
 </div>
 </div>
 </div>
-<div class="fast-sim-bar">
-<div class="text-xs md:text-sm font-bold text-sky-950">🕹️ מעבדה 7.1: פותר שאלות מבחן משולבות (5 תרגילים מודרכים שלב-אחר-שלב)</div>
-<button onclick="openSingleSim('sim-wrapper-exam-solver', 'מעבדה 7.1: סימולטור מודרך לפתרון שאלות מבחן ביחידה 2')" class="px-4 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold cursor-pointer">פתיחת פותר תרגילי מבחן</button>
-</div>
-</div>
-<!-- Sub-Chapter Navigation Footer -->
 <div class="mt-12 pt-6 pb-2 border-t border-sky-300/40 flex flex-wrap items-center justify-between gap-4">
 <button onclick="showTab('tab-ethernet'); window.scrollTo({top: 0, behavior: 'smooth'});" class="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/90 hover:bg-white text-sky-900 font-bold text-xs md:text-sm border border-sky-300/80 shadow-xs hover:shadow-md transition-all group">
 <svg class="w-4 h-4 text-sky-700 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
@@ -6983,37 +7541,85 @@ const TAB_ORDER = [
 let currentTabId = 'tab-physical';
 let activeSimWrapperId = null;
 let currentStudyMode = 'deep';
+let modeToastTimer = null;
 const renderedTabs = new Set();
-function setStudyMode(mode) {
-currentStudyMode = (mode === 'fast') ? 'fast' : 'deep';
-document.body.setAttribute('data-study-mode', currentStudyMode);
-try { localStorage.setItem('cn_unit2_study_mode', currentStudyMode); } catch (e) {}
-const iconDeep = document.getElementById('mode-btn-icon-deep');
-const iconFast = document.getElementById('mode-btn-icon-fast');
-const titleEl = document.getElementById('mode-btn-title');
-const subEl = document.getElementById('mode-btn-subtitle');
-const sbDeep = document.getElementById('sidebar-mode-deep');
-const sbFast = document.getElementById('sidebar-mode-fast');
-if (currentStudyMode === 'fast') {
-if (iconDeep) iconDeep.classList.add('hidden');
-if (iconFast) iconFast.classList.remove('hidden');
-if (titleEl) titleEl.textContent = 'מצב לימוד מהיר';
-if (subEl) subEl.textContent = 'תמציתי וממוקד • לחצו ללימוד מעמיק 🔬';
-if (sbFast) sbFast.className = 'py-1.5 px-2 rounded-lg bg-sky-600 text-white shadow-xs flex items-center justify-center gap-1 transition-all cursor-pointer';
-if (sbDeep) sbDeep.className = 'py-1.5 px-2 rounded-lg text-slate-700 hover:bg-white/70 flex items-center justify-center gap-1 transition-all cursor-pointer';
-} else {
-if (iconDeep) iconDeep.classList.remove('hidden');
-if (iconFast) iconFast.classList.add('hidden');
-if (titleEl) titleEl.textContent = 'מצב לימוד מעמיק';
-if (subEl) subEl.textContent = 'הסבר מלא • לחצו ללימוד מהיר ⚡';
-if (sbDeep) sbDeep.className = 'py-1.5 px-2 rounded-lg bg-gradient-to-r from-blue-700 to-sky-600 text-white shadow-xs flex items-center justify-center gap-1 transition-all cursor-pointer';
-if (sbFast) sbFast.className = 'py-1.5 px-2 rounded-lg text-sky-900 hover:bg-white/70 flex items-center justify-center gap-1 transition-all cursor-pointer';
+
+function navigateToLocalFile(url, newTab) {
+  try {
+    if (newTab) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    } else {
+      window.location.href = url;
+    }
+  } catch (e) {
+    console.log('Navigation to', url);
+  }
 }
-const activeSec = document.getElementById(currentTabId);
-if (activeSec) renderMathSafe(activeSec);
+window.navigateToLocalFile = navigateToLocalFile;
+
+function showModeToast(text) {
+  const t = document.getElementById('mode-switch-toast');
+  if (!t) return;
+  t.textContent = text;
+  t.classList.remove('opacity-0', 'translate-y-3');
+  t.classList.add('opacity-100', 'translate-y-0');
+  if (modeToastTimer) clearTimeout(modeToastTimer);
+  modeToastTimer = setTimeout(() => {
+    t.classList.remove('opacity-100', 'translate-y-0');
+    t.classList.add('opacity-0', 'translate-y-3');
+  }, 2400);
 }
+
+function setStudyMode(mode, silent) {
+  if (!['deep', 'basic', 'fast'].includes(mode)) mode = 'deep';
+  currentStudyMode = mode;
+  document.body.classList.remove('study-mode-deep', 'study-mode-basic', 'study-mode-fast');
+  document.body.classList.add('study-mode-' + mode);
+  document.body.setAttribute('data-study-mode', mode);
+  try { localStorage.setItem('cn_unit2_study_mode', mode); } catch (e) {}
+
+  const btnDeep = document.getElementById('sidebar-mode-deep-btn');
+  const btnBasic = document.getElementById('sidebar-mode-basic-btn');
+  const btnFast = document.getElementById('sidebar-mode-fast-btn');
+  const descEl = document.getElementById('sidebar-mode-desc');
+  const part1Title = document.getElementById('sidebar-part-1-title');
+  const part1Desc = document.getElementById('sidebar-part-1-desc');
+
+  const inactiveCls = 'py-1.5 px-1.5 rounded-lg font-bold transition-all flex items-center justify-center gap-1 text-sky-950 hover:bg-white/70 cursor-pointer';
+  if (btnDeep) btnDeep.className = (mode === 'deep')
+    ? 'py-1.5 px-1.5 rounded-lg font-black transition-all flex items-center justify-center gap-1 bg-gradient-to-r from-blue-700 to-sky-600 text-white shadow-xs cursor-pointer'
+    : inactiveCls;
+  if (btnBasic) btnBasic.className = (mode === 'basic')
+    ? 'py-1.5 px-1.5 rounded-lg font-black transition-all flex items-center justify-center gap-1 bg-sky-800 text-white shadow-xs cursor-pointer'
+    : inactiveCls;
+  if (btnFast) btnFast.className = (mode === 'fast')
+    ? 'py-1.5 px-1.5 rounded-lg font-black transition-all flex items-center justify-center gap-1 bg-sky-600 text-white shadow-xs cursor-pointer'
+    : inactiveCls;
+
+  if (mode === 'deep') {
+    if (descEl) descEl.textContent = 'מצב מעמיק: הסבר מלא, מודלים מנטליים, עזרים גרפיים, מעבדות ותרגילים';
+    if (part1Title) part1Title.textContent = 'פרקי יחידה 2 והמעבדות החיות (לימוד מעמיק)';
+    if (part1Desc) part1Desc.textContent = 'הסבר סיפורי מלא, מודלים מנטליים, דגשים והבהרות עומק, מעבדות חיות ושאלות תרגול (❓)';
+    if (!silent) showModeToast('📚 מצב לימוד מעמיק: הסבר מלא, מודלים מנטליים, עזרים גרפיים ומעבדות');
+  } else if (mode === 'basic') {
+    if (descEl) descEl.textContent = 'מצב בסיסי: הסבר ישיר וממוקד בעיצוב רגוע + מעבדות חיות ודוגמאות';
+    if (part1Title) part1Title.textContent = 'פרקי יחידה 2 והמעבדות החיות (לימוד בסיסי)';
+    if (part1Desc) part1Desc.textContent = 'כל חומר הפרק בצורה ישירה, רגועה ונקייה מעומס ויזואלי עם כפתורי המעבדות בצד';
+    if (!silent) showModeToast('📖 מצב לימוד בסיסי: הסבר ישיר ורגוע לקריאה ללא מודלים מנטליים');
+  } else if (mode === 'fast') {
+    if (descEl) descEl.textContent = 'מצב מהיר: סקירה מרוכזת ומהירה של כל מושגי הליבה, הנוסחאות והדגשים';
+    if (part1Title) part1Title.textContent = 'יחידה 2 – סקירה מהירה ומרוכזת (לימוד מהיר)';
+    if (part1Desc) part1Desc.textContent = 'מעבר מהיר על כל מושגי הליבה, הנוסחאות ודגשי הבחינה של יחידה 2';
+    if (!silent) showModeToast('⚡ מצב לימוד מהיר: סקירה מרוכזת ומהירה של כל תכני הפרק');
+  }
+
+  const activeSec = document.getElementById(currentTabId);
+  if (activeSec) renderMathSafe(activeSec);
+}
+
 function toggleStudyMode() {
-setStudyMode(currentStudyMode === 'deep' ? 'fast' : 'deep');
+  const next = currentStudyMode === 'deep' ? 'basic' : (currentStudyMode === 'basic' ? 'fast' : 'deep');
+  setStudyMode(next);
 }
 // toggleTheme handled by theme-manager.js
 function renderMathSafe(el) {
@@ -8211,12 +8817,7 @@ window.addEventListener('DOMContentLoaded', () => {
 if (window.innerWidth < 1024) {
 document.body.classList.add('sidebar-collapsed');
 }
-let savedMode = 'deep';
-try {
-const m = localStorage.getItem('cn_unit2_study_mode');
-if (m === 'fast' || m === 'deep') savedMode = m;
-} catch (e) {}
-setStudyMode(savedMode);
+setStudyMode('deep', true);
 initAllSimulations();
 const firstTab = document.getElementById(currentTabId);
 if (firstTab) {
@@ -8225,9 +8826,7 @@ renderedTabs.add(currentTabId);
 }
 });
 </script>
-<!-- AI Assistant Widget -->
-<script>(function(){try{var s=document.createElement("script");s.src="ai_"+"widget.js";document.body.appendChild(s);}catch(e){}})();</script>
-    <!-- AI Assistant Widget -->
-    <script src="ai_widget.js"></script>
+<!-- Mode Switch Toast Notification -->
+<div id="mode-switch-toast" class="fixed bottom-5 left-5 z-50 px-4 py-2.5 rounded-xl bg-slate-900/95 text-white text-xs font-bold shadow-xl border border-sky-400/40 opacity-0 translate-y-3 pointer-events-none transition-all duration-300"></div>
 </body>
 </html>

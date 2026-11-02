@@ -322,6 +322,212 @@ border-bottom: 1px solid rgba(56, 189, 248, 0.3) !important;
 border-left: 1px solid rgba(56, 189, 248, 0.3) !important;
 color: #ffffff !important;
 }
+
+/* =========================================================
+   3-Study-Mode System: Deep (מעמיק), Basic (בסיסי), Fast (מהיר)
+   ========================================================= */
+.basic-mode-view, .fast-mode-view { display: none !important; }
+body.study-mode-basic .deep-mode-view, body.study-mode-basic .fast-mode-view { display: none !important; }
+body.study-mode-basic .basic-mode-view { display: block !important; animation: slideUp 0.28s ease-out; }
+body.study-mode-fast .deep-mode-view, body.study-mode-fast .basic-mode-view { display: none !important; }
+body.study-mode-fast .fast-mode-view { display: block !important; animation: slideUp 0.28s ease-out; }
+body.study-mode-basic .deep-only-block, body.study-mode-fast .deep-only-block { display: none !important; }
+
+/* --- BASIC MODE (לימוד בסיסי: רגוע, נעים לקריאה, תכלס ללא עומס ויזואלי) --- */
+body.study-mode-basic,
+body.study-mode-basic main#main-content {
+    background-color: #f4f7fa !important;
+    background-image: none !important;
+    color: #1e293b !important;
+}
+body.study-mode-basic .silver-waves-bg {
+    animation: none !important;
+    opacity: 0.06 !important;
+}
+body.study-mode-basic .sidebar-animated-mesh {
+    background: #edf2f7 !important;
+    animation: none !important;
+    border-left-color: #cbd5e1 !important;
+}
+body.study-mode-basic .nav-btn.active-nav {
+    background: #dbeafe !important;
+    border-color: #60a5fa !important;
+    color: #0c4a6e !important;
+    box-shadow: 0 1px 4px rgba(12, 74, 110, 0.08) !important;
+}
+body.study-mode-basic .nav-btn.active-nav::after {
+    display: none !important;
+}
+body.study-mode-basic .sim-circle-btn {
+    background: #e0f2fe !important;
+    border: 2px solid #0284c7 !important;
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.12) !important;
+    animation: none !important;
+}
+body.study-mode-basic .sim-circle-btn:hover {
+    transform: scale(1.06) !important;
+    background: #bae6fd !important;
+}
+body.study-mode-basic .content-wrapper {
+    background: #fbfdff !important;
+    border-color: #cbd5e1 !important;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+}
+.basic-header {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-right: 5px solid #0369a1;
+    border-radius: 1rem;
+    padding: 1.15rem 1.35rem;
+}
+.basic-badge {
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    border-radius: 0.5rem;
+    background: #e0f2fe;
+    color: #0c4a6e;
+    border: 1px solid #93c5fd;
+    font-size: 0.75rem;
+    font-weight: 800;
+}
+.basic-top-btn {
+    padding: 0.35rem 0.75rem;
+    border-radius: 0.65rem;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #0c4a6e;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+.basic-top-btn:hover { background: #e0f2fe; }
+.basic-card {
+    background: #ffffff;
+    border: 1px solid #dbe3ee;
+    border-radius: 1rem;
+    padding: 1.25rem 1.4rem;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+}
+.basic-card-title {
+    font-size: 1.08rem;
+    font-weight: 800;
+    color: #0c4a6e;
+}
+.basic-subcard {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 0.85rem 1rem;
+}
+.basic-callout {
+    background: #f0f7ff;
+    border: 1px solid #bae6fd;
+    border-right: 4px solid #0284c7;
+    border-radius: 0.65rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+    color: #1e293b;
+    line-height: 1.6;
+}
+.basic-callout-warn {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-right: 4px solid #d97706;
+    border-radius: 0.65rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+    color: #451a03;
+    line-height: 1.6;
+}
+
+/* --- FAST MODE (לימוד מהיר: סקירה מרוכזת ומהירה על כל תכני הפרק) --- */
+body.study-mode-fast,
+body.study-mode-fast main#main-content {
+    background-color: #f8fafc !important;
+    background-image: none !important;
+    color: #0f172a !important;
+}
+body.study-mode-fast .silver-waves-bg {
+    animation: none !important;
+    opacity: 0.04 !important;
+}
+body.study-mode-fast .sidebar-animated-mesh {
+    background: #f1f5f9 !important;
+    animation: none !important;
+}
+.fast-header {
+    background: #ffffff;
+    border: 1px solid #dbe3ee;
+    border-right: 4px solid #0284c7;
+    border-radius: 0.9rem;
+    padding: 1rem 1.2rem;
+}
+.fast-badge {
+    display: inline-block;
+    padding: 0.18rem 0.65rem;
+    border-radius: 9999px;
+    background: #e0f2fe;
+    color: #0369a1;
+    border: 1px solid #7dd3fc;
+    font-size: 0.72rem;
+    font-weight: 800;
+}
+.fast-visual-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 0.55rem;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 0.85rem;
+    padding: 0.65rem;
+}
+.fast-strip-node {
+    background: #ffffff;
+    border: 1px solid #dbe3ee;
+    border-radius: 0.6rem;
+    padding: 0.55rem 0.7rem;
+    font-size: 0.74rem;
+    line-height: 1.45;
+    color: #1e293b;
+}
+.fast-strip-highlight {
+    background: #f0f9ff;
+    border-color: #0284c7;
+    color: #0c4a6e;
+}
+.fast-card {
+    background: #ffffff;
+    border: 1px solid #dbe3ee;
+    border-radius: 0.85rem;
+    padding: 0.95rem 1.1rem;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.02);
+}
+.fast-card-title {
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: #0c4a6e;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 0.35rem;
+    margin-bottom: 0.45rem;
+}
+.fast-sim-btn {
+    padding: 0.32rem 0.75rem;
+    border-radius: 0.6rem;
+    background: #f0f9ff;
+    border: 1px solid #38bdf8;
+    color: #0369a1;
+    font-size: 0.74rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+.fast-sim-btn:hover {
+    background: #0284c7;
+    color: #ffffff;
+    border-color: #0284c7;
+}
+
 </style>
 <script id="MathJax-script">
 window.MathJax = {
@@ -344,9 +550,11 @@ return Promise.resolve();
 }
 };
 </script>
-    <script src="theme-manager.js"></script>
+    
 </head>
-<body class="text-slate-900 h-screen flex overflow-hidden">
+<body class="text-slate-900 h-screen flex overflow-hidden study-mode-deep">
+<!-- Toast Notification for Study Mode Switch -->
+<div class="fixed bottom-5 left-5 z-50 pointer-events-none opacity-0 translate-y-3 transition-all duration-300 bg-slate-900/95 text-sky-50 px-4 py-2.5 rounded-2xl shadow-xl border border-sky-400/60 text-xs font-bold flex items-center gap-2" id="mode-switch-toast"></div>
 <!-- Study Mode Toggle Button (Deep Study vs. Fast Study) -->
 
 <!-- Mobile Drawer Backdrop -->
@@ -370,23 +578,28 @@ return Promise.resolve();
 אבטחת<br><span class="bg-gradient-to-r from-blue-900 via-sky-600 to-blue-700 bg-clip-text text-transparent">רשתות תקשורת</span>
 </h1>
 <p class="text-xs text-sky-900/80 mt-1.5 font-medium leading-relaxed">פרק 7: קריפטוגרפיה, RSA, חתימות דיגיטליות, PKI, מתקפות DoS/DDoS, SYN Cookies ו-uRPF</p>
-<!-- Dual Study Mode Segmented Control inside Sidebar -->
-<div class="mt-3 p-1 rounded-xl bg-sky-100/90 border border-sky-300/80 grid grid-cols-2 gap-1 shadow-inner">
-<button type="button" id="sidebar-mode-deep-btn" onclick="setStudyMode('deep')" class="py-1.5 px-2 rounded-lg text-[11px] font-black transition-all flex items-center justify-center gap-1 bg-gradient-to-r from-blue-900 to-sky-700 text-white shadow-xs cursor-pointer">
-<span>📖</span>
-<span>לימוד מעמיק</span>
+<!-- Triple Study Mode Segmented Control inside Sidebar (Deep / Basic / Fast) -->
+<div aria-label="בחירת מצב לימוד" class="mt-3 p-1 rounded-xl bg-sky-100/90 border border-sky-300/80 grid grid-cols-3 gap-1 text-[11px] shadow-inner" role="group">
+<button class="py-1.5 px-1.5 rounded-lg font-black transition-all flex items-center justify-center gap-1 bg-gradient-to-r from-blue-900 to-sky-700 text-white shadow-xs cursor-pointer" id="sidebar-mode-deep-btn" onclick="setStudyMode('deep')" type="button">
+<span>📚</span>
+<span>מעמיק</span>
 </button>
-<button type="button" id="sidebar-mode-fast-btn" onclick="setStudyMode('fast')" class="py-1.5 px-2 rounded-lg text-[11px] font-bold transition-all flex items-center justify-center gap-1 text-sky-950 hover:bg-white/70 cursor-pointer">
+<button class="py-1.5 px-1.5 rounded-lg font-bold transition-all flex items-center justify-center gap-1 text-sky-950 hover:bg-white/70 cursor-pointer" id="sidebar-mode-basic-btn" onclick="setStudyMode('basic')" type="button">
+<span>📖</span>
+<span>בסיסי</span>
+</button>
+<button class="py-1.5 px-1.5 rounded-lg font-bold transition-all flex items-center justify-center gap-1 text-sky-950 hover:bg-white/70 cursor-pointer" id="sidebar-mode-fast-btn" onclick="setStudyMode('fast')" type="button">
 <span>⚡</span>
-<span>לימוד מהיר</span>
+<span>מהיר</span>
 </button>
 </div>
+<div class="mt-1.5 text-[10px] text-slate-600 font-semibold text-center leading-tight" id="sidebar-mode-desc">מצב מעמיק: הסבר מלא, תרשימים, תרגילים ומעבדות</div>
 </div>
 <!-- Navigation Links List -->
 <div class="relative z-10 flex-1 overflow-y-auto silver-scroll p-3 space-y-1.5">
-<div class="nav-group-header">
-<div class="nav-group-title">תוכן העניינים – פרק 7</div>
-<div class="nav-group-desc">הסבר סיפורי מלא, דגשים והבהרות עומק, מעבדות חיות ושאלות תרגול (❓) לכל לשונית</div>
+<div class="nav-group-header" id="sidebar-group-part-1">
+<div class="nav-group-title" id="sidebar-part-1-title">תוכן העניינים – פרק 7 (לימוד מעמיק)</div>
+<div class="nav-group-desc" id="sidebar-part-1-desc">הסבר מלא ומקיף, דגשים והבהרות עומק, מעבדות חיות ושאלות תרגול (❓) לכל לשונית</div>
 </div>
 <div class="relative group/nav mb-1.5">
 <button type="button" onclick="showTab('tab-goals-threats')" id="btn-tab-goals-threats" class="nav-btn active-nav"><span>🛡️ 7.1 מטרות האבטחה ווקטורי תקיפה</span></button>
@@ -420,24 +633,24 @@ return Promise.resolve();
 <!-- Sidebar Footer -->
 <div class="relative z-10 p-2.5 border-t border-sky-200/90 bg-white/90 backdrop-blur-md space-y-1.5 mt-auto">
 <div class="grid grid-cols-2 gap-1.5">
-<a href="6.html" class="relative overflow-hidden py-2 px-2 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-950 font-bold text-[11px] border border-sky-200/90 flex items-center justify-center gap-1 group transition-all shadow-2xs text-center cursor-pointer" title="חזרה לפרק 6: רשתות אלחוטיות וניידות">
+<button type="button" class="relative overflow-hidden py-2 px-2 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-950 font-bold text-[11px] border border-sky-200/90 flex items-center justify-center gap-1 group transition-all shadow-2xs text-center cursor-pointer" onclick="navigateCoursePage('6.html', event)" title="חזרה לפרק 6: רשתות אלחוטיות וניידות">
 <span class="font-mono text-xs text-sky-500 group-hover:translate-x-0.5 transition-transform">→</span>
 <span>לפרק הקודם</span>
-</a>
-<a href="summary.html" class="relative overflow-hidden py-2 px-2 rounded-lg bg-gradient-to-r from-blue-700 via-sky-600 to-blue-600 hover:from-blue-800 hover:to-sky-700 text-white font-bold text-[11px] border border-sky-300 flex items-center justify-center gap-1 group transition-all shadow-xs text-center cursor-pointer" title="מעבר לסיכום הקורס ומילון מונחים">
+</button>
+<button type="button" class="relative overflow-hidden py-2 px-2 rounded-lg bg-gradient-to-r from-blue-700 via-sky-600 to-blue-600 hover:from-blue-800 hover:to-sky-700 text-white font-bold text-[11px] border border-sky-300 flex items-center justify-center gap-1 group transition-all shadow-xs text-center cursor-pointer" onclick="navigateCoursePage('summary.html', event)" title="מעבר לסיכום הקורס ומילון מונחים">
 <div class="absolute inset-0 silver-blue-waves-bg pointer-events-none opacity-25"></div>
 <span class="relative z-10">לסיכום הקורס</span>
 <span class="relative z-10 font-mono text-xs text-sky-200 group-hover:-translate-x-0.5 transition-transform">←</span>
-</a>
+</button>
 </div>
-<a href="index.html" class="relative overflow-hidden w-full py-2 px-3 rounded-lg bg-gradient-to-r from-sky-100 via-sky-50 to-blue-100 hover:bg-sky-200 text-sky-950 font-black text-xs border border-sky-300 flex items-center justify-center gap-2 transition-all shadow-2xs group cursor-pointer text-center" title="פתיחת פורטל הקורס הראשי">
+<button type="button" class="relative overflow-hidden w-full py-2 px-3 rounded-lg bg-gradient-to-r from-sky-100 via-sky-50 to-blue-100 hover:bg-sky-200 text-sky-950 font-black text-xs border border-sky-300 flex items-center justify-center gap-2 transition-all shadow-2xs group cursor-pointer text-center" onclick="navigateCoursePage('index.html', event)" title="פתיחת פורטל הקורס הראשי">
 <span class="text-sm">🏠</span>
 <span>תוכן עניינים ואינדקס הקורס</span>
-</a>
+</button>
 </div>
 </aside>
 <!-- Main Content -->
-<main class="flex-1 overflow-y-auto scroll-smooth bg-transparent relative silver-scroll">
+<main id="main-content" class="flex-1 overflow-y-auto scroll-smooth bg-transparent relative silver-scroll">
 <div class="max-w-6xl mx-auto p-6 md:p-10 lg:p-12 pb-32">
 <!-- ========================================================================= -->
 <!-- TAB 1: 7.1 SECURITY GOALS, TRUST VS THREATS & ATTACK VECTORS              -->
@@ -733,7 +946,7 @@ return Promise.resolve();
 <span class="bg-gradient-to-r from-blue-700 to-sky-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-black text-lg border border-sky-300 shadow-xs">3</span>
 <div>
 <div>אמון מול איומים (Trust vs. Threats) וניתוח עלות-תועלת</div>
-<div class="text-xs font-normal text-slate-500 mt-0.5"> ב: מדוע "אין דבר כזה אבטחה מושלמת" וכיצד ממתנים סיכונים</div>
+<div class="text-xs font-normal text-slate-500 mt-0.5">מדוע "אין דבר כזה אבטחה מושלמת" וכיצד ממתנים סיכונים</div>
 </div>
 </h3>
 <div class="space-y-4 text-slate-700 text-base leading-relaxed mb-6">
@@ -772,153 +985,179 @@ return Promise.resolve();
 </div>
 </div>
 </div>
-<div class="fast-mode-view">
-<header class="fast-header-card">
-<div class="fast-badge">⚡ לימוד מהיר • חלק 7.1</div>
-<h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight mb-2">7.1 מטרות האבטחה, איומים ווקטורי תקיפה ברשת</h2>
-<p class="text-sm text-slate-600 leading-relaxed">
-מנות מידע עוברות ברשת דרך נתבים וקווים שאינם בשליטת השולח. מאחר שבשכבת ה-IP אין אימות מובנה של כתובת המקור (<code>Source IP</code>) ובמיתוג מנות משאבי הרשת משותפים לכלל המשתמשים, הרשת חשופה לקריאה, לשינוי מידע, להתחזות ולהצפת משאבים.
-</p>
-</header>
-<!-- 7.1.1 מטרות האבטחה -->
-<article class="fast-article">
-<h3 class="fast-article-title">
-<span class="fast-num-badge">7.1.1</span>
-<span>מטרות האבטחה המרכזיות (4 מטרות ליבה + מניעת התכחשות)</span>
-</h3>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-<div class="fast-subcard">
-<div class="flex items-center justify-between mb-1.5">
-<strong class="text-slate-900 text-sm">🔒 1. סודיות (Confidentiality)</strong>
-<span class="text-[11px] font-mono bg-blue-50 text-blue-800 px-2 py-0.5 rounded border border-blue-200">הצפנה</span>
-</div>
-<p class="text-xs text-slate-700 leading-relaxed">
-הבטחה שרק השולח והנמען המורשים יוכלו לקרוא את תוכן ההודעה ($	ext{Plaintext} 	o 	ext{Ciphertext}$). כולל גם <b>סודיות תעבורה</b> (הסתרת עצם קיום התקשורת, היקפה ויעדה, למשל במנהרת IPsec).
-</p>
-</div>
-<div class="fast-subcard">
-<div class="flex items-center justify-between mb-1.5">
-<strong class="text-slate-900 text-sm">🪪 2. אימות (Authentication)</strong>
-<span class="text-[11px] font-mono bg-blue-50 text-blue-800 px-2 py-0.5 rounded border border-blue-200">וידוא זהות</span>
-</div>
-<p class="text-xs text-slate-700 leading-relaxed">
-הבטחה שכל צד בתקשורת יודע בוודאות את זהות הצד השני ושהוא אינו מתחזה. <b>אימות טומן בחובו שלמות</b> – אין משמעות לאימות השולח אם תוכן ההודעה שונה בדרך.
-</p>
-</div>
-<div class="fast-subcard">
-<div class="flex items-center justify-between mb-1.5">
-<strong class="text-slate-900 text-sm">🛡️ 3. שלמות ההודעה (Message Integrity)</strong>
-<span class="text-[11px] font-mono bg-blue-50 text-blue-800 px-2 py-0.5 rounded border border-blue-200">Hash / MAC / חתימה</span>
-</div>
-<p class="text-xs text-slate-700 leading-relaxed">
-הבטחה שההודעה הגיעה ליעדה בדיוק כפי שנשלחה, ללא הוספה, מחיקה או שינוי סיביות בדרך.
-</p>
-</div>
-<div class="fast-subcard">
-<div class="flex items-center justify-between mb-1.5">
-<strong class="text-slate-900 text-sm">⚡ 4. זמינות ובקרת גישה (Availability)</strong>
-<span class="text-[11px] font-mono bg-blue-50 text-blue-800 px-2 py-0.5 rounded border border-blue-200">הגנת משאבים</span>
-</div>
-<p class="text-xs text-slate-700 leading-relaxed">
-הבטחה שהשירות והרשת יהיו זמינים תמיד עבור משתמשים מורשים, לצד אכיפת הרשאות גישה (Access Control).
-</p>
+<div class="basic-mode-view space-y-5">
+<div class="basic-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="basic-badge">📖 לימוד בסיסי • יחידה 7.1</span>
+<div class="flex items-center gap-2">
+<button class="basic-top-btn" onclick="showTab('tab-exercises')" type="button">לתרגילים ומבחן מסכם 📝</button>
+<button class="basic-top-btn" onclick="showQuestions('tab-goals-threats', '7.1 מטרות האבטחה ווקטורי תקיפה', event)" type="button">❓ שאלות תרגול</button>
 </div>
 </div>
-<div class="fast-callout-blue">
-<strong>⚖️ 5. מניעת התכחשות / אי-כפירה (Non-Repudiation):</strong> השולח אינו יכול לטעון בדיעבד שלא שלח את המסמך. מושגת באמצעות <b>חתימה דיגיטלית</b> (מפתח פרטי הידוע לשולח בלבד) ומספקת הוכחה גם כלפי צד שלישי (שופט).
+<h2 class="text-2xl md:text-3xl font-black text-slate-900">7.1 מטרות האבטחה, איומים ווקטורי תקיפה ברשת</h2>
+<p class="text-xs md:text-sm text-slate-600 mt-1">מנות מידע עוברות ברשת דרך נתבים וקווים שאינם בשליטת השולח; בשכבת ה-IP אין אימות מובנה של כתובת המקור (<code>Source IP</code>) ובמיתוג מנות משאבי הרשת משותפים לכלל המשתמשים, ולכן הרשת חשופה לקריאה, לשינוי מידע, להתחזות ולהצפת משאבים.</p>
 </div>
-<div class="fast-callout-warn">
-<strong>⚠️ הבחנה חשובה (סודיות $
-eq$ שלמות):</strong> הצפנה לבדה אינה מבטיחה שלמות! תוקף שאינו מבין את הטקסט המוצפן עדיין יכול לשנות בו סיביות באקראי או במכוון, וללא מנגנון שלמות השינוי לא יתגלה.
+
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">1. חמשת עמודי התווך של אבטחת רשתות (4 מטרות ליבה + מניעת התכחשות)</h3>
+<p class="text-xs text-slate-600">הבחנה מדויקת בין סודיות, אימות זהות, שלמות ההודעה, זמינות ומניעת התכחשות.</p>
 </div>
-<div class="fast-sim-strip">
-<span class="text-xs font-bold text-slate-700">רוצים לבדוק את 5 המטרות בסימולציה?</span>
-<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-7-1-pillars', '🏛️ סימולציה 7.1א: מעבדת 5 עמודי התווך של אבטחת רשתות')">🕹️ פתיחת מעבדה 7.1א</button>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-7-1-pillars', '🏛️ סימולציה 7.1א: מעבדת 5 עמודי התווך של אבטחת רשתות')" title="פתיחת מעבדה 7.1א: 5 עמודי התווך של אבטחת רשתות" type="button"><span class="text-xl">🏛️</span></button>
 </div>
-</article>
-<!-- 7.1.2 איומים ווקטורי תקיפה -->
-<article class="fast-article">
-<h3 class="fast-article-title">
-<span class="fast-num-badge">7.1.2</span>
-<span>איומים מרכזיים בערוץ התקשורת ותוכנות זדוניות (Malware)</span>
-</h3>
-<!-- Basic Clean Schematic Strip -->
-<div class="fast-flow-strip">
-<div class="fast-flow-node">שולח (אליס)</div>
-<span class="fast-flow-arrow">──►</span>
-<div class="fast-flow-node border-blue-400 bg-blue-50/60">
-<div class="text-xs font-black text-blue-950">ערוץ התקשורת הציבורי (נתבים וקווים)</div>
-<div class="text-[11px] text-slate-700 font-normal mt-0.5">פסיבי: האזנה | אקטיבי: הזרקת הודעות • התחזות (Spoofing) • חטיפת קשר (Hijacking) • מניעת שירות (DoS/DDoS)</div>
+<div class="my-2 p-3 rounded-xl bg-[#f4f8fb] border border-[#cbd5e1] overflow-x-auto">
+<svg class="w-full h-auto max-w-3xl mx-auto select-none" viewBox="0 0 680 96">
+<rect x="8" y="8" width="124" height="80" rx="8" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5"/>
+<text x="70" y="30" fill="#0c4a6e" font-size="11.5" font-weight="800" text-anchor="middle">1. סודיות</text>
+<text x="70" y="48" fill="#475569" font-size="9.5" text-anchor="middle">Confidentiality</text>
+<text x="70" y="68" fill="#0369a1" font-size="9.5" font-weight="700" text-anchor="middle">הצפנת תוכן ותעבורה</text>
+<rect x="142" y="8" width="124" height="80" rx="8" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5"/>
+<text x="204" y="30" fill="#0c4a6e" font-size="11.5" font-weight="800" text-anchor="middle">2. אימות זהות</text>
+<text x="204" y="48" fill="#475569" font-size="9.5" text-anchor="middle">Authentication</text>
+<text x="204" y="68" fill="#0369a1" font-size="9.5" font-weight="700" text-anchor="middle">וידוא זהות הצדדים</text>
+<rect x="276" y="8" width="124" height="80" rx="8" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5"/>
+<text x="338" y="30" fill="#0c4a6e" font-size="11.5" font-weight="800" text-anchor="middle">3. שלמות הודעה</text>
+<text x="338" y="48" fill="#475569" font-size="9.5" text-anchor="middle">Message Integrity</text>
+<text x="338" y="68" fill="#0369a1" font-size="9.5" font-weight="700" text-anchor="middle">מניעת שינוי בדרך</text>
+<rect x="410" y="8" width="124" height="80" rx="8" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5"/>
+<text x="472" y="30" fill="#0c4a6e" font-size="11.5" font-weight="800" text-anchor="middle">4. זמינות וגישה</text>
+<text x="472" y="48" fill="#475569" font-size="9.5" text-anchor="middle">Availability</text>
+<text x="472" y="68" fill="#0369a1" font-size="9.5" font-weight="700" text-anchor="middle">רציפות שירות למורשים</text>
+<rect x="544" y="8" width="128" height="80" rx="8" fill="#f0f9ff" stroke="#0284c7" stroke-width="2"/>
+<text x="608" y="30" fill="#075985" font-size="11.5" font-weight="900" text-anchor="middle">5. מניעת התכחשות ★</text>
+<text x="608" y="48" fill="#475569" font-size="9.5" text-anchor="middle">Non-Repudiation</text>
+<text x="608" y="68" fill="#0369a1" font-size="9.5" font-weight="700" text-anchor="middle">הוכחה מול צד שלישי</text>
+</svg>
 </div>
-<span class="fast-flow-arrow">──►</span>
-<div class="fast-flow-node">נמען (בוב)</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+<div class="basic-subcard">
+<div class="font-bold text-slate-900 mb-1">🔒 1. סודיות (Confidentiality)</div>
+<p class="text-slate-700 leading-relaxed">הבטחה שרק השולח והנמען המורשים יוכלו לקרוא את תוכן ההודעה ($\text{Plaintext} \to \text{Ciphertext}$). כולל גם <b>סודיות תעבורה (Traffic Confidentiality)</b> – הסתרת עצם קיום התקשורת, היקפה וכתובות המקור והיעד (למשל במצב מנהרה ב-IPsec).</p>
 </div>
-<div class="overflow-x-auto rounded-xl border border-slate-200 my-3">
+<div class="basic-subcard">
+<div class="font-bold text-slate-900 mb-1">🪪 2. אימות (Authentication)</div>
+<p class="text-slate-700 leading-relaxed">הבטחה שכל צד בתקשורת יודע בוודאות את זהות הצד השני ושהוא אינו מתחזה. <b>אימות טומן בחובו שלמות</b> – אין משמעות לאימות זהות השולח אם תוכן ההודעה שונה בדרך על ידי תוקף.</p>
+</div>
+<div class="basic-subcard">
+<div class="font-bold text-slate-900 mb-1">🛡️ 3. שלמות ההודעה (Message Integrity)</div>
+<p class="text-slate-700 leading-relaxed">הבטחה שההודעה הגיעה ליעדה בדיוק כפי שנשלחה, ללא הוספה, מחיקה או שינוי סיביות בדרך (מושגת באמצעות פונקציות גיבוב, MAC או חתימה דיגיטלית).</p>
+</div>
+<div class="basic-subcard">
+<div class="font-bold text-slate-900 mb-1">⚡ 4. זמינות ובקרת גישה (Availability &amp; Access)</div>
+<p class="text-slate-700 leading-relaxed">הבטחה שהשירות והרשת יהיו זמינים תמיד עבור משתמשים מורשים (הגנה מפני מתקפות DoS/DDoS), לצד אכיפת הרשאות גישה למשאבים (Access Control).</p>
+</div>
+</div>
+<div class="basic-callout">
+<strong>⚖️ 5. מניעת התכחשות / אי-כפירה (Non-Repudiation):</strong> השולח אינו יכול לטעון בדיעבד שלא שלח את המסמך. מושגת באמצעות <b>חתימה דיגיטלית</b> (המבוססת על מפתח פרטי הידוע לשולח בלבד) ומספקת הוכחה מחייבת גם כלפי <b>צד שלישי ניטרלי (שופט)</b>.
+</div>
+<div class="basic-callout-warn">
+<strong>⚠️ הבחנה קריטית למבחן (סודיות $\neq$ שלמות):</strong> הצפנה לבדה אינה מבטיחה שלמות! תוקף שאינו מבין את הטקסט המוצפן עדיין יכול להפוך או לשנות בו סיביות באקראי או במכוון, וללא מנגנון שלמות (MAC / חתימה) השינוי לא יתגלה.
+</div>
+</div>
+
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">2. איומים בערוץ התקשורת, תוכנות זדוניות (Malware) ואמון מול איומים</h3>
+<p class="text-xs text-slate-600">מיפוי תקיפות פסיביות ואקטיביות למטרות האבטחה הנפגעות, סוגי נוזקות וניתוח עלות-תועלת.</p>
+</div>
+<div class="flex items-center gap-2 shrink-0">
+<button class="sim-circle-btn" onclick="openSingleSim('sim-7-1-threats', '🕵️ סימולציה 7.1ב: סימולטור וקטורי התקיפה החי')" title="פתיחת מעבדה 7.1ב: סימולטור וקטורי התקיפה" type="button"><span class="text-xl">🕵️</span></button>
+<button class="sim-circle-btn" onclick="openSingleSim('sim-7-1-trust', '⚖️ סימולציה 7.1ג: מעבדת אמון, איומים וניתוח עלות-תועלת')" title="פתיחת מעבדה 7.1ג: מעבדת אמון ועלות-תועלת" type="button"><span class="text-xl">⚖️</span></button>
+</div>
+</div>
+<div class="overflow-x-auto rounded-xl border border-slate-200">
 <table class="w-full text-right border-collapse text-xs">
 <thead>
 <tr class="bg-slate-100 text-slate-900 border-b border-slate-200">
-<th class="p-2.5 font-extrabold">האיום</th>
+<th class="p-2.5 font-extrabold">האיום / מתקפה</th>
 <th class="p-2.5 font-extrabold">אופי התקיפה</th>
-<th class="p-2.5 font-extrabold">פעולת התוקף</th>
+<th class="p-2.5 font-extrabold">פעולת התוקף בערוץ</th>
 <th class="p-2.5 font-extrabold">מטרת האבטחה הנפגעת</th>
 </tr>
 </thead>
 <tbody class="divide-y divide-slate-200 bg-white">
 <tr>
-<td class="p-2.5 font-bold text-slate-900">האזנה (Eavesdropping)</td>
+<td class="p-2.5 font-bold text-slate-900">האזנה (Eavesdropping / Sniffing)</td>
 <td class="p-2.5">פסיבית</td>
-<td class="p-2.5 text-slate-700">יירוט וקריאת הודעות בערוץ ללא הרשאה (נפוץ ב-Wi-Fi/שידור).</td>
-<td class="p-2.5 font-semibold text-blue-900">סודיות (Confidentiality)</td>
+<td class="p-2.5 text-slate-700">יירוט וקריאת חבילות בערוץ ללא שינויין (נפוץ ברשתות אלחוטיות ושידור).</td>
+<td class="p-2.5 font-semibold text-sky-900">סודיות (Confidentiality)</td>
 </tr>
 <tr>
-<td class="p-2.5 font-bold text-slate-900">הזרקת הודעות (Injection)</td>
+<td class="p-2.5 font-bold text-slate-900">הזרקת הודעות (Message Injection)</td>
 <td class="p-2.5">אקטיבית</td>
-<td class="p-2.5 text-slate-700">הכנסת מנות מזויפות או שגויות לתוך חיבור קיים.</td>
-<td class="p-2.5 font-semibold text-blue-900">שלמות ואימות</td>
+<td class="p-2.5 text-slate-700">הכנסת מנות מזויפות או משובשות לתוך זרם תקשורת קיים.</td>
+<td class="p-2.5 font-semibold text-sky-900">שלמות ההודעה ואימות</td>
 </tr>
 <tr>
-<td class="p-2.5 font-bold text-slate-900">התחזות (Spoofing)</td>
+<td class="p-2.5 font-bold text-slate-900">התחזות (IP Spoofing)</td>
 <td class="p-2.5">אקטיבית</td>
-<td class="p-2.5 text-slate-700">זיוף זהות השולח, כגון זיוף כתובת המקור (<code>Source IP</code>) במנה.</td>
-<td class="p-2.5 font-semibold text-blue-900">אימות (Authentication)</td>
+<td class="p-2.5 text-slate-700">זיוף זהות השולח, כגון הצבת כתובת מקור מזויפת (<code>Source IP</code>) בכותרת החבילה.</td>
+<td class="p-2.5 font-semibold text-sky-900">אימות (Authentication)</td>
 </tr>
 <tr>
-<td class="p-2.5 font-bold text-slate-900">חטיפת קשר (Hijacking)</td>
+<td class="p-2.5 font-bold text-slate-900">חטיפת קשר (Session Hijacking)</td>
 <td class="p-2.5">אקטיבית</td>
-<td class="p-2.5 text-slate-700">השתלטות על חיבור פעיל קיים ותפיסת מקומו של אחד הצדדים.</td>
-<td class="p-2.5 font-semibold text-blue-900">אימות, שלמות וסודיות</td>
+<td class="p-2.5 text-slate-700">השתלטות על חיבור פעיל קיים לאחר שלב האימות ותפיסת מקומו של אחד הצדדים.</td>
+<td class="p-2.5 font-semibold text-sky-900">אימות, שלמות וסודיות</td>
 </tr>
 <tr>
 <td class="p-2.5 font-bold text-slate-900">מניעת שירות (DoS / DDoS)</td>
 <td class="p-2.5">אקטיבית</td>
-<td class="p-2.5 text-slate-700">כילוי משאבי השרת או הרשת ממקור יחיד (DoS) או ממקורות רבים (DDoS).</td>
-<td class="p-2.5 font-semibold text-blue-900">זמינות (Availability)</td>
+<td class="p-2.5 text-slate-700">הצפת משאבי השרת או הרשת ממקור יחיד (DoS) או ממקורות מבוזרים רבים (DDoS).</td>
+<td class="p-2.5 font-semibold text-sky-900">זמינות (Availability)</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs mt-3">
-<div class="fast-subcard">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+<div class="basic-subcard">
 <strong class="text-slate-900 block mb-1">🐛 תולעת (Worm) מול וירוס (Virus)</strong>
-<p class="text-slate-700 leading-relaxed"><b>תולעת</b> היא תוכנית עצמאית המשכפלת ומתפשטת מעצמה ברשת; <b>וירוס</b> הוא קטע קוד המוחדר לתוך קובץ/תוכנה אחרת ומופעל רק בהרצתם.</p>
+<p class="text-slate-700 leading-relaxed"><b>תולעת</b> היא תוכנית עצמאית המשכפלת ומתפשטת מעצמה ברשת ללא התערבות משתמש; <b>וירוס</b> הוא קטע קוד המוחדר לקובץ/תוכנה קיימים ומופעל רק בהרצתם.</p>
 </div>
-<div class="fast-subcard">
+<div class="basic-subcard">
 <strong class="text-slate-900 block mb-1">🕵️ דלת אחורית ורוגלה (Spyware)</strong>
-<p class="text-slate-700 leading-relaxed"><b>Backdoor</b> מאפשרת גישה מרחוק ללא אימות; <b>Spyware</b> אוספת מידע פרטי ומשדרת אותו החוצה (נראית לחומת אש כתקשורת רגילה).</p>
+<p class="text-slate-700 leading-relaxed"><b>Backdoor</b> מאפשרת כניסה עוקפת אימות למערכת; <b>Spyware</b> אוספת מידע פרטי ומשדרת אותו החוצה (ונראית לחומת אש כתקשורת יוצאת רגילה).</p>
 </div>
-<div class="fast-subcard">
+<div class="basic-subcard">
 <strong class="text-slate-900 block mb-1">🤖 רשת-בוטים (Botnet) ואמון מול איומים</strong>
-<p class="text-slate-700 leading-relaxed">מחשבים נגועים המאוגדים יחד לשיגור מתקפות <b>DDoS</b>. אבטחה תמיד מאזנת בין <b>הנחות אמון (Trust)</b>, <b>הערכת איומים</b> ו<b>תקורת הביצועים</b>.</p>
+<p class="text-slate-700 leading-relaxed">אלפי מחשבים נגועים הנשלטים מרחוק לשיגור <b>DDoS</b>. תכנון אבטחה נשען על הגדרת <b>בסיס המחשוב האמין (TCB)</b> ואיזון בין חומרת האיום לתקורת ההצפנה.</p>
 </div>
 </div>
-<div class="fast-sim-strip">
-<span class="text-xs font-bold text-slate-700">מעבדות תרגול לחלק זה:</span>
-<div class="flex flex-wrap gap-2">
-<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-7-1-threats', '🕵️ סימולציה 7.1ב: סימולטור וקטורי התקיפה החי')">🕹️ מעבדה 7.1ב (וקטורי תקיפה)</button>
-<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-7-1-trust', '⚖️ סימולציה 7.1ג: מעבדת אמון, איומים וניתוח עלות-תועלת')">🕹️ מעבדה 7.1ג (אמון ועלות)</button>
 </div>
 </div>
-</article>
+<div class="fast-mode-view space-y-4">
+<div class="fast-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+<span class="fast-badge">⚡ לימוד מהיר • יחידה 7.1 (סקירה מרוכזת)</span>
+<div class="flex items-center gap-1.5 flex-wrap">
+<button class="fast-sim-btn" onclick="openSingleSim('sim-7-1-pillars', '🏛️ סימולציה 7.1א: מעבדת 5 עמודי התווך של אבטחת רשתות')" type="button">🏛️ מעבדה 7.1א: 5 המטרות</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-7-1-threats', '🕵️ סימולציה 7.1ב: סימולטור וקטורי התקיפה החי')" type="button">🕵️ מעבדה 7.1ב: וקטורי תקיפה</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-7-1-trust', '⚖️ סימולציה 7.1ג: מעבדת אמון, איומים וניתוח עלות-תועלת')" type="button">⚖️ מעבדה 7.1ג: אמון ועלות</button>
+</div>
+</div>
+<h2 class="text-xl md:text-2xl font-black text-slate-900">7.1 מטרות האבטחה, איומים, Malware ואמון מול איומים</h2>
+<p class="text-xs text-slate-600"><b>שורש הבעיה:</b> מנות עוברות בנתבים חיצוניים, בשכבת ה-IP אין אימות מובנה ל-<code>Source IP</code>, ובמיתוג מנות משאבי הרשת משותפים.</p>
+</div>
+
+<div class="fast-visual-strip">
+<div class="fast-strip-node"><b>1. סודיות (Confidentiality):</b> רק מורשים קוראים את התוכן (הצפנה) + סודיות תעבורה (הסתרת מטא-דאטה).</div>
+<div class="fast-strip-node"><b>2. אימות (Authentication):</b> וידוא זהות הצד השני (נגד Spoofing). <b>אימות מחייב שלמות!</b></div>
+<div class="fast-strip-node"><b>3. שלמות וזמינות:</b> <b>Integrity</b> = ההודעה לא שונתה בדרך (Hash/MAC); <b>Availability</b> = השירות זמין (נגד DoS).</div>
+<div class="fast-strip-node fast-strip-highlight"><b>4. מניעת התכחשות (Non-Repudiation ★):</b> השולח לא יכול להכחיש שליחה מול שופט שלישי (באמצעות <b>חתימה דיגיטלית</b>).</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+<div class="fast-card">
+<div class="fast-card-title">🎯 מיפוי איומים למטרות האבטחה הנפגעות (קלאסי למבחן)</div>
+<p class="text-slate-700 leading-relaxed">• <b>האזנה (Eavesdropping – פסיבי):</b> קריאת תוכן בערוץ ➔ פוגע ב<b>סודיות</b>.<br/>• <b>התחזות (IP Spoofing – אקטיבי):</b> זיוף <code>Source IP</code> ➔ פוגע ב<b>אימות</b>.<br/>• <b>הזרקת/שינוי הודעות (Injection – אקטיבי):</b> שינוי סיביות/הכנסת מנות ➔ פוגע ב<b>שלמות ואימות</b>.<br/>• <b>חטיפת קשר (Hijacking – אקטיבי):</b> השתלטות על חיבור פעיל ➔ פוגע ב<b>אימות, שלמות וסודיות</b>.<br/>• <b>מניעת שירות (DoS / DDoS – אקטיבי):</b> הצפת משאבים ➔ פוגע ב<b>זמינות</b>.</p>
+</div>
+<div class="fast-card">
+<div class="fast-card-title">🦠 תוכנות זדוניות (Malware) וכללי ברזל</div>
+<p class="text-slate-700 leading-relaxed">• <b>וירוס מול תולעת:</b> <b>וירוס</b> מדביק קובץ/תוכנה ודורש הרצה; <b>תולעת (Worm)</b> היא תוכנה עצמאית המתפשטת מעצמה ברשת.<br/>• <b>Backdoor ו-Spyware:</b> דלת אחורית עוקפת אימות; רוגלה אוספת מידע ומשדרת החוצה.<br/>• <b>Botnet:</b> צבא מחשבים נגועים המשמש לשיגור מתקפות <b>DDoS</b>.<br/>• <b>מלכודת מבחן:</b> <b>סודיות $\neq$ שלמות!</b> הצפנה לבדה אינה מונעת מתוקף לשנות סיביות בטקסט המוצפן.</p>
+</div>
+</div>
 </div>
 <!-- Sub-Chapter Navigation Footer -->
 <div class="mt-12 pt-6 border-t border-sky-200 flex flex-wrap items-center justify-between gap-4">
@@ -986,7 +1225,7 @@ eq$ שלמות):</strong> הצפנה לבדה אינה מבטיחה שלמות! 
 </div>
 <!-- Fundamental Equation Banner -->
 <div class="p-6 rounded-2xl bg-[#0a192f] text-sky-100 text-white border-2 border-sky-300 shadow-md mb-6 text-center">
-<div class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">התנאי הבסיסי לכל מערכת הצפנה תקינה ( )</div>
+<div class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">התנאי הבסיסי לכל מערכת הצפנה תקינה</div>
 <div class="text-2xl md:text-3xl font-black font-mono tracking-wide text-white my-2" dir="ltr">
 $$D_{k_2}\big(E_{k_1}(P)\big) = P$$
 </div>
@@ -998,7 +1237,7 @@ $$D_{k_2}\big(E_{k_1}(P)\big) = P$$
 <div class="exam-trap-box p-6 rounded-2xl mb-6 space-y-3">
 <div class="flex flex-wrap items-center justify-between gap-2">
 <h4 class="text-lg font-black text-sky-950 flex items-center gap-2">
-<span>🎯</span> שאלת מבחן מובנית  (): שיטת ההצפנה $E(P) = xP + y$
+<span>🎯</span> שאלת מבחן מובנית: שיטת ההצפנה $E(P) = xP + y$
 </h4>
 <span class="px-3 py-0.5 rounded-full bg-sky-100 text-sky-950 text-xs font-bold border border-sky-300">שאלה קלאסית במבחן!</span>
 </div>
@@ -1103,7 +1342,7 @@ $$D_{k_2}\big(E_{k_1}(P)\big) = P$$
 <th class="p-3 font-black">תקן הצופן (NIST)</th>
 <th class="p-3 font-black">גודל מפתח</th>
 <th class="p-3 font-black">גודל בלוק</th>
-<th class="p-3 font-black">מאפיינים הנדסיים ורמת אבטחה (לפי )</th>
+<th class="p-3 font-black">מאפיינים הנדסיים ורמת אבטחה</th>
 </tr>
 </thead>
 <tbody class="divide-y divide-slate-200 bg-white">
@@ -1204,7 +1443,7 @@ $$D_{k_2}\big(E_{k_1}(P)\big) = P$$
 <!-- Deep Note on Kerberos & Needham-Schroeder from Textbook 8.4.3 -->
 <div class="p-6 rounded-2xl bg-slate-50 border-2 border-sky-200 mb-6 space-y-3">
 <h4 class="text-base font-black text-sky-950 flex items-center gap-2">
-<span>🏛️</span> העמקה  : כיצד פועלים Needham-Schroeder ו-Kerberos?
+<span>🏛️</span> העמקה: כיצד פועלים Needham-Schroeder ו-Kerberos?
 </h4>
 <p class="text-xs md:text-sm text-slate-700 leading-relaxed">
 כאשר משתמשים במרכז הפצת מפתחות (<b>KDC</b>),  מציג את פרוטוקול <b>Needham-Schroeder</b> ואת המערכת המעשית המבוססת עליו – <b>Kerberos</b> (שפותחה ב-MIT):
@@ -1299,75 +1538,84 @@ $$D_k(E_k(P)) = P$$
 </div>
 </div>
 </div>
-<div class="fast-mode-view">
-<header class="fast-header-card">
-<div class="fast-badge">⚡ לימוד מהיר • חלק 7.2</div>
-<h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight mb-2">7.2 יסודות הקריפטוגרפיה, הצפנה סימטרית ובעיית הפצת המפתחות</h2>
-<p class="text-sm text-slate-600 leading-relaxed">
-הצפנה ממירה הודעה גלויה להודעה מוצפנת שרק בעל המפתח המתאים יכול לשחזר. בחלק זה מוגדרים המודל המתמטי של הצפנה ופענוח, עקרון קרקהוף, צפני בלוקים ובעיית הפצת המפתח בהצפנה סימטרית.
-</p>
-</header>
-<!-- 7.2.1 המודל המתמטי ועקרון קרקהוף -->
-<article class="fast-article">
-<h3 class="fast-article-title">
-<span class="fast-num-badge">7.2.1</span>
-<span>המודל המתמטי של הצפנה ועקרון קרקהוף (Kerckhoffs)</span>
-</h3>
-<div class="fast-flow-strip" dir="ltr">
-<div class="fast-flow-node">Plaintext: $P$</div>
-<span class="fast-flow-arrow">──►</span>
-<div class="fast-flow-node bg-blue-50 border-blue-400">Encryption: $C = E_{k_1}(P)$</div>
-<span class="fast-flow-arrow">──►</span>
-<div class="fast-flow-node">Ciphertext: $C$</div>
-<span class="fast-flow-arrow">──►</span>
-<div class="fast-flow-node bg-blue-50 border-blue-400">Decryption: $P = D_{k_2}(C)$</div>
-<span class="fast-flow-arrow">──►</span>
-<div class="fast-flow-node">Plaintext: $P$</div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-3">
-<div class="fast-subcard text-xs space-y-1.5 text-slate-700">
-<strong class="text-slate-900 block text-sm">הגדרות והתנאי הבסיסי להצפנה:</strong>
-<p>• <b>מילת מידע (Plaintext – $P$):</b> ההודעה המקורית הקריאה.</p>
-<p>• <b>מילת קוד (Ciphertext – $C$):</b> ההודעה המוצפנת הנשלחת בערוץ.</p>
-<p>• <b>תנאי השחזור הבסיסי ($k_1$ מפתח הצפנה, $k_2$ מפתח פענוח):</b></p>
-<div class="fast-formula-box">$$D_{k_2}\big(E_{k_1}(P)\big) = P$$</div>
-</div>
-<div class="fast-subcard text-xs space-y-1.5 text-slate-700">
-<strong class="text-slate-900 block text-sm">עקרון קרקהוף ודוגמת $E(P) = xP + y$:</strong>
-<p>• <b>עקרון קרקהוף:</b> אלגוריתם ההצפנה עצמו גלוי וידוע לכולם, ו<b>הסודיות נשענת אך ורק על המפתח</b> (שיטה שביטחונה נשען על סודיות האלגוריתם אינה בטוחה כי האלגוריתם מתגלה).</p>
-<p>• <b>דוגמה:</b> בפונקציה $C = E(P) = xP + y$, הפענוח הוא $P = D(C) = \frac{C - y}{x}$. בשני הכיוונים נדרש הזוג $(x,y)$, ולכן זו <b>הצפנה סימטרית שבה המפתח הוא הזוג $(x,y)$</b>.</p>
+<div class="basic-mode-view space-y-5">
+<div class="basic-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="basic-badge">📖 לימוד בסיסי • יחידה 7.2</span>
+<div class="flex items-center gap-2">
+<button class="basic-top-btn" onclick="showTab('tab-exercises')" type="button">לתרגילים ומבחן מסכם 📝</button>
+<button class="basic-top-btn" onclick="showQuestions('tab-crypto-symmetric', '7.2 יסודות הקריפטוגרפיה והצפנה סימטרית', event)" type="button">❓ שאלות תרגול</button>
 </div>
 </div>
-<div class="fast-sim-strip">
-<span class="text-xs font-bold text-slate-700">תרגול חי של המודל המתמטי וצופן $xP+y$:</span>
-<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-7-2-cipher-math', '🧮 סימולציה 7.2א: מעבדת המודל המתמטי ושאלת xP+y')">🕹️ פתיחת מעבדה 7.2א</button>
+<h2 class="text-2xl md:text-3xl font-black text-slate-900">7.2 יסודות הקריפטוגרפיה, הצפנה סימטרית ובעיית הפצת המפתחות</h2>
+<p class="text-xs md:text-sm text-slate-600 mt-1">המודל המתמטי של הצפנה ופענוח, עקרון קרקהוף, חיפוש ממצה מול ניתוח תדירויות, צפני בלוקים (ECB, CBC, CTR), תקני DES/3DES/AES ובעיית הפצת המפתח בהצפנה סימטרית.</p>
 </div>
-</article>
-<!-- 7.2.2 ניסוי מתיש, ניתוח תדירויות וצפני בלוקים -->
-<article class="fast-article">
-<h3 class="fast-article-title">
-<span class="fast-num-badge">7.2.2</span>
-<span>ניסוי מתיש (Brute-Force), ניתוח תדירויות, צפני בלוקים ותקני DES / 3DES / AES</span>
-</h3>
-<div class="fast-callout-warn">
-<strong>❗ כלל יסוד: מרחב מפתחות גדול הוא תנאי הכרחי אך לא מספיק!</strong><br>
-ב<b>ניסוי מתיש (Exhaustive Key Search / Brute-Force)</b> תוקף שמכיר את האלגוריתם מנסה את כל $2^n$ המפתחות האפשריים, ולכן מרחב המפתחות חייב להיות עצום. אולם <b>זה לא מספיק</b>: צופן החלפה שמחליף כל אות באות אחרת לפי תמורה קבועה מאפשר $26! \approx 4 \times 10^{26}$ מפתחות, ובכל זאת קל לפרוץ אותו ב<b>ניתוח תדירויות (Frequency Analysis)</b> כי האותיות הנפוצות בשפה הופכות לאותיות הנפוצות בטקסט המוצפן (וכן בהתקפות טקסט-גלוי ידוע או נבחר).
+
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">1. המודל המתמטי של הצפנה ועקרון קרקהוף (Kerckhoffs)</h3>
+<p class="text-xs text-slate-600">הגדרת $P, C, E_{k_1}, D_{k_2}$, תנאי השחזור הבסיסי ושאלת הצופן הליניארי $E(P)=xP+y$.</p>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-3 my-3 text-xs">
-<div class="fast-subcard">
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-7-2-cipher-math', '🧮 סימולציה 7.2א: מעבדת המודל המתמטי ושאלת xP+y')" title="פתיחת מעבדה 7.2א: המודל המתמטי וצופן xP+y" type="button"><span class="text-xl">🧮</span></button>
+</div>
+<div class="my-2 p-3 rounded-xl bg-[#f4f8fb] border border-[#cbd5e1] overflow-x-auto">
+<svg class="w-full h-auto max-w-2xl mx-auto font-mono select-none" dir="ltr" viewBox="0 0 640 78">
+<rect x="8" y="14" width="110" height="50" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="63" y="36" fill="#0f172a" font-size="11" font-weight="800" text-anchor="middle">Plaintext (P)</text>
+<text x="63" y="52" fill="#475569" font-size="9.5" text-anchor="middle">Original msg</text>
+<path d="M122 39 L154 39" stroke="#0284c7" stroke-width="2" marker-end="url(#b-arr)"/>
+<rect x="158" y="10" width="140" height="58" rx="8" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.8"/>
+<text x="228" y="34" fill="#075985" font-size="11" font-weight="800" text-anchor="middle">Encrypt: E_k1(P)</text>
+<text x="228" y="52" fill="#0369a1" font-size="9.5" text-anchor="middle">Key k1</text>
+<path d="M302 39 L334 39" stroke="#0284c7" stroke-width="2"/>
+<rect x="338" y="14" width="115" height="50" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+<text x="395" y="36" fill="#92400e" font-size="11" font-weight="800" text-anchor="middle">Ciphertext (C)</text>
+<text x="395" y="52" fill="#78350f" font-size="9.5" text-anchor="middle">On public wire</text>
+<path d="M457 39 L485 39" stroke="#0284c7" stroke-width="2"/>
+<rect x="489" y="10" width="142" height="58" rx="8" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.8"/>
+<text x="560" y="34" fill="#075985" font-size="11" font-weight="800" text-anchor="middle">Decrypt: D_k2(C)=P</text>
+<text x="560" y="52" fill="#0369a1" font-size="9.5" text-anchor="middle">Key k2</text>
+</svg>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+<div class="basic-subcard space-y-1.5">
+<div class="font-bold text-slate-900">הגדרות ותנאי השחזור הבסיסי</div>
+<p class="text-slate-700 leading-relaxed">• <b>מילת מידע (Plaintext – $P$):</b> ההודעה המקורית הקריאה.<br/>• <b>מילת קוד (Ciphertext – $C$):</b> ההודעה המוצפנת $C = E_{k_1}(P)$.<br/>• <b>תנאי השחזור הבסיסי לכל מערכת הצפנה תקינה:</b> $$D_{k_2}\big(E_{k_1}(P)\big) = P$$</p>
+</div>
+<div class="basic-subcard space-y-1.5">
+<div class="font-bold text-slate-900">עקרון קרקהוף ודוגמת המבחן $E(P) = xP + y$</div>
+<p class="text-slate-700 leading-relaxed">• <b>עקרון קרקהוף:</b> אלגוריתם ההצפנה גלוי וידוע לכולם, ו<b>כל הסודיות נשענת אך ורק על המפתח</b>.<br/>• <b>דוגמת מבחן:</b> בפונקציה $C = E(P) = xP + y$, פעולת הפענוח היא $P = D(C) = \frac{C - y}{x}$. בשני הכיוונים נדרש הזוג $(x,y)$, ולכן זו <b>הצפנה סימטרית שבה המפתח הוא הזוג $(x,y)$</b> (לעומת $h(P)=P \bmod 97$ שהיא פונקציית גיבוב חד-כיוונית שאינה ניתנת לפענוח).</p>
+</div>
+</div>
+</div>
+
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">2. ניסוי מתיש (Brute-Force), ניתוח תדירויות, צפני בלוקים ותקני DES / 3DES / AES</h3>
+<p class="text-xs text-slate-600">מדוע מרחב מפתחות גדול הוא תנאי הכרחי אך לא מספיק ($26!$), ומצבי הפעלה ECB מול CBC ו-CTR.</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-7-2-brute-freq', '🔍 סימולציה 7.2ב: חיפוש ממצה מול ניתוח תדירויות ו-ECB מול CBC')" title="פתיחת מעבדה 7.2ב: Brute-Force מול תדירויות ו-CBC" type="button"><span class="text-xl">🔍</span></button>
+</div>
+<div class="basic-callout-warn">
+<strong>❗ מרחב מפתחות גדול הוא תנאי הכרחי אך לא מספיק!</strong> ב<b>ניסוי מתיש (Brute-Force)</b> תוקף מנסה את כל $2^n$ המפתחות האפשריים, ולכן מרחב המפתחות חייב להיות עצום. אך בצופן החלפה חד-אלפביתי קיימים $26! \approx 4 \times 10^{26}$ מפתחות, ובכל זאת קל לפרוץ אותו ב<b>ניתוח תדירויות (Frequency Analysis)</b> כי שכיחות האותיות נשמרת (וכן בהתקפות טקסט-גלוי ידוע או נבחר).
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+<div class="basic-subcard">
 <strong class="text-slate-900 block mb-1">1. מצב ECB (Electronic Codebook)</strong>
-<p class="text-slate-700 leading-relaxed">כל בלוק מוצפן בנפרד במפתח $k$. <b>חיסרון:</b> בלוקי מידע זהים מפיקים בלוקי צופן זהים וחושפים תבניות.</p>
+<p class="text-slate-700 leading-relaxed">כל בלוק מוצפן בנפרד במפתח $k$. <b>חיסרון:</b> בלוקי מקור זהים מפיקים בלוקי צופן זהים וחושפים תבניות ויזואליות ומבניות.</p>
 </div>
-<div class="fast-subcard">
+<div class="basic-subcard">
 <strong class="text-slate-900 block mb-1">2. מצב CBC (Cipher Block Chaining)</strong>
-<p class="text-slate-700 leading-relaxed">כל בלוק עובר XOR עם בלוק הצופן הקודם: $C_i = E_k(P_i \oplus C_{i-1})$. הבלוק הראשון עובר XOR עם <b>וקטור אתחול (IV)</b> אקראי ובלתי-צפוי (הנשלח גלוי).</p>
+<p class="text-slate-700 leading-relaxed">כל בלוק עובר XOR עם בלוק הצופן הקודם: $C_i = E_k(P_i \oplus C_{i-1})$. הבלוק הראשון עובר XOR עם <b>וקטור אתחול (IV)</b> אקראי (הנשלח גלוי).</p>
 </div>
-<div class="fast-subcard">
+<div class="basic-subcard">
 <strong class="text-slate-900 block mb-1">3. מצב CTR (Counter Mode)</strong>
-<p class="text-slate-700 leading-relaxed">ערכים עוקבים של מונה ($1, 2, 3, \dots$) מוצפנים ומשולבים ב-XOR עם בלוקי המידע העוקבים.</p>
+<p class="text-slate-700 leading-relaxed">ערכים עוקבים של מונה מוצפנים במפתח $k$ ומשולבים ב-XOR עם בלוקי המידע (מאפשר עיבוד מקבילי מהיר).</p>
 </div>
 </div>
-<div class="overflow-x-auto rounded-xl border border-slate-200 my-3">
+<div class="overflow-x-auto rounded-xl border border-slate-200">
 <table class="w-full text-right border-collapse text-xs">
 <thead>
 <tr class="bg-slate-100 text-slate-900 border-b border-slate-200">
@@ -1394,40 +1642,67 @@ $$D_k(E_k(P)) = P$$
 <td class="p-2.5 font-bold font-mono text-slate-900">AES</td>
 <td class="p-2.5 font-mono">128 / 192 / 256 ביט</td>
 <td class="p-2.5 font-mono">128 ביט</td>
-<td class="p-2.5 text-slate-700">התקן המודרני המוביל – מהיר מאוד בתוכנה ובחומרה ועמיד בפני תקיפות מוכרות.</td>
+<td class="p-2.5 text-slate-700">התקן המודרני המוביל – מהיר מאוד בתוכנה ובחומרה ועמיד בפני כל התקיפות המוכרות.</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="fast-sim-strip">
-<span class="text-xs font-bold text-slate-700">השוואת Brute-Force מול ניתוח תדירויות ו-ECB מול CBC:</span>
-<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-7-2-brute-freq', '🔍 סימולציה 7.2ב: חיפוש ממצה מול ניתוח תדירויות ו-ECB מול CBC')">🕹️ פתיחת מעבדה 7.2ב</button>
 </div>
-</article>
-<!-- 7.2.3 הצפנה סימטרית ובעיית הפצת המפתחות -->
-<article class="fast-article">
-<h3 class="fast-article-title">
-<span class="fast-num-badge">7.2.3</span>
-<span>הצפנה סימטרית ($k_1 = k_2$) ובעיית הפצת המפתחות (Key Distribution Problem)</span>
-</h3>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-<div class="fast-subcard text-xs space-y-1.5">
-<strong class="text-blue-900 block text-sm">✅ הצפנה סימטרית ($D_k(E_k(P)) = P$):</strong>
-<p class="text-slate-700 leading-relaxed">אותו מפתח סודי משותף משמש גם להצפנה וגם לפענוח ($k_1 = k_2$). <b>יתרון:</b> מהירה מאוד ומתאימה להצפנת כמויות גדולות של מידע.</p>
+
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">3. הצפנה סימטרית ($k_1 = k_2$), בעיית הפצת המפתחות ו-KDC / Kerberos</h3>
+<p class="text-xs text-slate-600">יתרון המהירות מול בעיית העברת המפתח הסודי וגידול $\frac{N(N-1)}{2}$ מפתחות ברשת.</p>
 </div>
-<div class="fast-subcard text-xs space-y-1.5">
-<strong class="text-slate-900 block text-sm">⚠️ החיסרון: בעיית הפצת המפתח:</strong>
-<p class="text-slate-700 leading-relaxed">איך מעבירים את המפתח הסודי מרחוק על גבי ערוץ לא מאובטח בלי שצד שלישי יירט אותו? (אילו היה ערוץ בטוח להעברת המפתח, יכולנו להעביר בו את המידע עצמו). בנוסף, ל-$N$ משתתפים נדרשים $\frac{N(N-1)}{2}$ מפתחות.</p>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-7-2-kdc', '🎟️ סימולציה 7.2ג: בעיית הפצת המפתחות, KDC ו-Kerberos')" title="פתיחת מעבדה 7.2ג: בעיית הפצת המפתחות ו-KDC" type="button"><span class="text-xl">🎟️</span></button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+<div class="basic-subcard">
+<strong class="text-sky-900 block mb-1">✅ הצפנה סימטרית ($D_k(E_k(P)) = P$)</strong>
+<p class="text-slate-700 leading-relaxed">אותו מפתח סודי משותף משמש גם להצפנה וגם לפענוח ($k_1 = k_2$). <b>יתרון מרכזי:</b> מהירה מאוד חישובית ומתאימה להצפנת כמויות גדולות של מידע בזמן אמת.</p>
+</div>
+<div class="basic-subcard">
+<strong class="text-slate-900 block mb-1">⚠️ החיסרון: בעיית הפצת המפתח (Key Distribution)</strong>
+<p class="text-slate-700 leading-relaxed">כיצד מעבירים את המפתח הסודי לצד השני על גבי ערוץ לא מאובטח בלי שייורט? בנוסף, לתקשורת מלאה בין $N$ משתמשים נדרשים $\frac{N(N-1)}{2} = O(N^2)$ מפתחות.</p>
 </div>
 </div>
-<div class="fast-callout-sky mt-3">
-<strong>🏢 פתרון ארגוני – מרכז הפצת מפתחות (KDC / Kerberos):</strong> כל אחד מ-$N$ המשתמשים חולק מפתח אב סודי רק מול שרת ה-KDC ($N$ מפתחות בלבד). ה-KDC (במערכת Kerberos: שרת אימות <code>AS</code> ושרת כרטיסים <code>TGS</code>) מנפיק לצדדים מפתח מושב זמני (<code>Session Key</code>) ומשלב <code>Nonce</code> או חותמות זמן למניעת מתקפת שידור חוזר (Replay Attack). באינטרנט העולמי אין KDC מרכזי – וזהו הזרז לפיתוח <b>ההצפנה האסימטרית</b>.
+<div class="basic-callout">
+<strong>🏢 פתרון ארגוני – מרכז הפצת מפתחות (KDC / Kerberos):</strong> כל אחד מ-$N$ המשתמשים חולק מפתח אב סודי רק מול שרת ה-KDC ($N$ מפתחות בלבד). ה-KDC (ב-Kerberos: שרת אימות <code>AS</code> ושרת כרטיסים <code>TGS</code>) מנפיק לצדדים מפתח מושב זמני (<code>Session Key</code>) ומשלב <code>Nonce</code> או חותמות זמן למניעת מתקפת שידור חוזר (Replay Attack). באינטרנט העולמי אין KDC מרכזי – ולכן נדרשת <b>הצפנה אסימטרית</b>.
 </div>
-<div class="fast-sim-strip">
-<span class="text-xs font-bold text-slate-700">מחשבון $\frac{N(N-1)}{2}$ וסימולטור KDC:</span>
-<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-7-2-kdc', '🎟️ סימולציה 7.2ג: בעיית הפצת המפתחות, KDC ו-Kerberos')">🕹️ פתיחת מעבדה 7.2ג</button>
 </div>
-</article>
+</div>
+<div class="fast-mode-view space-y-4">
+<div class="fast-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+<span class="fast-badge">⚡ לימוד מהיר • יחידה 7.2 (סקירה מרוכזת)</span>
+<div class="flex items-center gap-1.5 flex-wrap">
+<button class="fast-sim-btn" onclick="openSingleSim('sim-7-2-cipher-math', '🧮 סימולציה 7.2א: מעבדת המודל המתמטי ושאלת xP+y')" type="button">🧮 מעבדה 7.2א: מודל ו-xP+y</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-7-2-brute-freq', '🔍 סימולציה 7.2ב: חיפוש ממצה מול ניתוח תדירויות ו-ECB מול CBC')" type="button">🔍 מעבדה 7.2ב: Brute-Force ו-CBC</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-7-2-kdc', '🎟️ סימולציה 7.2ג: בעיית הפצת המפתחות, KDC ו-Kerberos')" type="button">🎟️ מעבדה 7.2ג: KDC</button>
+</div>
+</div>
+<h2 class="text-xl md:text-2xl font-black text-slate-900">7.2 קריפטוגרפיה, הצפנה סימטרית ($k_1=k_2$), צפני בלוקים ו-KDC</h2>
+<p class="text-xs text-slate-600"><b>תנאי היסוד לכל מערכת הצפנה:</b> $C = E_{k_1}(P)$ ו-$D_{k_2}(E_{k_1}(P)) = P$. בהצפנה סימטרית: $k_1 = k_2 = k$.</p>
+</div>
+
+<div class="fast-visual-strip">
+<div class="fast-strip-node"><b>עקרון קרקהוף:</b> האלגוריתם גלוי לכולם; <b>הסודיות נשענת אך ורק על המפתח</b>.</div>
+<div class="fast-strip-node"><b>שאלת מבחן $E(P)=xP+y$:</b> פענוח $D(C)=(C-y)/x$ ➔ <b>הצפנה סימטרית</b>, המפתח הוא הזוג $(x,y)$.</div>
+<div class="fast-strip-node"><b>Brute-Force מול תדירויות:</b> מרחב מפתחות גדול הוא <b>תנאי הכרחי אך לא מספיק</b> (צופן החלפה עם $26!$ נפרץ בניתוח תדירויות!).</div>
+<div class="fast-strip-node fast-strip-highlight"><b>בעיית הפצת המפתח ★:</b> הצפנה סימטרית מהירה מאוד, אך דורשת העברת המפתח הסודי בערוץ בטוח ו-$\frac{N(N-1)}{2}$ מפתחות.</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+<div class="fast-card">
+<div class="fast-card-title">🧱 צפני בלוקים (ECB, CBC, CTR) ותקני DES / 3DES / AES</div>
+<p class="text-slate-700 leading-relaxed">• <b>ECB:</b> כל בלוק מוצפן בנפרד (חושף תבניות זהות).<br/>• <b>CBC:</b> $C_i = E_k(P_i \oplus C_{i-1})$ עם וקטור אתחול <b>IV</b> אקראי וגלוי לבלוק הראשון.<br/>• <b>CTR:</b> הצפנת מונה רץ ו-XOR עם המידע.<br/>• <b>DES:</b> מפתח 56 ביט, בלוק 64 ביט (שביר ב-Brute-Force).<br/>• <b>3DES:</b> $E_{k_3}(D_{k_2}(E_{k_1}(P)))$, מפתח 168 ביט (חוזק אפקטיבי 112 ביט).<br/>• <b>AES:</b> מפתח 128/192/256 ביט, בלוק 128 ביט (התקן המודרני המהיר).</p>
+</div>
+<div class="fast-card">
+<div class="fast-card-title">🏢 פתרון הפצת המפתחות בארגון: KDC ו-Kerberos</div>
+<p class="text-slate-700 leading-relaxed">• <b>רשת ללא KDC:</b> $\frac{N(N-1)}{2}$ מפתחות (עבור $N=1000 \implies 499,500$ מפתחות).<br/>• <b>מרכז הפצת מפתחות (KDC):</b> כל משתמש חולק מפתח אב רק עם השרת ($N$ מפתחות בלבד!). השרת מייצר <b>מפתח מושב זמני (Session Key)</b> מוצפן עבור שני הצדדים.<br/>• <b>Kerberos:</b> מפריד לשרת אימות (<code>AS</code>) ושרת כרטיסים (<code>TGS</code>), ומשתמש ב-<code>Nonce</code> וחותמת זמן נגד <b>Replay Attack</b>.</p>
+</div>
+</div>
 </div>
 <!-- Sub-Chapter Navigation Footer -->
 <div class="mt-12 pt-6 border-t border-sky-200 flex flex-wrap items-center justify-between gap-4">
@@ -1534,7 +1809,7 @@ $$P = D_{\text{PrivateKey}_B}(C) = D_B(E_B(P))$$
 </div>
 <!-- The 3 Requirements from Slide 14 -->
 <div class="p-6 rounded-2xl bg-slate-50 border-2 border-sky-200 mb-6">
-<h4 class="text-lg font-black text-sky-950 mb-3">📋 שלוש הדרישות משיטת הצפנה אסימטרית תקינה ( ):</h4>
+<h4 class="text-lg font-black text-sky-950 mb-3">📋 שלוש הדרישות משיטת הצפנה אסימטרית תקינה:</h4>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs md:text-sm">
 <div class="p-4 bg-white rounded-xl border border-sky-200 shadow-xs">
 <span class="inline-block px-2 py-0.5 rounded bg-sky-100 text-sky-950 font-bold text-xs border border-sky-300 mb-1.5">דרישה 1: תקינות הפענוח</span>
@@ -1731,7 +2006,7 @@ $$P = C^d \bmod n$$
 <span class="bg-gradient-to-r from-blue-700 to-sky-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-black text-lg border border-sky-300 shadow-xs">3</span>
 <div>
 <div>החלפת מפתחות דיפי-הלמן (Diffie-Hellman) ומתקפת אדם-באמצע (MITM)</div>
-<div class="text-xs font-normal text-slate-500 mt-0.5"> ב: בעיית הלוגריתם הבדיד, הדוגמה המספרית ($p=5, g=2$) ופגיעות ל-MITM</div>
+<div class="text-xs font-normal text-slate-500 mt-0.5">בעיית הלוגריתם הבדיד, הדוגמה המספרית ($p=5, g=2$) ופגיעות ל-MITM</div>
 </div>
 </h3>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
@@ -1768,80 +2043,79 @@ $$P = C^d \bmod n$$
 </div>
 </div>
 </div>
-<div class="fast-mode-view">
-<header class="fast-header-card">
-<div class="fast-badge">⚡ לימוד מהיר • חלק 7.3</div>
-<h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight mb-2">7.3 הצפנה אסימטרית, אלגוריתם RSA ושילוב היברידי</h2>
-<p class="text-sm text-slate-600 leading-relaxed">
-הצפנה אסימטרית פותרת את בעיית הפצת המפתח ללא מפגש מקדים: לכל משתתף זוג מפתחות מתמטיים – מפתח ציבורי להצפנה שגלוי לכולם, ומפתח פרטי לפענוח שנשמר בסוד אצל בעליו בלבד.
-</p>
-</header>
-<!-- 7.3.1 מודל ההצפנה האסימטרית -->
-<article class="fast-article">
-<h3 class="fast-article-title">
-<span class="fast-num-badge">7.3.1</span>
-<span>מודל ההצפנה האסימטרית ($k_1 \neq k_2$) ושלוש הדרישות</span>
-</h3>
-<div class="fast-flow-strip">
-<div class="fast-flow-node">1. בוב מפרסם מפתח ציבורי $E_B$<br><span class="text-[11px] font-normal text-slate-600">(ושומר בסוד את הפרטי $D_B$)</span></div>
-<span class="fast-flow-arrow">──►</span>
-<div class="fast-flow-node bg-blue-50 border-blue-400">2. אליס מצפינה במפתח הציבורי של בוב:<br><span dir="ltr" class="font-mono">$C = E_B(P)$</span></div>
-<span class="fast-flow-arrow">──►</span>
-<div class="fast-flow-node">3. בוב מפענח במפתח הפרטי שלו:<br><span dir="ltr" class="font-mono">$D_B(C) = D_B(E_B(P)) = P$</span></div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-3 my-3 text-xs">
-<div class="fast-subcard">
-<strong class="text-blue-900 block mb-1">דרישה 1: שחזור תקין</strong>
-<p class="text-slate-700">הפענוח במפתח הפרטי מחזיר את המקור: $D_B(E_B(P)) = P$. (אף גורם אחר, כולל אליס שהצפינה, לא יכול לפענח את $C$ ללא $D_B$).</p>
-</div>
-<div class="fast-subcard">
-<strong class="text-blue-900 block mb-1">דרישה 2: חד-כיווניות המפתח</strong>
-<p class="text-slate-700">אי אפשר בזמן סביר לחשב את המפתח הפרטי $D_B$ מתוך המפתח הציבורי הגלוי $E_B$.</p>
-</div>
-<div class="fast-subcard">
-<strong class="text-blue-900 block mb-1">דרישה 3: עמידות לזוגות $(P,C)$</strong>
-<p class="text-slate-700">גם אם תוקף מייצר ומכיר זוגות רבים של טקסט גלוי ומוצפן בעזרת $E_B$, הוא אינו יכול לגלות את $D_B$.</p>
+<div class="basic-mode-view space-y-5">
+<div class="basic-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="basic-badge">📖 לימוד בסיסי • יחידה 7.3</span>
+<div class="flex items-center gap-2">
+<button class="basic-top-btn" onclick="showTab('tab-exercises')" type="button">לתרגילים ומבחן מסכם 📝</button>
+<button class="basic-top-btn" onclick="showQuestions('tab-asymmetric-rsa', '7.3 הצפנה אסימטרית, RSA ו-Diffie-Hellman', event)" type="button">❓ שאלות תרגול</button>
 </div>
 </div>
-<div class="fast-sim-strip">
-<span class="text-xs font-bold text-slate-700">תרגול מסלול ההצפנה האסימטרית וההיברידית:</span>
-<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-7-3-asymmetric', '🔐 סימולציה 7.3א: מסלול ההצפנה האסימטרית והצפנה היברידית')">🕹️ פתיחת מעבדה 7.3א</button>
+<h2 class="text-2xl md:text-3xl font-black text-slate-900">7.3 הצפנה אסימטרית, אלגוריתם RSA, שילוב היברידי ו-Diffie-Hellman</h2>
+<p class="text-xs md:text-sm text-slate-600 mt-1">פתרון בעיית הפצת המפתח באמצעות זוג מפתחות מתמטיים ($k_{\text{pub}} \neq k_{\text{priv}}$), שלבי אלגוריתם RSA, השילוב ההיברידי ב-TLS והחלפת מפתחות דיפי-הלמן.</p>
 </div>
-</article>
-<!-- 7.3.2 אלגוריתם RSA והשוואה סימטרית מול אסימטרית -->
-<article class="fast-article">
-<h3 class="fast-article-title">
-<span class="fast-num-badge">7.3.2</span>
-<span>אלגוריתם RSA, השילוב ההיברידי (TLS) וטבלת השוואה</span>
-</h3>
-<p class="text-xs md:text-sm text-slate-700 leading-relaxed mb-3">
-<b>הבסיס המתמטי של RSA (ריבסט, שמיר, אדלמן):</b> מבוסס על בעיה שקל לחשב בכיוון אחד וקשה מאוד בכיוון ההפוך – <b>קל לכפול שני מספרים ראשוניים גדולים $n = p \cdot q$</b> (ו-$n$ מפורסם במפתח הציבורי), אך <b>קשה מאוד לפרק את $n$ לגורמיו הראשוניים $p, q$</b> הדרושים לחישוב $\phi(n) = (p-1)(q-1)$ ולגזירת המפתח הפרטי!
-</p>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-3 my-3 text-xs">
-<div class="fast-subcard">
+
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">1. מודל ההצפנה האסימטרית ($k_1 \neq k_2$) ושלוש הדרישות הפורמליות</h3>
+<p class="text-xs text-slate-600">מפתח ציבורי ($E_B$) ידוע לכולם להצפנה, ומפתח פרטי ($D_B$) ידוע רק לנמען לפענוח (ערוץ רבים-לאחד).</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-7-3-asymmetric', '🔐 סימולציה 7.3א: מסלול ההצפנה האסימטרית והצפנה היברידית')" title="פתיחת מעבדה 7.3א: הצפנה אסימטרית והיברידית" type="button"><span class="text-xl">🔐</span></button>
+</div>
+<div class="my-2 p-3 rounded-xl bg-[#f4f8fb] border border-[#cbd5e1] overflow-x-auto">
+<svg class="w-full h-auto max-w-2xl mx-auto select-none" viewBox="0 0 640 86">
+<rect x="10" y="12" width="185" height="62" rx="8" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5"/>
+<text x="102" y="34" fill="#0c4a6e" font-size="11.5" font-weight="800" text-anchor="middle">1. בוב מפרסם מפתח ציבורי E_B</text>
+<text x="102" y="54" fill="#475569" font-size="10" text-anchor="middle">ושומר בסוד מוחלט את הפרטי D_B</text>
+<rect x="225" y="12" width="190" height="62" rx="8" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.8"/>
+<text x="320" y="34" fill="#075985" font-size="11.5" font-weight="800" text-anchor="middle">2. אליס מצפינה בציבורי של בוב</text>
+<text x="320" y="54" fill="#0369a1" font-size="10.5" font-weight="700" text-anchor="middle" direction="ltr">C = E_B(P)</text>
+<rect x="445" y="12" width="185" height="62" rx="8" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5"/>
+<text x="537" y="34" fill="#0c4a6e" font-size="11.5" font-weight="800" text-anchor="middle">3. רק בוב מפענח בפרטי שלו</text>
+<text x="537" y="54" fill="#0369a1" font-size="10.5" font-weight="700" text-anchor="middle" direction="ltr">D_B(C) = D_B(E_B(P)) = P</text>
+</svg>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+<div class="basic-subcard">
+<strong class="text-sky-900 block mb-1">דרישה 1: שחזור תקין</strong>
+<p class="text-slate-700 leading-relaxed">הפענוח במפתח הפרטי מחזיר את המקור: $D_B(E_B(P)) = P$. אף גורם אחר (כולל אליס שהצפינה!) אינו יכול לפענח את $C$ ללא $D_B$.</p>
+</div>
+<div class="basic-subcard">
+<strong class="text-sky-900 block mb-1">דרישה 2: חד-כיווניות המפתח</strong>
+<p class="text-slate-700 leading-relaxed">אי אפשר בזמן סביר לחשב או לגזור את המפתח הפרטי $D_B$ מתוך המפתח הציבורי הגלוי $E_B$.</p>
+</div>
+<div class="basic-subcard">
+<strong class="text-sky-900 block mb-1">דרישה 3: עמידות לזוגות $(P,C)$</strong>
+<p class="text-slate-700 leading-relaxed">גם אם תוקף מייצר ומכיר זוגות רבים של טקסט גלוי ומוצפן בעזרת $E_B$, הוא אינו יכול לגלות את $D_B$.</p>
+</div>
+</div>
+</div>
+
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">2. אלגוריתם RSA, השילוב ההיברידי (TLS) והשוואה מול הצפנה סימטרית</h3>
+<p class="text-xs text-slate-600">קושי פירוק $n = p \cdot q$ לגורמים, נוסחאות יצירת המפתחות, והשילוב המעשי עם הצפנה סימטרית.</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-7-3-rsa', '🧮 סימולציה 7.3ב: מעבדת RSA חיה – יצירת מפתחות, הצפנה ופענוח')" title="פתיחת מעבדה 7.3ב: מחשבון RSA אינטראקטיבי" type="button"><span class="text-xl">🧮</span></button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+<div class="basic-subcard">
 <strong class="text-slate-900 block mb-1">1. בניית המפתחות ב-RSA</strong>
-<p class="text-slate-700 leading-relaxed">
-• בוחרים ראשוניים $p, q$, מחשבים $n = p \cdot q$ ו-$\phi(n)=(p-1)(q-1)$.<br>
-• בוחרים $e$ זר ל-$\phi(n)$, ומחשבים $d$ המקיים $e \cdot d \equiv 1 \pmod{\phi(n)}$.<br>
-• <b>ציבורי:</b> $(e,n)$ | <b>פרטי:</b> $(d,n)$.
-</p>
+<p class="text-slate-700 leading-relaxed">• בוחרים ראשוניים גדולים $p, q$, מחשבים $n = p \cdot q$ ו-$\phi(n)=(p-1)(q-1)$.<br/>• בוחרים $e$ זר ל-$\phi(n)$ ($\gcd(e,\phi(n))=1$), ומחשבים $d$ המקיים $e \cdot d \equiv 1 \pmod{\phi(n)}$.<br/>• <b>ציבורי:</b> $(e,n)$ | <b>פרטי:</b> $(d,n)$.</p>
 </div>
-<div class="fast-subcard">
-<strong class="text-slate-900 block mb-1">2. נוסחאות הצפנה ופענוח</strong>
-<p class="text-slate-700 leading-relaxed">
-• <b>הצפנה:</b> $C = P^e \bmod n$<br>
-• <b>פענוח:</b> $P = C^d \bmod n$<br>
-• מתקיים $D(E(P)) = E(D(P)) = P$ (דו-כיווניות המאפשרת חתימה דיגיטלית).
-</p>
+<div class="basic-subcard">
+<strong class="text-slate-900 block mb-1">2. הצפנה, פענוח וקושי חישובי</strong>
+<p class="text-slate-700 leading-relaxed">• <b>הצפנה:</b> $C = P^e \bmod n$<br/>• <b>פענוח:</b> $P = C^d \bmod n$<br/>• <b>הבסיס:</b> קל לכפול $p \cdot q = n$, אך קשה מאוד לפרק את $n$ לגורמיו $p, q$ כדי לחשב את $\phi(n)$ ולמצוא את $d$. מתקיים גם $D(E(P))=E(D(P))=P$.</p>
 </div>
-<div class="fast-subcard">
+<div class="basic-subcard">
 <strong class="text-slate-900 block mb-1">3. שילוב היברידי בפועל (TLS)</strong>
-<p class="text-slate-700 leading-relaxed">
-הצפנה אסימטרית <b>איטית מאוד</b>. לכן בפועל: אליס מגרילה <b>מפתח סימטרי חדש</b>, מצפינה אותו במפתח הציבורי של בוב ($E_B$) ושולחת; בוב מפענח ב-$D_B$, ומכאן מצפינים את המידע עצמו בהצפנה הסימטרית המהירה.
-</p>
+<p class="text-slate-700 leading-relaxed">הצפנה אסימטרית <b>איטית פי 100–1,000</b> מסימטרית. לכן בפועל: אליס מגרילה <b>מפתח מושב סימטרי $K_S$</b>, מצפינה רק אותו במפתח הציבורי של בוב $E_B(K_S)$, ומכאן מצפינים את המידע ב-$K_S$ המהיר.</p>
 </div>
 </div>
-<div class="overflow-x-auto rounded-xl border border-slate-200 my-3">
+<div class="overflow-x-auto rounded-xl border border-slate-200">
 <table class="w-full text-right border-collapse text-xs">
 <thead>
 <tr class="bg-slate-100 text-slate-900 border-b border-slate-200">
@@ -1857,48 +2131,71 @@ $$P = C^d \bmod n$$
 <td class="p-2.5 text-slate-700">מפתח ציבורי להצפנה (גלוי לכולם) + מפתח פרטי לפענוח (רק אצל בעליו).</td>
 </tr>
 <tr>
-<td class="p-2.5 font-bold text-slate-900">יתרון מרכזי</td>
-<td class="p-2.5 text-slate-700"><b>מהירה מאוד</b>, מתאימה להצפנת כמויות גדולות של מידע.</td>
-<td class="p-2.5 text-slate-700"><b>פותרת את בעיית הפצת המפתח</b> (אין צורך להעביר סוד מראש בערוץ).</td>
-</tr>
-<tr>
-<td class="p-2.5 font-bold text-slate-900">חיסרון מרכזי</td>
-<td class="p-2.5 text-slate-700">חייבים להעביר את המפתח הסודי לצד השני בדרך בטוחה.</td>
-<td class="p-2.5 text-slate-700"><b>איטית מאוד</b>, לא מעשית להצפנה ישירה של כמות מידע גדולה.</td>
+<td class="p-2.5 font-bold text-slate-900">יתרון וחיסרון</td>
+<td class="p-2.5 text-slate-700"><b>יתרון:</b> מהירה מאוד למידע רב. <b>חיסרון:</b> בעיית הפצת המפתח הסודי.</td>
+<td class="p-2.5 text-slate-700"><b>יתרון:</b> פותרת את הפצת המפתח. <b>חיסרון:</b> איטית מאוד חישובית.</td>
 </tr>
 <tr>
 <td class="p-2.5 font-bold text-slate-900">שימוש עיקרי</td>
-<td class="p-2.5 text-slate-700">הצפנת המידע השוטף עצמו.</td>
+<td class="p-2.5 text-slate-700">הצפנת תעבורת המידע השוטפת עצמה (AES).</td>
 <td class="p-2.5 text-slate-700"><b>1. העברת מפתח סימטרי</b> ו-<b>2. חתימות דיגיטליות</b>.</td>
 </tr>
 </tbody>
 </table>
 </div>
-</article>
-<!-- 7.3.3 דיפי-הלמן -->
-<article class="fast-article">
-<h3 class="fast-article-title">
-<span class="fast-num-badge">7.3.3</span>
-<span>החלפת מפתחות דיפי-הלמן (Diffie-Hellman) ומתקפת אדם-באמצע (MITM)</span>
-</h3>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-<div class="fast-subcard">
-<strong class="text-slate-900 block mb-1">🤝 אופן הפעולה (בעיית הלוגריתם הבדיד):</strong>
+</div>
+
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">3. החלפת מפתחות דיפי-הלמן (Diffie-Hellman) ומתקפת אדם-באמצע (MITM)</h3>
+<p class="text-xs text-slate-600">יצירת סוד משותף $g^{ab} \bmod p$ על ערוץ פומבי ובעיית הלוגריתם הבדיד.</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-7-3-dh', '🤝 סימולציה 7.3ג: מעבדת Diffie-Hellman ומתקפת אדם-באמצע [MITM]')" title="פתיחת מעבדה 7.3ג: Diffie-Hellman ו-MITM" type="button"><span class="text-xl">🤝</span></button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+<div class="basic-subcard">
+<strong class="text-slate-900 block mb-1">🤝 אופן הפעולה (בעיית הלוגריתם הבדיד)</strong>
 <p class="text-slate-700 leading-relaxed">אליס ובוב מסכימים בגלוי על ראשוני $p$ ויוצר $g$. אליס בוחרת סוד $a$ ושולחת $A = g^a \bmod p$; בוב בוחר סוד $b$ ושולח $B = g^b \bmod p$. שניהם מחשבים את המפתח המשותף $K = B^a \bmod p = A^b \bmod p = g^{ab} \bmod p$.</p>
 </div>
-<div class="fast-subcard">
-<strong class="text-slate-900 block mb-1">🕵️ החולשה: פגיעות ל-Man-in-the-Middle (MITM):</strong>
-<p class="text-slate-700 leading-relaxed">הפרוטוקול הבסיסי אינו מאמת את זהות המשתתפים. תוקף באמצע הערוץ יכול ליירט את $g^a, g^b$, להחליפם ב-$g^c, g^d$ משלו, ולקיים שני מפתחות נפרדים מול אליס ומול בוב. <b>הפתרון:</b> אימות באמצעות תעודות דיגיטליות וחתימות.</p>
+<div class="basic-subcard">
+<strong class="text-slate-900 block mb-1">🕵️ החולשה: פגיעות ל-Man-in-the-Middle (MITM)</strong>
+<p class="text-slate-700 leading-relaxed">הפרוטוקול הבסיסי אינו מאמת את זהות המשתתפים! תוקף פעיל באמצע הערוץ יכול ליירט את $A, B$, להחליפם ב-$g^c, g^d$ משלו, ולקיים שני מפתחות נפרדים מול אליס ומול בוב. <b>הפתרון:</b> שילוב חתימות דיגיטליות ותעודות (PKI).</p>
 </div>
 </div>
-<div class="fast-sim-strip">
-<span class="text-xs font-bold text-slate-700">מעבדות RSA ודיפי-הלמן:</span>
-<div class="flex flex-wrap gap-2">
-<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-7-3-rsa', '🧮 סימולציה 7.3ב: מעבדת RSA חיה – יצירת מפתחות, הצפנה ופענוח')">🕹️ מעבדה 7.3ב (מחשבון RSA)</button>
-<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-7-3-dh', '🤝 סימולציה 7.3ג: מעבדת Diffie-Hellman ומתקפת אדם-באמצע [MITM]')">🕹️ מעבדה 7.3ג (Diffie-Hellman)</button>
 </div>
 </div>
-</article>
+<div class="fast-mode-view space-y-4">
+<div class="fast-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+<span class="fast-badge">⚡ לימוד מהיר • יחידה 7.3 (סקירה מרוכזת)</span>
+<div class="flex items-center gap-1.5 flex-wrap">
+<button class="fast-sim-btn" onclick="openSingleSim('sim-7-3-asymmetric', '🔐 סימולציה 7.3א: מסלול ההצפנה האסימטרית והצפנה היברידית')" type="button">🔐 מעבדה 7.3א: אסימטרי והיברידי</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-7-3-rsa', '🧮 סימולציה 7.3ב: מעבדת RSA חיה – יצירת מפתחות, הצפנה ופענוח')" type="button">🧮 מעבדה 7.3ב: RSA</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-7-3-dh', '🤝 סימולציה 7.3ג: מעבדת Diffie-Hellman ומתקפת אדם-באמצע [MITM]')" type="button">🤝 מעבדה 7.3ג: Diffie-Hellman</button>
+</div>
+</div>
+<h2 class="text-xl md:text-2xl font-black text-slate-900">7.3 הצפנה אסימטרית ($k_{\text{pub}} \neq k_{\text{priv}}$), אלגוריתם RSA ו-Diffie-Hellman</h2>
+<p class="text-xs text-slate-600"><b>העיקרון:</b> לסודיות – אליס מצפינה ב<b>מפתח הציבורי של בוב ($E_B$)</b>, ורק בוב מפענח ב<b>מפתח הפרטי של בוב ($D_B$)</b>: $D_B(E_B(P)) = P$.</p>
+</div>
+
+<div class="fast-visual-strip">
+<div class="fast-strip-node"><b>3 דרישות אסימטריות:</b> (1) $D_B(E_B(P))=P$; (2) אי אפשר לגזור את $D_B$ מ-$E_B$; (3) אי אפשר לגזור את $D_B$ מזוגות $(P,C)$.</div>
+<div class="fast-strip-node"><b>RSA – בניית מפתחות:</b> $n=p\cdot q$, $\phi(n)=(p-1)(q-1)$, $\gcd(e,\phi(n))=1$, ו-$e\cdot d \equiv 1 \pmod{\phi(n)}$.</div>
+<div class="fast-strip-node"><b>RSA – הצפנה ופענוח:</b> $C = P^e \bmod n$, $P = C^d \bmod n$. נשען על הקושי לפרק את $n$ לגורמים $p, q$.</div>
+<div class="fast-strip-node fast-strip-highlight"><b>שילוב היברידי (TLS ★):</b> אסימטרית איטית מאוד $\implies$ משמשת רק ל<b>העברת מפתח סימטרי $K_S$</b> ול<b>חתימות דיגיטליות</b>!</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+<div class="fast-card">
+<div class="fast-card-title">⚖️ השוואה: הצפנה סימטרית מול הצפנה אסימטרית</div>
+<p class="text-slate-700 leading-relaxed">• <b>סימטרית ($k_1=k_2$):</b> מפתח סודי משותף יחיד; <b>מהירה מאוד</b> (מתאימה להצפנת המידע השוטף); חיסרון: <b>בעיית הפצת המפתח</b>.<br/>• <b>אסימטרית ($E_B \neq D_B$):</b> מפתח ציבורי לכולם + פרטי רק אצל הבעלים; <b>פותרת את הפצת המפתח</b>; חיסרון: <b>איטית מאוד חישובית</b>.<br/>• <b>דו-כיווניות ב-RSA:</b> $D(E(P)) = E(D(P)) = P$ (מאפשר גם הצפנה וגם חתימה דיגיטלית).</p>
+</div>
+<div class="fast-card">
+<div class="fast-card-title">🤝 החלפת מפתחות Diffie-Hellman ומתקפת MITM</div>
+<p class="text-slate-700 leading-relaxed">• <b>הפרוטוקול:</b> פומביים $p, g$. אליס שולחת $A = g^a \bmod p$, בוב שולח $B = g^b \bmod p$. הסוד המשותף: $K = B^a \bmod p = A^b \bmod p = g^{ab} \bmod p$ (נשען על קושי הלוגריתם הבדיד).<br/>• <b>פגיעות ל-MITM:</b> ללא אימות זהות, מלורי באמצע מקימה מפתח $g^{ac}$ מול אליס ו-$g^{bd}$ מול בוב ומפענחת הכל. <b>פתרון:</b> חתימות דיגיטליות ותעודות CA.</p>
+</div>
+</div>
 </div>
 <!-- Sub-Chapter Navigation Footer -->
 <div class="mt-12 pt-6 border-t border-sky-200 flex flex-wrap items-center justify-between gap-4">
@@ -1960,7 +2257,7 @@ $$P = C^d \bmod n$$
 <div class="p-5 rounded-2xl bg-white text-slate-900 border border-sky-300 shadow-sm space-y-2">
 <h4 class="text-base font-black text-sky-950">🧅 חתימה ישירה עם סודיות: שתי שכבות $E_B(D_A(P))$</h4>
 <p class="text-xs md:text-sm text-slate-700 leading-relaxed">
-נניח שאיה רוצה לשלוח לבועז מסמך $P$ שיהיה <b>גם חתום וגם סודי</b> ( ):
+נניח שאיה רוצה לשלוח לבועז מסמך $P$ שיהיה <b>גם חתום וגם סודי</b>:
 <br>1. <b>שכבה פנימית (חתימה):</b> איה מפעילה את ה-<b>Private Key שלה</b>: $S = D_A(P)$.
 <br>2. <b>שכבה חיצונית (סודיות):</b> איה מצפינה את התוצאה עם ה-<b>Public Key של בועז</b>: $C = E_B(D_A(P))$ ושולחת לבועז.
 <br>3. <b>פענוח ואימות אצל בועז (בסדר הפוך!):</b> בועז מפעיל תחילה את ה-<b>Private Key שלו</b>: $D_B(C) = D_B(E_B(D_A(P))) = D_A(P)$, ואז מפעיל את ה-<b>Public Key של איה</b>: $E_A(D_A(P)) = P$!
@@ -1997,7 +2294,7 @@ $$P = C^d \bmod n$$
 </div>
 </h3>
 <p class="text-slate-700 text-base leading-relaxed mb-5">
-<b>למה לא לחתום ישירות על כל המסמך $P$ באמצעות $D_A(P)$?</b> ( ): אם המסמך $P$ ארוך, הפעלת אלגוריתם אסימטרי כמו RSA על כל המסמך תהיה <b>יקרה ואיטית מאוד חישובית</b>! לכן, במקום לחתום על המסמך כולו, אנו מפיקים ממנו תחילה <b>"טביעת אצבע" קצרה באורך קבוע</b> הנקראת <b>Message Digest (או בקיצור MD)</b> באמצעות <b>פונקציית גיבוב קריפטוגרפית (Hash Function)</b> המסומנת $MD(P) = h(P)$, וחותמים אך ורק על ה-Hash!
+<b>למה לא לחתום ישירות על כל המסמך $P$ באמצעות $D_A(P)$?</b> אם המסמך $P$ ארוך, הפעלת אלגוריתם אסימטרי כמו RSA על כל המסמך תהיה <b>יקרה ואיטית מאוד חישובית</b>! לכן, במקום לחתום על המסמך כולו, אנו מפיקים ממנו תחילה <b>"טביעת אצבע" קצרה באורך קבוע</b> הנקראת <b>Message Digest (או בקיצור MD)</b> באמצעות <b>פונקציית גיבוב קריפטוגרפית (Hash Function)</b> המסומנת $MD(P) = h(P)$, וחותמים אך ורק על ה-Hash!
 </p>
 <!-- Two Core Hash Properties -->
 <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
@@ -2130,7 +2427,7 @@ $$\text{HMAC} = H\big((K \oplus \text{opad}) \;\parallel\; H((K \oplus \text{ipa
 <span class="bg-gradient-to-r from-blue-700 to-sky-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-black text-lg border border-sky-300 shadow-xs">3</span>
 <div>
 <div>תשתית מפתחות ציבוריים (PKI), רשויות אישורים (CA), תקן X.509 וביטול אישורים (CRL)</div>
-<div class="text-xs font-normal text-slate-500 mt-0.5"> ב: כיצד מונעים מתוקף לפרסם מפתח ציבורי מזויף על שמו של בועז?</div>
+<div class="text-xs font-normal text-slate-500 mt-0.5">כיצד מונעים מתוקף לפרסם מפתח ציבורי מזויף על שמו של בועז?</div>
 </div>
 </h3>
 <p class="text-slate-700 text-base leading-relaxed mb-5">
@@ -2233,102 +2530,133 @@ $$\text{HMAC} = H\big((K \oplus \text{opad}) \;\parallel\; H((K \oplus \text{ipa
 </div>
 </div>
 </div>
-<div class="fast-mode-view">
-<header class="fast-header-card">
-<div class="fast-badge">⚡ לימוד מהיר • חלק 7.4</div>
-<h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight mb-2">7.4 חתימות דיגיטליות, פונקציות גיבוב (Message Digest) ותשתיות PKI</h2>
-<p class="text-sm text-slate-600 leading-relaxed">
-חתימה דיגיטלית מבוססת על הפעלת הצפנה אסימטרית בכיוון ההפוך (חתימה במפתח הפרטי של השולח ואימות במפתח הציבורי שלו) ומשיגה שלמות ומניעת התכחשות.
-</p>
-</header>
-<!-- 7.4.1 חתימה דיגיטלית ישירה ושילוב עם סודיות -->
-<article class="fast-article">
-<h3 class="fast-article-title">
-<span class="fast-num-badge">7.4.1</span>
-<span>חתימה דיגיטלית ישירה וחתימה עם סודיות ($E_B(D_A(P))$)</span>
-</h3>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3 text-xs">
-<div class="fast-subcard space-y-1.5">
-<strong class="text-slate-900 block text-sm">✍️ חתימה דיגיטלית (ללא סודיות):</strong>
-<p class="text-slate-700">• <b>מטרות:</b> <b>שלמות (Integrity)</b> ו<b>מניעת התכחשות (Non-Repudiation)</b> (וכן אימות מקור).</p>
-<p class="text-slate-700">• <b>הנחת היסוד (מתקיימת ב-RSA):</b> $D(E(P)) = E(D(P)) = P$.</p>
-<p class="text-slate-700">• <b>אופן הפעולה:</b> רק אליס יכולה להפעיל את המפתח הפרטי שלה וליצור חתימה $C = D_A(P)$; כל אחד יכול להפעיל את המפתח הציבורי של אליס ולאמת: $E_A(C) = E_A(D_A(P)) = P$.</p>
-<p class="font-bold text-blue-900">(!) חתימה דיגיטלית אינה מספקת סודיות, כי המפתח הציבורי $E_A$ גלוי לכולם!</p>
-</div>
-<div class="fast-subcard space-y-1.5">
-<strong class="text-slate-900 block text-sm">🧅 חתימה ישירה עם סודיות (שתי שכבות):</strong>
-<p class="text-slate-700">אליס שולחת לבוב מסמך $P$ שהוא <b>גם חתום וגם סודי</b>:</p>
-<p class="text-slate-700">1. <b>אליס חותמת (שכבה פנימית):</b> מחשבת $D_A(P)$ במפתח הפרטי שלה (מניעת התכחשות).</p>
-<p class="text-slate-700">2. <b>אליס מצפינה (שכבה חיצונית):</b> מחשבת $E_B(D_A(P))$ במפתח הציבורי של בוב (סודיות).</p>
-<p class="text-slate-700">3. <b>בוב מפענח בסדר הפוך:</b> מפעיל תחילה את המפתח הפרטי שלו $D_B$ ומקבל $D_A(P)$, ואז את המפתח הציבורי של אליס $E_A$ ומקבל $E_A(D_A(P)) = P$.</p>
+<div class="basic-mode-view space-y-5">
+<div class="basic-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="basic-badge">📖 לימוד בסיסי • יחידה 7.4</span>
+<div class="flex items-center gap-2">
+<button class="basic-top-btn" onclick="showTab('tab-exercises')" type="button">לתרגילים ומבחן מסכם 📝</button>
+<button class="basic-top-btn" onclick="showQuestions('tab-signatures-hash-pki', '7.4 חתימות דיגיטליות, פונקציות Hash ו-PKI', event)" type="button">❓ שאלות תרגול</button>
 </div>
 </div>
-<div class="fast-callout-blue">
-<strong>💡 דגש למבחן:</strong> אליס אינה צריכה את המפתח הציבורי של עצמה ($E_A$)! אליס משתמשת רק ב-$D_A$ (לחתימה) וב-$E_B$ (לסודיות); בוב משתמש רק ב-$D_B$ (לפענוח הסודיות) וב-$E_A$ (לאימות החתימה).
+<h2 class="text-2xl md:text-3xl font-black text-slate-900">7.4 חתימות דיגיטליות, פונקציות גיבוב (Message Digest) ותשתיות PKI</h2>
+<p class="text-xs md:text-sm text-slate-600 mt-1">היפוך תפקידי המפתחות ליצירת חתימה דיגיטלית ($D_A$) ואימותה ($E_A$), שילוב חתימה וסודיות ($E_B(D_A(P))$), חתימה על טביעת אצבע $MD(P)$, ורשויות אישורים (CA / X.509).</p>
 </div>
-<div class="fast-sim-strip">
-<span class="text-xs font-bold text-slate-700">מעבדת שתי השכבות $E_B(D_A(P))$:</span>
-<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-7-4-layers', '🧅 סימולציה 7.4א: מעבדת שתי השכבות – חתימה וסודיות')">🕹️ פתיחת מעבדה 7.4א</button>
+
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">1. חתימה דיגיטלית ישירה ושילוב שתי שכבות: חתימה + סודיות ($E_B(D_A(P))$)</h3>
+<p class="text-xs text-slate-600">הבטחת שלמות, אימות מקור ומניעת התכחשות, וסדר הפעלת המפתחות כאשר נדרשת גם סודיות.</p>
 </div>
-</article>
-<!-- 7.4.2 חתימה באמצעות טביעת אצבע (Message Digest / Hash) -->
-<article class="fast-article">
-<h3 class="fast-article-title">
-<span class="fast-num-badge">7.4.2</span>
-<span>חתימה באמצעות טביעת אצבע (Message Digest / Hash) ו-HMAC</span>
-</h3>
-<p class="text-xs md:text-sm text-slate-700 leading-relaxed mb-3">
-הפעלת הצפנה אסימטרית על מסמך ארוך איטית מאוד. לכן מחשבים תחילה מהמסמך <b>טביעת אצבע קצרה באורך קבוע</b> באמצעות פונקציית גיבוב (Hash) המסומנת $MD(P) = h(P)$, וחותמים על טביעת האצבע בלבד!
-</p>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3 text-xs">
-<div class="fast-subcard">
-<strong class="text-blue-900 block mb-1">דרישה 1 מפונקציית הגיבוב: חד-כיווניות</strong>
-<p class="text-slate-700">בהינתן $P$ קל לחשב את $MD(P)$, אך בהינתן טביעת אצבע $MD(P)$ אי אפשר בזמן סביר לבנות הודעה שזו טביעת האצבע שלה.</p>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-7-4-layers', '🧅 סימולציה 7.4א: מעבדת שתי השכבות – חתימה וסודיות')" title="פתיחת מעבדה 7.4א: מעבדת שתי השכבות" type="button"><span class="text-xl">🧅</span></button>
 </div>
-<div class="fast-subcard">
-<strong class="text-blue-900 block mb-1">דרישה 2: עמידות להתנגשויות (Collision Resistance)</strong>
-<p class="text-slate-700">המסמך ארוך בהרבה מטביעת האצבע ולכן בהכרח קיימות הודעות שונות עם אותה טביעת אצבע, אך <b>אי אפשר בזמן סביר למצוא שתי הודעות $P_1 \neq P_2$ עם $MD(P_1) = MD(P_2)$</b>.</p>
+<div class="my-2 p-3 rounded-xl bg-[#f4f8fb] border border-[#cbd5e1] overflow-x-auto">
+<svg class="w-full h-auto max-w-2xl mx-auto select-none" viewBox="0 0 650 86">
+<rect x="8" y="12" width="195" height="62" rx="8" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5"/>
+<text x="105" y="34" fill="#0c4a6e" font-size="11" font-weight="800" text-anchor="middle">1. אליס חותמת בפרטי שלה (D_A)</text>
+<text x="105" y="54" fill="#475569" font-size="10" text-anchor="middle">שכבה פנימית: S = D_A(P)</text>
+<rect x="225" y="12" width="200" height="62" rx="8" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.8"/>
+<text x="325" y="34" fill="#075985" font-size="11" font-weight="800" text-anchor="middle">2. אליס מצפינה בציבורי של בוב (E_B)</text>
+<text x="325" y="54" fill="#0369a1" font-size="10.5" font-weight="700" text-anchor="middle" direction="ltr">C = E_B(D_A(P))</text>
+<rect x="447" y="12" width="195" height="62" rx="8" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5"/>
+<text x="544" y="34" fill="#0c4a6e" font-size="11" font-weight="800" text-anchor="middle">3. בוב מפענח ב-D_B ומאמת ב-E_A</text>
+<text x="544" y="54" fill="#0369a1" font-size="10.5" font-weight="700" text-anchor="middle" direction="ltr">E_A(D_B(C)) = P</text>
+</svg>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+<div class="basic-subcard space-y-1.5">
+<strong class="text-slate-900 block">✍️ חתימה דיגיטלית בלבד (ללא סודיות)</strong>
+<p class="text-slate-700 leading-relaxed">• <b>מטרות:</b> <b>שלמות ההודעה (Integrity)</b>, <b>אימות מקור</b> ו<b>מניעת התכחשות (Non-Repudiation)</b>.<br/>• <b>אופן הפעולה:</b> מבוסס על $E_A(D_A(P)) = P$. רק אליס מחזיקה במפתח הפרטי $D_A$ ויוצרת חתימה $S = D_A(P)$; כל גורם (כולל בוב או שופט) מפעיל את המפתח הציבורי $E_A$ ומאמת $E_A(S) = P$.<br/>• <b>מלכודת מבחן:</b> חתימה דיגיטלית לבדה <b>אינה מספקת סודיות</b>, כי המפתח הציבורי $E_A$ ידוע לכל מאזין ברשת!</p>
+</div>
+<div class="basic-subcard space-y-1.5">
+<strong class="text-slate-900 block">🧅 שילוב חתימה + סודיות: שתי שכבות $E_B(D_A(P))$</strong>
+<p class="text-slate-700 leading-relaxed">• <b>בצד של אליס:</b> קודם חותמת במפתח הפרטי של אליס $D_A(P)$, ואז מצפינה במפתח הציבורי של בוב: $C = E_B(D_A(P))$.<br/>• <b>בצד של בוב:</b> קודם מפענח את המעטפת החיצונית במפתח הפרטי של בוב $D_B(C) = D_A(P)$ (מבטיח שרק בוב קרא), ואז מאמת את החתימה הפנימית במפתח הציבורי של אליס $E_A(D_A(P)) = P$.<br/>• <b>דגש:</b> אליס משתמשת ב-$D_A$ וב-$E_B$; בוב משתמש ב-$D_B$ וב-$E_A$.</p>
 </div>
 </div>
-<div class="fast-flow-strip">
-<div class="fast-flow-node">1. אליס מחשבת $MD(P)$</div>
-<span class="fast-flow-arrow">──►</span>
-<div class="fast-flow-node bg-blue-50 border-blue-400">2. אליס חותמת על התמצית בלבד:<br><span dir="ltr" class="font-mono">$DS = D_A(MD(P))$</span><br><span class="text-[11px] font-normal">ושולחת את $P$ (גלוי!) ואת $DS$</span></div>
-<span class="fast-flow-arrow">──►</span>
-<div class="fast-flow-node">3. בוב מחשב $MD(P)$ מתוך $P$<br>ומחשב $E_A(DS)$ ומשווה ביניהן!</div>
 </div>
-<div class="fast-callout-sky">
-<strong>🔐 HMAC (קוד אימות מבוסס גיבוב ומפתח סודי משותף $K$):</strong> מבטיח שלמות ואימות במהירות גבוהה בין שני צדדים שכבר חולקים מפתח סימטרי $K$, אך <b>אינו מספק מניעת התכחשות</b> מול שופט שלישי (כי שני הצדדים מחזיקים ב-$K$).
+
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">2. חתימה באמצעות טביעת אצבע (Message Digest / Hash) וקוד אימות HMAC</h3>
+<p class="text-xs text-slate-600">מדוע חותמים על תמצית קצרה $MD(P)$ במקום על המסמך כולו, ושתי הדרישות מפונקציית גיבוב.</p>
 </div>
-</article>
-<!-- 7.4.3 PKI ותעודות דיגיטליות -->
-<article class="fast-article">
-<h3 class="fast-article-title">
-<span class="fast-num-badge">7.4.3</span>
-<span>תשתית מפתחות ציבוריים (PKI), רשות אישורים (CA) ותקן X.509</span>
-</h3>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-7-4-hash-sig', '🔏 סימולציה 7.4ב: מעבדת חתימה דיגיטלית מבוססת Hash')" title="פתיחת מעבדה 7.4ב: חתימת Hash" type="button"><span class="text-xl">🔏</span></button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+<div class="basic-subcard">
+<strong class="text-sky-900 block mb-1">דרישה 1 מפונקציית הגיבוב: חד-כיווניות (One-Way)</strong>
+<p class="text-slate-700 leading-relaxed">בהינתן הודעה $P$ קל ומהיר לחשב את טביעת האצבע $MD(P) = h(P)$ באורך קבוע, אך בהינתן $MD(P)$ אי אפשר בזמן סביר לשחזר הודעה $P$ שזו טביעת האצבע שלה.</p>
+</div>
+<div class="basic-subcard">
+<strong class="text-sky-900 block mb-1">דרישה 2: עמידות להתנגשויות (Collision Resistance)</strong>
+<p class="text-slate-700 leading-relaxed">המסמך ארוך מטביעת האצבע ולכן מתמטית קיימות התנגשויות, אך <b>אי אפשר בזמן סביר למצוא שתי הודעות שונות $P_1 \neq P_2$ כך ש-$MD(P_1) = MD(P_2)$</b>.</p>
+</div>
+</div>
+<div class="basic-callout">
+<strong>⚙️ תהליך החתימה והאימות עם Hash:</strong> אליס מחשבת את התמצית $MD(P)$, חותמת רק עליה: $DS = D_A(MD(P))$, ושולחת את ההודעה $P$ יחד עם $DS$. בוב מבצע שני חישובים: (1) מחשב בעצמו $MD(P)$ מתוך ההודעה שהתקבלה, ו-(2) פותח את החתימה $E_A(DS) = E_A(D_A(MD(P)))$, ומשווה ביניהם!
+</div>
+<div class="basic-callout-warn">
+<strong>🔐 HMAC (קוד אימות הודעות מבוסס גיבוב ומפתח סודי משותף $K$):</strong> מבטיח שלמות ואימות במהירות גבוהה בין שני צדדים שכבר חולקים מפתח סימטרי $K$, אך <b>אינו מספק מניעת התכחשות</b> מול שופט שלישי (מאחר ששני הצדדים מחזיקים באותו מפתח $K$).
+</div>
+</div>
+
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">3. תשתית מפתחות ציבוריים (PKI), רשות אישורים (CA), תקן X.509 ו-CRL</h3>
+<p class="text-xs text-slate-600">כיצד מונעים מתוקף לפרסם מפתח ציבורי מזויף בשמו של שרת או אדם אחר.</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-7-4-pki', '🏛️ סימולציה 7.4ג: מעבדת PKI, תעודת X.509, שרשרת אמון ו-CRL')" title="פתיחת מעבדה 7.4ג: PKI, X.509 ו-CRL" type="button"><span class="text-xl">🏛️</span></button>
+</div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-<div class="fast-subcard">
-<strong class="text-slate-900 block mb-1">📜 תעודת X.509</strong>
-<p class="text-slate-700 leading-relaxed">קושרת בין זהות הישות למפתח הציבורי שלה, וכוללת את זהות ה-CA, אלגוריתם החתימה, תאריך תפוגה והחתימה הדיגיטלית של ה-CA.</p>
+<div class="basic-subcard">
+<strong class="text-slate-900 block mb-1">📜 תעודת X.509 (Certificate)</strong>
+<p class="text-slate-700 leading-relaxed">מסמך דיגיטלי הקושר רשמית בין זהות ישות (שם מתחם/ארגון) למפתח הציבורי שלה, וכולל תאריך תפוגה, שם ה-CA והחתימה הדיגיטלית של ה-CA.</p>
 </div>
-<div class="fast-subcard">
-<strong class="text-slate-900 block mb-1">🏛️ רשות אישורים (CA)</strong>
-<p class="text-slate-700 leading-relaxed">מאמתת זהויות וחותמת על תעודות במפתח הפרטי שלה ($D_{CA}$). הדפדפן מחזיק מראש מפתחות ציבוריים של רשויות שורש (Root CAs).</p>
+<div class="basic-subcard">
+<strong class="text-slate-900 block mb-1">🏛️ רשות אישורים (CA) ושרשרת אמון</strong>
+<p class="text-slate-700 leading-relaxed">גוף אמין המאמת זהויות וחותם על תעודות במפתח הפרטי שלו ($D_{CA}$). מפתחות ציבוריים של רשויות שורש (Root CAs) מותקנים מראש בדפדפן ובמערכת ההפעלה.</p>
 </div>
-<div class="fast-subcard">
-<strong class="text-slate-900 block mb-1">🚫 ביטול (CRL) מול PGP</strong>
-<p class="text-slate-700 leading-relaxed"><code>CRL</code> היא רשימה חתומה של תעודות שבוטלו לפני תאריך תפוגתן. ב-<b>PGP</b> משתמשים במודל מבוזר (Web of Trust) ללא CA מרכזי.</p>
-</div>
-</div>
-<div class="fast-sim-strip">
-<span class="text-xs font-bold text-slate-700">מעבדות Hash ו-PKI:</span>
-<div class="flex flex-wrap gap-2">
-<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-7-4-hash-sig', '🔏 סימולציה 7.4ב: מעבדת חתימה דיגיטלית מבוססת Hash')">🕹️ מעבדה 7.4ב (חתימת Hash)</button>
-<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-7-4-pki', '🏛️ סימולציה 7.4ג: מעבדת PKI, תעודת X.509, שרשרת אמון ו-CRL')">🕹️ מעבדה 7.4ג (PKI ו-CA)</button>
+<div class="basic-subcard">
+<strong class="text-slate-900 block mb-1">🚫 ביטול תעודות (CRL) מול PGP</strong>
+<p class="text-slate-700 leading-relaxed"><code>CRL</code> היא רשימה חתומה של מספרי תעודות שבוטלו לפני תאריך תפוגתן (למשל עקב גניבת מפתח פרטי). ב-<b>PGP</b> פועלים במודל מבוזר (Web of Trust) ללא CA מרכזי.</p>
 </div>
 </div>
-</article>
+</div>
+</div>
+<div class="fast-mode-view space-y-4">
+<div class="fast-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+<span class="fast-badge">⚡ לימוד מהיר • יחידה 7.4 (סקירה מרוכזת)</span>
+<div class="flex items-center gap-1.5 flex-wrap">
+<button class="fast-sim-btn" onclick="openSingleSim('sim-7-4-layers', '🧅 סימולציה 7.4א: מעבדת שתי השכבות – חתימה וסודיות')" type="button">🧅 מעבדה 7.4א: שתי שכבות</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-7-4-hash-sig', '🔏 סימולציה 7.4ב: מעבדת חתימה דיגיטלית מבוססת Hash')" type="button">🔏 מעבדה 7.4ב: חתימת Hash</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-7-4-pki', '🏛️ סימולציה 7.4ג: מעבדת PKI, תעודת X.509, שרשרת אמון ו-CRL')" type="button">🏛️ מעבדה 7.4ג: PKI ו-CA</button>
+</div>
+</div>
+<h2 class="text-xl md:text-2xl font-black text-slate-900">7.4 חתימה דיגיטלית ($D_A$), שתי שכבות $E_B(D_A(P))$, גיבוב (Hash) ו-PKI</h2>
+<p class="text-xs text-slate-600"><b>חתימה דיגיטלית:</b> החותם (אליס) חותם ב<b>מפתח הפרטי של עצמו ($D_A$)</b>, וכולם מאמתים ב<b>מפתח הציבורי שלו ($E_A$)</b>.</p>
+</div>
+
+<div class="fast-visual-strip">
+<div class="fast-strip-node"><b>מטרות החתימה:</b> <b>שלמות (Integrity)</b> + <b>אימות מקור</b> + <b>מניעת התכחשות</b> (הוכחה לשופט). <b>אינה מספקת סודיות!</b></div>
+<div class="fast-strip-node fast-strip-highlight"><b>שילוב חתימה + סודיות ★:</b> אליס מחשבת $C = E_B(D_A(P))$; בוב מפענח תחילה ב-$D_B$ ואז מאמת ב-$E_A$: $E_A(D_B(C))=P$.</div>
+<div class="fast-strip-node"><b>חתימה עם Hash:</b> במקום לחתום לאט על כל $P$, חותמים רק על התמצית: $DS = D_A(MD(P))$, ובוב משווה $MD(P) \stackrel{?}{=} E_A(DS)$.</div>
+<div class="fast-strip-node"><b>PKI ו-CA:</b> תעודת <b>X.509</b> חתומה ב-$D_{CA}$ קושרת זהות למפתח ציבורי; <b>CRL</b> = רשימת תעודות שבוטלו בטרם עת.</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+<div class="fast-card">
+<div class="fast-card-title">🔬 שתי הדרישות מפונקציית גיבוב (Hash / Message Digest) ו-HMAC</div>
+<p class="text-slate-700 leading-relaxed">• <b>1. חד-כיווניות (Pre-image Resistance):</b> קל לחשב $MD(P)$ מ-$P$, אך בלתי אפשרי חישובית לשחזר $P$ מתוך $MD(P)$.<br/>• <b>2. עמידות להתנגשויות (Collision Resistance):</b> בלתי אפשרי בזמן סביר למצוא $P_1 \neq P_2$ עם $MD(P_1) = MD(P_2)$.<br/>• <b>HMAC (גיבוב עם מפתח סימטרי $K$):</b> מספק שלמות ואימות מהירים מאוד, אך <b>ללא מניעת התכחשות</b> (שני הצדדים מחזיקים ב-$K$).</p>
+</div>
+<div class="fast-card">
+<div class="fast-card-title">🏛️ תשתית PKI: רשות אישורים (CA) מול רשת אמון (PGP)</div>
+<p class="text-slate-700 leading-relaxed">• <b>הבעיה:</b> ללא אימות, מלורי יכולה לפרסם את המפתח הציבורי שלה תחת השם "בוב".<br/>• <b>פתרון CA (X.509):</b> ה-CA חותם על (שם הישות + המפתח הציבורי שלה + תוקף). הדפדפן מאמת מקומית באמצעות $E_{\text{Root CA}}$ המותקן מראש.<br/>• <b>פתרון PGP:</b> מודל מבוזר של <b>רשת אמון (Web of Trust)</b> שבה משתמשים חותמים זה על המפתח של זה.</p>
+</div>
+</div>
 </div>
 <!-- Sub-Chapter Navigation Footer -->
 <div class="mt-12 pt-6 border-t border-sky-200 flex flex-wrap items-center justify-between gap-4">
@@ -2360,7 +2688,7 @@ $$\text{HMAC} = H\big((K \oplus \text{opad}) \;\parallel\; H((K \oplus \text{ipa
 <span>🌊</span> מודל מנטלי: שלושת צווארי הבקבוק שתוקף DoS מחפש לחנוק
 </h3>
 <p class="text-slate-800 text-sm leading-relaxed">
-כדי שלקוח לגיטימי יקבל שירות משרת אינטרנט, הבקשה שלו חייבת לעבור שלושה שערים משותפים, וכל אחד מהם הוא יעד למתקפת מניעת שירות ( ):
+כדי שלקוח לגיטימי יקבל שירות משרת אינטרנט, הבקשה שלו חייבת לעבור שלושה שערים משותפים, וכל אחד מהם הוא יעד למתקפת מניעת שירות:
 <br><b>1. רוחב הפס בקווי התקשורת ובנתבים (Bandwidth):</b> הצפת הקישורים והבאפרים בנתבים עד שפקטות לגיטימיות נזרקות (`Packets are dropped`).
 <br><b>2. משאבים חישוביים וזיכרון בשרת (CPU / Memory):</b> שליחת בקשות כבדות שמאלצות את מעבד השרת ומסד הנתונים לעבוד לשווא.
 <br><b>3. טבלת חיבורי ה-TCP בשרת (TCP Connections):</b> ניצול לחיצת היד המשולשת ב-<b>TCP SYN Flood</b> כדי למלא את טבלת החיבורים החצי-פתוחים של השרת – והגנה גאונית באמצעות <b>SYN Cookies</b> שדוחה את הקצאת הזיכרון עד שהלקוח מוכיח שהוא אמיתי!
@@ -2434,7 +2762,7 @@ $$\text{HMAC} = H\big((K \oplus \text{opad}) \;\parallel\; H((K \oplus \text{ipa
 </p>
 </div>
 <div class="p-5 rounded-2xl bg-white text-slate-900 border border-sky-300 shadow-sm space-y-2">
-<h4 class="text-base font-black text-sky-950">❗ שאלת מבחן קלאסית (): מיתוג מנות מול מיתוג מעגלים</h4>
+<h4 class="text-base font-black text-sky-950">❗ שאלת מבחן קלאסית: מיתוג מנות מול מיתוג מעגלים</h4>
 <p class="text-xs md:text-sm text-slate-700 leading-relaxed">
 <b>מדוע מתקפת הצפה על רוחב הפס מתאימה לרשת מיתוג מנות (Packet Switching) ואינה קיימת במיתוג מעגלים (Circuit Switching)?</b><br>
 • ב<b>מיתוג מנות:</b> לא מוקצים מראש משאבים קבועים לכל חיבור; המשתמשים מתחרים על אותם קווים ובאפרים משותפים, ולכן תוקף יכול להציף ולכלות אותם.<br>
@@ -2444,16 +2772,16 @@ $$\text{HMAC} = H\big((K \oplus \text{opad}) \;\parallel\; H((K \oplus \text{ipa
 </div>
 <!-- Section 1B: Computational Resources Exhaustion -->
 <div class="p-5 rounded-2xl bg-slate-100 border-2 border-sky-200 mb-6">
-<h4 class="text-base font-black text-sky-950 mb-2">🛒 סוג 2: התקפה על משאבים חישוביים וזיכרון (דוגמת החנות האינטרנטית –  )</h4>
+<h4 class="text-base font-black text-sky-950 mb-2">🛒 סוג 2: התקפה על משאבים חישוביים וזיכרון (דוגמת החנות האינטרנטית)</h4>
 <p class="text-xs md:text-sm text-slate-700 leading-relaxed">
-לעיתים קווי התקשורת אינם מתמלאים והפקטות כן מגיעות לשרת, אך כל בקשה דורשת מהשרת <b>CPU, זיכרון, חישובים וגישה למסדי נתונים</b>. לדוגמה, ב<b>חנות אינטרנטית</b> השרת צריך לבדוק עבור כל בקשה מלאי, מידות, צבעים ומידע במסדי הנתונים. אם התוקף שולח מיליוני בקשות מזויפות כאלה, נגרם <b>כילוי מעבד וזיכרון (`CPU/Memory exhaustion`)</b>: השרת מבזבז את כל משאבי החישוב שלו על התוקפים ולא נותר לו כוח עיבוד לענות ללקוחות אמיתיים.
+לעיתים קווי התקשורת אינם מתמלאים והפקטות כן מגיעות לשרת, אך כל בקשה דורשת מהשרת <b>CPU, זיכרון, חישובים וגישה למסדי נתונים</b>. לדוגמה, ב<b>חנות אינטרנטית</b> השרת צריך לבדוק עבור כל בקשה מלאי, מידות, צבעים ומידע במסדי הנתונים. אם התוקף שולח מיליוני בקשות מזויפות כאלה, נגרם <b>כילוי מעבד וזיכרון (<code>CPU/Memory exhaustion</code>)</b>: השרת מבזבז את כל משאבי החישוב שלו על התוקפים ולא נותר לו כוח עיבוד לענות ללקוחות אמיתיים. <b>דגש חשוב:</b> בעוד שהגדלת רוחב הפס של קישור הכניסה לשרת תעזור מול מתקפת הצפת רוחב פס (סוג 1), <b>הגדלת רוחב הפס בלבד לא תועיל כלל מול מתקפה על משאבי חישוב וזיכרון</b> (שבה התוקף שולח בקשות יקרות לחישוב בקצב תעבורה נמוך יחסית).
 </p>
 </div>
 <!-- IP Fragmentation Reassembly DoS Box from Textbook Page 126 -->
 <div class="tutor-note p-5 rounded-2xl mb-6 space-y-2 text-xs md:text-sm text-slate-700">
-<h4 class="font-black text-sky-950 text-base">🧩 העמקה  (): מתקפת מניעת שירות באמצעות פיצול מנות IP (IP Fragmentation DoS)</h4>
+<h4 class="font-black text-sky-950 text-base">🧩 העמקה: מתקפת מניעת שירות באמצעות פיצול מנות IP (IP Fragmentation DoS)</h4>
 <p class="leading-relaxed">
-ב מוסברת דוגמה חשובה נוספת לכילוי זיכרון בשכבת הרשת: כאשר דטגרם IP גדול מפוצל (Fragmented) בדרך לקראת קישור בעל <code>MTU</code> קטן, <b>ההרכבה מחדש (Reassembly) מתבצעת אצל המארח המקבל</b>. אם פיסה בודדת הולכת לאיבוד (או שתוקף שולח במכוון רק חלק מהפיסות עם דגל <code>M=1</code> ושדה <code>Offset</code> מבלי לשלוח את הפיסה האחרונה!), המארח המקבל שומר את הפיסות בזיכרון וממתין לשאר הפיסות עד לפקיעת קוצב הזמן. <b>גרימה למארח לקשור משאבי זיכרון להרכבות כושלות היא בסיס קלאסי למתקפת מניעת שירות (DoS)</b> – וזו אחת הסיבות שבגללן מעודדים כיום לבצע <b>גילוי MTU של מסלול (Path MTU Discovery)</b> ולהימנע מפיצול מנות!
+דוגמה חשובה נוספת לכילוי זיכרון בשכבת הרשת: כאשר דטגרם IP גדול מפוצל (Fragmented) בדרך לקראת קישור בעל <code>MTU</code> קטן, <b>ההרכבה מחדש (Reassembly) מתבצעת אצל המארח המקבל</b>. אם פיסה בודדת הולכת לאיבוד (או שתוקף שולח במכוון רק חלק מהפיסות עם דגל <code>M=1</code> ושדה <code>Offset</code> מבלי לשלוח את הפיסה האחרונה!), המארח המקבל שומר את הפיסות בזיכרון וממתין לשאר הפיסות עד לפקיעת קוצב הזמן. <b>גרימה למארח לקשור משאבי זיכרון להרכבות כושלות היא בסיס קלאסי למתקפת מניעת שירות (DoS)</b> – וזו אחת הסיבות שבגללן מעודדים כיום לבצע <b>גילוי MTU של מסלול (Path MTU Discovery)</b> ולהימנע מפיצול מנות!
 </p>
 </div>
 <!-- Simulation Launcher 7.5A -->
@@ -2488,7 +2816,7 @@ $$\text{HMAC} = H\big((K \oplus \text{opad}) \;\parallel\; H((K \oplus \text{ipa
 </p>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
 <div class="p-5 rounded-2xl bg-slate-50 border-2 border-sky-200 space-y-2">
-<h4 class="text-base font-black text-sky-950">🤝 תזכורת: מה עושה השרת כשמגיע SYN רגיל? ()</h4>
+<h4 class="text-base font-black text-sky-950">🤝 תזכורת: מה עושה השרת כשמגיע SYN רגיל?</h4>
 <p class="text-xs md:text-sm text-slate-700 leading-relaxed">
 בלחיצת יד תקינה ($\text{SYN} \to \text{SYN+ACK} \to \text{ACK}$), כבר ברגע שהשרת מקבל את הודעת ה-<b>SYN</b> הראשונה (עוד לפני שהקשר הושלם!), <b>השרת מקצה זיכרון ושומר מצב (State) על החיבור</b> בטבלת החיבורים החצי-פתוחים שלו:<br>
 • כתובת ה-IP של הלקוח (<code>Client IP</code>).<br>
@@ -2501,7 +2829,7 @@ $$\text{HMAC} = H\big((K \oplus \text{opad}) \;\parallel\; H((K \oplus \text{ipa
 <p class="text-xs md:text-sm text-slate-700 leading-relaxed">
 1. התוקף שולח לשרת <b>מספר עצום וחריג של סגמנטים שבהם דגל ה-<code>SYN</code> דולק</b> (<code>SYN=1, ACK=0</code>, מכתובות IP שונות), אך <b>אינו משלים את לחיצת היד</b>.<br>
 2. <b>תגובת השרת ומדוע זיוף כתובות (Spoofing) שאינן עונות עוזר לתוקף:</b> לכל סגמנט <code>SYN</code> שנכנס, השרת שולח סגמנט תגובה שבו <b>שני הדגלים <code>SYN, ACK</code> דולקים</b> (<code>SYN=1, ACK=1</code>). התוקף מקפיד לזייף כתובות מקור של הוסטים שאינם עונים ברשת (שכן מחשב חי ופעיל שיקבל <code>SYN, ACK</code> לא צפוי ישלח מיד חזרה סגמנט איפוס <code>RST</code> שישחרר את הרשומה בשרת!). לכן מהרוב המוחלט של ההוסטים שאליהם נשלח סגמנט התגובה <b>לא מתקבל כל סגמנט נוסף</b> (ה-<code>ACK</code> השלישי לעולם לא מגיע).<br>
-3. <b>התוצאה ואבחון המתקפה:</b> השרת נתקע עם אלפי <b>חיבורים חצי-פתוחים (Half-Open במצב <code>SYN_RCVD</code>)</b> הממלאים את הזיכרון גם בקצב תעבורה נמוך מרוחב הפס, ולקוחות לגיטימיים נדחים. (נזכור גם שבחיבור TCP תקני הדגלים <code>SYN</code> ו-<code>FIN</code> לעולם אינם דולקים יחד באותו סגמנט, שכן <code>SYN</code> פותח קשר ו-<code>FIN</code> סוגר קשר קיים).
+3. <b>התוצאה ואבחון המתקפה:</b> השרת נתקע עם אלפי <b>חיבורים חצי-פתוחים (Half-Open במצב <code>SYN_RCVD</code>)</b> הממלאים את הזיכרון גם בקצב תעבורה נמוך מרוחב הפס, ולקוחות לגיטימיים נדחים. (נזכור גם שבחיבור TCP תקני הדגלים <code>SYN</code> ו-<code>FIN</code> לעולם אינם דולקים יחד באותו סגמנט, שכן <code>SYN</code> פותח קשר ו-<code>FIN</code> סוגר קשר קיים; בעת סגירת קשר פעיל נשלח <code>FIN=1, ACK=1</code>, וכל אחד מהדגלים <code>SYN=1</code> ו-<code>FIN=1</code> צורך מספר סידורי <code>Seq</code> וירטואלי אחד – בית 1 – כך שאחרי שליחת $L$ בתי מידע מ-$	ext{ISN}+1$, סגמנט ה-<code>FIN</code> יישלח עם $	ext{Seq}=	ext{ISN}+1+L$ ויאושר ב-$	ext{Ack}=	ext{ISN}+2+L$).
 </p>
 </div>
 </div>
@@ -2612,7 +2940,7 @@ $$\text{HMAC} = H\big((K \oplus \text{opad}) \;\parallel\; H((K \oplus \text{ipa
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 text-xs md:text-sm">
 <div class="p-4 rounded-2xl bg-slate-50 border border-sky-200">
-<strong class="text-sky-950 block mb-1">1. מה נכנס לחישוב ה-Cookie? ()</strong>
+<strong class="text-sky-950 block mb-1">1. מה נכנס לחישוב ה-Cookie?</strong>
 <p class="text-slate-700 leading-relaxed">
 השרת מחשב את ה-<code>Cookie</code> כפונקציה (גיבוב קריפטוגרפי) של:<br>
 • כתובת ה-IP והפורט של הלקוח.<br>
@@ -2622,7 +2950,7 @@ $$\text{HMAC} = H\big((K \oplus \text{opad}) \;\parallel\; H((K \oplus \text{ipa
 </p>
 </div>
 <div class="p-4 rounded-2xl bg-slate-50 border border-sky-200">
-<strong class="text-sky-950 block mb-1">2. למה רכיב הזמן חשוב? ()</strong>
+<strong class="text-sky-950 block mb-1">2. למה רכיב הזמן חשוב?</strong>
 <p class="text-slate-700 leading-relaxed">
 כדי שה-<code>Cookie</code> <b>לא יישאר תקף לנצח</b>! אלמלא חותמת הזמן, תוקף או לקוח בעבר היה יכול להשתמש שוב בערך ישן עבור חיבור חדש בעתיד. חותמת הזמן מנורמלת (מעוגלת לפרקי זמן של כמה דקות) כך שהעוגייה עדיין תקפה כאשר ה-<code>ACK</code> הלגיטימי חוזר.
 </p>
@@ -2654,106 +2982,150 @@ $$\text{HMAC} = H\big((K \oplus \text{opad}) \;\parallel\; H((K \oplus \text{ipa
 </div>
 </div>
 </div>
-<div class="fast-mode-view">
-<header class="fast-header-card">
-<div class="fast-badge">⚡ לימוד מהיר • חלק 7.5</div>
-<h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight mb-2">7.5 התקפות מניעת שירות (DoS), הצפת SYN ו-SYN Cookies</h2>
-<p class="text-sm text-slate-600 leading-relaxed">
-התקפת מניעת שירות (Denial of Service) פוגעת בזמינות השירות על ידי כילוי משאב משותף של הרשת או השרת (רוחב פס, כוח חישוב וזיכרון, או חיבורי TCP פתוחים).
-</p>
-</header>
-<!-- 7.5.1 שלושת המשאבים ב-DoS ומיתוג מנות מול מעגלים -->
-<article class="fast-article">
-<h3 class="fast-article-title">
-<span class="fast-num-badge">7.5.1</span>
-<span>שלושת המשאבים המותקפים ב-DoS ומיתוג מנות מול מיתוג מעגלים</span>
-</h3>
-<div class="overflow-x-auto rounded-xl border border-slate-200 mb-3">
+<div class="basic-mode-view space-y-5">
+<div class="basic-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="basic-badge">📖 לימוד בסיסי • יחידה 7.5</span>
+<div class="flex items-center gap-2">
+<button class="basic-top-btn" onclick="showTab('tab-exercises')" type="button">לתרגילים ומבחן מסכם 📝</button>
+<button class="basic-top-btn" onclick="showQuestions('tab-dos-synflood', '7.5 מתקפות DoS, TCP SYN Flood ו-SYN Cookies', event)" type="button">❓ שאלות תרגול</button>
+</div>
+</div>
+<h2 class="text-2xl md:text-3xl font-black text-slate-900">7.5 התקפות מניעת שירות (DoS), הצפת SYN (TCP SYN Flood) ו-SYN Cookies</h2>
+<p class="text-xs md:text-sm text-slate-600 mt-1">שלושת צווארי הבקבוק המותקפים ב-DoS, מדוע מיתוג מעגלים חסין מגזילת רוחב פס, מנגנון מתקפת TCP SYN Flood ופתרון SYN Cookies חסר-המצב.</p>
+</div>
+
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">1. שלושת המשאבים המותקפים ב-DoS ומיתוג מנות מול מיתוג מעגלים</h3>
+<p class="text-xs text-slate-600">כילוי רוחב פס, כילוי מעבד וזיכרון (CPU/RAM), וכילוי טבלת חיבורי ה-TCP.</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-7-5-router-bw', '🚦 סימולציה 7.5א: מעבדת הצפת רוחב הפס בנתב r ומיתוג מנות מול מעגלים')" title="פתיחת מעבדה 7.5א: הצפת רוחב הפס בנתב r" type="button"><span class="text-xl">🚦</span></button>
+</div>
+<div class="overflow-x-auto rounded-xl border border-slate-200">
 <table class="w-full text-right border-collapse text-xs">
 <thead>
 <tr class="bg-slate-100 text-slate-900 border-b border-slate-200">
 <th class="p-2.5 font-extrabold">המשאב המותקף</th>
-<th class="p-2.5 font-extrabold">כיצד התוקף מכלה אותו?</th>
+<th class="p-2.5 font-extrabold">אופן הפעולה של המתקפה והשפעת הגדלת רוחב הפס</th>
 </tr>
 </thead>
 <tbody class="divide-y divide-slate-200 bg-white">
 <tr>
 <td class="p-2.5 font-bold text-slate-900">1. רוחב פס (Bandwidth)</td>
-<td class="p-2.5 text-slate-700">מקורות שולחים מנות בקצב כולל הגבוה מקצב קו היציאה של הנתב ($	ext{ArrivalRate} > 	ext{ServiceRate}$). התור בנתב מתמלא, מנות נזרקות, ובפרוטוקול אמין (TCP) הן משודרות שוב ומגדילות עוד יותר את העומס.</td>
+<td class="p-2.5 text-slate-700">מקורות שולחים מנות בקצב מצטבר הגבוה מקצב קו היציאה של הנתב ($\text{ArrivalRate} &gt; \text{ServiceRate}$). התור בנתב מתמלא, מנות נזרקות, ובפרוטוקול אמין (TCP) שידורים חוזרים מחריפים עוד יותר את העומס. (כאן הגדלת רוחב הפס של הקישור מסייעת).</td>
 </tr>
 <tr>
 <td class="p-2.5 font-bold text-slate-900">2. כוח חישוב וזיכרון (CPU / RAM)</td>
-<td class="p-2.5 text-slate-700">המנות מגיעות לשרת (גם בקצב נמוך מרוחב הפס) אך דורשות פעולות חישוב או שאילתות מסד נתונים כבדות (או שליחת פיסות IP קטועות ללא הפיסה האחרונה שנתקעות בזיכרון ההרכבה מחדש).</td>
+<td class="p-2.5 text-slate-700">המנות מגיעות לשרת בקצב נמוך מרוחב הפס אך דורשות פעולות חישוב או שאילתות מסד נתונים כבדות (או שליחת פיסות IP קטועות ללא הפיסה האחרונה שנתקעות בזיכרון ההרכבה מחדש). <b>הגדלת רוחב הפס בלבד לא תועיל כלל בתרחיש זה!</b></td>
 </tr>
 <tr>
 <td class="p-2.5 font-bold text-slate-900">3. חיבורי TCP פתוחים</td>
-<td class="p-2.5 text-slate-700">לשרת יש מספר מוגבל של חוצצים לחיבורים פתוחים/פתוחים-למחצה. חיבורים מזויפים תופסים אותם ומונעים מלקוחות אמיתיים להתחבר (כגון ב-<b>TCP SYN Flood</b>).</td>
+<td class="p-2.5 text-slate-700">לשרת יש מספר מוגבל של חוצצים לחיבורים פתוחים/פתוחים-למחצה בטבלת ה-SYN Backlog. בקשות חיבור מזויפות תופסות את כל המקומות בטבלה ומונעות מלקוחות אמיתיים להתחבר (<b>TCP SYN Flood</b>).</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="fast-callout-warn">
-<strong>❗ מיתוג מנות מול מיתוג מעגלים:</strong> התקפה על רוחב הפס <b>אינה אפשרית במיתוג מעגלים</b>, שכן שם כל חיבור מקבל משאבים ייעודיים וקבועים לכל אורכו ותוקף אינו יכול לגזול אותם בשליחת תעבורה. הפגיעות הזו היא מחיר ישיר של <b>מיתוג מנות</b>, שבו המשאבים משותפים.
+<div class="basic-callout-warn">
+<strong>❗ שאלת מבחן קלאסית – מיתוג מנות מול מיתוג מעגלים:</strong> התקפת DoS על רוחב הפס <b>אינה אפשרית במיתוג מעגלים (Circuit Switching)</b>, שכן שם מוקצים לכל שיחה משאבים ייעודיים וקבועים מראש לכל אורכה, ותוקף אינו יכול לגזול רוחב פס ממעגל פעיל של משתמש אחר. פגיעות זו היא מחיר ישיר של שיתוף המשאבים ב<b>מיתוג מנות</b>.
 </div>
-<div class="fast-sim-strip">
-<span class="text-xs font-bold text-slate-700">מעבדת הצפת התור בנתב $r$:</span>
-<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-7-5-router-bw', '🚦 סימולציה 7.5א: מעבדת הצפת רוחב הפס בנתב r ומיתוג מנות מול מעגלים')">🕹️ פתיחת מעבדה 7.5א</button>
 </div>
-</article>
-<!-- 7.5.2 הצפת SYN (TCP SYN Flood) -->
-<article class="fast-article">
-<h3 class="fast-article-title">
-<span class="fast-num-badge">7.5.2</span>
-<span>הצפת SYN (TCP SYN Flood) וניתוח דגלי TCP במתקפה</span>
-</h3>
-<div class="fast-flow-strip">
-<div class="fast-flow-node">1. תוקף שולח שטף סגמנטים עם דגל<br><code>SYN = 1</code> (מכתובות IP מזויפות)</div>
-<span class="fast-flow-arrow">──►</span>
-<div class="fast-flow-node bg-blue-50 border-blue-400">2. השרת מקצה זיכרון (מצב <code>SYN_RCVD</code>)<br>ומשיב לכל אחד עם <code>SYN, ACK</code> דולקים</div>
-<span class="fast-flow-arrow">──►</span>
-<div class="fast-flow-node">3. סגמנט ה-<code>ACK</code> השלישי לא חוזר לעולם<br>➔ זיכרון השרת מתמלא בחיבורים חצי-פתוחים!</div>
+
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">2. מתקפת הצפת SYN (TCP SYN Flood) וניתוח דגלי הבקרה במבחן</h3>
+<p class="text-xs text-slate-600">ניצול הקצאת המשאבים המוקדמת במצב <code>SYN_RCVD</code> וזיוף כתובות מקור שאינן משיבות.</p>
 </div>
-<ul class="text-xs text-slate-700 space-y-1.5 list-disc list-inside mt-2">
-<li><b>ניצול לחיצת היד המשולשת:</b> בלחיצת יד רגילה, השרת מקצה זיכרון למצב החיבור מיד עם קבלת ה-<code>SYN</code> הראשון (עוד לפני שהלקוח הוכיח שהוא אמיתי).</li>
-<li><b>מדוע התוקף מזייף כתובות מקור (Spoofing) שאינן עונות?</b> ה-<code>SYN-ACK</code> נשלח לכתובות שלא ביקשו דבר ואינן עונות, ולכן ה-<code>ACK</code> השלישי לא חוזר לעולם (אילו הכתובת הייתה שייכת למחשב חי ופעיל, הוא היה משיב ב-<code>RST</code> שמשחרר את הזיכרון בשרת).</li>
-<li><b>דגש על דגלי <code>SYN, FIN, ACK</code> בחיבור TCP בין לקוח $A$ לשרת $B$:</b> הדגלים <code>SYN</code> ו-<code>FIN</code> לעולם אינם דולקים יחד באותו סגמנט; הצירוף <code>SYN=1, ACK=0</code> נשלח מהלקוח $A$ לשרת $B$ (שלב 1); והצירוף <code>SYN=1, ACK=1</code> נשלח רק מהשרת $B$ ללקוח $A$ (שלב 2).</li>
-</ul>
-</article>
-<!-- 7.5.3 עוגיות SYN (SYN Cookies) -->
-<article class="fast-article">
-<h3 class="fast-article-title">
-<span class="fast-num-badge">7.5.3</span>
-<span>מנגנון ההגנה: עוגיות SYN (SYN Cookies)</span>
-</h3>
-<p class="text-xs md:text-sm text-slate-700 leading-relaxed mb-3">
-<b>הרעיון המרכזי:</b> לדחות את הקצאת הזיכרון בשרת עד לרגע שבו הלקוח מוכיח שהוא אמיתי (בשלב 3 של לחיצת היד).
-</p>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-7-5-synflood', '💥 סימולציה 7.5ב: סימולטור לחיצת היד המשולשת ומתקפת TCP SYN Flood')" title="פתיחת מעבדה 7.5ב: סימולטור TCP SYN Flood" type="button"><span class="text-xl">💥</span></button>
+</div>
+<div class="my-2 p-3 rounded-xl bg-[#f4f8fb] border border-[#cbd5e1] overflow-x-auto">
+<svg class="w-full h-auto max-w-2xl mx-auto select-none" viewBox="0 0 650 86">
+<rect x="8" y="10" width="195" height="66" rx="8" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5"/>
+<text x="105" y="32" fill="#0c4a6e" font-size="11" font-weight="800" text-anchor="middle">1. התוקף שולח שטף סגמנטים</text>
+<text x="105" y="50" fill="#0369a1" font-size="10.5" font-weight="700" text-anchor="middle">עם דגל SYN = 1 דולק</text>
+<text x="105" y="66" fill="#475569" font-size="9.5" text-anchor="middle">(מכתובות IP מקור מזויפות)</text>
+<rect x="225" y="10" width="200" height="66" rx="8" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.8"/>
+<text x="325" y="32" fill="#075985" font-size="11" font-weight="800" text-anchor="middle">2. השרת מקצה רשומה (SYN_RCVD)</text>
+<text x="325" y="50" fill="#0369a1" font-size="10.5" font-weight="700" text-anchor="middle">ומשיב לכל אחד עם SYN, ACK</text>
+<text x="325" y="66" fill="#475569" font-size="9.5" text-anchor="middle">(בטבלת הקשרים הפתוחים-למחצה)</text>
+<rect x="447" y="10" width="195" height="66" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+<text x="544" y="32" fill="#92400e" font-size="11" font-weight="800" text-anchor="middle">3. ה-ACK השלישי לעולם לא מגיע!</text>
+<text x="544" y="50" fill="#78350f" font-size="10" font-weight="700" text-anchor="middle">הטבלה מתמלאת לחלוטין</text>
+<text x="544" y="66" fill="#78350f" font-size="9.5" text-anchor="middle">ולקוחות אמיתיים נדחים (DoS)</text>
+</svg>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+<div class="basic-subcard space-y-1.5">
+<strong class="text-slate-900 block">💥 שלבי המתקפה ומדוע מזייפים כתובות שלא עונות</strong>
+<p class="text-slate-700 leading-relaxed">• בלחיצת יד רגילה, השרת מקצה רשומה בטבלת החיבורים הפתוחים-למחצה (מצב <code>SYN_RCVD</code>) מיד עם קבלת ה-<code>SYN</code> הראשון ומשיב ב-<code>SYN, ACK</code>.<br/>• <b>מדוע התוקף מזייף כתובות IP של מחשבים שאינם עונים ברשת?</b> אילו הכתובת המזויפת הייתה של מחשב חי ופעיל, אותו מחשב היה מקבל <code>SYN, ACK</code> לא מוכר ושולח מיד סגמנט איפוס <b><code>RST</code></b> שמשחרר ומוחק את הרשומה בשרת! כשהכתובת אינה משיבה, ה-<code>ACK</code> השלישי לא מגיע והרשומה תופסת זיכרון עד לפקיעת ה-Timeout.</p>
+</div>
+<div class="basic-subcard space-y-1.5">
+<strong class="text-slate-900 block">🚩 חוקיות צירופי הדגלים <code>SYN, FIN, ACK</code> וחישוב <code>Seq</code></strong>
+<p class="text-slate-700 leading-relaxed">• <b>שלב 1 (לקוח $A \to$ שרת $B$):</b> <code>SYN=1, ACK=0, FIN=0</code>.<br/>• <b>שלב 2 (שרת $B \to$ לקוח $A$):</b> <code>SYN=1, ACK=1, FIN=0</code>.<br/>• <b>סגירת קשר פעיל:</b> <code>SYN=0, FIN=1, ACK=1</code>.<br/>• <b>אסור תמיד:</b> <code>SYN=1, FIN=1</code> (פתיחה וסגירה סותרות זו את זו!).<br/>• <b>מספור סידורי:</b> גם <code>SYN=1</code> וגם <code>FIN=1</code> צורכים <b>מספר סידורי אחד (בית 1)</b>: אחרי שליחת $L$ בתים מ-$\text{ISN}_A+1$, סגמנט ה-<code>FIN</code> נשלח עם $\text{Seq}=\text{ISN}_A+1+L$ ומאושר ב-$\text{Ack}=\text{ISN}_A+2+L$.</p>
+</div>
+</div>
+</div>
+
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">3. מנגנון ההגנה: עוגיות SYN (SYN Cookies)</h3>
+<p class="text-xs text-slate-600">דחיית הקצאת הזיכרון בשרת עד להגעת סגמנט ה-<code>ACK</code> השלישי עם <code>Cookie + 1</code>.</p>
+</div>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-7-5-syncookies', '🍪 סימולציה 7.5ג: מעבדת ההגנה ב-SYN Cookies ואימות Cookie + 1')" title="פתיחת מעבדה 7.5ג: מעבדת SYN Cookies" type="button"><span class="text-xl">🍪</span></button>
+</div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-<div class="fast-subcard">
-<strong class="text-blue-900 block mb-1">1. קבלת SYN (אפס הקצאת זיכרון)</strong>
-<p class="text-slate-700">כשמגיע <code>SYN</code>, השרת <b>לא שומר דבר בזיכרון</b>. הוא מחשב "עוגייה" (Cookie) כפונקציית גיבוב של: <b>IP ופורט של הלקוח, IP ופורט של השרת, חותמת זמן מנורמלת ומפתח סודי של השרת</b>.</p>
+<div class="basic-subcard">
+<strong class="text-sky-900 block mb-1">1. קבלת SYN (אפס הקצאת זיכרון)</strong>
+<p class="text-slate-700 leading-relaxed">כשמגיע <code>SYN</code>, השרת <b>אינו מקצה רשומה בזיכרון</b>. הוא מחשב עוגייה כפונקציית גיבוב של: <b>IP ופורט של הלקוח והשרת, חותמת זמן מנורמלת ומפתח סודי של השרת</b>.</p>
 </div>
-<div class="fast-subcard">
-<strong class="text-blue-900 block mb-1">2. שליחת SYN-ACK עם ה-Cookie</strong>
-<p class="text-slate-700">השרת מציב את ה-Cookie בתור המספר הסידורי ההתחלתי שלו (<code>ISN</code> בשדה <code>Seq</code>) בסגמנט ה-<code>SYN-ACK</code> ושוכח ממנו. מנות <code>SYN</code> מזויפות אינן עולות לשרת זיכרון כלל.</p>
+<div class="basic-subcard">
+<strong class="text-sky-900 block mb-1">2. שליחת SYN-ACK עם ה-Cookie</strong>
+<p class="text-slate-700 leading-relaxed">השרת משבץ את ה-Cookie בתור המספר הסידורי ההתחלתי שלו (<code>Seq = Cookie</code>) בסגמנט ה-<code>SYN, ACK</code> ושוכח מהבקשה. מנות <code>SYN</code> מזויפות אינן תופסות זיכרון כלל.</p>
 </div>
-<div class="fast-subcard">
-<strong class="text-blue-900 block mb-1">3. אימות ה-ACK והקצאת זיכרון</strong>
-<p class="text-slate-700">לקוח אמיתי עונה ב-<code>ACK</code> שמספר האישור בו הוא <code>Cookie + 1</code>. השרת מחשב מחדש את העוגייה מפרטי מנת ה-<code>ACK</code> ומשווה ל-<code>Ack - 1</code>; <b>רק אם הם שווים מוקצה זיכרון לחיבור!</b></p>
-</div>
-</div>
-<div class="fast-callout-sky mt-3">
-<strong>⏱️ מדוע חותמת הזמן (Timestamp) היא חלק מהעוגייה ולמה היא מנורמלת?</strong><br>
-כדי שאותה עוגייה לא תשמש שוב לחיבורים שונים לאורך זמן (מניעת שימוש חוזר / Replay). היא מנורמלת (מעוגלת לפרקי זמן של כמה דקות) כך שהעוגייה עדיין תקפה כאשר ה-<code>ACK</code> של הלקוח חוזר.
-</div>
-<div class="fast-sim-strip">
-<span class="text-xs font-bold text-slate-700">מעבדות SYN Flood ו-SYN Cookies:</span>
-<div class="flex flex-wrap gap-2">
-<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-7-5-synflood', '💥 סימולציה 7.5ב: סימולטור לחיצת היד המשולשת ומתקפת TCP SYN Flood')">🕹️ מעבדה 7.5ב (SYN Flood)</button>
-<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-7-5-syncookies', '🍪 סימולציה 7.5ג: מעבדת ההגנה ב-SYN Cookies ואימות Cookie + 1')">🕹️ מעבדה 7.5ג (SYN Cookies)</button>
+<div class="basic-subcard">
+<strong class="text-sky-900 block mb-1">3. אימות ה-ACK והקצאת משאבים</strong>
+<p class="text-slate-700 leading-relaxed">לקוח אמיתי משיב ב-<code>ACK</code> שבו <code>Ack = Cookie + 1</code>. השרת מחשב מחדש את הגיבוב מפרטי הפקטה ומשווה ל-<code>Ack - 1</code>; <b>רק אם הם שווים מוקצה זיכרון לחיבור!</b></p>
 </div>
 </div>
-</article>
+<div class="basic-callout">
+<strong>⏱️ מדוע חותמת הזמן (Timestamp) נכללת בעוגייה ומדוע היא מנורמלת?</strong> כדי למנוע מתוקף להקליט עוגייה חוקית ולהשתמש בה שוב בעתיד (Replay Attack). היא מנורמלת (מתחלפת לאט, למשל כל 64 שניות) כך שהעוגייה תישאר תקפה עד שיחזור ה-<code>ACK</code> של הלקוח. המנגנון שקוף לחלוטין ללקוח ואינו דורש שום שינוי בצד הלקוח.
+</div>
+</div>
+</div>
+<div class="fast-mode-view space-y-4">
+<div class="fast-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+<span class="fast-badge">⚡ לימוד מהיר • יחידה 7.5 (סקירה מרוכזת)</span>
+<div class="flex items-center gap-1.5 flex-wrap">
+<button class="fast-sim-btn" onclick="openSingleSim('sim-7-5-router-bw', '🚦 סימולציה 7.5א: מעבדת הצפת רוחב הפס בנתב r ומיתוג מנות מול מעגלים')" type="button">🚦 מעבדה 7.5א: תור ורוחב פס</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-7-5-synflood', '💥 סימולציה 7.5ב: סימולטור לחיצת היד המשולשת ומתקפת TCP SYN Flood')" type="button">💥 מעבדה 7.5ב: SYN Flood</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-7-5-syncookies', '🍪 סימולציה 7.5ג: מעבדת ההגנה ב-SYN Cookies ואימות Cookie + 1')" type="button">🍪 מעבדה 7.5ג: SYN Cookies</button>
+</div>
+</div>
+<h2 class="text-xl md:text-2xl font-black text-slate-900">7.5 התקפות מניעת שירות (DoS), הצפת SYN ו-SYN Cookies</h2>
+<p class="text-xs text-slate-600"><b>DoS:</b> פגיעה ב<b>זמינות (Availability)</b> על ידי כילוי משאב משותף: (1) רוחב פס, (2) מעבד וזיכרון, או (3) טבלת חיבורי TCP.</p>
+</div>
+
+<div class="fast-visual-strip">
+<div class="fast-strip-node"><b>1. DoS על רוחב פס:</b> $\text{ArrivalRate} &gt; \text{ServiceRate}$ בנתב ➔ השלכת מנות ושידורים חוזרים ב-TCP. <b>לא קיים במיתוג מעגלים!</b></div>
+<div class="fast-strip-node"><b>2. DoS על חישוב/זיכרון:</b> בקשות כבדות ל-CPU/DB או פיסות IP ללא אחרונה. <b>הגדלת רוחב הפס בלבד לא תעזור כאן!</b></div>
+<div class="fast-strip-node"><b>3. מתקפת TCP SYN Flood:</b> שטף <code>SYN</code> מכתובות מזויפות שלא עונות ➔ השרת משיב <code>SYN, ACK</code> ונתקע ב-<b><code>SYN_RCVD</code></b> ללא <code>ACK</code> שלישי.</div>
+<div class="fast-strip-node fast-strip-highlight"><b>4. הגנת SYN Cookies ★:</b> אפס זיכרון בקבלת <code>SYN</code>! קידוד $\text{Cookie}=\text{Hash}(\dots)$ בשדה ה-<code>Seq</code> של ה-<code>SYN, ACK</code>; הקצאת משאבים רק כשחוזר <code>Ack = Cookie + 1</code>.</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+<div class="fast-card">
+<div class="fast-card-title">🎯 דגשי מבחן קריטיים על TCP SYN Flood ודגלי TCP</div>
+<p class="text-slate-700 leading-relaxed">• <b>תבנית זיהוי בדוח שרת (2026ג):</b> נכנסים סגמנטים רבים עם <b>(1) <code>SYN</code></b> ➔ השרת משיב עם <b>(2) <code>SYN, ACK</code></b> ➔ לא מתקבל <code>ACK</code> נוסף ➔ מתקפת <b>(3) <code>SYN Flood</code> (DoS/DDoS)</b>.<br/>• <b>למה לזייף כתובות שאינן משיבות?</b> מחשב חי שמקבל <code>SYN, ACK</code> לא צפוי משיב מיד ב-<b><code>RST</code></b> שמוחק ומשחרר את הרשומה בשרת!<br/>• <b>חוקיות דגלים (לקוח $A$, שרת $B$):</b> <code>SYN=1, FIN=1</code> <b>אסור תמיד</b>; <code>SYN=1, ACK=0</code> רק מ-$A \to B$; <code>SYN=1, ACK=1</code> רק מ-$B \to A$; סגירה: <code>FIN=1, ACK=1</code>. (כל <code>SYN</code> ו-<code>FIN</code> צורך מספר <code>Seq</code> אחד!).</p>
+</div>
+<div class="fast-card">
+<div class="fast-card-title">🍪 מרכיבי ה-SYN Cookie ויתרונותיו</div>
+<p class="text-slate-700 leading-relaxed">• <b>מה נכנס לגיבוב ה-Cookie?</b> כתובות IP ופורטים של הלקוח והשרת + <b>מפתח סודי של השרת</b> + <b>חותמת זמן מנורמלת ($t$)</b>.<br/>• <b>תפקיד חותמת הזמן:</b> מונעת מחזור עוגיות ישנות (Replay), ומנורמלת לדקות ספורות כדי שלא תתחלף בזמן ה-RTT של הלקוח הלגיטימי.<br/>• <b>שקיפות מלאה:</b> הלקוח אינו יודע שה-<code>ISN</code> של השרת הוא Cookie – הוא פשוט מחזיר <code>Ack = ISN + 1</code> כרגיל בתקן ה-TCP.</p>
+</div>
+</div>
 </div>
 <!-- Sub-Chapter Navigation Footer -->
 <div class="mt-12 pt-6 border-t border-sky-200 flex flex-wrap items-center justify-between gap-4">
@@ -2785,7 +3157,7 @@ $$\text{HMAC} = H\big((K \oplus \text{opad}) \;\parallel\; H((K \oplus \text{ipa
 <span>📡</span> מודל מנטלי: האתגר הכפול של זיהוי DDoS – "האם הכתובת מזויפת?" ו"למה התעבורה חריגה?"
 </h3>
 <p class="text-slate-800 text-sm leading-relaxed">
-בעוד שבהתקפת <b>DoS</b> התעבורה מגיעה ממקור יחיד או ממעט מקורות, בהתקפת <b>DDoS (Distributed Denial of Service)</b> התעבורה מגיעה ממספר עצום של מחשבים ברחבי העולם, ולכן קשה מאוד לחסום אותה, לזהות מקור יחיד או להפריד בין תנועה לגיטימית לזדונית ( ). כדי להתמודד איתה, הרשת מפעילה שני קווי הגנה משלימים:
+בעוד שבהתקפת <b>DoS</b> התעבורה מגיעה ממקור יחיד או ממעט מקורות, בהתקפת <b>DDoS (Distributed Denial of Service)</b> התעבורה מגיעה ממספר עצום של מחשבים ברחבי העולם, ולכן קשה מאוד לחסום אותה, לזהות מקור יחיד או להפריד בין תנועה לגיטימית לזדונית. כדי להתמודד איתה, הרשת מפעילה שני קווי הגנה משלימים:
 <br>• <b>שיטה 1 – uRPF (Unicast Reverse-Path Forwarding):</b> הנתב בודק האם מנת IP הגיעה מממשק פיזי שלא הגיוני שתגיע ממנו לפי טבלת הניתוב שלו – וכך תופס מנות עם כתובת מקור מזויפת (`Spoofing`).
 <br>• <b>שיטה 2 – זיהוי אנומליות (Anomaly Detection):</b> מערכת הניטור לומדת מהי תעבורה "נורמלית" ומחפשת קפיצות חריגות – אך חייבת להבחין בין מתקפת DDoS לבין נהירה אמיתית של גולשים לאתר חדשות או למבצע קניות (`Anomaly ≠ Attack`)!
 </p>
@@ -2846,15 +3218,15 @@ $$\text{HMAC} = H\big((K \oplus \text{opad}) \;\parallel\; H((K \oplus \text{ipa
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
 <div class="p-5 rounded-2xl bg-slate-50 border-2 border-sky-200 space-y-2">
-<h4 class="text-base font-black text-sky-950">✅ היתרון הגדול של uRPF ( )</h4>
+<h4 class="text-base font-black text-sky-950">✅ היתרון הגדול של uRPF</h4>
 <p class="text-xs md:text-sm text-slate-700 leading-relaxed">
 הנתב <b>כבר מחזיק טבלת ניתוב (Routing Table)</b> לצורך עבודתו השוטפת! לכן uRPF פועל באופן אוטומטי לגמרי ומשתמש במידע שכבר קיים בנתב ללא צורך בפרוטוקול חיצוני חדש כדי לזהות ולסנן זיוף כתובות מקור (<code>Spoofing</code>).
 </p>
 </div>
 <div class="p-5 rounded-2xl bg-white text-slate-900 border border-sky-300 shadow-sm space-y-2">
-<h4 class="text-base font-black text-sky-950">⚠️ החיסרון המרכזי של uRPF ( )</h4>
+<h4 class="text-base font-black text-sky-950">⚠️ החיסרון המרכזי של uRPF</h4>
 <p class="text-xs md:text-sm text-slate-700 leading-relaxed">
-השיטה מניחה <b>סימטריה במסלולים</b>, אבל באינטרנט: <b><code>Forward path may differ from reverse path</code></b> – הדרך מ-$A$ ל-$B$ אינה חייבת להיות אותה הדרך מ-$B$ ל-$A$! לכן כאשר הניתוב אסימטרי, פקטה לגיטימית לחלוטין עלולה להיכנס דרך ממשק שונה מממשק היציאה אל המקור, להיראות חשודה ולהיזרק בטעות.
+השיטה מניחה <b>סימטריה במסלולים</b>, אבל באינטרנט: <b><code>Forward path may differ from reverse path</code></b> – הדרך מ-$A$ ל-$B$ אינה חייבת להיות אותה הדרך מ-$B$ ל-$A$! לכן כאשר הניתוב אסימטרי, פקטה לגיטימית לחלוטין עלולה להיכנס דרך ממשק שונה מממשק היציאה אל המקור, להיראות חשודה ולהיזרק בטעות. בנוסף, <b>uRPF אינו יכול לעצור מתקפת Botnet DDoS שבה המחשבים התוקפים משתמשים בכתובות ה-IP האמיתיות שלהם</b> (ללא Spoofing), שכן אז המנות מגיעות מהממשקים החוקיים המתאימים לטבלת הניתוב.
 </p>
 </div>
 </div>
@@ -2886,7 +3258,7 @@ $$\text{HMAC} = H\big((K \oplus \text{opad}) \;\parallel\; H((K \oplus \text{ipa
 </h3>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
 <div class="p-5 rounded-2xl bg-slate-50 border-2 border-sky-200 space-y-2.5">
-<h4 class="text-base font-black text-sky-950">📈 איך עובד זיהוי אנומליות? ()</h4>
+<h4 class="text-base font-black text-sky-950">📈 איך עובד זיהוי אנומליות?</h4>
 <p class="text-xs md:text-sm text-slate-700 leading-relaxed">
 מנטרים את התעבורה הרגילה ברשת לאורך זמן, לומדים מה נחשב <b>נורמלי (<code>Normal</code>)</b>, ואז מחפשים <b>חריגות (Anomalies)</b>. דוגמאות לאנומליה שעלולה להעיד על <b>DDoS</b>:<br>
 • פתאום מגיעות המון פקטות לשרת מסוים.<br>
@@ -2990,8 +3362,8 @@ $$\text{HMAC} = H\big((K \oplus \text{opad}) \;\parallel\; H((K \oplus \text{ipa
 <h3 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-3">
 <span class="bg-gradient-to-r from-blue-700 to-sky-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-black text-lg border border-sky-300 shadow-xs">3</span>
 <div>
-<div>פרוטוקולי אבטחה לאורך 5 השכבות  ו-9 כללי הזהב למבחן</div>
-<div class="text-xs font-normal text-slate-500 mt-0.5">PGP, SSH, TLS/HTTPS, IPsec, Firewalls/DMZ, 802.11i/WPA3 +  </div>
+<div>פרוטוקולי אבטחה לאורך 5 השכבות ו-9 כללי הזהב למבחן</div>
+<div class="text-xs font-normal text-slate-500 mt-0.5">PGP, SSH, TLS/HTTPS, IPsec, Firewalls/DMZ, 802.11i/WPA3  </div>
 </div>
 </h3>
 <div class="overflow-x-auto rounded-2xl border-2 border-sky-200 shadow-xs mb-8">
@@ -3031,7 +3403,7 @@ $$\text{HMAC} = H\big((K \oplus \text{opad}) \;\parallel\; H((K \oplus \text{ipa
 <div class="p-6 rounded-3xl bg-gradient-to-br from-[#0a192f] via-slate-900 to-sky-900 text-white border-2 border-sky-300 shadow-xl mb-6">
 <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-700 pb-3 mb-4">
 <h4 class="text-xl font-black text-white flex items-center gap-2">
-<span>🏆</span> 9 הדברים שהכי חשוב לזכור למבחן (  – מילה במילה!)
+<span>🏆</span> 9 הדברים שהכי חשוב לזכור למבחן
 </h4>
 <span class="px-3 py-1 rounded-full bg-white text-sky-950 text-xs font-black">צ'ק-ליסט חובה למבחן</span>
 </div>
@@ -3093,107 +3465,147 @@ $$\text{HMAC} = H\big((K \oplus \text{opad}) \;\parallel\; H((K \oplus \text{ipa
 </div>
 </div>
 </div>
-<div class="fast-mode-view">
-<header class="fast-header-card">
-<div class="fast-badge">⚡ לימוד מהיר • חלק 7.6</div>
-<h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight mb-2">7.6 מתקפות DDoS, מנגנון uRPF, זיהוי אנומליות וסיכום הפרק</h2>
-<p class="text-sm text-slate-600 leading-relaxed">
-במתקפת DDoS (מניעת שירות מבוזרת) התעבורה מגיעה ממספר עצום של מחשבים במקביל ולכן קשה לחסום אותה לפי כתובת מקור בודדת. לזיהוי וסינון התעבורה התוקפת משמשות שתי שיטות עיקריות: uRPF וזיהוי אנומליות.
-</p>
-</header>
-<!-- 7.6.1 שתי שיטות הזיהוי: uRPF מול זיהוי אנומליות -->
-<article class="fast-article">
-<h3 class="fast-article-title">
-<span class="fast-num-badge">7.6.1</span>
-<span>זיהוי וסינון התקפות: מנגנון uRPF מול זיהוי אנומליות (Anomaly Detection)</span>
-</h3>
-<div class="fast-flow-strip">
-<div class="fast-flow-node">מנה נכנסת לנתב עם <code>Source IP = X</code><br>דרך ממשק <code>In_Port</code></div>
-<span class="fast-flow-arrow">──►</span>
-<div class="fast-flow-node bg-blue-50 border-blue-400">בדיקת uRPF בטבלת הניתוב:<br>האם הממשק לניתוב אל <code>X</code> שווה ל-<code>In_Port</code>?</div>
-<span class="fast-flow-arrow">──►</span>
-<div class="fast-flow-node">כן ➔ העבר הלאה (Forward)<br>לא ➔ חשד ל-Spoofing, זרוק מנה (Drop)!</div>
+<div class="basic-mode-view space-y-5">
+<div class="basic-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="basic-badge">📖 לימוד בסיסי • יחידה 7.6</span>
+<div class="flex items-center gap-2">
+<button class="basic-top-btn" onclick="showTab('tab-exercises')" type="button">לתרגילים ומבחן מסכם 📝</button>
+<button class="basic-top-btn" onclick="showQuestions('tab-ddos-detection', '7.6 DDoS, מנגנון uRPF, זיהוי אנומליות ופרוטוקולים', event)" type="button">❓ שאלות תרגול</button>
 </div>
-<div class="overflow-x-auto rounded-xl border border-slate-200 my-3">
+</div>
+<h2 class="text-2xl md:text-3xl font-black text-slate-900">7.6 מתקפות DDoS, מנגנון uRPF, זיהוי אנומליות ופרוטוקולי אבטחה בשכבות</h2>
+<p class="text-xs md:text-sm text-slate-600 mt-1">זיהוי וסינון מתקפות מבוזרות באמצעות בדיקת מסלול הפוך (uRPF) וזיהוי אנומליות (Anomaly Detection), וסקירת פרוטוקולי האבטחה ב-5 שכבות הרשת.</p>
+</div>
+
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">1. מנגנון uRPF מול זיהוי אנומליות (Anomaly Detection)</h3>
+<p class="text-xs text-slate-600">סינון זיוף כתובות מקור בטבלת הניתוב מול ניטור תעבורה חריגה ודילמת ה-Flash Crowd.</p>
+</div>
+<div class="flex items-center gap-2 shrink-0">
+<button class="sim-circle-btn" onclick="openSingleSim('sim-7-6-urpf', '🧭 סימולציה 7.6א: מעבדת נתב uRPF חיה וניתוב אסימטרי')" title="פתיחת מעבדה 7.6א: נתב uRPF וניתוב אסימטרי" type="button"><span class="text-xl">🧭</span></button>
+<button class="sim-circle-btn" onclick="openSingleSim('sim-7-6-anomaly', '📈 סימולציה 7.6ב: מערכת זיהוי אנומליות ודילמת ה-Flash Crowd')" title="פתיחת מעבדה 7.6ב: זיהוי אנומליות ו-Flash Crowd" type="button"><span class="text-xl">📈</span></button>
+</div>
+</div>
+<div class="my-2 p-3 rounded-xl bg-[#f4f8fb] border border-[#cbd5e1] overflow-x-auto">
+<svg class="w-full h-auto max-w-2xl mx-auto select-none" viewBox="0 0 650 84">
+<rect x="8" y="10" width="195" height="64" rx="8" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5"/>
+<text x="105" y="32" fill="#0c4a6e" font-size="11" font-weight="800" text-anchor="middle">1. מנה נכנסת לנתב עם Source IP = X</text>
+<text x="105" y="52" fill="#475569" font-size="10" text-anchor="middle">דרך ממשק פיזי In_Port</text>
+<rect x="225" y="10" width="200" height="64" rx="8" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.8"/>
+<text x="325" y="32" fill="#075985" font-size="11" font-weight="800" text-anchor="middle">2. בדיקת uRPF בטבלת הניתוב</text>
+<text x="325" y="52" fill="#0369a1" font-size="10" font-weight="700" text-anchor="middle">האם הממשק לניתוב אל X הוא In_Port?</text>
+<rect x="447" y="10" width="195" height="64" rx="8" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5"/>
+<text x="544" y="32" fill="#065f46" font-size="10.5" font-weight="800" text-anchor="middle">מתאים ➔ העבר מנה (Forward)</text>
+<text x="544" y="52" fill="#991b1b" font-size="10.5" font-weight="800" text-anchor="middle">שונה ➔ חשד ל-Spoofing, זרוק (Drop)!</text>
+</svg>
+</div>
+<div class="overflow-x-auto rounded-xl border border-slate-200">
 <table class="w-full text-right border-collapse text-xs">
 <thead>
 <tr class="bg-slate-100 text-slate-900 border-b border-slate-200">
 <th class="p-2.5 font-extrabold">שיטה</th>
-<th class="p-2.5 font-extrabold">הרעיון המרכזי</th>
-<th class="p-2.5 font-extrabold">יתרון</th>
-<th class="p-2.5 font-extrabold">חיסרון</th>
+<th class="p-2.5 font-extrabold">עקרון הפעולה</th>
+<th class="p-2.5 font-extrabold">יתרון מרכזי</th>
+<th class="p-2.5 font-extrabold">חיסרון ומגבלות במבחן</th>
 </tr>
 </thead>
 <tbody class="divide-y divide-slate-200 bg-white">
 <tr>
-<td class="p-2.5 font-bold text-slate-900">uRPF<br><span class="font-mono text-[10px] text-slate-500">(Reverse-Path Forwarding)</span></td>
-<td class="p-2.5 text-slate-700">הנתב בודק את כתובת המקור של מנה נכנסת ושואל: אילו רציתי לשלוח מנה אל כתובת זו, האם הייתי מוציא אותה דרך אותו ממשק שממנו המנה הגיעה? אם לא – המנה כנראה מזויפת ונזרקת.</td>
-<td class="p-2.5 text-slate-700"><b>אוטומטי לגמרי</b>, ומשתמש במידע שכבר קיים בטבלת הניתוב של הנתב.</td>
-<td class="p-2.5 text-slate-700"><b>מניח שהניתוב סימטרי</b>, וזה לא תמיד נכון באינטרנט (הקו שדרכו יוצאים ליעד אינו בהכרח הקו שדרכו מגיעים ממנו) ➔ זריקת מנות לגיטימיות.</td>
+<td class="p-2.5 font-bold text-slate-900">uRPF<br/><span class="font-mono text-[10px] text-slate-500">(Reverse-Path Filtering)</span></td>
+<td class="p-2.5 text-slate-700">הנתב בודק את כתובת המקור <code>Source IP</code> של מנה נכנסת מול טבלת הניתוב: אם המנה הגיעה מממשק שונה מהממשק שדרכו הנתב היה שולח מנות אל אותה כתובת מקור – המנה נזרקת.</td>
+<td class="p-2.5 text-slate-700"><b>אוטומטי לגמרי</b>, מתבסס על טבלת הניתוב הקיימת בנתב ללא פרוטוקול נוסף.</td>
+<td class="p-2.5 text-slate-700">1. <b>מניח ניתוב סימטרי:</b> בניתוב אסימטרי באינטרנט מנות לגיטימיות ייזרקו בטעות!<br/>2. <b>אינו חוסם Botnet DDoS</b> שבו הבוטים משתמשים בכתובות ה-IP האמיתיות שלהם (ללא Spoofing).</td>
 </tr>
 <tr>
-<td class="p-2.5 font-bold text-slate-900">זיהוי אנומליות<br><span class="font-mono text-[10px] text-slate-500">(Anomaly Detection)</span></td>
-<td class="p-2.5 text-slate-700">ניטור מתמשך המאפיין את התעבורה הרגילה (<code>Normal</code>) ומזהה חריגות: הרבה מאוד מנות ליעד אחד בזמן קצר, או מספר חריג של כתובות מקור שונות.</td>
-<td class="p-2.5 text-slate-700"><b>מזהה גם התקפות DDoS שאינן מזייפות כתובות מקור</b>.</td>
-<td class="p-2.5 text-slate-700"><b>חיובי שגוי (False Positive):</b> לא כל עומס חריג הוא התקפה (<code>Anomaly ≠ Attack</code>) – כגון אתר חדשות בזמן אירוע גדול או אתר קניות ביום מבצעים (Flash Crowd).</td>
+<td class="p-2.5 font-bold text-slate-900">זיהוי אנומליות<br/><span class="font-mono text-[10px] text-slate-500">(Anomaly Detection)</span></td>
+<td class="p-2.5 text-slate-700">ניטור מתמשך הלומד את דפוס התעבורה הרגיל (<code>Normal</code>) ומתריע על קפיצות חריגות בקצב המנות ליעד או במספר כתובות המקור השונות.</td>
+<td class="p-2.5 text-slate-700"><b>מזהה גם מתקפות Botnet DDoS ללא זיוף כתובות</b> (שעוברות את uRPF).</td>
+<td class="p-2.5 text-slate-700"><b>חיובי שגוי (False Positive):</b> לא כל אנומליה היא מתקפה (<code>Anomaly ≠ Attack</code>) – למשל עומס גולשים לגיטימי באתר חדשות או ביום מבצעים (<b>Flash Crowd</b>).</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="fast-callout-blue">
-<strong>💡 כיצד מבחינים בין עומס גולשים אמיתי (באתר חדשות/קניות) לבין מתקפה?</strong> לא מספיק לזהות שהתעבורה חריגה, אלא יש לברר את <b>הסיבה לחריגה</b>: למשל, אם בדוח התעבורה בשרת רואים שמתקבלים סגמנטים רבים עם דגל <code>SYN</code> דולק, השרת משיב עם <code>SYN, ACK</code> דולקים, אך מהרוב המוחלט של ההוסטים לא מתקבל כל סגמנט נוסף – זוהי מתקפת <b><code>SYN Flood</code></b> ולא גולשים לגיטימיים!
-</div>
-<div class="fast-sim-strip">
-<span class="text-xs font-bold text-slate-700">מעבדות uRPF וזיהוי אנומליות:</span>
-<div class="flex flex-wrap gap-2">
-<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-7-6-urpf', '🧭 סימולציה 7.6א: מעבדת נתב uRPF חיה וניתוב אסימטרי')">🕹️ מעבדה 7.6א (uRPF)</button>
-<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-7-6-anomaly', '📈 סימולציה 7.6ב: מערכת זיהוי אנומליות ודילמת ה-Flash Crowd')">🕹️ מעבדה 7.6ב (אנומליות)</button>
+<div class="basic-callout">
+<strong>💡 כיצד מבחינים בין Flash Crowd לבין מתקפה?</strong> בודקים את <b>הסיבה לחריגה</b> ברמת הפרוטוקול: אם בדוח השרת רואים שמתקבלים סגמנטים רבים עם דגל <code>SYN</code> דולק, השרת משיב עם <code>SYN, ACK</code> דולקים, אך מהרוב המוחלט של ההוסטים לא מתקבל <code>ACK</code> שלישי – זוהי מתקפת <b><code>SYN Flood</code></b> ולא עומס גולשים לגיטימי!
 </div>
 </div>
-</article>
-<!-- 7.6.2 פרוטוקולי אבטחה לפי שכבות ו-9 כללי הזהב -->
-<article class="fast-article">
-<h3 class="fast-article-title">
-<span class="fast-num-badge">7.6.2</span>
-<span>פרוטוקולי אבטחה בשכבות הרשת ו-9 נקודות הליבה למבחן</span>
-</h3>
-<div class="grid grid-cols-1 md:grid-cols-4 gap-3 mb-4 text-xs">
-<div class="fast-subcard">
-<strong class="text-blue-900 block mb-1">שכבת האפליקציה</strong>
-<p class="text-slate-700"><b>PGP:</b> הצפנה וחתימת דוא"ל (Web of Trust).<br><b>SSH:</b> גישה מרוחקת מאובטחת (מחליף את Telnet).</p>
+
+<div class="basic-card space-y-3">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="basic-card-title">2. פרוטוקולי אבטחה ב-5 שכבות הרשת ו-9 כללי הזהב למבחן</h3>
+<p class="text-xs text-slate-600">PGP/SSH, SSL/TLS, IPsec/Firewalls, ו-802.11i (WPA2/WPA3) לצד ריכוז כללי המפתח של הפרק.</p>
 </div>
-<div class="fast-subcard">
-<strong class="text-blue-900 block mb-1">שכבת התעבורה</strong>
-<p class="text-slate-700"><b>SSL / TLS (HTTPS):</b> לחיצת יד עם תעודת שרת והקמת מפתחות מושב + Record Protocol (הצפנה סימטרית ו-HMAC).</p>
+<button class="sim-circle-btn shrink-0" onclick="openSingleSim('sim-7-6-stack', '🛡️ סימולציה 7.6ג: סייר פרוטוקולי האבטחה ב-5 שכבות הרשת')" title="פתיחת מעבדה 7.6ג: פרוטוקולי האבטחה בשכבות" type="button"><span class="text-xl">🛡️</span></button>
 </div>
-<div class="fast-subcard">
-<strong class="text-blue-900 block mb-1">שכבת הרשת</strong>
-<p class="text-slate-700"><b>IPsec (AH/ESP):</b> מצב Transport או Tunnel (VPN).<br><b>Firewalls:</b> סינון מנות חסר-מצב מול מצבי (Stateful) ו-DMZ.</p>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
+<div class="basic-subcard">
+<strong class="text-sky-900 block mb-1">שכבת האפליקציה</strong>
+<p class="text-slate-700 leading-relaxed"><b>PGP:</b> הצפנה וחתימה של דוא"ל (רשת אמון מבוזרת).<br/><b>SSH:</b> התחברות מרוחקת מאובטחת (מחליף את Telnet הגלוי).</p>
 </div>
-<div class="fast-subcard">
-<strong class="text-blue-900 block mb-1">שכבת הקישור</strong>
-<p class="text-slate-700"><b>802.11i (WPA2/WPA3):</b> אבטחת Wi-Fi (החליף את WEP), אימות EAP/802.1X והצפנת AES-CCMP.</p>
+<div class="basic-subcard">
+<strong class="text-sky-900 block mb-1">שכבת התעבורה</strong>
+<p class="text-slate-700 leading-relaxed"><b>SSL / TLS (HTTPS):</b> שלב לחיצת יד לאימות תעודת שרת והחלפת מפתחות מושב + שלב Record להצפנה סימטרית ו-HMAC.</p>
+</div>
+<div class="basic-subcard">
+<strong class="text-sky-900 block mb-1">שכבת הרשת</strong>
+<p class="text-slate-700 leading-relaxed"><b>IPsec (AH / ESP):</b> מצב Transport (רק מטען) מול Tunnel (כל חבילת ה-IP ל-VPN).<br/><b>Firewalls:</b> סינון מנות חסר-מצב מול מצבי (Stateful) ו-DMZ.</p>
+</div>
+<div class="basic-subcard">
+<strong class="text-sky-900 block mb-1">שכבת הקישור</strong>
+<p class="text-slate-700 leading-relaxed"><b>802.11i (WPA2/WPA3):</b> אבטחת רשת אלחוטית Wi-Fi, אימות EAP/802.1X והצפנת AES-CCMP (החליף את WEP השביר).</p>
 </div>
 </div>
-<div class="fast-callout-sky">
-<strong class="block mb-1.5 text-sm">🏆 9 נקודות החובה לזכור בפרק 7:</strong>
+<div class="basic-callout">
+<strong class="block mb-1 text-sm">🏆 9 נקודות החובה לזכור בפרק 7:</strong>
 <ol class="list-decimal list-inside space-y-1 text-xs text-slate-800">
-<li>ארבע מטרות האבטחה שונות זו מזו: <b>סודיות $\neq$ אימות $\neq$ שלמות $\neq$ זמינות</b> (ובחתימות: <b>מניעת התכחשות</b>).</li>
-<li><b>הצפנה סימטרית ($k_1=k_2$):</b> מהירה מאוד ומתאימה למידע רב, אך סובלת מבעיית הפצת המפתח.</li>
-<li><b>הצפנה אסימטרית ($k_{\text{pub}} \neq k_{\text{priv}}$):</b> מצפינים במפתח הציבורי של הנמען ($E_B$), מפענחים בפרטי שלו ($D_B$). פותרת את הפצת המפתח אך איטית.</li>
-<li><b>RSA:</b> מבוססת על הקושי לפרק את $n = p \cdot q$ לגורמים. משמשת בפועל ל<b>העברת מפתח סימטרי</b> ול<b>חתימות דיגיטליות</b>.</li>
-<li><b>חתימה דיגיטלית ($D_A$):</b> נועדה ל<b>שלמות + מניעת התכחשות</b> (ולא לסודיות!).</li>
+<li>ארבע מטרות האבטחה נפרדות: <b>סודיות $\neq$ אימות $\neq$ שלמות $\neq$ זמינות</b> (ובחתימה דיגיטלית: <b>מניעת התכחשות</b>).</li>
+<li><b>הצפנה סימטרית ($k_1=k_2$):</b> מהירה מאוד ומתאימה למידע רב, אך סובלת מבעיית הפצת המפתח ($\frac{N(N-1)}{2}$).</li>
+<li><b>הצפנה אסימטרית ($E_B \neq D_B$):</b> מצפינים בציבורי של הנמען ($E_B$), מפענחים בפרטי שלו ($D_B$). פותרת את הפצת המפתח אך איטית.</li>
+<li><b>RSA:</b> מבוססת על קושי פירוק $n = p \cdot q$ לגורמים. משמשת בפועל ל<b>העברת מפתח סימטרי</b> ול<b>חתימות דיגיטליות</b>.</li>
+<li><b>חתימה דיגיטלית ($D_A$):</b> מבטיחה <b>שלמות + אימות + מניעת התכחשות</b> (ולא סודיות!). בשילוב סודיות: $C = E_B(D_A(P))$.</li>
 <li><b>חתימה עם Hash:</b> חותמים רק על טביעת האצבע הקצרה $DS = D_A(MD(P))$ (חד-כיווניות + עמידות להתנגשויות).</li>
-<li><b>מתקפת TCP SYN Flood:</b> מנצלת הקצאת זיכרון בשרת מיד בקבלת <code>SYN</code> לפני השלמת ה-<code>ACK</code> השלישי.</li>
-<li><b>SYN Cookies:</b> השרת אינו שומר מצב בקבלת <code>SYN</code>, אלא מקודד <code>Cookie</code> כ-<code>ISN</code> ב-<code>SYN-ACK</code> ומקצה זיכרון רק כשחוזר <code>ACK = Cookie + 1</code>.</li>
-<li><b>זיהוי DDoS:</b> מנגנון <b>uRPF</b> מסנן Spoofing אוטומטית לפי טבלת הניתוב (אך מניח ניתוב סימטרי); <b>זיהוי אנומליות</b> תופס גם DDoS ללא זיוף כתובות (אך חשוף לחיובי שווא ב-Flash Crowd).</li>
+<li><b>מתקפת TCP SYN Flood:</b> מנצלת הקצאת זיכרון בשרת במצב <code>SYN_RCVD</code> בקבלת <code>SYN</code> לפני הגעת ה-<code>ACK</code> השלישי (תוך זיוף כתובות שלא משיבות כדי למנוע <code>RST</code>).</li>
+<li><b>SYN Cookies:</b> השרת אינו שומר מצב בקבלת <code>SYN</code>, אלא מקודד <code>Cookie</code> כ-<code>Seq</code> ב-<code>SYN, ACK</code> ומקצה זיכרון רק כשחוזר <code>Ack = Cookie + 1</code>.</li>
+<li><b>זיהוי DDoS:</b> <b>uRPF</b> מסנן Spoofing אוטומטית לפי טבלת הניתוב (אך נשבר בניתוב אסימטרי ולא עוצר Botnet עם כתובות אמיתיות); <b>זיהוי אנומליות</b> תופס גם כתובות אמיתיות (אך חשוף לחיובי שווא ב-Flash Crowd).</li>
 </ol>
 </div>
-<div class="fast-sim-strip">
-<span class="text-xs font-bold text-slate-700">סימולטור פרוטוקולי האבטחה ב-5 השכבות:</span>
-<button type="button" class="fast-sim-btn" onclick="openSingleSim('sim-7-6-stack', '🛡️ סימולציה 7.6ג: סייר פרוטוקולי האבטחה ב-5 שכבות הרשת')">🕹️ פתיחת מעבדה 7.6ג</button>
 </div>
-</article>
+</div>
+<div class="fast-mode-view space-y-4">
+<div class="fast-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+<span class="fast-badge">⚡ לימוד מהיר • יחידה 7.6 (סקירה מרוכזת)</span>
+<div class="flex items-center gap-1.5 flex-wrap">
+<button class="fast-sim-btn" onclick="openSingleSim('sim-7-6-urpf', '🧭 סימולציה 7.6א: מעבדת נתב uRPF חיה וניתוב אסימטרי')" type="button">🧭 מעבדה 7.6א: uRPF</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-7-6-anomaly', '📈 סימולציה 7.6ב: מערכת זיהוי אנומליות ודילמת ה-Flash Crowd')" type="button">📈 מעבדה 7.6ב: אנומליות</button>
+<button class="fast-sim-btn" onclick="openSingleSim('sim-7-6-stack', '🛡️ סימולציה 7.6ג: סייר פרוטוקולי האבטחה ב-5 שכבות הרשת')" type="button">🛡️ מעבדה 7.6ג: 5 השכבות</button>
+</div>
+</div>
+<h2 class="text-xl md:text-2xl font-black text-slate-900">7.6 מתקפות DDoS, מנגנון uRPF, זיהוי אנומליות ופרוטוקולי אבטחה בשכבות</h2>
+<p class="text-xs text-slate-600"><b>DDoS:</b> תקיפה ממספר עצום של מחשבים (Botnet) המקשה על סינון לפי כתובת יחידה; משלבים <b>uRPF</b> ו<b>זיהוי אנומליות</b>.</p>
+</div>
+
+<div class="fast-visual-strip">
+<div class="fast-strip-node"><b>1. מנגנון uRPF בנתב:</b> בודק אם הממשק שממנו נכנסה מנה עם <code>Source IP = X</code> זהה לממשק היציאה אל $X$ בטבלת הניתוב.</div>
+<div class="fast-strip-node fast-strip-highlight"><b>2. יתרון וחיסרון uRPF ★:</b> <b>יתרון:</b> אוטומטי מטבלת הניתוב הקיימת; <b>חיסרון:</b> מניח <b>ניתוב סימטרי</b> (זורק מנות לגיטימיות בניתוב אסימטרי) ואינו חוסם Botnet עם כתובות אמיתיות.</div>
+<div class="fast-strip-node"><b>3. זיהוי אנומליות:</b> מזהה חריגה מדפוס התעבורה הרגיל (מזהה גם DDoS מכתובות אמיתיות ללא Spoofing).</div>
+<div class="fast-strip-node"><b>4. דילמת ה-Flash Crowd:</b> <code>Anomaly ≠ Attack</code> (אירוע חדשותי / מבצע קניות גורם ל-<b>False Positive</b>; מכריעים לפי בדיקת דגלי TCP!).</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+<div class="fast-card">
+<div class="fast-card-title">🛡️ פרוטוקולי אבטחה לאורך 5 שכבות הרשת</div>
+<p class="text-slate-700 leading-relaxed">• <b>אפליקציה:</b> <b>PGP</b> (הצפנה וחתימת אימייל ב-Web of Trust), <b>SSH</b> (גישה מרוחקת מאובטחת).<br/>• <b>תעבורה:</b> <b>SSL / TLS (HTTPS)</b> – אימות תעודת X.509 והקמת מפתחות מושב בלחיצת היד + הצפנה סימטרית ו-HMAC ב-Record Protocol.<br/>• <b>רשת:</b> <b>IPsec</b> (פרוטוקול <b>AH</b> לאימות/שלמות בלבד מול <b>ESP</b> שמוסיף גם סודיות; מצב <b>Transport</b> למטען מול <b>Tunnel</b> ל-VPN) + <b>Firewalls</b> (Stateless מול Stateful ו-DMZ).<br/>• <b>קישור:</b> <b>802.11i (WPA2/WPA3)</b> לאבטחת Wi-Fi ב-AES-CCMP.</p>
+</div>
+<div class="fast-card">
+<div class="fast-card-title">🏆 צ'ק-ליסט בזק למבחן (כללי ברזל בפרק 7)</div>
+<p class="text-slate-700 leading-relaxed">• <b>סודיות:</b> $C = E_{\text{pub, Bob}}(M)$ $\to$ פענוח ב-$D_{\text{priv, Bob}}$.<br/>• <b>חתימה דיגיטלית:</b> $\sigma = D_{\text{priv, Alice}}(H(M))$ $\to$ אימות ב-$E_{\text{pub, Alice}}$ (ללא סודיות!).<br/>• <b>חתימה + סודיות:</b> אליס: $E_B(D_A(M))$ $\to$ בוב: $E_A(D_B(C))$.<br/>• <b>SYN Flood:</b> <code>SYN</code> $\to$ <code>SYN, ACK</code> (מצב <code>SYN_RCVD</code>) $\to$ אין <code>ACK</code> שלישי.<br/>• <b>SYN Cookies:</b> $\text{Seq}=\text{Cookie}$, הקצאת זיכרון רק כשחוזר $\text{Ack}=\text{Cookie}+1$.</p>
+</div>
+</div>
 </div>
 <!-- Sub-Chapter Navigation Footer -->
 <div class="mt-12 pt-6 border-t border-sky-200 flex flex-wrap items-center justify-between gap-4">
@@ -3213,28 +3625,47 @@ $$\text{HMAC} = H\big((K \oplus \text{opad}) \;\parallel\; H((K \oplus \text{ipa
 <!-- ========================================================================= -->
 <section id="tab-exercises" class="tab-content">
 <div class="content-wrapper overflow-hidden clear-both w-full block bg-white px-6 md:px-12 pb-12 pt-8 rounded-3xl shadow-xl border border-sky-200">
-<div class="fast-mode-view mb-6">
-<div class="fast-header-card !mb-4">
-<div class="fast-badge">⚡ לימוד מהיר • חלק 7.7</div>
-<h2 class="text-2xl font-black text-slate-900 mb-1">ריכוז נוסחאות, תרגילי חישוב וסימולטור מבחן מסכם</h2>
-<p class="text-xs text-slate-600">כרטיס נוסחאות מרוכז לפני תרגול השאלות הפתוחות והמבחן האמריקאי של פרק 7:</p>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 mt-3 text-xs">
-<div class="fast-subcard">
-<strong class="text-blue-900 block mb-0.5">הצפנה ו-RSA:</strong>
-<span dir="ltr" class="font-mono text-[11px] block">$$D_{k_2}(E_{k_1}(P))=P \;\;|\;\; C=P^e \bmod n$$</span>
+<div class="basic-mode-view mb-6">
+<div class="basic-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+<span class="basic-badge">📖 לימוד בסיסי • יחידה 7.7 (תרגול וסיכום נוסחאות)</span>
+<button class="basic-top-btn" onclick="showQuestions('tab-exercises', '7.7 שאלות, תרגילי חישוב ומבחן מסכם', event)" type="button">❓ שאלות נוספות במודאל</button>
 </div>
-<div class="fast-subcard">
-<strong class="text-blue-900 block mb-0.5">חתימה + סודיות ו-Hash:</strong>
-<span dir="ltr" class="font-mono text-[11px] block">$$C=E_B(D_A(P)) \;\;|\;\; DS=D_A(MD(P))$$</span>
+<h2 class="text-2xl md:text-3xl font-black text-slate-900">7.7 ריכוז נוסחאות, תרגילי חישוב פתורים וסימולטור מבחן מסכם</h2>
+<p class="text-xs md:text-sm text-slate-600 mt-1">טבלת נוסחאות מרוכזת, 7 תרגילי מפתח מהמבחנים עם פתרון שלב-אחר-שלב, וסימולטור מבחן אמריקאי בן 12 שאלות.</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3 text-xs">
+<div class="basic-subcard">
+<strong class="text-sky-900 block mb-0.5">הצפנה ו-RSA:</strong>
+<span class="font-mono text-[11px] block" dir="ltr">$$D_{k_2}(E_{k_1}(P))=P \;\;|\;\; C=P^e \bmod n, \; P=C^d \bmod n$$</span>
 </div>
-<div class="fast-subcard">
-<strong class="text-blue-900 block mb-0.5">SYN Flood ו-SYN Cookies:</strong>
+<div class="basic-subcard">
+<strong class="text-sky-900 block mb-0.5">חתימה + סודיות ו-Hash:</strong>
+<span class="font-mono text-[11px] block" dir="ltr">$$C=E_B(D_A(P)) \;\;|\;\; DS=D_A(MD(P))$$</span>
+</div>
+<div class="basic-subcard">
+<strong class="text-sky-900 block mb-0.5">SYN Flood ו-SYN Cookies:</strong>
 <span class="text-[11px] block"><code>SYN</code> $\to$ <code>SYN,ACK (Seq=Cookie)</code> $\to$ <code>ACK (Ack=Cookie+1)</code></span>
 </div>
 </div>
 </div>
 </div>
-<header class="mb-8 border-b border-sky-200 pb-6">
+<div class="fast-mode-view mb-6 space-y-4">
+<div class="fast-header">
+<div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+<span class="fast-badge">⚡ לימוד מהיר • יחידה 7.7 (דף נוסחאות וכללי ברזל למבחן)</span>
+<button class="fast-sim-btn" onclick="showQuestions('tab-exercises', '7.7 שאלות, תרגילי חישוב ומבחן מסכם', event)" type="button">❓ מאגר שאלות נוספות</button>
+</div>
+<h2 class="text-xl md:text-2xl font-black text-slate-900">7.7 דף נוסחאות מרוכז, מלכודות מבחן, תרגילים פתורים וסימולטור מסכם</h2>
+<p class="text-xs text-slate-600">כל הנוסחאות וכללי ההכרעה של פרק 7 בכרטיס אחד מהיר לפני פתרון השאלות והמבחן המסכם למטה:</p>
+</div>
+<div class="fast-visual-strip">
+<div class="fast-strip-node"><b>מודל הצפנה ו-KDC:</b> $D_{k_2}(E_{k_1}(P))=P$ | רשת סימטרית: $\frac{N(N-1)}{2}$ מפתחות מול $N$ מפתחות עם KDC.</div>
+<div class="fast-strip-node"><b>RSA ו-Diffie-Hellman:</b> $n=pq, \phi(n)=(p-1)(q-1), ed \equiv 1 \pmod{\phi(n)}$ | $K = g^{ab} \bmod p$.</div>
+<div class="fast-strip-node"><b>חתימה + סודיות:</b> אליס: $C = E_B(D_A(P))$, בוב: $P = E_A(D_B(C))$ | עם גיבוב: $DS = D_A(MD(P))$.</div>
+<div class="fast-strip-node fast-strip-highlight"><b>SYN Flood &amp; uRPF ★:</b> <code>SYN</code> $\to$ <code>SYN, ACK</code> (מצב <code>SYN_RCVD</code>) $\to$ אין <code>ACK</code> | <code>SYN Cookies</code>: $\text{Ack}=\text{Cookie}+1$.</div>
+</div>
+</div>
+<header class="deep-only-block mb-8 border-b border-sky-200 pb-6">
 <div class="text-sm font-black text-slate-600 tracking-wide uppercase mb-1">קורס רשתות תקשורת מחשבים • יחידה 7 • תרגול מסכם והכנה למבחן</div>
 <h2 class="text-4xl font-black text-sky-950 tracking-tight mb-3">7.7 מאגר שאלות פתוחות, תרגילי חישוב וסימולטור מבחן מסכם לפרק 7</h2>
 <p class="text-slate-600 text-lg leading-relaxed">כאן מרוכזים תרגילי החישוב והניתוח המרכזיים של יחידה 7 עם פתרונות מפורטים שלב-אחר-שלב, ולצדם סימולטור מבחן אמריקאי אינטראקטיבי לבדיקה עצמית מלאה של שליטתכם בחומר הפרק.</p>
@@ -3244,14 +3675,14 @@ $$\text{HMAC} = H\big((K \oplus \text{opad}) \;\parallel\; H((K \oplus \text{ipa
 <h3 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-3">
 <span class="bg-gradient-to-r from-blue-700 to-sky-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-black text-lg border border-sky-300 shadow-xs">1</span>
 <div>
-<div>תרגילי חישוב ושאלות הבנה קלאסיות מהמבחנים ו(עם פתרון מלא)</div>
+<div>תרגילי חישוב ושאלות הבנה קלאסיות מהמבחנים (עם פתרון מלא)</div>
 <div class="text-xs font-normal text-slate-500 mt-0.5">לחצו על כל תרגיל כדי לחשוף את הפתרון המלא והנימוק ההנדסי</div>
 </div>
 </h3>
 <div class="space-y-4">
 <details class="group border-2 border-sky-200 rounded-2xl bg-slate-50 p-5 transition-all shadow-xs" open>
 <summary class="cursor-pointer font-black text-sm md:text-base text-sky-950 flex items-center justify-between list-none">
-<span>תרגיל 1 (זיהוי סוג הצפנה ומפתח –  ): נתונה פונקציית הצפנה $C = E(P) = xP + y$ ופונקציית גיבוב $h(P) = P \bmod 97$. מהו המפתח בכל אחת מהן, ואיזו מהן היא הצפנה סימטרית?</span>
+<span>תרגיל 1 (זיהוי סוג הצפנה ומפתח): נתונה פונקציית הצפנה $C = E(P) = xP + y$ ופונקציית גיבוב $h(P) = P \bmod 97$. מהו המפתח בכל אחת מהן, ואיזו מהן היא הצפנה סימטרית?</span>
 <span class="text-slate-800 group-open:rotate-180 transition-transform font-mono text-sm">▼</span>
 </summary>
 <div class="mt-4 pt-4 border-t border-sky-200 text-xs md:text-sm text-slate-800 leading-relaxed space-y-2 bg-white p-4 rounded-xl">
@@ -3328,6 +3759,22 @@ $$P = C^d \bmod n = 14^{27} \bmod 55 = 9$$
 • <b>הצירוף <code>SYN=1</code> יחד עם <code>ACK=1</code> מ-$B$ (השרת) אל $A$ (הלקוח):</b> <b>כן ייתכן!</b> זהו בדיוק הסגמנט השני בלחיצת היד המשולשת, שבו השרת $B$ מאשר את ה-<code>SYN</code> של $A$ ומסנכרן את המספר הסידורי של עצמו.</p>
 </div>
 </details>
+<details class="group border-2 border-sky-200 rounded-2xl bg-slate-50 p-5 transition-all shadow-xs">
+<summary class="cursor-pointer font-black text-sm md:text-base text-sky-950 flex items-center justify-between list-none">
+<span>תרגיל 7 (חישוב מספרי <code>Seq/Ack</code> בלחיצת יד וסגירת קשר + הבחנה בין DoS רוחב פס לחישוב ו-Botnet DDoS): א. לקוח $A$ יוזם חיבור TCP לשרת $B$ עם $\text{ISN}_A = 7,200$ ו-$\text{ISN}_B = 41,000$, שולח 300 בתי מידע ואז שולח סגמנט סגירה עם <code>FIN=1</code>. מהם ערכי ה-<code>Seq</code> וה-<code>Ack</code> בלחיצת היד ובסגירת הקשר, ומדוע תוקף SYN Flood מזייף כתובות שאינן משיבות? ב. מול איזה תוקף DoS (הצפת קו מול בקשות יקרות חישובית) תעזור הגדלת רוחב הפס בלבד, והאם uRPF עוצר Botnet שמשתמש בכתובות IP אמיתיות?</span>
+<span class="text-slate-800 group-open:rotate-180 transition-transform font-mono text-sm">▼</span>
+</summary>
+<div class="mt-4 pt-4 border-t border-sky-200 text-xs md:text-sm text-slate-800 leading-relaxed space-y-2 bg-white p-4 rounded-xl">
+<p><b>פתרון מלא:</b></p>
+<p><b>א. מספרי <code>Seq</code> ו-<code>Ack</code> וזיוף כתובות ב-SYN Flood:</b><br>
+• <b>לחיצת היד המשולשת:</b> (1) $A \to B$: <code>SYN=1, ACK=0, Seq=7,200</code>; (2) $B \to A$: <code>SYN=1, ACK=1, Seq=41,000, Ack=7,201</code>; (3) $A \to B$: <code>SYN=0, ACK=1, Seq=7,201, Ack=41,001</code>.<br>
+• <b>סגירת הקשר אחרי 300 בתים:</b> מאחר שדגל ה-<code>SYN</code> צרך את המספר <code>7,200</code>, 300 בתי המידע תופסים את המספרים הסידוריים <code>7,201</code> עד <code>7,500</code>. לכן סגמנט ה-<code>FIN</code> של $A$ יישלח עם <b><code>Seq = 7,501</code></b>, ומאחר שגם דגל <code>FIN</code> צורך מספר סידורי אחד, ה-<code>ACK</code> של $B$ עליו יהיה עם <b><code>Ack = 7,502</code></b>.<br>
+• <b>מדוע לזייף כתובות שאינן עונות ב-SYN Flood?</b> אם הכתובת המזויפת שייכת למחשב חי ופעיל, הוא יקבל <code>SYN+ACK</code> לא צפוי וישלח מיד <b><code>RST</code></b> שישחרר את הרשומה בטבלת ה-SYN Backlog של השרת המותקף!</p>
+<p><b>ב. DoS על רוחב פס מול חישוב ו-uRPF מול Botnet:</b><br>
+• <b>הגדלת רוחב הפס בלבד:</b> תעזור רק נגד תוקף המציף את רוחב הפס של הקישור, ו<b>לא תועיל כלל</b> נגד תוקף השולח בקשות יקרות חישובית בקצב נמוך שמכלות את ה-CPU והזיכרון של השרת.<br>
+• <b>uRPF מול Botnet DDoS עם כתובות אמיתיות:</b> <b>לא יעצור!</b> כאשר מחשבי הבוטנט שולחים מנות עם כתובות ה-IP האמיתיות שלהם (ללא Spoofing), המנות מגיעות לנתב מהממשקים החוקיים המתאימים לטבלת הניתוב ועוברות את בדיקת ה-uRPF (ולכן נדרש זיהוי אנומליות ו-SYN Cookies).</p>
+</div>
+</details>
 </div>
 </div>
 <!-- Part 2: Interactive 12-Question Final Exam Simulator for Chapter 7 -->
@@ -3352,10 +3799,10 @@ $$P = C^d \bmod n = 14^{27} \bmod 55 = 9$$
 <svg class="w-4 h-4 text-sky-700 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
 <span>לחלק הקודם: 7.6 מתקפות DDoS ו-uRPF</span>
 </button>
-<a href="#course-summary" onclick="navigateCoursePage('summary.html', event)" class="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-700 via-sky-600 to-blue-600 hover:from-blue-800 hover:to-sky-700 text-white font-bold text-xs md:text-sm shadow-md hover:shadow-lg transition-all group cursor-pointer">
+<button type="button" onclick="navigateCoursePage('summary.html', event)" class="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-700 via-sky-600 to-blue-600 hover:from-blue-800 hover:to-sky-700 text-white font-bold text-xs md:text-sm shadow-md hover:shadow-lg transition-all group cursor-pointer">
 <span>מעבר לסיכום הקורס ומילון המונחים (summary.html)</span>
 <svg class="w-4 h-4 text-white transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-</a>
+</button>
 </div>
 </div>
 </section>
@@ -3484,7 +3931,7 @@ $$P = C^d \bmod n = 14^{27} \bmod 55 = 9$$
 <div class="bg-gradient-to-r from-slate-100 to-slate-200 p-5 rounded-2xl border border-sky-200">
 <h4 class="text-xl font-black text-sky-950 mb-2">🔐 סימולציה 7.3א: מסלול ההצפנה האסימטרית בין איה לבועז והצפנה היברידית</h4>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-700">
-<div class="p-3 bg-white rounded-xl border border-sky-200"><b>מה אנחנו עושים כאן?</b> עוקבים אחרי 3 שלבי שליחת הודעה סודית מאיה לבועז ( ) ואחרי השילוב ההיברידי במציאות (TLS).</div>
+<div class="p-3 bg-white rounded-xl border border-sky-200"><b>מה אנחנו עושים כאן?</b> עוקבים אחרי 3 שלבי שליחת הודעה סודית מאיה לבועז ואחרי השילוב ההיברידי במציאות (TLS).</div>
 <div class="p-3 bg-white rounded-xl border border-sky-200"><b>מה זה מלמד אותנו?</b> מי מפרסם את המפתח הציבורי, מי מחזיק במפתח הפרטי, ומדוע משלבים הצפנה אסימטרית (להעברת מפתח מושב) עם סימטרית (להצפנת הנתונים).</div>
 </div>
 </div>
@@ -3550,7 +3997,7 @@ $$P = C^d \bmod n = 14^{27} \bmod 55 = 9$$
 <div class="flex flex-wrap gap-2">
 <button type="button" onclick="runSim74Layers('conf_only')" class="px-3.5 py-2 bg-slate-700 text-white rounded-xl text-xs font-bold cursor-pointer">1. סודיות בלבד: C = E_B(P)</button>
 <button type="button" onclick="runSim74Layers('sig_only')" class="px-3.5 py-2 bg-gradient-to-r from-blue-700 via-sky-600 to-blue-600 hover:from-blue-800 hover:to-sky-700 text-white rounded-xl text-xs font-bold transition-all shadow-xs cursor-pointer">2. חתימה בלבד: S = D_A(P) (ללא סודיות!)</button>
-<button type="button" onclick="runSim74Layers('both')" class="px-3.5 py-2 bg-gradient-to-r from-blue-700 via-sky-600 to-blue-600 hover:from-blue-800 hover:to-sky-700 text-white rounded-xl text-xs font-bold transition-all shadow-xs cursor-pointer">3. שתי שכבות ( ): C = E_B(D_A(P))</button>
+<button type="button" onclick="runSim74Layers('both')" class="px-3.5 py-2 bg-gradient-to-r from-blue-700 via-sky-600 to-blue-600 hover:from-blue-800 hover:to-sky-700 text-white rounded-xl text-xs font-bold transition-all shadow-xs cursor-pointer">3. שתי שכבות: C = E_B(D_A(P))</button>
 </div>
 <div id="sim-7-4-layers-out" class="p-5 bg-slate-50 border-2 border-sky-200 rounded-2xl text-xs md:text-sm text-slate-900 leading-relaxed"></div>
 </div>
@@ -3559,7 +4006,7 @@ $$P = C^d \bmod n = 14^{27} \bmod 55 = 9$$
 <div class="bg-gradient-to-r from-slate-100 to-slate-200 p-5 rounded-2xl border border-sky-200">
 <h4 class="text-xl font-black text-sky-950 mb-2">🔏 סימולציה 7.4ב: מעבדת חתימת Hash חיה – $DS(P) = D_A(h(P))$ וזיהוי זיוף</h4>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-700">
-<div class="p-3 bg-white rounded-xl border border-sky-200"><b>מה אנחנו עושים כאן?</b> איה חותמת על מסמך $P$ באמצעות $DS(P) = D_A(h(P))$. לאחר מכן אתם יכולים לשנות את טקסט המסמך שהגיע לבועז ולראות את שני החישובים שמבצע בועז ( ).</div>
+<div class="p-3 bg-white rounded-xl border border-sky-200"><b>מה אנחנו עושים כאן?</b> איה חותמת על מסמך $P$ באמצעות $DS(P) = D_A(h(P))$. לאחר מכן אתם יכולים לשנות את טקסט המסמך שהגיע לבועז ולראות את שני החישובים שמבצע בועז.</div>
 <div class="p-3 bg-white rounded-xl border border-sky-200"><b>מה זה מלמד אותנו?</b> שכל שינוי ולו הקטן ביותר במסמך $P$ משנה לחלוטין את $h(P)$ וגורם לאי-שוויון $h(P') \neq E_A(DS(P))$!</div>
 </div>
 </div>
@@ -4239,7 +4686,7 @@ $$2^{56} \approx 7.2 \times 10^{16} \text{ אפשרויות}$$
 </div>
 <div class="bg-rose-50/70 p-3.5 rounded-xl border-r-4 border-rose-500">
 <h5 class="font-black text-rose-950 mb-1">⚠️ מלכודות נפוצות ומקרי קצה בבחינה:</h5>
-<p>מלכודת חישוב: מעבר ממפתח 56 ביט למפתח 57 ביט מכפיל את זמן הפריצה פי 2! מעבר ל-128 ביט מגדיל את מרחב המפתחות פי $2^{72} pprox 4.7 	imes 10^{21}$ פעמים!</p>
+<p>מלכודת חישוב: מעבר ממפתח 56 ביט למפתח 57 ביט מכפיל את זמן הפריצה פי 2! מעבר ל-128 ביט מגדיל את מרחב המפתחות פי $2^{72} \approx 4.7 \times 10^{21}$ פעמים!</p>
 </div>
 <div class="bg-purple-50/70 p-3.5 rounded-xl border-r-4 border-purple-600">
 <h5 class="font-black text-purple-950 mb-1">🎯 שורה תחתונה ומסקנה טכנית:</h5>
@@ -6108,7 +6555,9 @@ try {
 localStorage.setItem('netsec_ch7_sidebar', document.body.classList.contains('sidebar-collapsed') ? '1' : '0');
 } catch (e) {}
 }
+let currentActiveTabId = 'tab-goals-threats';
 function showTab(tabId) {
+currentActiveTabId = tabId;
 if (window.MathJax && window.MathJax.typesetPromise) {
 const targetTab = document.getElementById(tabId);
 if (targetTab) window.MathJax.typesetPromise([targetTab]).catch(err => console.warn(err));
@@ -6324,7 +6773,7 @@ if (x === 0) x = 1;
 const C = x * P + y;
 const decP = (C - y) / x;
 out.innerHTML = `
-<div class="text-slate-300 font-sans text-right mb-1"><b>ניסוי חי של שאלת  ():</b></div>
+<div class="text-slate-300 font-sans text-right mb-1"><b>ניסוי חי של שאלת המבחן:</b></div>
 <div>1. Key (Symmetric) : k1 = k2 = (x, y) = (${x}, ${y})</div>
 <div>2. Encryption      : C = E(P) = ${x} * ${P} + ${y} = <b class="text-white">${C}</b></div>
 <div>3. Decryption      : D(C) = (C - y) / x = (${C} - ${y}) / ${x} = <b class="text-white">${decP}</b> == P ✅</div>
@@ -6566,7 +7015,7 @@ out.innerHTML = '🔒 <b>שכבה אחת של הצפנה בלבד – $C = E_B(P
 } else if (mode === 'sig_only') {
 out.innerHTML = '✍️ <b>שכבה אחת של חתימה בלבד – $S = D_A(P)$:</b><br>• <b>מפתחות בשימוש:</b> איה חותמת ב-$D_A$ (פרטי של איה), בועז מאמת ב-$E_A$ (ציבורי של איה).<br>• <b>מה הושג?</b> יש <b>שלמות, אימות ומניעת התכחשות</b> (רק איה מחזיקה ב-$D_A$), אך <b>אין שום סודיות</b>! כל מצותת ברשת מכיר את $E_A$ הציבורי ויכול לפתוח את $D_A(P)$ ולקרוא את $P$!';
 } else {
-out.innerHTML = '🧅 <b>שתי שכבות מלאות (  ו) – $C = E_B(D_A(P))$:</b><br>• <b>אצל איה:</b> איה חותמת תחילה עם <b>המפתח הפרטי שלה ($D_A$)</b>, ואז מצפינה עם <b>המפתח הציבורי של בועז ($E_B$)</b>.<br>• <b>אצל בועז (בסדר הפוך!):</b> בועז מפעיל תחילה את <b>המפתח הפרטי שלו ($D_B$)</b> ומקבל $D_B(E_B(D_A(P))) = D_A(P)$, ואז מפעיל את <b>המפתח הציבורי של איה ($E_A$)</b> ומקבל $E_A(D_A(P)) = P$.<br>• <b>מה הושג?</b> גם <b>סודיות</b> (שכבה חיצונית), גם <b>מניעת התכחשות ואימות</b> (שכבה פנימית), וגם <b>שלמות</b>!';
+out.innerHTML = '🧅 <b>שתי שכבות מלאות – $C = E_B(D_A(P))$:</b><br>• <b>אצל איה:</b> איה חותמת תחילה עם <b>המפתח הפרטי שלה ($D_A$)</b>, ואז מצפינה עם <b>המפתח הציבורי של בועז ($E_B$)</b>.<br>• <b>אצל בועז (בסדר הפוך!):</b> בועז מפעיל תחילה את <b>המפתח הפרטי שלו ($D_B$)</b> ומקבל $D_B(E_B(D_A(P))) = D_A(P)$, ואז מפעיל את <b>המפתח הציבורי של איה ($E_A$)</b> ומקבל $E_A(D_A(P)) = P$.<br>• <b>מה הושג?</b> גם <b>סודיות</b> (שכבה חיצונית), גם <b>מניעת התכחשות ואימות</b> (שכבה פנימית), וגם <b>שלמות</b>!';
 }
 if (window.renderMathInElement) window.renderMathInElement(out, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});
 }
@@ -6641,7 +7090,7 @@ out.innerHTML = '✅ <b>תעבורה תקינה בנתב $r$:</b> סך קצב ה
 } else if (mode === 'flood') {
 out.innerHTML = '🌊 <b>מתקפת הצפה בנתב $r$:</b> השולח $t$ משדר ברצף בקו $h$ (קצב $R$) והשולח $s$ משדר ברצף בקו $i$ (קצב $R$). הפקטות מגיעות לנתב $r$ בקצב כפול ($2R$) מקצב היציאה בקו $j$ ($R$). <b>התור בנתב $r$ מתמלא עד תומו $\\leftarrow$ פקטות שאין להן מקום מושלכות (<code>Packets are dropped</code>) $\\leftarrow$ בשירות אמין (TCP) הן משודרות מחדש ומחריפות עוד יותר את העומס!</b>';
 } else {
-out.innerHTML = '🛤️ <b>למה ברשת מיתוג מעגלים (Circuit Switching) הבעיה אינה קיימת? ( ):</b> במיתוג מעגלים מוקצים לכל חיבור משאבים קבועים וייעודיים מתחילת החיבור ועד לסיומו. לכן תוקף אינו יכול לכלות את משאבי הקו של משתמשים אחרים על ידי שליחת כמות גדולה של תעבורה!';
+out.innerHTML = '🛤️ <b>למה ברשת מיתוג מעגלים (Circuit Switching) הבעיה אינה קיימת?</b> במיתוג מעגלים מוקצים לכל חיבור משאבים קבועים וייעודיים מתחילת החיבור ועד לסיומו. לכן תוקף אינו יכול לכלות את משאבי הקו של משתמשים אחרים על ידי שליחת כמות גדולה של תעבורה!';
 }
 if (window.renderMathInElement) window.renderMathInElement(out, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});
 }
@@ -6735,7 +7184,7 @@ out.innerHTML = '🛡️ <b>הגעת 50,000 מנות SYN מזויפות לשרת
 } else if (mode === 'valid_ack') {
 out.innerHTML = '✅ <b>לקוח אמיתי מחזיר ACK עם $\\text{AckNum} = \\text{Cookie} + 1$:</b><br>השרת מקבל את מנת ה-ACK, מחלץ ממנה את כתובות ה-IP והפורטים של הלקוח והשרת, מחשב מחדש את ה-<code>Cookie</code> ומשווה ל-$\\text{AckNum} - 1$. הערכים מתאימים! הלקוח הוכיח שהוא קיבל את ה-SYN-ACK בכתובת ה-IP האמיתית שלו, <b>ורק עכשיו השרת מקצה משאבים וזיכרון לחיבור!</b>';
 } else {
-out.innerHTML = '⏱️ <b>חסימת עוגייה ישנה בזכות רכיב הזמן (Timestamp –  ):</b><br>התוקף מנסה להשתמש בערך <code>Cookie</code> ישן שהוקלט לפני שעה כדי לפתוח חיבור חדש. השרת מחשב מחדש את ה-Cookie עם <b>חותמת הזמן הנוכחית</b>, רואה שהתוצאה שונה מהעוגייה הישנה, ודוחה את הפקטה מיד!';
+out.innerHTML = '⏱️ <b>חסימת עוגייה ישנה בזכות רכיב הזמן (Timestamp):</b><br>התוקף מנסה להשתמש בערך <code>Cookie</code> ישן שהוקלט לפני שעה כדי לפתוח חיבור חדש. השרת מחשב מחדש את ה-Cookie עם <b>חותמת הזמן הנוכחית</b>, רואה שהתוצאה שונה מהעוגייה הישנה, ודוחה את הפקטה מיד!';
 }
 if (window.renderMathInElement) window.renderMathInElement(out, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});
 }
@@ -6765,9 +7214,9 @@ const out = document.getElementById('sim-7-6-anomaly-out');
 if (!out) return;
 const map = {
 normal: '🟢 <b>שגרה רגילה (Normal Baseline):</b> קצב הפקטות ומספר כתובות ה-Source IP תואמים את הממוצע ההיסטורי שנלמד לאורך זמן. מערכת ניטור האנומליות אינה מתריעה והתנועה זורמת כסדרה.',
-ddos: '🚨 <b>מתקפת Botnet DDoS ( ):</b> קפיצה חריגה של פי 50 בקצב הפקטות, עשרות אלפי כתובות Source IP חדשות וניסיונות חיבור בלתי פוסקים בזמן קצר. זיהוי האנומליות מתריע על מתקפת DDoS גם אם הבוטים אינם מזייפים כתובות IP!',
+ddos: '🚨 <b>מתקפת Botnet DDoS:</b> קפיצה חריגה של פי 50 בקצב הפקטות, עשרות אלפי כתובות Source IP חדשות וניסיונות חיבור בלתי פוסקים בזמן קצר. זיהוי האנומליות מתריע על מתקפת DDoS גם אם הבוטים אינם מזייפים כתובות IP!',
 news: '📰 <b>אתר חדשות בעת אירוע חדשותי גדול:</b> קפיצה עצומה במספר הפקטות ובמספר כתובות ה-IP הנכנסות בבת אחת! המערכת מזהה <b>אנומליה מובהקת</b>, אך אלו קוראים לגיטימיים לחלוטין. אם נחסום אותם אוטומטית – נגרום למניעת שירות עצמית!',
-sale: '🛍️ <b>אתר קניות ביום מבצעים (Flash Crowd –  ):</b> קפיצה אדירה בתעבורה מצד לקוחות אמיתיים. זהו האתגר המרכזי בזיהוי DDoS: לא מספיק לזהות ש-<code>Traffic is unusual</code>, אלא חובה להבין <code>Why is it unusual?</code>!'
+sale: '🛍️ <b>אתר קניות ביום מבצעים (Flash Crowd):</b> קפיצה אדירה בתעבורה מצד לקוחות אמיתיים. זהו האתגר המרכזי בזיהוי DDoS: לא מספיק לזהות ש-<code>Traffic is unusual</code>, אלא חובה להבין <code>Why is it unusual?</code>!'
 };
 out.innerHTML = map[mode] || map.normal;
 }
@@ -6796,7 +7245,7 @@ opts: [
 ]
 },
 {
-q: '2. מהו התנאי הבסיסי שחייב להתקיים בכל מערכת הצפנה תקינה ( )?',
+q: '2. מהו התנאי הבסיסי שחייב להתקיים בכל מערכת הצפנה תקינה?',
 opts: [
 { t: 'D_k2(E_k1(P)) = P', c: true, e: 'מדויק! אם מצפינים את ההודעה P עם מפתח ההצפנה k1 ומפענחים עם מפתח הפענוח k2, חייבים לקבל חזרה את ההודעה המקורית P.' },
 { t: 'E_k1(P) = P לכל P', c: false, e: 'שגוי. אם הטקסט המוצפן שווה לטקסט הגלוי אין הצפנה כלל.' },
@@ -6816,7 +7265,7 @@ opts: [
 {
 q: '4. על איזה עיקרון מתמטי מבוססת האבטחה של אלגוריתם RSA?',
 opts: [
-{ t: 'קל להכפיל שני מספרים ראשוניים גדולים p ו-q כדי לקבל n = pq, אך בהינתן n בלבד קשה מאוד לפרק אותו חזרה ל-p ו-q.', c: true, e: 'מדויק! זוהי הפונקציה החד-כיוונית שעליה מבוסס RSA ( ).' },
+{ t: 'קל להכפיל שני מספרים ראשוניים גדולים p ו-q כדי לקבל n = pq, אך בהינתן n בלבד קשה מאוד לפרק אותו חזרה ל-p ו-q.', c: true, e: 'מדויק! זוהי הפונקציה החד-כיוונית שעליה מבוסס RSA.' },
 { t: 'קל לפרק מספר ראשוני לגורמים אך קשה לחבר שני מספרים שלמים.', c: false, e: 'שגוי. כפל וחיבור הם קלים חישובית, ואילו פירוק לגורמים של מספר מורכב גדול הוא הקשה.' },
 { t: 'השימוש באותו מפתח סודי להצפנה ולפענוח.', c: false, e: 'שגוי. RSA הוא אלגוריתם אסימטרי עם מפתח ציבורי ומפתח פרטי שונים.' },
 { t: 'בדיקת טבלת הניתוב של הנתב במנגנון uRPF.', c: false, e: 'שגוי. uRPF הוא מנגנון לזיהוי Spoofing בנתבים.' }
@@ -6825,7 +7274,7 @@ opts: [
 {
 q: '5. מהן המטרות המרכזיות של חתימה דיגיטלית (Digital Signature) לפי הקורס?',
 opts: [
-{ t: 'שלמות ההודעה (Integrity) ומניעת התכחשות (Non-Repudiation) / אימות מקור המסר.', c: true, e: 'מדויק! חתימה דיגיטלית נועדה להבטיח שלמות ומניעת התכחשות, ואינה נועדה לסודיות ( ו-51 ).' },
+{ t: 'שלמות ההודעה (Integrity) ומניעת התכחשות (Non-Repudiation) / אימות מקור המסר.', c: true, e: 'מדויק! חתימה דיגיטלית נועדה להבטיח שלמות ומניעת התכחשות, ואינה נועדה לסודיות.' },
 { t: 'סודיות מוחלטת (Confidentiality) בלבד.', c: false, e: 'שגוי! חתימה דיגיטלית אינה מספקת סודיות כי המפתח הציבורי של החותם ידוע לכולם.' },
 { t: 'מניעת הצפת התור בנתב במיתוג מנות.', c: false, e: 'שגוי. חתימה דיגיטלית אינה מונעת הצפת רוחב פס.' },
 { t: 'קיצור זמן ההתפשטות של סיביות בסיב אופטי.', c: false, e: 'שגוי.' }
@@ -6945,54 +7394,73 @@ finalExamAnswered = {};
 finalExamCorrect = 0;
 renderFinalExam();
 }
-let currentStudyMode = 'deep';
-function setStudyMode(mode) {
-currentStudyMode = (mode === 'fast') ? 'fast' : 'deep';
-const isFast = (currentStudyMode === 'fast');
-document.body.classList.toggle('study-mode-fast', isFast);
-const labelEl = document.getElementById('study-mode-label');
-const pillEl = document.getElementById('study-mode-pill');
-const subEl = document.getElementById('study-mode-sub');
-const iconBox = document.getElementById('study-mode-icon-box');
-const sideDeepBtn = document.getElementById('sidebar-mode-deep-btn');
-const sideFastBtn = document.getElementById('sidebar-mode-fast-btn');
-if (isFast) {
-if (labelEl) labelEl.textContent = 'מצב לימוד מהיר';
-if (pillEl) {
-pillEl.textContent = 'תמציתי ⚡';
-pillEl.className = 'px-1.5 py-0.5 rounded-md bg-blue-600 text-white border border-blue-700 text-[10px] font-extrabold';
+let currentStudyMode = 'deep'; // 'deep' | 'basic' | 'fast'
+let toastTimer = null;
+function showModeToast(text) {
+  const t = document.getElementById('mode-switch-toast');
+  if (!t) return;
+  t.textContent = text;
+  t.classList.remove('opacity-0', 'translate-y-3');
+  t.classList.add('opacity-100', 'translate-y-0');
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    t.classList.remove('opacity-100', 'translate-y-0');
+    t.classList.add('opacity-0', 'translate-y-3');
+  }, 2400);
 }
-if (subEl) subEl.textContent = 'נטו ליבה ללא הרחבות ✦ לחצו ללימוד מעמיק 📖';
-if (iconBox) {
-iconBox.className = 'w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-sm shrink-0 border border-blue-400';
-iconBox.innerHTML = '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>';
+
+function setStudyMode(mode, silent) {
+  if (!['deep', 'basic', 'fast'].includes(mode)) mode = 'deep';
+  currentStudyMode = mode;
+  document.body.classList.remove('study-mode-deep', 'study-mode-basic', 'study-mode-fast');
+  document.body.classList.add('study-mode-' + mode);
+
+  const btnDeep = document.getElementById('sidebar-mode-deep-btn');
+  const btnBasic = document.getElementById('sidebar-mode-basic-btn');
+  const btnFast = document.getElementById('sidebar-mode-fast-btn');
+  const descEl = document.getElementById('sidebar-mode-desc');
+  const part1Title = document.getElementById('sidebar-part-1-title');
+  const part1Desc = document.getElementById('sidebar-part-1-desc');
+
+  const inactiveCls = 'py-1.5 px-1.5 rounded-lg font-bold transition-all flex items-center justify-center gap-1 text-sky-950 hover:bg-white/70 cursor-pointer';
+  const activeDeepCls = 'py-1.5 px-1.5 rounded-lg font-black transition-all flex items-center justify-center gap-1 bg-gradient-to-r from-blue-900 to-sky-700 text-white shadow-xs cursor-pointer';
+  const activeBasicCls = 'py-1.5 px-1.5 rounded-lg font-black transition-all flex items-center justify-center gap-1 bg-[#0369a1] text-white shadow-xs cursor-pointer';
+  const activeFastCls = 'py-1.5 px-1.5 rounded-lg font-black transition-all flex items-center justify-center gap-1 bg-sky-600 text-white shadow-xs cursor-pointer';
+
+  if (btnDeep) btnDeep.className = (mode === 'deep') ? activeDeepCls : inactiveCls;
+  if (btnBasic) btnBasic.className = (mode === 'basic') ? activeBasicCls : inactiveCls;
+  if (btnFast) btnFast.className = (mode === 'fast') ? activeFastCls : inactiveCls;
+
+  if (mode === 'deep') {
+    if (descEl) descEl.textContent = 'מצב מעמיק: הסבר מלא, תרשימים, תרגילים ומעבדות';
+    if (part1Title) part1Title.textContent = 'תוכן העניינים – פרק 7 (לימוד מעמיק)';
+    if (part1Desc) part1Desc.textContent = 'הסבר מלא ומקיף, דגשים והבהרות עומק, מעבדות חיות ושאלות תרגול (❓) לכל לשונית';
+    if (!silent) showModeToast('📚 מצב לימוד מעמיק: הסבר מלא, עזרים גרפיים, תרגילים וסימולציות');
+  } else if (mode === 'basic') {
+    if (descEl) descEl.textContent = 'מצב בסיסי: הסבר ממוקד ונעים לקריאה + תרגילים ומעבדות';
+    if (part1Title) part1Title.textContent = 'תוכן העניינים – פרק 7 (לימוד בסיסי)';
+    if (part1Desc) part1Desc.textContent = 'כל חומר הפרק בצורה ישירה, רגועה ונקייה מעומס ויזואלי + מעבדות ותרגילים';
+    if (!silent) showModeToast('📖 מצב לימוד בסיסי: הסבר תכלס רגוע + תרגילים וסימולציות');
+  } else if (mode === 'fast') {
+    if (descEl) descEl.textContent = 'מצב מהיר: סקירה מרוכזת ומהירה של כל מושגי הפרק';
+    if (part1Title) part1Title.textContent = 'יחידות פרק 7 – סקירה מהירה ומרוכזת';
+    if (part1Desc) part1Desc.textContent = 'מעבר מהיר על כל מושגי הליבה, הנוסחאות וכללי המבחן של הפרק במספר דקות';
+    if (!silent) showModeToast('⚡ מצב לימוד מהיר: סקירה מרוכזת של כל מושגי הפרק');
+  }
+
+  try {
+    localStorage.setItem('netsec_ch7_study_mode', mode);
+  } catch (e) {}
+  if (window.MathJax && window.MathJax.typesetPromise) {
+    const activeSec = document.querySelector('.tab-content.active');
+    if (activeSec) window.MathJax.typesetPromise([activeSec]).catch(() => {});
+  }
 }
-if (sideFastBtn) sideFastBtn.className = 'py-1.5 px-2 rounded-lg text-[11px] font-black transition-all flex items-center justify-center gap-1 bg-blue-600 text-white shadow-xs cursor-pointer';
-if (sideDeepBtn) sideDeepBtn.className = 'py-1.5 px-2 rounded-lg text-[11px] font-bold transition-all flex items-center justify-center gap-1 text-sky-950 hover:bg-white/70 cursor-pointer';
-} else {
-if (labelEl) labelEl.textContent = 'מצב לימוד מעמיק';
-if (pillEl) {
-pillEl.textContent = 'מלא 📖';
-pillEl.className = 'px-1.5 py-0.5 rounded-md bg-sky-100 text-sky-900 border border-sky-300 text-[10px] font-extrabold';
-}
-if (subEl) subEl.textContent = 'לחצו למעבר ללימוד מהיר ותמציתי ⚡';
-if (iconBox) {
-iconBox.className = 'w-10 h-10 rounded-xl bg-gradient-to-br from-blue-900 via-sky-700 to-blue-700 text-white flex items-center justify-center shadow-sm shrink-0 border border-sky-300';
-iconBox.innerHTML = '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>';
-}
-if (sideDeepBtn) sideDeepBtn.className = 'py-1.5 px-2 rounded-lg text-[11px] font-black transition-all flex items-center justify-center gap-1 bg-gradient-to-r from-blue-900 to-sky-700 text-white shadow-xs cursor-pointer';
-if (sideFastBtn) sideFastBtn.className = 'py-1.5 px-2 rounded-lg text-[11px] font-bold transition-all flex items-center justify-center gap-1 text-sky-950 hover:bg-white/70 cursor-pointer';
-}
-try {
-localStorage.setItem('netsec_ch7_study_mode', currentStudyMode);
-} catch (e) {}
-if (window.MathJax && window.MathJax.typesetPromise) {
-const activeSec = document.querySelector('.tab-content.active');
-if (activeSec) window.MathJax.typesetPromise([activeSec]);
-}
-}
+window.setStudyMode = setStudyMode;
 function toggleStudyMode() {
-setStudyMode(currentStudyMode === 'deep' ? 'fast' : 'deep');
+  const order = ['deep', 'basic', 'fast'];
+  const next = order[(order.indexOf(currentStudyMode) + 1) % order.length];
+  setStudyMode(next);
 }
 // toggleTheme handled by theme-manager.js
 function navigateCoursePage(targetFile, event) {
@@ -7008,13 +7476,13 @@ showTab('tab-exercises');
 document.addEventListener('DOMContentLoaded', () => {
 try {
 const savedMode = localStorage.getItem('netsec_ch7_study_mode');
-if (savedMode === 'fast' || savedMode === 'deep') {
-setStudyMode(savedMode);
+if (savedMode === 'fast' || savedMode === 'basic' || savedMode === 'deep') {
+setStudyMode(savedMode, true);
 } else {
-setStudyMode('deep');
+setStudyMode('deep', true);
 }
 } catch (e) {
-setStudyMode('deep');
+setStudyMode('deep', true);
 }
 if (window.innerWidth < 1024) {
 document.body.classList.add('sidebar-collapsed');
@@ -7052,6 +7520,6 @@ closeQuestionsModal();
 </script>
 <!-- AI Assistant Widget -->
     <!-- AI Assistant Widget -->
-    <script src="ai_widget.js"></script>
+    
 </body>
 </html>
