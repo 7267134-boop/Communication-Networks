@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
@@ -11,7 +12,9 @@
     <!-- Google Fonts: Heebo & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <script>
         if (typeof tailwind !== 'undefined') tailwind.config = {
             theme: {
@@ -55,7 +58,7 @@
            ===================================================================== */
         body {
             background-color: #f0f6fa;
-            background-image: 
+            background-image:
                 radial-gradient(circle at 1px 1px, rgba(2, 132, 199, 0.08) 1px, transparent 0),
                 radial-gradient(1100px circle at 15% 15%, rgba(186, 230, 253, 0.35), transparent 60%),
                 radial-gradient(1000px circle at 85% 75%, rgba(147, 197, 253, 0.25), transparent 60%);
@@ -83,30 +86,56 @@
         }
 
         /* Custom Sapphire Scrollbars */
-        ::-webkit-scrollbar { width: 7px; height: 7px; }
-        ::-webkit-scrollbar-track { background: #e0f2fe; }
-        ::-webkit-scrollbar-thumb { background: #7dd3fc; border-radius: 9999px; }
-        ::-webkit-scrollbar-thumb:hover { background: #0284c7; }
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #e0f2fe;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #7dd3fc;
+            border-radius: 9999px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0284c7;
+        }
 
         /* =====================================================================
            TOP-LEFT GLASSMORPHISM COURSE PORTAL BUTTON ANIMATIONS
            ===================================================================== */
         @keyframes silver-waves {
-            0% { background-position: 200% center; }
-            100% { background-position: -200% center; }
+            0% {
+                background-position: 200% center;
+            }
+
+            100% {
+                background-position: -200% center;
+            }
         }
+
         .silver-waves-bg {
-            background: linear-gradient(105deg, 
-                transparent 20%, rgba(255, 255, 255, 0.45) 25%, transparent 30%, 
-                rgba(255, 255, 255, 0.85) 45%, rgba(255, 255, 255, 0.45) 50%, 
-                transparent 55%, rgba(255, 255, 255, 0.35) 70%, transparent 75%);
+            background: linear-gradient(105deg,
+                    transparent 20%, rgba(255, 255, 255, 0.45) 25%, transparent 30%,
+                    rgba(255, 255, 255, 0.85) 45%, rgba(255, 255, 255, 0.45) 50%,
+                    transparent 55%, rgba(255, 255, 255, 0.35) 70%, transparent 75%);
             background-size: 200% 100%;
             animation: silver-waves 3.2s linear infinite;
         }
+
         @keyframes spin-rainbow {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
+
         .rainbow-spin-bg {
             position: absolute;
             inset: 0;
@@ -134,18 +163,21 @@
             transition: background 0.55s ease, border-color 0.55s ease, box-shadow 0.55s ease;
             touch-action: manipulation;
         }
+
         @media (min-width: 480px) {
             #graph-container {
                 height: 520px;
                 border-radius: 1.7rem;
             }
         }
+
         @media (min-width: 640px) {
             #graph-container {
                 height: 565px;
                 border-radius: 1.85rem;
             }
         }
+
         @media (min-width: 1024px) {
             #graph-container {
                 height: 610px;
@@ -159,60 +191,70 @@
             border: 1.5px solid rgba(56, 189, 248, 0.55);
             box-shadow: 0 16px 44px rgba(2, 132, 199, 0.22), inset 0 0 50px rgba(14, 165, 233, 0.10);
         }
+
         .stage-theme-layers {
             background: linear-gradient(180deg, rgba(10, 20, 42, 0.90) 0%, rgba(17, 30, 66, 0.88) 50%, rgba(12, 18, 44, 0.92) 100%);
             backdrop-filter: blur(16px);
             border: 1.5px solid rgba(99, 102, 241, 0.55);
             box-shadow: 0 16px 44px rgba(37, 99, 235, 0.22), inset 0 0 55px rgba(99, 102, 241, 0.12);
         }
+
         .stage-theme-star {
             background: radial-gradient(circle at 50% 52%, rgba(14, 165, 233, 0.18) 0%, rgba(10, 22, 44, 0.92) 70%);
             backdrop-filter: blur(16px);
             border: 1.5px solid rgba(56, 189, 248, 0.65);
             box-shadow: 0 16px 44px rgba(2, 132, 199, 0.24), inset 0 0 60px rgba(14, 165, 233, 0.10);
         }
+
         .stage-theme-mesh {
             background: radial-gradient(ellipse at 50% 52%, rgba(16, 42, 78, 0.90) 0%, rgba(8, 18, 38, 0.94) 100%);
             backdrop-filter: blur(16px);
             border: 1.5px solid rgba(16, 185, 129, 0.50);
             box-shadow: 0 16px 44px rgba(16, 185, 129, 0.18), inset 0 0 55px rgba(14, 165, 233, 0.10);
         }
+
         .stage-theme-ring {
             background: radial-gradient(circle at 50% 51%, rgba(30, 27, 75, 0.88) 0%, rgba(10, 20, 40, 0.94) 75%);
             backdrop-filter: blur(16px);
             border: 1.5px solid rgba(245, 158, 11, 0.55);
             box-shadow: 0 16px 44px rgba(217, 119, 6, 0.20), inset 0 0 60px rgba(245, 158, 11, 0.08);
         }
+
         .stage-theme-sine {
             background: linear-gradient(180deg, rgba(7, 22, 44, 0.92) 0%, rgba(12, 38, 74, 0.90) 50%, rgba(7, 22, 44, 0.94) 100%);
             backdrop-filter: blur(18px);
             border: 1.5px solid rgba(56, 189, 248, 0.55);
             box-shadow: 0 16px 46px rgba(2, 132, 199, 0.25), inset 0 0 60px rgba(14, 165, 233, 0.12);
         }
+
         .stage-theme-stp {
             background: linear-gradient(180deg, rgba(8, 28, 38, 0.92) 0%, rgba(12, 34, 48, 0.90) 55%, rgba(28, 14, 28, 0.92) 100%);
             backdrop-filter: blur(16px);
             border: 1.5px solid rgba(16, 185, 129, 0.55);
             box-shadow: 0 16px 44px rgba(5, 150, 105, 0.20), inset 0 0 55px rgba(16, 185, 129, 0.10);
         }
+
         .stage-theme-cellular {
             background: radial-gradient(circle at 50% 52%, rgba(12, 46, 68, 0.90) 0%, rgba(8, 20, 38, 0.94) 100%);
             backdrop-filter: blur(16px);
             border: 1.5px solid rgba(6, 182, 212, 0.60);
             box-shadow: 0 16px 44px rgba(8, 145, 178, 0.22), inset 0 0 60px rgba(6, 182, 212, 0.12);
         }
+
         .stage-theme-p2p {
             background: radial-gradient(circle at 50% 51%, rgba(28, 20, 62, 0.90) 0%, rgba(10, 14, 34, 0.95) 100%);
             backdrop-filter: blur(16px);
             border: 1.5px solid rgba(139, 92, 246, 0.60);
             box-shadow: 0 16px 44px rgba(109, 40, 217, 0.24), inset 0 0 60px rgba(139, 92, 246, 0.12);
         }
+
         .stage-theme-firewall {
             background: linear-gradient(90deg, rgba(6, 36, 32, 0.92) 0%, rgba(30, 14, 28, 0.92) 50%, rgba(42, 12, 24, 0.94) 100%);
             backdrop-filter: blur(16px);
             border: 1.5px solid rgba(244, 63, 94, 0.55);
             box-shadow: 0 16px 44px rgba(225, 29, 72, 0.22), inset 0 0 60px rgba(244, 63, 94, 0.10);
         }
+
         .stage-theme-dwdm {
             background: linear-gradient(135deg, rgba(8, 17, 36, 0.94) 0%, rgba(17, 24, 56, 0.92) 50%, rgba(8, 17, 36, 0.95) 100%);
             backdrop-filter: blur(18px);
@@ -224,21 +266,35 @@
            BOUNDING FRAME & EDGE ANIMATIONS
            ===================================================================== */
         @keyframes dash-flow {
-            0% { stroke-dashoffset: 120; }
-            100% { stroke-dashoffset: 0; }
+            0% {
+                stroke-dashoffset: 120;
+            }
+
+            100% {
+                stroke-dashoffset: 0;
+            }
         }
+
         @keyframes dash-flow-rev {
-            0% { stroke-dashoffset: 0; }
-            100% { stroke-dashoffset: 120; }
+            0% {
+                stroke-dashoffset: 0;
+            }
+
+            100% {
+                stroke-dashoffset: 120;
+            }
         }
+
         .flowing-border {
             stroke-dasharray: 8 6;
             animation: dash-flow 3.2s linear infinite;
         }
+
         .flowing-fast {
             stroke-dasharray: 7 5;
             animation: dash-flow 1.3s linear infinite;
         }
+
         .flowing-reverse {
             stroke-dasharray: 8 6;
             animation: dash-flow-rev 2.2s linear infinite;
@@ -249,33 +305,39 @@
             position: absolute;
             transform: translate(-50%, -50%) !important;
             transition: left 0.65s cubic-bezier(0.34, 1.22, 0.64, 1),
-                        top 0.65s cubic-bezier(0.34, 1.22, 0.64, 1),
-                        opacity 0.25s ease,
-                        filter 0.25s ease;
+                top 0.65s cubic-bezier(0.34, 1.22, 0.64, 1),
+                opacity 0.25s ease,
+                filter 0.25s ease;
             cursor: pointer;
             z-index: 20;
             user-select: none;
             text-decoration: none;
             -webkit-tap-highlight-color: transparent;
         }
+
         .topology-node .node-inner {
             transform: scale(var(--node-scale, 1));
             transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease, border-color 0.22s ease;
             transform-origin: center center;
             display: block;
         }
+
         .topology-node:hover {
             z-index: 60 !important;
         }
+
         .topology-node:hover .node-inner {
             transform: scale(calc(var(--node-scale, 1) * 1.08));
         }
+
         .topology-node.highlighted-node {
             z-index: 55 !important;
         }
+
         .topology-node.highlighted-node .node-inner {
             transform: scale(calc(var(--node-scale, 1) * 1.05));
         }
+
         .topology-node.dimmed-node {
             opacity: 0.45;
             filter: grayscale(25%);
@@ -283,16 +345,33 @@
 
         /* Distinct Pulsing Halos Exclusively for Exam Prep (Gold) and Course Summary (Indigo) */
         @keyframes pulse-gold-halo {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.55), 0 0 24px rgba(245, 158, 11, 0.45); }
-            50% { box-shadow: 0 0 0 7px rgba(245, 158, 11, 0.16), 0 0 36px rgba(251, 191, 36, 0.70); }
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.55), 0 0 24px rgba(245, 158, 11, 0.45);
+            }
+
+            50% {
+                box-shadow: 0 0 0 7px rgba(245, 158, 11, 0.16), 0 0 36px rgba(251, 191, 36, 0.70);
+            }
         }
+
         @keyframes pulse-indigo-halo {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.55), 0 0 24px rgba(99, 102, 241, 0.45); }
-            50% { box-shadow: 0 0 0 7px rgba(99, 102, 241, 0.16), 0 0 36px rgba(129, 140, 248, 0.70); }
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.55), 0 0 24px rgba(99, 102, 241, 0.45);
+            }
+
+            50% {
+                box-shadow: 0 0 0 7px rgba(99, 102, 241, 0.16), 0 0 36px rgba(129, 140, 248, 0.70);
+            }
         }
+
         .prep-special-glow {
             animation: pulse-gold-halo 2.6s ease-in-out infinite;
         }
+
         .sum-special-glow {
             animation: pulse-indigo-halo 2.6s ease-in-out infinite;
         }
@@ -301,12 +380,15 @@
         .hex-outer {
             clip-path: polygon(25% 4%, 75% 4%, 98% 50%, 75% 96%, 25% 96%, 2% 50%);
         }
+
         .prism-left {
             clip-path: polygon(12% 0%, 100% 14%, 100% 86%, 12% 100%, 0% 50%);
         }
+
         .prism-right {
             clip-path: polygon(0% 14%, 88% 0%, 100% 50%, 88% 100%, 0% 86%);
         }
+
         .shield-shape {
             clip-path: polygon(50% 0%, 96% 16%, 96% 56%, 50% 100%, 4% 56%, 4% 16%);
         }
@@ -322,30 +404,63 @@
 
         /* Blinking Port LEDs */
         @keyframes blink-led {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.25; transform: scale(0.88); }
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.25;
+                transform: scale(0.88);
+            }
         }
+
         .led-active {
             animation: blink-led 1.1s ease-in-out infinite;
         }
+
         .led-fast {
             animation: blink-led 0.45s ease-in-out infinite;
         }
 
         /* Expanding RF Waves for Cellular Mode */
         @keyframes rf-ripple {
-            0% { r: 14px; opacity: 0.75; stroke-width: 2.2px; }
-            100% { r: 58px; opacity: 0; stroke-width: 0.4px; }
-        }
-        .rf-wave-1 { animation: rf-ripple 2.6s cubic-bezier(0.1, 0.5, 0.3, 1) infinite; }
-        .rf-wave-2 { animation: rf-ripple 2.6s cubic-bezier(0.1, 0.5, 0.3, 1) 1.3s infinite; }
+            0% {
+                r: 14px;
+                opacity: 0.75;
+                stroke-width: 2.2px;
+            }
 
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+            100% {
+                r: 58px;
+                opacity: 0;
+                stroke-width: 0.4px;
+            }
+        }
+
+        .rf-wave-1 {
+            animation: rf-ripple 2.6s cubic-bezier(0.1, 0.5, 0.3, 1) infinite;
+        }
+
+        .rf-wave-2 {
+            animation: rf-ripple 2.6s cubic-bezier(0.1, 0.5, 0.3, 1) 1.3s infinite;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
         .font-designer {
             font-family: 'Heebo', sans-serif !important;
         }
-    
+
         /* =====================================================================
            TWO-COLUMN DYNAMIC STAGE & PEDAGOGICAL SIDE PANEL
            ===================================================================== */
@@ -358,11 +473,13 @@
             width: 100%;
             transition: transform 0.3s ease;
         }
+
         @media (min-width: 1024px) {
             #graph-container-col {
                 width: 71%;
             }
         }
+
         @media (min-width: 1280px) {
             #graph-container-col {
                 width: 73%;
@@ -388,6 +505,7 @@
                 max-height: 610px;
             }
         }
+
         @media (min-width: 1280px) {
             #chapter-side-panel {
                 width: 27%;
@@ -405,6 +523,7 @@
             box-shadow: 0 20px 45px -15px rgba(14, 165, 233, 0.22);
             color: #0f172a;
         }
+
         .side-panel-light #side-panel-header {
             border-bottom: 1px solid rgba(186, 230, 253, 0.8);
         }
@@ -417,12 +536,15 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85) !important;
             color: #f1f5f9 !important;
         }
+
         .side-panel-dark #side-panel-header {
             border-bottom: 1px solid rgba(56, 189, 248, 0.3) !important;
         }
+
         .side-panel-dark #side-panel-title {
             color: #f8fafc !important;
         }
+
         .side-panel-dark #side-panel-subtitle {
             color: #38bdf8 !important;
         }
@@ -431,13 +553,16 @@
         .custom-side-scroll::-webkit-scrollbar {
             width: 5px;
         }
+
         .custom-side-scroll::-webkit-scrollbar-track {
             background: transparent;
         }
+
         .custom-side-scroll::-webkit-scrollbar-thumb {
             background: rgba(148, 163, 184, 0.4);
             border-radius: 999px;
         }
+
         .custom-side-scroll::-webkit-scrollbar-thumb:hover {
             background: rgba(148, 163, 184, 0.7);
         }
@@ -446,9 +571,11 @@
     <script src="theme-manager.js"></script>
 
     <!-- AI Document Summary for AI Assistant Widget -->
-    <meta name="ai-document-summary" content="פורטל הלמידה והטופולוגיה הראשי לקורס רשתות תקשורת מחשבים (20582) באוניברסיטה הפתוחה. הפורטל מציג 11 מצבי טופולוגיה אינטראקטיביים חיים (גל נושא, מודל 5 השכבות, כוכב, שריג מלא, טבעת FDDI, עץ פורש STP, אשכול סלולרי, P2P Chord, שער אבטחה ו-DMZ, ו-DWDM) המקשרים לכל 7 יחידות הלימוד, הכנה מקיפה לבחינה וסיכום הקורס ומילון המונחים." />
+    <meta name="ai-document-summary"
+        content="פורטל הלמידה והטופולוגיה הראשי לקורס רשתות תקשורת מחשבים (20582) באוניברסיטה הפתוחה. הפורטל מציג 11 מצבי טופולוגיה אינטראקטיביים חיים (גל נושא, מודל 5 השכבות, כוכב, שריג מלא, טבעת FDDI, עץ פורש STP, אשכול סלולרי, P2P Chord, שער אבטחה ו-DMZ, ו-DWDM) המקשרים לכל 7 יחידות הלימוד, הכנה מקיפה לבחינה וסיכום הקורס ומילון המונחים." />
 
 </head>
+
 <body class="antialiased min-h-screen flex flex-col selection:bg-sky-200 text-slate-800 overflow-x-hidden">
     <!-- Theme Toggle Button (Day / Night / Reading Mode) -->
     <button id="theme-toggle-btn" onclick="toggleTheme()" title="החלף ערכת נושא (רגיל -> כהה -> קריאה)"
@@ -461,26 +588,28 @@
     <!-- ========================================================================= -->
     <!-- TOP-LEFT: SPINNING GLASSMORPHISM "OTHER COURSES" PORTAL BUTTON             -->
     <!-- ========================================================================= -->
-    <a href="https://all-the-courses.pages.dev/" 
-       title="מעבר לפורטל כל הקורסים האקדמיים"
-       class="fixed top-2.5 left-2.5 sm:top-5 sm:left-5 z-50 group block bg-transparent rounded-full p-[2.5px] sm:p-[3px] transition-all duration-500 hover:shadow-2xl hover:shadow-sky-400/40 hover:-translate-y-1 hover:scale-105 w-16 h-16 sm:w-24 sm:h-24 xl:w-32 xl:h-32 overflow-hidden">
-        
+    <a href="https://all-the-courses.pages.dev/" title="מעבר לפורטל כל הקורסים האקדמיים"
+        class="fixed top-2.5 left-2.5 sm:top-5 sm:left-5 z-50 group block bg-transparent rounded-full p-[2.5px] sm:p-[3px] transition-all duration-500 hover:shadow-2xl hover:shadow-sky-400/40 hover:-translate-y-1 hover:scale-105 w-16 h-16 sm:w-24 sm:h-24 xl:w-32 xl:h-32 overflow-hidden">
+
         <!-- Spinning Rainbow Border -->
         <div class="rainbow-spin-bg"></div>
 
         <!-- Inner Glass Container -->
-        <div class="bg-white/85 backdrop-blur-xl rounded-full w-full h-full relative z-10 flex flex-col items-center justify-center border border-white/90 hover:bg-white/95 transition-all duration-500 shadow-[0_8px_32px_rgba(2,132,199,0.15)] text-center p-1 sm:p-2 overflow-hidden">
-            
+        <div
+            class="bg-white/85 backdrop-blur-xl rounded-full w-full h-full relative z-10 flex flex-col items-center justify-center border border-white/90 hover:bg-white/95 transition-all duration-500 shadow-[0_8px_32px_rgba(2,132,199,0.15)] text-center p-1 sm:p-2 overflow-hidden">
+
             <!-- Silver Waves Shimmer -->
             <div class="absolute inset-0 silver-waves-bg pointer-events-none z-0"></div>
-            
+
             <!-- Icon -->
-            <div class="w-6 h-6 sm:w-8 sm:h-8 xl:w-11 xl:h-11 mb-0.5 sm:mb-1 rounded-full bg-sky-100/90 flex items-center justify-center text-sky-700 group-hover:bg-gradient-to-br group-hover:from-sky-500 group-hover:to-blue-600 group-hover:text-white transition-all duration-500 shadow-sm relative z-20">
+            <div
+                class="w-6 h-6 sm:w-8 sm:h-8 xl:w-11 xl:h-11 mb-0.5 sm:mb-1 rounded-full bg-sky-100/90 flex items-center justify-center text-sky-700 group-hover:bg-gradient-to-br group-hover:from-sky-500 group-hover:to-blue-600 group-hover:text-white transition-all duration-500 shadow-sm relative z-20">
                 <i data-lucide="library" class="w-3.5 h-3.5 sm:w-4 sm:h-4 xl:w-5 xl:h-5"></i>
             </div>
-            
+
             <!-- Text -->
-            <span class="text-[9px] sm:text-[11px] xl:text-xs font-black text-slate-800 group-hover:text-sky-950 transition-colors leading-tight relative z-20">
+            <span
+                class="text-[9px] sm:text-[11px] xl:text-xs font-black text-slate-800 group-hover:text-sky-950 transition-colors leading-tight relative z-20">
                 לקורסים<br>נוספים
             </span>
         </div>
@@ -489,33 +618,41 @@
     <!-- ========================================================================= -->
     <!-- HERO SECTION (Compact Glass Bubble Hero Box)                              -->
     <!-- ========================================================================= -->
-    <header class="relative w-full flex flex-col items-center justify-center pt-14 sm:pt-6 pb-2 px-3 sm:px-16 md:px-24 xl:px-4 z-20">
+    <header
+        class="relative w-full flex flex-col items-center justify-center pt-14 sm:pt-6 pb-2 px-3 sm:px-16 md:px-24 xl:px-4 z-20">
         <div class="text-center w-full max-w-4xl mx-auto">
-            
+
             <!-- Hero Glass Bubble -->
-            <div class="glass-panel rounded-2xl sm:rounded-3xl p-3.5 sm:p-5 shadow-glass border border-sky-200/90 transition-all duration-300 relative overflow-hidden">
-                
+            <div
+                class="glass-panel rounded-2xl sm:rounded-3xl p-3.5 sm:p-5 shadow-glass border border-sky-200/90 transition-all duration-300 relative overflow-hidden">
+
                 <!-- Ambient Glow inside header -->
-                <div class="absolute -top-20 -right-20 w-52 h-52 bg-sky-300/30 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="absolute -bottom-20 -left-20 w-52 h-52 bg-blue-400/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div
+                    class="absolute -top-20 -right-20 w-52 h-52 bg-sky-300/30 rounded-full blur-3xl pointer-events-none">
+                </div>
+                <div
+                    class="absolute -bottom-20 -left-20 w-52 h-52 bg-blue-400/20 rounded-full blur-3xl pointer-events-none">
+                </div>
 
                 <!-- Academic Course Badge Pill -->
                 <div id="course-badge" onclick="openCourseInfoModal()"
-                     class="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-0.5 sm:py-1 rounded-full bg-sky-100/90 text-sky-800 border border-sky-300/80 font-black text-[10px] sm:text-xs tracking-wide shadow-xs mb-1.5 cursor-pointer hover:bg-sky-200 transition-all max-w-full">
+                    class="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-0.5 sm:py-1 rounded-full bg-sky-100/90 text-sky-800 border border-sky-300/80 font-black text-[10px] sm:text-xs tracking-wide shadow-xs mb-1.5 cursor-pointer hover:bg-sky-200 transition-all max-w-full">
                     <i data-lucide="network" class="w-3.5 h-3.5 text-sky-600 shrink-0"></i>
                     <span class="truncate">רשתות תקשורת מחשבים • 20582 • האוניברסיטה הפתוחה</span>
                 </div>
 
                 <!-- Main Course Title -->
                 <h1 class="text-xl sm:text-3xl lg:text-4xl font-black tracking-tight text-slate-900 mb-1 leading-tight">
-                    <span class="bg-gradient-to-r from-sky-800 via-blue-800 to-indigo-950 bg-clip-text text-transparent drop-shadow-xs">
+                    <span
+                        class="bg-gradient-to-r from-sky-800 via-blue-800 to-indigo-950 bg-clip-text text-transparent drop-shadow-xs">
                         רשתות תקשורת מחשבים
                     </span>
                 </h1>
 
                 <!-- Subtitle -->
                 <p class="text-slate-700 text-[11px] sm:text-sm max-w-2xl mx-auto leading-relaxed font-medium">
-                    מפת הקורס האינטראקטיבית • 11 עולמות טופולוגיה גרפיים ייחודיים המשנים לחלוטין את צורת הצמתים, התשתית והחיבורים.
+                    מפת הקורס האינטראקטיבית • 11 עולמות טופולוגיה גרפיים ייחודיים המשנים לחלוטין את צורת הצמתים, התשתית
+                    והחיבורים.
                 </p>
 
             </div>
@@ -525,32 +662,39 @@
     <!-- ========================================================================= -->
     <!-- MAIN GRAPH AREA (Computational Models Compact Framed Style + 11 Worlds)   -->
     <!-- ========================================================================= -->
-    <main class="relative flex-1 w-full overflow-hidden z-10 flex flex-col items-center justify-center px-2 sm:px-4 pt-1 pb-10 max-w-7xl mx-auto">
+    <main
+        class="relative flex-1 w-full overflow-hidden z-10 flex flex-col items-center justify-center px-2 sm:px-4 pt-1 pb-10 max-w-7xl mx-auto">
 
         <!-- Stage Layout Wrapper -->
-        <div id="stage-wrapper" class="w-full flex flex-col lg:flex-row items-stretch gap-4 transition-all duration-500 ease-out">
-            
+        <div id="stage-wrapper"
+            class="w-full flex flex-col lg:flex-row items-stretch gap-4 transition-all duration-500 ease-out">
+
             <!-- RIGHT COLUMN: Framed Graph Container -->
             <div id="graph-container-col" class="w-full transition-all duration-500 ease-out min-w-0">
                 <div id="graph-container" class="stage-theme-sine">
-                    
+
                     <!-- Top Status & Mode Banner (Delicate, Slim Floating Pill Tucked at Very Top) -->
-                    <div id="mode-info" class="absolute top-1.5 sm:top-2 left-1/2 -translate-x-1/2 z-30 flex items-center justify-between gap-2 w-[94%] sm:w-auto sm:min-w-[460px] max-w-[95%] rounded-full px-2.5 sm:px-3.5 py-1 transition-all duration-300 backdrop-blur-md">
+                    <div id="mode-info"
+                        class="absolute top-1.5 sm:top-2 left-1/2 -translate-x-1/2 z-30 flex items-center justify-between gap-2 w-[94%] sm:w-auto sm:min-w-[460px] max-w-[95%] rounded-full px-2.5 sm:px-3.5 py-1 transition-all duration-300 backdrop-blur-md">
                         <div class="flex items-center gap-1.5 shrink-0">
-                            <div id="mode-icon-box" class="w-6 h-6 rounded-full flex items-center justify-center shrink-0">
+                            <div id="mode-icon-box"
+                                class="w-6 h-6 rounded-full flex items-center justify-center shrink-0">
                                 <i data-lucide="activity" id="mode-icon-display" class="w-3.5 h-3.5"></i>
                             </div>
                             <button id="switch-mode-top-btn" onclick="cycleNextTopology()"
                                 class="flex items-center gap-1 px-2.5 py-0.5 rounded-full font-black text-[10px] sm:text-[11px] transition-all shadow-xs hover:scale-105 active:scale-95 cursor-pointer"
                                 title="מעבר למצב הבא מתוך 11 המצבים">
-                                <i data-lucide="rotate-cw" class="w-3 h-3 transition-transform duration-500 hover:rotate-180"></i>
+                                <i data-lucide="rotate-cw"
+                                    class="w-3 h-3 transition-transform duration-500 hover:rotate-180"></i>
                                 <span>החלף מצב</span>
-                                <span id="btn-mode-counter" class="px-1 py-0.2 rounded-full font-mono text-[9px] opacity-90">5/10</span>
+                                <span id="btn-mode-counter"
+                                    class="px-1 py-0.2 rounded-full font-mono text-[9px] opacity-90">5/10</span>
                             </button>
                         </div>
 
                         <div class="text-right flex-1 min-w-0 px-1">
-                            <h2 id="mode-title-display" class="text-[10px] sm:text-xs font-extrabold leading-none truncate"></h2>
+                            <h2 id="mode-title-display"
+                                class="text-[10px] sm:text-xs font-extrabold leading-none truncate"></h2>
                         </div>
 
                         <div class="hidden md:flex items-center gap-1.5 shrink-0 border-r border-slate-500/30 pr-2">
@@ -612,15 +756,20 @@
 
             <!-- LEFT COLUMN: Detailed Pedagogical Panel (Visible on both desktop & mobile) -->
             <aside id="chapter-side-panel"
-                   class="flex flex-col rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl relative select-text side-panel-dark">
-                
+                class="flex flex-col rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl relative select-text side-panel-dark">
+
                 <!-- Header (Badge, Title, Subtitle, Reset Button) -->
                 <div id="side-panel-header" class="p-3.5 sm:p-4 pb-3 flex items-start justify-between gap-3 shrink-0">
                     <div class="flex items-center gap-2.5 min-w-0">
-                        <span id="side-panel-badge" class="px-2.5 py-1 rounded-xl font-mono font-black text-xs shrink-0 border border-sky-400 bg-sky-50 text-sky-800 shadow-2xs">20582</span>
+                        <span id="side-panel-badge"
+                            class="px-2.5 py-1 rounded-xl font-mono font-black text-xs shrink-0 border border-sky-400 bg-sky-50 text-sky-800 shadow-2xs">20582</span>
                         <div class="min-w-0">
-                            <h3 id="side-panel-title" class="text-sm sm:text-base font-black leading-tight text-slate-900 truncate">רשתות תקשורת מחשבים</h3>
-                            <span id="side-panel-subtitle" class="text-[11px] font-mono font-bold text-sky-700 block truncate">פורטל הלמידה והטופולוגיה האינטראקטיבי</span>
+                            <h3 id="side-panel-title"
+                                class="text-sm sm:text-base font-black leading-tight text-slate-900 truncate">רשתות
+                                תקשורת מחשבים</h3>
+                            <span id="side-panel-subtitle"
+                                class="text-[11px] font-mono font-bold text-sky-700 block truncate">פורטל הלמידה
+                                והטופולוגיה האינטראקטיבי</span>
                         </div>
                     </div>
                     <button id="side-panel-close-btn" onclick="closeSidePanel()" title="חזרה להסבר כללי על האתר"
@@ -635,10 +784,12 @@
                 </div>
 
                 <!-- Footer Action Button -->
-                <div class="p-3.5 border-t border-sky-200/40 bg-white/20 backdrop-blur-md shrink-0 flex items-center justify-between gap-3">
-                    <span id="side-panel-footer-hint" class="text-[11px] text-slate-400 font-medium truncate">מעבר ליחידת הלימוד:</span>
+                <div
+                    class="p-3.5 border-t border-sky-200/40 bg-white/20 backdrop-blur-md shrink-0 flex items-center justify-between gap-3">
+                    <span id="side-panel-footer-hint" class="text-[11px] text-slate-400 font-medium truncate">מעבר
+                        ליחידת הלימוד:</span>
                     <a id="side-panel-cta" href="1.html"
-                       class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black shadow-md hover:scale-105 active:scale-95 transition-all text-white bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 shrink-0">
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black shadow-md hover:scale-105 active:scale-95 transition-all text-white bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 shrink-0">
                         <span id="side-panel-cta-text">כניסה ליחידה 1 (מבוא)</span>
                         <i data-lucide="arrow-left" class="w-4 h-4"></i>
                     </a>
@@ -651,9 +802,12 @@
     <!-- ========================================================================= -->
     <!-- COURSE INFO MODAL                                                         -->
     <!-- ========================================================================= -->
-    <div id="course-info-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/50 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
-        <div class="glass-panel bg-white/95 rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-sky-200 relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closeCourseInfoModal()" class="absolute top-5 left-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 transition-all">
+    <div id="course-info-modal"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/50 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+        <div
+            class="glass-panel bg-white/95 rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-sky-200 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeCourseInfoModal()"
+                class="absolute top-5 left-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 transition-all">
                 <i data-lucide="x" class="w-4 h-4"></i>
             </button>
             <div class="flex items-center gap-3 mb-4">
@@ -666,16 +820,26 @@
                 </div>
             </div>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4 text-center">
-                <div class="bg-sky-50 rounded-xl p-2"><span class="text-[10px] text-slate-500 font-bold block">נקודות זכות</span><strong class="text-sky-900 text-sm font-black">6 נ״ז</strong></div>
-                <div class="bg-sky-50 rounded-xl p-2"><span class="text-[10px] text-slate-500 font-bold block">רמה</span><strong class="text-sky-900 text-sm font-black">מתקדם</strong></div>
-                <div class="bg-sky-50 rounded-xl p-2"><span class="text-[10px] text-slate-500 font-bold block">דרישות קדם</span><strong class="text-sky-900 text-[11px] font-bold">מע״ה / מבני נתונים</strong></div>
-                <div class="bg-sky-50 rounded-xl p-2"><span class="text-[10px] text-slate-500 font-bold block">ספר הקורס</span><strong class="text-sky-900 text-[11px] font-bold">Kurose & Ross</strong></div>
+                <div class="bg-sky-50 rounded-xl p-2"><span class="text-[10px] text-slate-500 font-bold block">נקודות
+                        זכות</span><strong class="text-sky-900 text-sm font-black">6 נ״ז</strong></div>
+                <div class="bg-sky-50 rounded-xl p-2"><span
+                        class="text-[10px] text-slate-500 font-bold block">רמה</span><strong
+                        class="text-sky-900 text-sm font-black">מתקדם</strong></div>
+                <div class="bg-sky-50 rounded-xl p-2"><span class="text-[10px] text-slate-500 font-bold block">דרישות
+                        קדם</span><strong class="text-sky-900 text-[11px] font-bold">מע״ה / מבני נתונים</strong></div>
+                <div class="bg-sky-50 rounded-xl p-2"><span class="text-[10px] text-slate-500 font-bold block">ספר
+                        הקורס</span><strong class="text-sky-900 text-[11px] font-bold">Kurose & Ross</strong></div>
             </div>
             <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                הקורס מאורגן בגישת <strong>Top-Down</strong> מקיפה: משכבת היישום (HTTP, DNS, SMTP) דרך שכבת התעבורה (TCP/UDP, אמינות RDT ובקרת גודש), שכבת הרשת במישור הנתונים (IPv4/IPv6, CIDR, NAT) ומישור הבקרה (Dijkstra OSPF, Bellman-Ford, BGP, SDN), שכבת הקשר (CRC, CSMA/CD, Ethernet, מתגים ו-VLAN) ועד לרשתות אלחוטיות (Wi-Fi 802.11) ואבטחת מידע (RSA, AES, TLS, חומות אש).
+                הקורס מאורגן בגישת <strong>Top-Down</strong> מקיפה: משכבת היישום (HTTP, DNS, SMTP) דרך שכבת התעבורה
+                (TCP/UDP, אמינות RDT ובקרת גודש), שכבת הרשת במישור הנתונים (IPv4/IPv6, CIDR, NAT) ומישור הבקרה (Dijkstra
+                OSPF, Bellman-Ford, BGP, SDN), שכבת הקשר (CRC, CSMA/CD, Ethernet, מתגים ו-VLAN) ועד לרשתות אלחוטיות
+                (Wi-Fi 802.11) ואבטחת מידע (RSA, AES, TLS, חומות אש).
             </p>
             <div class="flex justify-end pt-3 border-t border-slate-100">
-                <button onclick="closeCourseInfoModal()" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold">סגור חלון</button>
+                <button onclick="closeCourseInfoModal()"
+                    class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold">סגור
+                    חלון</button>
             </div>
         </div>
     </div>
@@ -712,7 +876,8 @@
             </div>
 
             <div class="max-w-3xl text-center px-4">
-                <p class="text-slate-700 text-base md:text-lg leading-relaxed mb-4 font-semibold drop-shadow-sm font-designer">
+                <p
+                    class="text-slate-700 text-base md:text-lg leading-relaxed mb-4 font-semibold drop-shadow-sm font-designer">
                     למידה מהנה ובהצלחה! <br>
                     התוכן של האתר נערך ונסקר מכל הכיוונים על ידי, אבל עדיין האתר נבנה בעזרת בינה מלאכותית ולכן יתכנו
                     טעויות, אשמח לעדכון אם מצאתם על מנת שאוכל לתקן. <br>
@@ -927,14 +1092,14 @@
                     prep: "🏆 מרכז הכנה לבחינה ופתרונות מלאים"
                 },
                 positions: {
-                    ch1:  { x: 20, y: 25 },
-                    ch2:  { x: 50, y: 25 },
-                    ch3:  { x: 80, y: 25 },
-                    ch4:  { x: 20, y: 52 },
-                    ch5:  { x: 50, y: 52 },
-                    sum:  { x: 80, y: 52 },
-                    ch6:  { x: 20, y: 80 },
-                    ch7:  { x: 50, y: 80 },
+                    ch1: { x: 20, y: 25 },
+                    ch2: { x: 50, y: 25 },
+                    ch3: { x: 80, y: 25 },
+                    ch4: { x: 20, y: 52 },
+                    ch5: { x: 50, y: 52 },
+                    sum: { x: 80, y: 52 },
+                    ch6: { x: 20, y: 80 },
+                    ch7: { x: 50, y: 80 },
                     prep: { x: 80, y: 80 }
                 },
                 connections: [
@@ -970,14 +1135,14 @@
                     prep: "🏆 עמוד תווך ימני: בוחן תקלות ושיהוי בין השכבות"
                 },
                 positions: {
-                    ch1:  { x: 50, y: 17 },
-                    ch2:  { x: 50, y: 30 },
-                    ch3:  { x: 50, y: 43 },
-                    ch4:  { x: 37, y: 57 },
-                    ch5:  { x: 63, y: 57 },
-                    ch6:  { x: 50, y: 71 },
-                    ch7:  { x: 50, y: 84 },
-                    sum:  { x: 14, y: 52 },
+                    ch1: { x: 50, y: 17 },
+                    ch2: { x: 50, y: 30 },
+                    ch3: { x: 50, y: 43 },
+                    ch4: { x: 37, y: 57 },
+                    ch5: { x: 63, y: 57 },
+                    ch6: { x: 50, y: 71 },
+                    ch7: { x: 50, y: 84 },
+                    sum: { x: 14, y: 52 },
                     prep: { x: 86, y: 52 }
                 },
                 connections: [
@@ -1018,14 +1183,14 @@
                     prep: "🏆 Port 8 (UPLINK) • שרת בחינות ובקרת איכות"
                 },
                 positions: {
-                    ch6:  { x: 50, y: 52 },
-                    ch1:  { x: 20, y: 22 },
-                    ch2:  { x: 50, y: 18 },
-                    ch3:  { x: 80, y: 22 },
-                    sum:  { x: 85, y: 52 },
-                    ch5:  { x: 80, y: 82 },
-                    ch4:  { x: 50, y: 85 },
-                    ch7:  { x: 20, y: 82 },
+                    ch6: { x: 50, y: 52 },
+                    ch1: { x: 20, y: 22 },
+                    ch2: { x: 50, y: 18 },
+                    ch3: { x: 80, y: 22 },
+                    sum: { x: 85, y: 52 },
+                    ch5: { x: 80, y: 82 },
+                    ch4: { x: 50, y: 85 },
+                    ch7: { x: 20, y: 82 },
                     prep: { x: 15, y: 52 }
                 },
                 connections: [
@@ -1061,15 +1226,15 @@
                     sum: "📚 Route Reflector (RR) • מרכז טבלאות הניתוב והסיכום"
                 },
                 positions: {
-                    ch1:  { x: 15, y: 27 },
-                    ch2:  { x: 42, y: 19 },
-                    ch3:  { x: 74, y: 23 },
-                    ch4:  { x: 86, y: 52 },
-                    ch5:  { x: 74, y: 81 },
-                    ch6:  { x: 42, y: 83 },
-                    ch7:  { x: 15, y: 75 },
+                    ch1: { x: 15, y: 27 },
+                    ch2: { x: 42, y: 19 },
+                    ch3: { x: 74, y: 23 },
+                    ch4: { x: 86, y: 52 },
+                    ch5: { x: 74, y: 81 },
+                    ch6: { x: 42, y: 83 },
+                    ch7: { x: 15, y: 75 },
                     prep: { x: 34, y: 51 },
-                    sum:  { x: 62, y: 51 }
+                    sum: { x: 62, y: 51 }
                 },
                 connections: [
                     { from: "ch1", to: "ch2", label: "w=2", spf: true },
@@ -1111,15 +1276,15 @@
                     sum: "📚 Active Ring Monitor (MAU Center) • מנטרת הטבעת והסיכום"
                 },
                 positions: {
-                    ch1:  { x: 50, y: 17 },
-                    ch2:  { x: 73, y: 25 },
-                    ch3:  { x: 83, y: 50 },
+                    ch1: { x: 50, y: 17 },
+                    ch2: { x: 73, y: 25 },
+                    ch3: { x: 83, y: 50 },
                     prep: { x: 73, y: 76 },
-                    ch4:  { x: 50, y: 85 },
-                    ch5:  { x: 27, y: 76 },
-                    ch6:  { x: 17, y: 50 },
-                    ch7:  { x: 27, y: 25 },
-                    sum:  { x: 50, y: 51 }
+                    ch4: { x: 50, y: 85 },
+                    ch5: { x: 27, y: 76 },
+                    ch6: { x: 17, y: 50 },
+                    ch7: { x: 27, y: 25 },
+                    sum: { x: 50, y: 51 }
                 },
                 connections: [
                     { from: "ch1", to: "ch2", ring: true },
@@ -1157,14 +1322,14 @@
                     prep: "🏆 RX Demodulator & BER Tester • מפענח אותות והכנה למבחן"
                 },
                 positions: {
-                    sum:  { x: 9,  y: 52 },
-                    ch1:  { x: 20, y: 27 },
-                    ch2:  { x: 31, y: 52 },
-                    ch3:  { x: 41, y: 77 },
-                    ch4:  { x: 51, y: 52 },
-                    ch5:  { x: 61, y: 27 },
-                    ch6:  { x: 71, y: 52 },
-                    ch7:  { x: 81, y: 77 },
+                    sum: { x: 9, y: 52 },
+                    ch1: { x: 20, y: 27 },
+                    ch2: { x: 31, y: 52 },
+                    ch3: { x: 41, y: 77 },
+                    ch4: { x: 51, y: 52 },
+                    ch5: { x: 61, y: 27 },
+                    ch6: { x: 71, y: 52 },
+                    ch7: { x: 81, y: 77 },
                     prep: { x: 91, y: 52 }
                 },
                 connections: [
@@ -1200,15 +1365,15 @@
                     ch7: "Access Switch East • PortFast Edge"
                 },
                 positions: {
-                    ch1:  { x: 50, y: 17 },
-                    sum:  { x: 30, y: 39 },
+                    ch1: { x: 50, y: 17 },
+                    sum: { x: 30, y: 39 },
                     prep: { x: 70, y: 39 },
-                    ch2:  { x: 15, y: 63 },
-                    ch3:  { x: 39, y: 63 },
-                    ch4:  { x: 61, y: 63 },
-                    ch5:  { x: 85, y: 63 },
-                    ch6:  { x: 27, y: 85 },
-                    ch7:  { x: 73, y: 85 }
+                    ch2: { x: 15, y: 63 },
+                    ch3: { x: 39, y: 63 },
+                    ch4: { x: 61, y: 63 },
+                    ch5: { x: 85, y: 63 },
+                    ch6: { x: 27, y: 85 },
+                    ch7: { x: 73, y: 85 }
                 },
                 connections: [
                     { from: "ch1", to: "sum", label: "RP (Cost 2)", state: "fwd" },
@@ -1246,14 +1411,14 @@
                     prep: "🏆 Mobile Switching Center (MSC/HLR) • מרכז מיתוג והכנה למבחן"
                 },
                 positions: {
-                    ch7:  { x: 50, y: 52 },
-                    ch1:  { x: 50, y: 23 },
-                    ch2:  { x: 68, y: 37 },
-                    ch3:  { x: 68, y: 67 },
-                    ch4:  { x: 50, y: 81 },
-                    ch5:  { x: 32, y: 67 },
-                    ch6:  { x: 32, y: 37 },
-                    sum:  { x: 12, y: 52 },
+                    ch7: { x: 50, y: 52 },
+                    ch1: { x: 50, y: 23 },
+                    ch2: { x: 68, y: 37 },
+                    ch3: { x: 68, y: 67 },
+                    ch4: { x: 50, y: 81 },
+                    ch5: { x: 32, y: 67 },
+                    ch6: { x: 32, y: 37 },
+                    sum: { x: 12, y: 52 },
                     prep: { x: 88, y: 52 }
                 },
                 connections: [
@@ -1291,15 +1456,15 @@
                     ch7: "Peer Node K56 • Encrypted P2P Swarm"
                 },
                 positions: {
-                    ch1:  { x: 50, y: 16 },
-                    ch2:  { x: 73, y: 24 },
-                    ch3:  { x: 84, y: 46 },
+                    ch1: { x: 50, y: 16 },
+                    ch2: { x: 73, y: 24 },
+                    ch3: { x: 84, y: 46 },
                     prep: { x: 77, y: 73 },
-                    ch4:  { x: 59, y: 85 },
-                    ch5:  { x: 41, y: 85 },
-                    sum:  { x: 23, y: 73 },
-                    ch6:  { x: 16, y: 46 },
-                    ch7:  { x: 27, y: 24 }
+                    ch4: { x: 59, y: 85 },
+                    ch5: { x: 41, y: 85 },
+                    sum: { x: 23, y: 73 },
+                    ch6: { x: 16, y: 46 },
+                    ch7: { x: 27, y: 24 }
                 },
                 connections: [
                     { from: "ch1", to: "ch2", ring: true },
@@ -1339,15 +1504,15 @@
                     ch6: "Protected Corporate VLAN • שרתים פנימיים מוגנים"
                 },
                 positions: {
-                    ch1:  { x: 14, y: 30 },
-                    ch2:  { x: 14, y: 72 },
-                    ch3:  { x: 31, y: 52 },
-                    ch7:  { x: 50, y: 52 },
+                    ch1: { x: 14, y: 30 },
+                    ch2: { x: 14, y: 72 },
+                    ch3: { x: 31, y: 52 },
+                    ch7: { x: 50, y: 52 },
                     prep: { x: 50, y: 21 },
-                    sum:  { x: 50, y: 83 },
-                    ch4:  { x: 69, y: 52 },
-                    ch5:  { x: 86, y: 30 },
-                    ch6:  { x: 86, y: 72 }
+                    sum: { x: 50, y: 83 },
+                    ch4: { x: 69, y: 52 },
+                    ch5: { x: 86, y: 30 },
+                    ch6: { x: 86, y: 72 }
                 },
                 connections: [
                     { from: "ch1", to: "ch3", zone: "wan", label: "Raw Packet" },
@@ -1382,15 +1547,15 @@
                     ch7: "Photodiode RX λ7 (1560nm Violet) • מקלט אופטי 7"
                 },
                 positions: {
-                    ch1:  { x: 88, y: 20 },
-                    ch2:  { x: 88, y: 41 },
-                    ch3:  { x: 88, y: 62 },
-                    ch4:  { x: 88, y: 83 },
-                    sum:  { x: 66, y: 52 },
+                    ch1: { x: 88, y: 20 },
+                    ch2: { x: 88, y: 41 },
+                    ch3: { x: 88, y: 62 },
+                    ch4: { x: 88, y: 83 },
+                    sum: { x: 66, y: 52 },
                     prep: { x: 34, y: 52 },
-                    ch5:  { x: 12, y: 24 },
-                    ch6:  { x: 12, y: 52 },
-                    ch7:  { x: 12, y: 80 }
+                    ch5: { x: 12, y: 24 },
+                    ch6: { x: 12, y: 52 },
+                    ch7: { x: 12, y: 80 }
                 },
                 connections: [
                     { from: "ch1", to: "sum", lambda: "#06b6d4", label: "λ1 1530nm" },
@@ -1441,22 +1606,22 @@
                 if (mode.id === 'sine') {
                     x = 13 + ((raw.x - 9) / 82) * 74;
                     const staggerMap = {
-                        sum:  52,
-                        ch1:  23,
-                        ch2:  46,
-                        ch3:  78,
-                        ch4:  58,
-                        ch5:  23,
-                        ch6:  46,
-                        ch7:  78,
+                        sum: 52,
+                        ch1: 23,
+                        ch2: 46,
+                        ch3: 78,
+                        ch4: 58,
+                        ch5: 23,
+                        ch6: 46,
+                        ch7: 78,
                         prep: 52
                     };
                     if (staggerMap[nodeId] !== undefined) y = staggerMap[nodeId];
                 } else if (mode.id === 'layers') {
-                    if (nodeId === 'sum')  { x = 16; y = 54; }
+                    if (nodeId === 'sum') { x = 16; y = 54; }
                     if (nodeId === 'prep') { x = 84; y = 54; }
-                    if (nodeId === 'ch4')  { x = 35; }
-                    if (nodeId === 'ch5')  { x = 65; }
+                    if (nodeId === 'ch4') { x = 35; }
+                    if (nodeId === 'ch5') { x = 65; }
                 } else if (mode.id === 'dwdm') {
                     if (x > 80) x = 83;
                     if (x < 20) x = 17;
@@ -1933,7 +2098,7 @@
             // MODE 8 (P2P CHORD): 7 UNIFORM DHT CAPSULES (ch1..ch7) + 2 SPECIAL SUPER-PEERS (prep & sum)
             // =====================================================================
             if (modeId === 'p2p') {
-                const keyMap = { ch1:"K00", ch2:"K07", ch3:"K14", prep:"K21", ch4:"K28", ch5:"K35", sum:"K42", ch6:"K49", ch7:"K56" };
+                const keyMap = { ch1: "K00", ch2: "K07", ch3: "K14", prep: "K21", ch4: "K28", ch5: "K35", sum: "K42", ch6: "K49", ch7: "K56" };
                 const keyId = keyMap[node.id] || "K00";
                 const pillStyle = isPrep
                     ? 'border-amber-400 bg-gradient-to-r from-amber-950/95 to-slate-900/95 text-white'
@@ -2583,11 +2748,11 @@
                     const pSum = getPx("sum");
                     const pPrep = getPx("prep");
                     // Harmonic inspection waves from Summary & Exam pillars to the stack
-                    ["ch2", "ch4", "ch6"].forEach(( targetId, i ) => {
+                    ["ch2", "ch4", "ch6"].forEach((targetId, i) => {
                         const pt = getPx(targetId);
                         if (pSum && pt) drawWaveBetweenPoints(particlesGroup, pSum, pt, animTick + i * 20, "rgba(129, 140, 248, 0.55)", 5, 2, 2);
                     });
-                    ["ch3", "ch5", "ch7"].forEach(( targetId, i ) => {
+                    ["ch3", "ch5", "ch7"].forEach((targetId, i) => {
                         const pt = getPx(targetId);
                         if (pPrep && pt) drawWaveBetweenPoints(particlesGroup, pt, pPrep, animTick + i * 20, "rgba(251, 191, 36, 0.55)", 5, 2, 2);
                     });
@@ -2993,21 +3158,21 @@
         // -------------------------------------------------------------------------
         const CONVERSATIONAL_UNIT_EXPLANATIONS = {
             ch1: "בפרק הזה אנחנו פותחים את הדלת לעולם הרשתות ומבינים את התמונה הגדולה: מה קורה מרגע שלחצתם Enter על קישור בדפדפן ועד שהמידע מגיע אליכם למסך? נכיר את מודל חמש השכבות שמארגן את כל רשת האינטרנט, נבין מהו עקרון ה'כימוס' (עטיפת מנת המידע בכותרות שכבה כמו מעטפה בתוך מעטפה), ונלמד לחשב בדיוק מתמטי את ארבעת מרכיבי ההשהיה ברשת: השהיית שידור ($L/R$), השהיית התפשטות במהירות האור ($d/v$), השהיית עיבוד והשהיית תורים בנתבים. בנוסף, נבין מדוע מיתוג מנות (Packet Switching) ניצח את מיתוג המעגלים הישן של חברות הטלפון.",
-            
+
             ch2: "בפרק הזה נרד 'אל הברזלים' ונבין איך פולסים חשמליים וקרני אור הופכים למידע בינארי של אפסים ואחדים. נלמד איך מקודדים אותות בצורה חכמה (NRZ, מנצ'סטר, 4B/5B) בלי שהשעון של המקלט יאבד סנכרון, ונראה איך חותכים זרם סיביות רציף ל'מסגרות' בעזרת דגלים מיוחדים ודחיסת אפסים (Bit Stuffing ב-HDLC ו-Byte Stuffing ב-PPP). בהמשך נחקור את המתמטיקה של גילוי שגיאות בעזרת קודי CRC וזוגיות דו-ממדית, ונבין איך כרטיסי רשת חולקים כבל משותף בפרוטוקול Ethernet באמצעות CSMA/CD, ומדוע מתגים (Switches) מייעלים את הרשת ע\"י למידת כתובות MAC אוטומטית.",
-            
+
             ch3: "זהו מוח הניווט של האינטרנט העולמי! כאן תבינו איך מנות מידע מוצאות את הדרך האופטימלית בין מיליוני נתבים ברחבי כדור הארץ. נצלול למבנה המנה של IPv4, נבין איך נתב חוצה מנה גדולה לפרגמנטים כשהכבל צר מדי (MTU) ואיך מחשבים את שדה ה-Offset, ונשלוט בחלוקת תת-רשתות CIDR וחיפוש הקידומת הארוכה ביותר (LPM). נראה איך שער NAT מאפשר לכל המכשירים בבית לגלוש תחת כתובת IP חיצונית אחת, ונחקור את אלגוריתמי הניתוב המפורסמים: מדייקסטרה (OSPF) שמחשב את המסלול הקצר ביותר, דרך בלמן-פורד (RIP) ובעיית הספירה לאינסוף, ועד לפרוטוקול BGP שמחבר בין ספקיות האינטרנט בעולם.",
-            
+
             ch4: "שכבת הרשת רק מובילה מנות בין מחשבים, אבל שכבת התובלה מביאה את המידע ישירות לתוכנה הספציפית שממתינה לו במחשב! בפרק הזה נכיר את מושג ה'שקע' (Socket) ורביעיית הפורטים. נשווה בין פרוטוקול UDP הפשוט והמהיר לבין ענק האמינות TCP: נפרק שלב-אחר-שלב את לחיצת היד המשולשת (SYN, SYN-ACK, ACK), את סגירת הקשר ב-4 שלבים ומדוע חובה להמתין ב-TIME_WAIT. בחלק המרכזי נלמד איך TCP שולט על קצב השידור כדי לא להציף את חוצץ המקלט (בקרת זרימה עם חלון אפס), ואיך פועלים אלגוריתמי בקרת העומס (Slow Start, Congestion Avoidance, Fast Recovery) שמונעים קריסה של הרשת כולה.",
-            
+
             ch5: "כאן נפגוש את השירותים שכולנו משתמשים בהם יום-יום! נתחיל בפרוטוקול DNS – 'ספר הטלפונים' של האינטרנט – ונראה איך שם דומיין מתורגם לכתובת IP דרך עץ שרתים היררכי (Root, TLD ו-Authoritative). משם נצלול לאבולוציה המרתקת של דפי האינטרנט: למה HTTP/1.0 פתח קשר נפרד לכל תמונה, איך HTTP/1.1 עבר לחיבור מתמיד אך נתקע בחסימת Head-of-Line באפליקציה, איך HTTP/2 פתר זאת באמצעות ריבוב זרמים (Multiplexing), ואיך HTTP/3 שבר את המוסכמות ועבר לפעול מעל UDP ו-QUIC ללא חסימות. נסיים ברשתות הפצת תוכן (CDN) שמאיצות אתרים, ובפרוטוקולי שיתוף קבצים מבוזרים (P2P ו-BitTorrent).",
-            
+
             ch6: "איך מחברים מחשבים וטלפונים כשהתווך הוא האוויר הפתוח? בפרק הזה נגלה את חוקי המשחק המיוחדים של גלי רדיו: דעיכת אותות, רעשים והפרעות הדדיות. נלמד את בעיית התחנה הנסתרת והתחנה החשופה, ונראה איך רשת ה-WiFi הביתית (802.11) פותרת אותן באמצעות CSMA/CA, מנגנון RTS/CTS ונעילת מונה ה-NAV. בחלק הסלולרי נבין את הגאונות של חלוקת השטח לתאי כוורת משושים ושימוש חוזר בתדרים ($D = R\sqrt{3k}$), נראה איך שיחה נשארת רציפה במעבר בין אנטנות (Handover), ונשווה בין שיטות הריבוב של הדורות השונים: FDMA, TDMA, CDMA מבוסס קודי וולש, ו-OFDMA המודרני של דור 4 ו-5.",
-            
+
             ch7: "בעולם שבו כל מנה עוברת דרך עשרות נתבים זרים, איך מבטיחים שאיש לא יצותת, ישנה או יזייף את המידע שלנו? בפרק הזה נבנה את חומת המגן של האינטרנט. נשווה בין הצפנה סימטרית להצפנה א-סימטרית, נפענח את המתמטיקה המודולרית של אלגוריתם RSA המפורסם ($n, e, d$), ונראה איך שני משתמשים שלא נפגשו מעולם יכולים ליצור מפתח סודי משותף בעזרת פרוטוקול דיפי-הלמן. נלמד איך עובדות חתימות דיגיטליות ותעודות אמון (PKI), ואיך מתגוננים מפני מתקפות מניעת שירות (DoS ו-SYN Flood) בעזרת עוגיות SYN וסינון כתובות מזויפות בנתבים (uRPF).",
-            
+
             prep: "כאן עוברים מלימוד תיאורטי להצלחה מעשית בבחינה! מרחב תרגול מקיף המרכז פתרונות מלאים מפורטים צעד-אחר-צעד למבחנים אמיתיים מהשנים האחרונות. תלמדו איך לזהות בשניות את המלכודות הקלאסיות של הבחינה (המרת ביטים/בתים, חישובי RTT, אופסטים של פרגמנטציה וזמני Timeout), תקבלו טיפים מעשיים לניהול זמן, ותתרגלו שאלות מפתח שיבטיחו לכם ביטחון מקסימלי ביום המבחן.",
-            
+
             sum: "התחנה הסופית לחזרה וסגירת החומר! דף סיכום מרוכז ומדויק של כל הקורס: טבלאות השוואה מהירות בין כל השכבות והפרוטוקולים, ריכוז כל הנוסחאות המתמטיות החשובות עם יחידות המידה, כרטיסיות זיכרון ממוקדות להגדרות יסוד, ומפת חשיבה כוללת שמחברת את כל חלקי הפאזל יחד לפני הבחינה."
         };
 
@@ -3136,7 +3301,7 @@
             const explText = CONVERSATIONAL_UNIT_EXPLANATIONS[node.id] || node.whatWeLearn;
 
             if (bodyEl) {
-                const topicsList = (node.topics || []).map(t => 
+                const topicsList = (node.topics || []).map(t =>
                     `<span class="px-2.5 py-1 rounded-lg text-[11px] font-semibold border bg-slate-800/80 text-sky-300 border-sky-400/30">${t}</span>`
                 ).join('');
 
@@ -3207,5 +3372,11 @@
             modal.classList.remove('opacity-100');
         }
     </script>
+
+    <!-- Cloudflare Web Analytics -->
+    <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js'
+        data-cf-beacon='{"token": "570f5af2a2f74dc79bfc9a4a097a0789"}'></script>
+    <!-- End Cloudflare Web Analytics -->
 </body>
+
 </html>
