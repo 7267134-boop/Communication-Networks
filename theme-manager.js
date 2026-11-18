@@ -20,7 +20,7 @@
                         filter: invert(0.9) hue-rotate(180deg);
                     }
                     /* Re-invert media and elements that already have balanced dark tones */
-                    img, video, iframe, pre, .bg-slate-900, .bg-slate-800, .bg-darker, .bg-dark, .no-invert {
+                    img, video, iframe, pre, .bg-slate-900, .bg-slate-800, .bg-darker, .bg-dark, .no-invert, #net-welcome-modal, #net-share-modal {
                         filter: invert(1) hue-rotate(180deg);
                     }
                 `;
@@ -81,4 +81,12 @@
             applyTheme();
         }
     });
+
+    // Auto-load course-modals.js across all course pages
+    if (!document.querySelector('script[src*="course-modals.js"]')) {
+        const modalScript = document.createElement('script');
+        modalScript.src = 'course-modals.js';
+        modalScript.async = true;
+        document.head.appendChild(modalScript);
+    }
 })();

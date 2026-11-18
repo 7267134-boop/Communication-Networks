@@ -1032,20 +1032,20 @@
             </div>
             <div class="relative group/nav mb-1.5">
                 <button class="nav-btn" id="btn-tab-routing-dv" onclick="showTab('tab-routing-dv')">
-                    <span>🧭 3.5 ניתוב א': גרף, וקטור מרחקים ו-RIP</span>
+                    <span>🧭 3.5 ניתוב א\': גרף, וקטור מרחקים ו-RIP</span>
                 </button>
                 <button
                     class="q-btn-hint absolute left-2 top-1/2 -translate-y-1/2 w-6 h-6 rounded-lg bg-white/95 hover:bg-sky-600 hover:text-white text-sky-800 border border-sky-300 flex items-center justify-center text-xs shadow-xs transition-all z-20"
-                    onclick="showQuestions('tab-routing-dv', '3.5 ניתוב א': גרף, וקטור מרחקים ו-RIP', event)"
+                    onclick="showQuestions('tab-routing-dv', '3.5 ניתוב א\': גרף, וקטור מרחקים ו-RIP', event)"
                     title="שאלות מנחות ואמריקאיות - פרק 3.5">❓</button>
             </div>
             <div class="relative group/nav mb-1.5">
                 <button class="nav-btn" id="btn-tab-routing-ls" onclick="showTab('tab-routing-ls')">
-                    <span>⚡ 3.6 ניתוב ב': מצב קווים, OSPF ודייקסטרה</span>
+                    <span>⚡ 3.6 ניתוב ב\': מצב קווים, OSPF ודייקסטרה</span>
                 </button>
                 <button
                     class="q-btn-hint absolute left-2 top-1/2 -translate-y-1/2 w-6 h-6 rounded-lg bg-white/95 hover:bg-sky-600 hover:text-white text-sky-800 border border-sky-300 flex items-center justify-center text-xs shadow-xs transition-all z-20"
-                    onclick="showQuestions('tab-routing-ls', '3.6 ניתוב ב': מצב קווים, OSPF ודייקסטרה', event)"
+                    onclick="showQuestions('tab-routing-ls', '3.6 ניתוב ב\': מצב קווים, OSPF ודייקסטרה', event)"
                     title="שאלות מנחות ואמריקאיות - פרק 3.6">❓</button>
             </div>
             <div class="relative group/nav mb-1.5">
@@ -3217,7 +3217,7 @@
                                             <li><strong>חלוקת <code>/24</code> (256 כתובות) ל-3 רשתות של 60, 60 ו-120
                                                     הוסטים:</strong> רשת של 60 הוסטים דורשת $60+2 = 62 \le 64 = 2^6
                                                 \implies \mathbf{/26}$ (64 כתובות). רשת של 120 הוסטים דורשת $120+2 = 122
-                                                \le 128 = 2^7 \implies \mathbf{/25}$ (128 כתובות). מאחר ש-$64 + 64 + 128
+                                                \le 128 = 2^7 \implies \mathbf{/25}$ (128 כתובות). מאחר ש-$64 + 64 + 128 = 256$
                                                 = 256$, החלוקה אפשרית! למשל: רשת A ב-<code>.0/26</code> ($0..63$), רשת B
                                                 ב-<code>.64/26</code> ($64..127$), ורשת C ב-<code>.128/25</code>
                                                 ($128..255$). (אם סכום החזקות של 2 היה עולה על 256, החלוקה הייתה בלתי
@@ -4149,7 +4149,7 @@
                 </div>
             </section>
             <!-- ========================================================================= -->
-            <!-- TAB 5: 3.5 ניתוב א': גרף הרשת, Distance Vector, Count to Infinity ו-RIP   -->
+            <!-- TAB 5: 3.5 ניתוב א\': גרף הרשת, Distance Vector, Count to Infinity ו-RIP   -->
             <!-- ========================================================================= -->
             <section class="tab-content hidden" id="tab-routing-dv">
 
@@ -4714,7 +4714,7 @@
                 </div>
             </section>
             <!-- ========================================================================= -->
-            <!-- TAB 6: 3.6 ניתוב ב': מצב קווים (Link State / OSPF) ואלגוריתם דייקסטרה     -->
+            <!-- TAB 6: 3.6 ניתוב ב\': מצב קווים (Link State / OSPF) ואלגוריתם דייקסטרה     -->
             <!-- ========================================================================= -->
             <section class="tab-content hidden" id="tab-routing-ls">
 
@@ -8767,8 +8767,8 @@
             'tab-ipv4-frag': '3.2 פרוטוקול IPv4 ופרגמנטציה',
             'tab-addressing-cidr': '3.3 כתובות IP, תת-רשתות, CIDR ו-NAT',
             'tab-helpers': '3.4 פרוטוקולי עזר: ARP, DHCP, ICMP',
-            'tab-routing-dv': "3.5 ניתוב א': גרף, וקטור מרחקים ו-RIP",
-            'tab-routing-ls': "3.6 ניתוב ב': מצב קווים, OSPF ודייקסטרה",
+            'tab-routing-dv': "3.5 ניתוב א\': גרף, וקטור מרחקים ו-RIP",
+            'tab-routing-ls': "3.6 ניתוב ב\': מצב קווים, OSPF ודייקסטרה",
             'tab-bgp': '3.7 ניתוב בין-ארגוני: BGP, מדיניות ו-iBGP',
             'tab-ipv6-exam': '3.8 פרוטוקול IPv6, מפת-על ותרגול מסכם'
         };

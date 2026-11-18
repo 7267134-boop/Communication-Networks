@@ -571,6 +571,8 @@
     </style>
     <!-- Theme Manager -->
     <script src="theme-manager.js"></script>
+    <!-- Course Modals (Guide & Share System) -->
+    <script src="course-modals.js?v=20261116"></script>
 
     <!-- AI Document Summary for AI Assistant Widget -->
     <meta name="ai-document-summary"
@@ -854,6 +856,20 @@
             <h4 class="text-center text-slate-600 font-extrabold text-sm uppercase tracking-widest mb-4 font-designer">
                 קישורים מהירים ויצירת קשר
             </h4>
+
+            <!-- Action Quick Pills: Day 1 Guide & 5-Day Share -->
+            <div class="flex flex-wrap justify-center items-center gap-3 mb-6">
+                <button onclick="window.showCourseWelcomeModal && window.showCourseWelcomeModal()"
+                    class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/80 hover:bg-white text-sky-700 font-bold text-xs sm:text-sm shadow-sm border border-sky-200/80 hover:border-sky-400 hover:shadow-md hover:-translate-y-0.5 transition-all">
+                    <span>ℹ️</span>
+                    <span>מדריך ומפת האתר</span>
+                </button>
+                <button onclick="window.showCourseShareModal && window.showCourseShareModal()"
+                    class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/80 hover:bg-white text-navy-900 font-bold text-xs sm:text-sm shadow-sm border border-sky-300/80 hover:border-sky-500 hover:shadow-md hover:-translate-y-0.5 transition-all">
+                    <span>💙</span>
+                    <span>שיתוף האתר ומאגר הקורסים</span>
+                </button>
+            </div>
 
             <div class="flex justify-center items-center gap-5 mb-8">
                 <!-- לינקדאין -->
